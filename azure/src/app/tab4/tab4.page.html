@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_header">Menu</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="nopad">
+    <ion-row>
+      <ion-col size="12" class="nopad">
+        
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="nopad">
+        <ion-list class="pr-20">
+          <ion-list-header>
+            Current Unit
+          </ion-list-header>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="/assets/sunit.png">
+            </ion-avatar>
+            <ion-label class="current">
+              <h2>Unit 101</h2>
+              <div class="circle_active"></div>
+              <p>Active</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+        <ion-list class="pr-20 list_switch">
+          <ion-list-header>
+            Switch Unit
+          </ion-list-header>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="/assets/sunit.png">
+            </ion-avatar>
+            <ion-label class="lessmargin">
+              <h2>Unit 102</h2>
+              <div class="circle"></div>
+              <p>8 new</p>
+            </ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="/assets/sunit.png">
+            </ion-avatar>
+            <ion-label class="lessmargin">
+              <h2>Unit 103</h2>
+            </ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="/assets/sunit.png">
+            </ion-avatar>
+            <ion-label class="lessmargin">
+              <h2>Unit 104</h2>
+              <div class="circle"></div>
+              <p>3 new</p>
+            </ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="/assets/sunit.png">
+            </ion-avatar>
+            <ion-label class="lessmargin">
+              <h2>Unit 105</h2>
+              <div class="circle"></div>
+              <p>3 new</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="nopad">
+        <ion-list class="list_logout nopad pr-20">
+          <ion-item (click)="openChangePassword()">
+              <img class="imglogout" src="/assets/locked.png">
+            <ion-label>
+              <h2>Change Password</h2>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <img class="imglogout" src="/assets/logout.png">
+          <ion-label>
+            <h2>Log Out</h2>
+          </ion-label>
+        </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
