@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'unit-details', loadChildren: './unit-details/unit-details.module#UnitDetailsPageModule' },
   { path: 'tenant-details', loadChildren: './tenant-details/tenant-details.module#TenantDetailsPageModule' },
   { path: 'resident-details-list', loadChildren: './resident-details-list/resident-details-list.module#ResidentDetailsListPageModule' },
-  { path: 'resident-details-individual', loadChildren: './resident-details-individual/resident-details-individual.module#ResidentDetailsIndividualPageModule' },
+  { path: 'resident-details-individual/:id/:pUnitCode', loadChildren: './resident-details-individual/resident-details-individual.module#ResidentDetailsIndividualPageModule' },
   { path: 'old-tenant-details', loadChildren: './old-tenant-details/old-tenant-details.module#OldTenantDetailsPageModule' },
   { path: 'parking-details', loadChildren: './parking-details/parking-details.module#ParkingDetailsPageModule' },
   { path: 'visitors-details', loadChildren: './visitors-details/visitors-details.module#VisitorsDetailsPageModule' },

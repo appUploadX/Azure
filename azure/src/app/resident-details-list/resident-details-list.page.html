@@ -11,62 +11,19 @@
   </ion-header>
 
 <ion-content class="card-background-page">
-    <ion-list>
-        <ion-item (click)="openResidentDetailsIndividual()">
-          <ion-avatar slot="start">
-              <img src="/assets/person.png">
-            </ion-avatar>
-            <ion-label>
-              <h2>Hanah Salazar</h2>
-              <p class="text_gender"><img class="img_gender" src="/assets/gender_icon.png"> Female</p>
-              <p class="text_address"><img class="img_address" src="/assets/address_icon.png"> South Korea</p>
-            </ion-label>
-        </ion-item>
-
-        <ion-item (click)="openResidentDetailsIndividual()">
-            <ion-avatar slot="start">
-              <img src="/assets/person.png">
-            </ion-avatar>
-            <ion-label>
-              <h2>Hanah Salazar</h2>
-              <p class="text_gender"><img class="img_gender" src="/assets/gender_icon.png"> Female</p>
-              <p class="text_address"><img class="img_address" src="/assets/address_icon.png"> South Korea</p>
-            </ion-label>
-          </ion-item>
-
-          <ion-item (click)="openResidentDetailsIndividual()">
-              <ion-avatar slot="start">
-                <img src="/assets/person.png">
-              </ion-avatar>
-              <ion-label>
-                <h2>Hanah Salazar</h2>
-                <p class="text_gender"><img class="img_gender" src="/assets/gender_icon.png"> Female</p>
-                <p class="text_address"><img class="img_address" src="/assets/address_icon.png"> South Korea</p>
-              </ion-label>
-            </ion-item>
-
-            <ion-item (click)="openResidentDetailsIndividual()">
-                <ion-avatar slot="start">
-                  <img src="/assets/person.png">
-                </ion-avatar>
-                <ion-label>
-                  <h2>Hanah Salazar</h2>
-                  <p class="text_gender"><img class="img_gender" src="/assets/gender_icon.png"> Female</p>
-                  <p class="text_address"><img class="img_address" src="/assets/address_icon.png"> South Korea</p>
-                </ion-label>
-              </ion-item>
-
-              <ion-item (click)="openResidentDetailsIndividual()">
-                  <ion-avatar slot="start">
-                    <img src="/assets/person.png">
-                  </ion-avatar>
-                  <ion-label>
-                    <h2>Hanah Salazar</h2>
-                    <p class="text_gender"><img class="img_gender" src="/assets/gender_icon.png"> Female</p>
-                    <p class="text_address"><img class="img_address" src="/assets/address_icon.png"> South Korea</p>
-                  </ion-label>
-                </ion-item>
-      </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let res of users; let i = index" (click)="openResidentDetailsIndividual(res[i].id, this.pUnitRoom)">
+      <ion-avatar slot="start">
+        <img *ngIf="res[i].p_upload == ''" src="/assets/person.png">
+        <img *ngIf="res[i].p_upload != ''" src="https://www.asi-ph.com/sandboxes/condominium/{{res[i].p_upload}}">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{res[i].p_name}} {{res[i].p_lastname}}</h2>
+        <p class="text_gender"><img class="img_gender" src="/assets/gender_icon.png"> {{res[i].p_gender}}</p>
+        <p class="text_address"><img class="img_address" src="/assets/address_icon.png"> {{res[i].p_address}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
 
 

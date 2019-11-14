@@ -29,7 +29,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab1/unit-details/tenant-details',
+        path: 'tab1/unit-details/tenant-details/:tenantCode/:pUnitRoom',
         children: [
           {
             path: '',
@@ -39,7 +39,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab1/unit-details/resident-details-list',
+        path: 'tab1/unit-details/resident-details-list/:unit_code/:condition/:pUnitRoom',
         children: [
           {
             path: '',
@@ -59,7 +59,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab1/unit-details/old-tenant-details',
+        path: 'tab1/unit-details/old-tenant-details/:unit_code',
         children: [
           {
             path: '',
@@ -69,7 +69,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab1/unit-details/parking-details',
+        path: 'tab1/unit-details/parking-details/:property_code/:floorNo/:roomNo/:propertyBuilding',
         children: [
           {
             path: '',
