@@ -19,7 +19,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab1/unit-details',
+        path: 'tab1/unit-details/',
         children: [
           {
             path: '',

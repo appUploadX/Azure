@@ -1,6 +1,6 @@
 
 <ion-content class="loginbg">
-    <form class="box">
+    <form class="box" (submit)="onSubmit(user.value, pass.value)">
       <ion-grid>
         <ion-row>
           <ion-col col-6>
@@ -12,8 +12,8 @@
       </ion-grid>
 
       <h1>Login</h1>
-      <input type="text" name="" placeholder="Username">
-      <input type="password" name="" placeholder="Password">
-      <input (click)="openHome()" type="submit" name="" value="Login">
+      <input type="text" #user placeholder="Username">
+      <input type="password" #pass placeholder="Password">
+      <input type="submit" value="Login">
     </form>
 </ion-content>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PostProvider } from 'src/providers/post-providers';
 
 @Component({
@@ -9,14 +9,23 @@ import { PostProvider } from 'src/providers/post-providers';
 })
 export class UnitDetailsPage implements OnInit {
   users: any = [];
-
+  unit_code: number;
+  property_code: number;
   constructor(
     private postPvd: PostProvider,
-    private router: Router
+    private router: Router,
+    private actRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.loadData();
+    this.actRoute.params.subscribe((dataX: any) => 
+      {
+        this.unit_code = dataX.unit_code;
+        this.property_code = dataX.property_code;
+        console.log(dataX);
+      }
+    );
+    this.loadData(this.unit_code, this.property_code);
   }
 
   openTenantDetailsInTabs(tenantCode, pUnitRoom){
@@ -35,11 +44,13 @@ export class UnitDetailsPage implements OnInit {
     this.router.navigateByUrl('/tabs/tab1/unit-details/parking-details/'+property_code+'/'+floorNo+'/'+roomNo+'/'+propertyBuilding)
   }
 
-  loadData()
+  loadData(unit_code, property_code)
   {
     return new Promise(resolve => {
       let body = {
         action: 'userDetails',
+        unit_code: unit_code,
+        property_code: property_code,
       };
 
       this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
