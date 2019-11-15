@@ -13,6 +13,7 @@ export class LoginPage implements OnInit {
 
   typeData:string;
   Status:string;
+  Has:string;
   Data: any = [];
 
   constructor(
@@ -41,12 +42,13 @@ export class LoginPage implements OnInit {
       this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
         this.typeData = data['uType'];
         this.Status = data['status'];
+        this.Has = data['hasTenant'];
         this.Data.push(data['data']);
         console.log(data['dataX'][0]);
         if(this.Status == "Success")
         {
           // this.router.navigateByUrl('/tabs/tab1/'+this.typeData+'/'+data['dataX'][0]['unit_code']+'/'+data['dataX'][0]['property_code'], {skipLocationChange: true});
-          this.router.navigateByUrl('/tabs/tab1', { state: { typeCode:this.typeData, uCode: data['dataX'][0]['unit_code'], proCode: data['dataX'][0]['property_code'] }});
+          this.router.navigateByUrl('/tabs/tab1', { state: { typeCode:this.typeData, uCode: data['dataX'][0]['unit_code'], proCode: data['dataX'][0]['property_code'], hasTenant: data['hasTenant'] }});
         }
         
       })

@@ -13,7 +13,7 @@ export class Tab1Page {
   typeData: string;
   unit_code: number;
   property_code: number;
-
+  hasTenant: string;
   constructor(
     private postPvd: PostProvider,
     private router: Router,
@@ -22,10 +22,11 @@ export class Tab1Page {
 
   ngOnInit()
   {
-    console.log(history.state['uCode']);
+    console.log(history.state);
     this.unit_code = history.state['uCode'];
     this.typeData = history.state['typeCode'];
     this.property_code = history.state['proCode'];
+    this.hasTenant = history.state['hasTenant'];
   }
 
   openUnitDetailsInTabs(unit_code, property_code, typeData) {
