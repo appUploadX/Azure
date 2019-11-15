@@ -7,21 +7,21 @@
   </ion-toolbar>
 </ion-header>
   
-<ion-content class="card-background-page">
+<ion-content class="card-background-page" *ngFor="let res of dataX">
   <ion-grid class="nopad">
     <ion-row>
       <ion-col size="12" class="nopad">
         <div class="visitor_title_div">
             <h2 class="visitor_title">Guest Advice Form</h2>
             <div class="underline"></div>
-            <h3 class="visitor_type_title">Staycation</h3>
+            <h3 class="visitor_type_title">{{res.vuVisitorType}}</h3>
         </div>
       </ion-col>
     </ion-row>
   </ion-grid>
 
   <div class="show_modal">
-    <a (click)="openModal()">Show Description</a>
+    <a (click)="openModal(res.vtTermsCondition)">Show Description</a>
   </div>
 
   <div class="v_personal">
@@ -33,7 +33,7 @@
             <p>Visitor Advise No.:</p>
           </ion-col>
           <ion-col size="6">
-            <p class="text-right">123456789</p>
+            <p class="text-right">{{res.vuGuestNo}}</p>
           </ion-col>
         </ion-row>
         <ion-row class="v-row">
@@ -41,7 +41,7 @@
             <p>Tower Unit No.:</p>
           </ion-col>
           <ion-col size="6">
-            <p class="text-right">RE/20/101</p>
+            <p class="text-right">{{res.vuUnitTowerNo}}</p>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -58,7 +58,7 @@
             <p>Arrival Date:</p>
           </ion-col>
           <ion-col size="6">
-            <p class="text-right">July 1, 2019</p>
+            <p class="text-right">{{res.vuArrivalDate}}</p>
           </ion-col>
         </ion-row>
         <ion-row class="v-row">
@@ -66,7 +66,7 @@
             <p>Arrival Time:</p>
           </ion-col>
           <ion-col size="6">
-            <p class="text-right">12:00 AM</p>
+            <p class="text-right">{{res.vuArrivalTime}}</p>
           </ion-col>
         </ion-row>
         <ion-row class="v-row">
@@ -74,7 +74,7 @@
             <p>Departure Date:</p>
           </ion-col>
           <ion-col size="6">
-            <p class="text-right">July 2, 2019</p>
+            <p class="text-right">{{res.vuDepartureDate}}</p>
           </ion-col>
         </ion-row>
         <ion-row class="v-row">
@@ -82,7 +82,7 @@
             <p>Departure Time:</p>
           </ion-col>
           <ion-col size="6">
-            <p class="text-right">12:00 AM</p>
+            <p class="text-right">{{res.vuDepartureTime}}</p>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -99,7 +99,7 @@
             <p>Name of Primary Visitor:</p>
           </ion-col>
           <ion-col size="6">
-            <p class="text-right">Hanah Salazar</p>
+            <p class="text-right">{{res.vuNamePrimaryVisitor}}</p>
           </ion-col>
         </ion-row>
         <ion-row class="v-row">
@@ -107,7 +107,7 @@
             <p>Nationality:</p>
           </ion-col>
           <ion-col size="6">
-            <p class="text-right">Filipino</p>
+            <p class="text-right">{{res.vuPrimaryVisitorNationality}}</p>
           </ion-col>
         </ion-row>
         <ion-row class="v-row">
@@ -115,7 +115,7 @@
             <p>Contact Noumber:</p>
           </ion-col>
           <ion-col size="6">
-            <p class="text-right">09123456789</p>
+            <p class="text-right">{{res.vuPrimaryVisitorContactNo}}</p>
           </ion-col>
         </ion-row>
         <ion-row class="v-row">
@@ -123,7 +123,7 @@
             <p>Email Address:</p>
           </ion-col>
           <ion-col size="6">
-            <p class="text-right">email@email.com</p>
+            <p class="text-right">{{res.vuPrimaryVisitorEmail}}</p>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -131,7 +131,7 @@
   </div>
 
   <div class="v_personal">
-    <div class="v_title_detail">Primary Visitor Details</div>
+    <div class="v_title_detail">Additional Visitor Details</div>
     <div class="v_details">
       <ion-grid class="nopad">
         <ion-row class="v-row">
@@ -148,32 +148,18 @@
             <p class="font_semibold">Checked Out</p>
           </ion-col>
         </ion-row>
-        <ion-row class="v-row">
+        <ion-row class="v-row" *ngFor="let rex of dataAdd; let i = index">
           <ion-col size="3">
-            <p>Hanah Salazar</p>
+            <p>{{rex[i].avName}}</p>
           </ion-col>
           <ion-col size="3">
-            <p>Adult</p>
+            <p>{{rex[i].avMaturity}}</p>
           </ion-col>
           <ion-col size="3">
-            <p>06/11/19</p>
+            <p>{{rex[i].avCheckInDate}}</p>
           </ion-col>
           <ion-col size="3">
-            <p>07/11/19</p>
-          </ion-col>
-        </ion-row>
-        <ion-row class="v-row">
-          <ion-col size="3">
-            <p>Duane Aman</p>
-          </ion-col>
-          <ion-col size="3">
-            <p>Adult</p>
-          </ion-col>
-          <ion-col size="3">
-            <p>06/11/19</p>
-          </ion-col>
-          <ion-col size="3">
-            <p>07/11/19</p>
+            <p>{{rex[i].avCheckOutDate}}</p>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -189,7 +175,7 @@
             <p>Remark:</p>
           </ion-col>
           <ion-col size="6">
-            <p class="text-right">For Test Only</p>
+            <p class="text-right">{{res.vuRemarksByAdmin}}</p>
           </ion-col>
         </ion-row>
         <ion-row class="v-row">
@@ -197,9 +183,9 @@
             <p>Status:</p>
           </ion-col>
           <ion-col size="6">
-            <p class="text-right">Approved</p>
-            <p class="text-right">Admin: Azure Urban</p>
-            <p class="text-right">06/11/19 4:00 PM</p>
+            <p class="text-right">{{res.vuApprovalStatus}}</p>
+            <!-- <p class="text-right">Admin: Azure Urban</p>
+            <p class="text-right">06/11/19 4:00 PM</p> -->
           </ion-col>
         </ion-row>
       </ion-grid>

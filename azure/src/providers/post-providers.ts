@@ -8,7 +8,6 @@ import 'rxjs/Rx';
 export class PostProvider
 {
     server: string = "https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/";
-
     constructor(public http: HttpClient)
     {
 

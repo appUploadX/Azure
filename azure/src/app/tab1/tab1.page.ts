@@ -13,6 +13,7 @@ export class Tab1Page {
   typeData: string;
   unit_code: number;
   property_code: number;
+  newCode: number;
   hasTenant: string;
   constructor(
     private postPvd: PostProvider,
@@ -20,22 +21,25 @@ export class Tab1Page {
     private actRoute: ActivatedRoute,
     ) {}
 
-  ngOnInit()
+  ngOnInit ()
   {
     console.log(history.state);
     this.unit_code = history.state['uCode'];
     this.typeData = history.state['typeCode'];
     this.property_code = history.state['proCode'];
     this.hasTenant = history.state['hasTenant'];
+    this.newCode = history.state['newCode'];
   }
+
+  
 
   openUnitDetailsInTabs(unit_code, property_code, typeData) {
     console.log(unit_code, property_code, typeData);
-    this.router.navigate(['/unit-details/'], { state: { uCOde: unit_code, pCOde: property_code, uType: typeData}});
+    this.router.navigate(['/unit-details/'], { state: { uCode: unit_code, pCode: property_code, uType: typeData}});
   }
 
-  openVisitorsInTabs(unit_code) {
-    this.router.navigateByUrl('/tabs/tab1/visitors-details', { state: { uCodex:unit_code}});
+  openVisitorsInTabs(unit_code, newCode) {
+    this.router.navigateByUrl('/tabs/tab1/visitors-details', { state: { uCode:unit_code, newCode: newCode}});
   }
 
   openNoticeInTabs() {

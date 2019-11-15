@@ -18,14 +18,11 @@ export class UnitDetailsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.actRoute.params.subscribe((dataX: any) => 
-      {
-        this.unit_code = dataX.unit_code;
-        this.property_code = dataX.property_code;
-        console.log(dataX);
-      }
-    );
-    this.loadData(this.unit_code, this.property_code);
+        this.unit_code = history.state['uCode'];
+        this.property_code = history.state['pCode'];
+        // this.property_code = history.state['pCode'];
+        console.log(history.state);
+        this.loadData(this.unit_code, this.property_code);
   }
 
   openTenantDetailsInTabs(tenantCode, pUnitRoom){

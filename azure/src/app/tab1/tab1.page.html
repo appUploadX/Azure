@@ -58,7 +58,16 @@
                     </ion-card>
                 </a>
 
-                <a class="btn_a" *ngIf="typeData=='Owner' && hasTenant!='ActiveTenant'" (click)="openVisitorsInTabs()">
+                <a class="btn_a" *ngIf="typeData=='Owner' && hasTenant==''" (click)="openVisitorsInTabs(unit_code, newCode)">
+                    <ion-card color="white" class="menucards">
+                        <ion-card-header>
+                            <img class="imgmenus" src="assets/visitors.png">
+                            <ion-card-subtitle class="menutitles">Visitors</ion-card-subtitle>
+                        </ion-card-header>
+                    </ion-card>
+                </a>
+
+                <a class="btn_a" *ngIf="typeData=='Tenant' && hasTenant==''" (click)="openVisitorsInTabs(unit_code, newCode)">
                     <ion-card color="white" class="menucards">
                         <ion-card-header>
                             <img class="imgmenus" src="assets/visitors.png">

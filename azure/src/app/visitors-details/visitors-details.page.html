@@ -40,7 +40,7 @@
     </ion-toolbar>
   </ion-header>
   
-<ion-content class="card-background-page">
+<ion-content class="card-background-page" >
   <p class="identify_unit">UNIT 101</p>
   <!-- PLUS BUTTON TO ADD VISITOR REQUEST -->
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
@@ -48,170 +48,30 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  
-  <ion-list>
-    <ion-list-header>November</ion-list-header>
 
-    <ion-item (click)="OpenVisitorListDetals()">
-      <ion-label>
-        <ion-grid>
-          <ion-row>
-            <ion-col class="nopad" size="6">
-                <h2 class="v_name">Hanah Salazar</h2>
-            </ion-col>
-            <ion-col class="nopad" size="6">
-                <p class="v-date">1-Jul-2019</p>
-                <img class="img_arrow" src="assets/arrow_right_blue.png">
-            </ion-col>
-            <ion-col class="nopad" size="12">
-                <h3 class="v-status approved">Approved</h3>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-label>
-    </ion-item>
-
-    <ion-item (click)="OpenVisitorListDetals()">
-      <ion-label>
-        <ion-grid>
-          <ion-row>
-            <ion-col class="nopad" size="6">
-                <h2 class="v_name">Duane Brick</h2>
-            </ion-col>
-            <ion-col class="nopad" size="6">
-                <p class="v-date">1-Jul-2019</p>
-                <img class="img_arrow" src="assets/arrow_right_blue.png">
-            </ion-col>
-            <ion-col class="nopad" size="12">
-                <h3 class="v-status v_cancelled">Cancelled</h3>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-label>
-    </ion-item>
-
-    <ion-item (click)="OpenVisitorListDetals()">
-      <ion-label>
-        <ion-grid>
-          <ion-row>
-            <ion-col class="nopad" size="6">
-                <h2 class="v_name">Hanah Salazar</h2>
-            </ion-col>
-            <ion-col class="nopad" size="6">
-                <p class="v-date">1-Jul-2019</p>
-                <img class="img_arrow" src="assets/arrow_right_blue.png">
-            </ion-col>
-            <ion-col class="nopad" size="12">
-                <h3 class="v-status approved">Approved</h3>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-label>
-    </ion-item>
-  
-    <ion-item (click)="OpenVisitorListDetals()">
-      <ion-label>
-        <ion-grid>
-          <ion-row>
-            <ion-col class="nopad" size="6">
-                <h2 class="v_name">Duane Brick</h2>
-            </ion-col>
-            <ion-col class="nopad" size="6">
-                <p class="v-date">1-Jul-2019</p>
-                <img class="img_arrow" src="assets/arrow_right_blue.png">
-            </ion-col>
-            <ion-col class="nopad" size="12">
-                <h3 class="v-status v_cancelled">Cancelled</h3>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-
-  <ion-list>
-    <ion-list-header>September</ion-list-header>
-      <ion-item (click)="OpenVisitorListDetals()">
-        <ion-label>
-          <ion-grid>
-            <ion-row>
-              <ion-col class="nopad" size="6">
-                  <h2 class="v_name">Duane Brick</h2>
-              </ion-col>
-              <ion-col class="nopad" size="6">
-                  <p class="v-date">1-Jul-2019</p>
-                  <img class="img_arrow" src="assets/arrow_right_blue.png">
-              </ion-col>
-              <ion-col class="nopad" size="12">
-                  <h3 class="v-status v_expired">Expired</h3>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-label>
-      </ion-item>
-
-      <ion-item (click)="OpenVisitorListDetals()">
-        <ion-label>
-          <ion-grid>
-            <ion-row>
-              <ion-col class="nopad" size="6">
-                  <h2 class="v_name">Duane Brick</h2>
-              </ion-col>
-              <ion-col class="nopad" size="6">
-                  <p class="v-date">1-Jul-2019</p>
-                  <img class="img_arrow" src="assets/arrow_right_blue.png">
-              </ion-col>
-              <ion-col class="nopad" size="12">
-                  <h3 class="v-status v_expired">Expired</h3>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-label>
-      </ion-item>
-
-      
-    </ion-list>
-
-  <ion-list>
+  <ion-list >
     <ion-list-header>August</ion-list-header>
-
-    <ion-item (click)="OpenVisitorListDetals()">
+    <ion-item *ngFor="let vData of visitData; let i = index" (click)="OpenVisitorListDetails(vData[i].id)">
       <ion-label>
         <ion-grid>
           <ion-row>
             <ion-col class="nopad" size="6">
-                <h2 class="v_name">Duane Brick</h2>
+                <h2 class="v_name">{{vData[i].vuNamePrimaryVisitor}}</h2>
             </ion-col>
             <ion-col class="nopad" size="6">
-                <p class="v-date">1-Jul-2019</p>
+                <p class="v-date">{{vData[i].vuArrivalDate}}</p>
                 <img class="img_arrow" src="assets/arrow_right_blue.png">
             </ion-col>
             <ion-col class="nopad" size="12">
-                <h3 class="v-status v_expired">Expired</h3>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-label>
-    </ion-item>
-
-    <ion-item (click)="OpenVisitorListDetals()">
-      <ion-label>
-        <ion-grid>
-          <ion-row>
-            <ion-col class="nopad" size="6">
-                <h2 class="v_name">Duane Brick</h2>
-            </ion-col>
-            <ion-col class="nopad" size="6">
-                <p class="v-date">1-Jul-2019</p>
-                <img class="img_arrow" src="assets/arrow_right_blue.png">
-            </ion-col>
-            <ion-col class="nopad" size="12">
-                <h3 class="v-status v_expired">Expired</h3>
+                <h3 *ngIf="vData[i].vuApprovalStatus == 'Approved'" class="v-status approved">{{vData[i].vuApprovalStatus}}</h3>
+                <h3 *ngIf="vData[i].vuApprovalStatus == 'Declined'" class="v-status v_cancelled">{{vData[i].vuApprovalStatus}}</h3>
+                <h3 *ngIf="vData[i].vuApprovalStatus == 'Pending'" class="v-status v_pending">{{vData[i].vuApprovalStatus}}</h3>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-label>
     </ion-item>
   </ion-list>
+
 
 </ion-content>

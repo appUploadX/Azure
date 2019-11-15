@@ -47,8 +47,14 @@ export class LoginPage implements OnInit {
         console.log(data['dataX'][0]);
         if(this.Status == "Success")
         {
-          // this.router.navigateByUrl('/tabs/tab1/'+this.typeData+'/'+data['dataX'][0]['unit_code']+'/'+data['dataX'][0]['property_code'], {skipLocationChange: true});
-          this.router.navigateByUrl('/tabs/tab1', { state: { typeCode:this.typeData, uCode: data['dataX'][0]['unit_code'], proCode: data['dataX'][0]['property_code'], hasTenant: data['hasTenant'] }});
+          if(this.typeData == "Owner")
+          {
+            this.router.navigateByUrl('/tabs/tab1', { state: { typeCode:this.typeData, uCode: data['dataX'][0]['unit_code'], proCode: data['dataX'][0]['property_code'], hasTenant: data['hasTenant'], newCode: data['dataX'][0]['new_code'] }});
+          }
+          else if(this.typeData == "Tenant")
+          {
+            this.router.navigateByUrl('/tabs/tab1', { state: { typeCode:this.typeData, uCode: data['dataX'][0]['unit_code'], proCode: data['propC']['property_code'], hasTenant: data['hasTenant'], newCode: data['dataX'][0]['new_code'] }});
+          }
         }
         
       })
