@@ -15,6 +15,7 @@ export class Tab1Page {
   property_code: number;
   newCode: number;
   hasTenant: string;
+  fullname: string;
   constructor(
     private postPvd: PostProvider,
     private router: Router,
@@ -29,6 +30,7 @@ export class Tab1Page {
     this.property_code = history.state['proCode'];
     this.hasTenant = history.state['hasTenant'];
     this.newCode = history.state['newCode'];
+    this.fullname = history.state['fullname'];
   }
 
   
@@ -39,7 +41,7 @@ export class Tab1Page {
   }
 
   openVisitorsInTabs(unit_code, newCode) {
-    this.router.navigateByUrl('/tabs/tab1/visitors-details', { state: { uCode:unit_code, newCode: newCode}});
+    this.router.navigateByUrl('/tabs/tab1/visitors-details', { state: { uCode:unit_code, newCode: newCode, fullname: this.fullname}});
   }
 
   openNoticeInTabs() {

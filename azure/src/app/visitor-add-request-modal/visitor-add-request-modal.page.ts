@@ -11,6 +11,7 @@ export class VisitorAddRequestModalPage implements OnInit {
   constructor(private modalController: ModalController) { }
 
   ngOnInit() {
+    
   }
 
   async closeModal() {

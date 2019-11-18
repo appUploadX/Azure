@@ -32,7 +32,7 @@ export class VisitorsDetailsPage implements OnInit {
   }
 
   openAddVisitorRequest() {
-    this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request')
+    this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request', {state: {newCode: this.newCode, uCode: this.unit_code}})
   }
 
   loadData(unit_code, newCode)

@@ -16,6 +16,8 @@ export class VisitorAddRequestPage implements OnInit {
   ishidden: boolean;
   label:string;
   description;
+  newCode:number;
+  uCode:number;
 
   //Name of inputs
   vtUnitOwner;
@@ -36,6 +38,25 @@ export class VisitorAddRequestPage implements OnInit {
   vtVehicleDetailsCount;
   vtRemarks;
 
+  //Name of data kung check o uncheck
+  vtUnitOwnerX:string;
+  vtTowerUnitX:string;
+  vtCarparkSlotNoX:string;
+  vtGuestOnSiteX:string;
+  vtGuestContacX:string;
+  vtArrivalDateX:string;
+  vtArrivalTimeX:string;
+  vtDepartureDateX:string;
+  vtDepartureTimeX:string;
+  vtPrimaryVisitorNamX:string;
+  vtPrimaryVisitorNationalityX:string;
+  vtPrimaryVisitorContactNoX:string;
+  vtPrimaryVisitorEmailAddresX:string;
+  vtPrimaryVisitorAddressX:string;
+  vtAdditionalVisitorCounX:string;
+  vtVehicleDetailsCountX:string;
+  vtRemarksX:string;
+
   constructor(
     private modalController: ModalController,
     private postPvd: PostProvider,
@@ -44,6 +65,10 @@ export class VisitorAddRequestPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(history.state);
+    this.newCode = history.state.newCode;
+    this.uCode = history.state.uCode;
+
     this.ishidden = true;
     this.loadData();
   }
@@ -77,8 +102,10 @@ export class VisitorAddRequestPage implements OnInit {
   }
 
   onChangeX(selectedValue){
-    console.info("Selected:",selectedValue);
+    console.info("Selected:",this.newCode);
     this.label = selectedValue;
+    this.ishidden = true;
+
     if(selectedValue != null)
     {
       this.ishidden = false;
@@ -87,13 +114,31 @@ export class VisitorAddRequestPage implements OnInit {
     return new Promise(resolve => {
       let body = {
         action: 'typeData',
-        value: selectedValue
+        value: selectedValue,
+        uCode: this.uCode,
       };
 
       this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
-        
-          this.typesIND.push(data['typeDataX']);
-          this.description = data['typeDataX']['vtTermsCondition'];
+        this.vtUnitOwnerX = data['typeDataX']['vtUnitOwner'];
+        this.vtTowerUnitX = data['typeDataX']['vtTowerUnit'];
+        this.vtCarparkSlotNoX = data['typeDataX']['vtCarparkSlotNo'];
+        this.vtGuestOnSiteX = data['typeDataX']['vtGuestOnSite'];
+        this.vtGuestContacX = data['typeDataX']['vtGuestContac'];
+        this.vtArrivalDateX = data['typeDataX']['vtArrivalDate'];
+        this.vtArrivalTimeX = data['typeDataX']['vtArrivalTime'];
+        this.vtDepartureDateX = data['typeDataX']['vtDepartureDate'];
+        this.vtDepartureTimeX = data['typeDataX']['vtDepartureTime'];
+        this.vtPrimaryVisitorNamX = data['typeDataX']['vtPrimaryVisitorNam'];
+        this.vtPrimaryVisitorNationalityX = data['typeDataX']['vtPrimaryVisitorNationality'];
+        this.vtPrimaryVisitorContactNoX = data['typeDataX']['vtPrimaryVisitorContactNo'];
+        this.vtPrimaryVisitorEmailAddresX = data['typeDataX']['vtPrimaryVisitorEmailAddres'];
+        this.vtPrimaryVisitorAddressX = data['typeDataX']['vtPrimaryVisitorAddress'];
+        this.vtAdditionalVisitorCounX = data['typeDataX']['vtAdditionalVisitorCoun'];
+        this.vtVehicleDetailsCountX = data['typeDataX']['vtVehicleDetailsCount'];
+        this.vtRemarksX = data['typeDataX']['vtRemarks'];
+
+        // this.typesIND.push(data['typeDataX']);
+        this.description = data['typeDataX']['vtTermsCondition'];
 
         resolve(true);
         console.log(data['typeDataX']);
@@ -107,6 +152,9 @@ export class VisitorAddRequestPage implements OnInit {
     return new Promise(resolve => {
       let body = {
         action: 'addVisitors',
+        vuUnitCode: this.uCode,
+        ownerCode: this.newCode,
+        vuVisitorType: this.label,
         vtUnitOwner: this.vtUnitOwner,
         vtTowerUnit: this.vtTowerUnit,
         vtCarparkSlotNo: this.vtCarparkSlotNo,
@@ -127,7 +175,7 @@ export class VisitorAddRequestPage implements OnInit {
       };
 
       this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
-        this.router.navigate(['/user-details']);
+        // this.router.navigate(['/user-details']);
         console.log('ok');
       })
     });
