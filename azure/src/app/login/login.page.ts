@@ -15,7 +15,7 @@ export class LoginPage implements OnInit {
   Status:string;
   Has:string;
   Data: any = [];
-
+  TUN: string;
   constructor(
     private postPvd: PostProvider,
     private router: Router,
@@ -49,11 +49,11 @@ export class LoginPage implements OnInit {
         {
           if(this.typeData == "Owner")
           {
-            this.router.navigateByUrl('/tabs/tab1', { state: { typeCode:this.typeData, uCode: data['dataX'][0]['unit_code'], proCode: data['dataX'][0]['property_code'], hasTenant: data['hasTenant'], newCode: data['dataX'][0]['new_code'], fullname: data['dataX'][0]['fullname'] }});
+            this.router.navigateByUrl('/tabs/tab1', { state: { typeCode:this.typeData, uCode: data['dataX'][0]['unit_code'], proCode: data['dataX'][0]['property_code'], hasTenant: data['hasTenant'], newCode: data['dataX'][0]['new_code'], fullname: data['dataX'][0]['fullname'], TUN: data['TUN'] }});
           }
           else if(this.typeData == "Tenant")
           {
-            this.router.navigateByUrl('/tabs/tab1', { state: { typeCode:this.typeData, uCode: data['dataX'][0]['unit_code'], proCode: data['propC']['property_code'], hasTenant: data['hasTenant'], newCode: data['dataX'][0]['new_code'], fullname: data['dataX'][0]['fullname'] }});
+            this.router.navigateByUrl('/tabs/tab1', { state: { typeCode:this.typeData, uCode: data['dataX'][0]['unit_code'], proCode: data['propC']['property_code'], hasTenant: data['hasTenant'], newCode: data['dataX'][0]['new_code'], fullname: data['dataX'][0]['fullname'], TUN: data['TUN'] }});
           }
         }
         

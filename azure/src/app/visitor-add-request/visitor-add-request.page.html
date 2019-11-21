@@ -39,7 +39,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Unit Owner/SPA Name <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="text" [(ngModel)]="vtUnitOwner"></ion-input>
+                <ion-input class="text_input" type="text" [(ngModel)]="vtUnitOwner">{{fullname}}</ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -47,7 +47,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Tower Unit Number <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="text" [(ngModel)]="vtTowerUnit"></ion-input>
+                <ion-input class="text_input" type="text" [(ngModel)]="vtTowerUnit">{{TUN}}</ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -81,37 +81,37 @@
 
     <div class="v_personal">
       <div class="v_title_detail">Arrival/Departure Details</div>
-      <div class="v_details" *ngIf='vtArrivalDateX == checked'>
+      <div class="v_details">
         <ion-grid class="nopad">
-          <ion-row class="v-row">
+          <ion-row class="v-row" *ngIf='vtArrivalDateX == "checked"'>
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Arrival Date <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="text" [(ngModel)]="vtArrivalDate"></ion-input>
+                <ion-datetime class="text_input" displayFormat="YYYY-MM-DD" min="2019-01-01" [(ngModel)]="vtArrivalDate"></ion-datetime>
               </ion-item>
             </ion-col>
           </ion-row>
-          <ion-row class="v-row" *ngIf='vtArrivalTimeX == checked'>
+          <ion-row class="v-row" *ngIf='vtArrivalTimeX == "checked"'>
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Arrival Time <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="text" [(ngModel)]="vtArrivalTime"></ion-input>
+                <ion-datetime class="text_input" displayFormat="h:mm A" picker-format="h:mm A" [(ngModel)]="vtArrivalTime"></ion-datetime>
               </ion-item>
             </ion-col>
           </ion-row>
-          <ion-row class="v-row" *ngIf='vtDepartureDateX == checked'>
+          <ion-row class="v-row" *ngIf='vtDepartureDateX == "checked"'>
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Departure Date <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="text" [(ngModel)]="vtDepartureDate"></ion-input>
+                <ion-datetime class="text_input" displayFormat="YYYY-MM-DD" min="2019-01-01" [(ngModel)]="vtDepartureDate"></ion-datetime>
               </ion-item>
             </ion-col>
           </ion-row>
-          <ion-row class="v-row" *ngIf='vtDepartureTimeX == checked'>
+          <ion-row class="v-row" *ngIf='vtDepartureTimeX == "checked"'>
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Departure Time <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="text" [(ngModel)]="vtDepartureTime"></ion-input>
+                <ion-datetime class="text_input" displayFormat="h:mm A" picker-format="h:mm A"  [(ngModel)]="vtDepartureTime"></ion-datetime>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -175,11 +175,11 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Count <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="text" [(ngModel)]="vtAdditionalVisitorCount"></ion-input>
+                <ion-input class="text_input" type="number" [(ngModel)]="vtAdditionalVisitorCount" (keyup)="countVisit($event)"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
-          <ion-row class="v-row2 nopad">
+          <ion-row class="v-row2 nopad" >
             <ion-col class="nopad" size="6">
               <p class="font_semibold countAddV">Name</p>
             </ion-col>
@@ -187,28 +187,15 @@
               <p class="font_semibold countAddV">Type</p>
             </ion-col>
           </ion-row>
-          <ion-row class="v-row2">
+          <ion-row class="v-row2" *ngFor="let countX of visitC; let i = index">
             <ion-col size="6">
-              <ion-input class="text_input" placeholder="Name"></ion-input>
+              <ion-input class="text_input" type="text" placeholder="Name" [(ngModel)]="visitC[i].value" ></ion-input>
             </ion-col>
             <ion-col size="6">
               <ion-item>
-                <ion-select class="selectadult" placeholder="Select One">
-                  <ion-select-option value="f">Adult</ion-select-option>
-                  <ion-select-option value="m">Children</ion-select-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row class="v-row2">
-            <ion-col size="6">
-              <ion-input class="text_input" placeholder="Name"></ion-input>
-            </ion-col>
-            <ion-col size="6">
-              <ion-item>
-                <ion-select class="selectadult" placeholder="Select One">
-                  <ion-select-option value="f">Adult</ion-select-option>
-                  <ion-select-option value="m">Children</ion-select-option>
+                <ion-select class="selectadult" placeholder="Select One" [(ngModel)]="visitC[i].valueX">
+                  <ion-select-option value="Adult">Adult</ion-select-option>
+                  <ion-select-option value="Children">Children</ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
@@ -245,30 +232,16 @@
           </ion-row>
           <ion-row class="v-row2">
             <ion-col size="3">
-              <ion-input class="text_input" placeholder="Type"></ion-input>
+              <ion-input class="text_input" placeholder="Type" [(ngModel)]="vuVehicleDetailsType"></ion-input>
             </ion-col>
             <ion-col size="3">
-              <ion-input class="text_input" placeholder="Model"></ion-input>
+              <ion-input class="text_input" placeholder="Model" [(ngModel)]="vuVehicleDetailsModel"></ion-input>
             </ion-col>
             <ion-col size="3">
-              <ion-input class="text_input" placeholder="Color"></ion-input>
+              <ion-input class="text_input" placeholder="Color" [(ngModel)]="vuVehicleDetailsColor"></ion-input>
             </ion-col>
             <ion-col size="3">
-              <ion-input class="text_input" placeholder="Plate No."></ion-input>
-            </ion-col>
-          </ion-row>
-          <ion-row class="v-row2">
-            <ion-col size="3">
-              <ion-input class="text_input" placeholder="Type"></ion-input>
-            </ion-col>
-            <ion-col size="3">
-              <ion-input class="text_input" placeholder="Model"></ion-input>
-            </ion-col>
-            <ion-col size="3">
-              <ion-input class="text_input" placeholder="Color"></ion-input>
-            </ion-col>
-            <ion-col size="3">
-              <ion-input class="text_input" placeholder="Plate No."></ion-input>
+              <ion-input class="text_input" placeholder="Plate No." [(ngModel)]="vuVehicleDetailsPlateNo"></ion-input>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -291,6 +264,26 @@
       </div>
     </div>
 
+    <div class="v_personal">
+      <div class="v_title_detail">To Be Filled By Admin</div>
+      <div class="v_details">
+        <ion-grid class="nopad">
+          <ion-row class="v-row">
+            <ion-col size="12">
+              <ion-item>
+                <div class="remark_admin">
+                  <ion-item>
+                    <ion-input class="text_input" type="text" placeholder="Type here..." [(ngModel)]="vtRemarksByAdmin"></ion-input>
+                  </ion-item>
+                </div>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+
+
     <!-- <div class="v_personal">
       <div class="v_title_detail">To Be Filled By Admin</div>
       <div class="v_details">
@@ -308,25 +301,7 @@
       </div>
     </div> -->
 
-
-    <!-- <div class="v_personal">
-      <div class="v_title_detail">To Be Filled By Admin</div>
-      <div class="v_details">
-        <ion-grid class="nopad">
-          <ion-row class="v-row">
-            <ion-col size="12">
-              <ion-item>
-                <div class="remark_admin">
-                  <p>Remark: </p>
-                </div>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
-    </div> -->
-
-    <!-- <div class="v_personal">
+    <div class="v_personal">
       <div class="v_details">
         <ion-grid class="nopad">
           <ion-row class="v-row nopad">
@@ -342,14 +317,14 @@
             </ion-col>
             <ion-col size="12" class="nopad">
               <ion-item>
-                <ion-checkbox color="primary" slot="start"></ion-checkbox>
+                <ion-checkbox color="primary" slot="start" [(ngModel)]="condition"></ion-checkbox>
                 <ion-label class="text_terms">I Accept Terms and Conditions</ion-label>
               </ion-item>
             </ion-col>
           </ion-row>
         </ion-grid>
       </div>
-    </div> -->
+    </div>
 
     <ion-grid class="btns">
         <ion-row class="v-row pt-0">

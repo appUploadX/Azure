@@ -53,7 +53,7 @@
     <div class="v_title_detail">Arrival/Departure Details</div>
     <div class="v_details">
       <ion-grid class="nopad">
-        <ion-row class="v-row">
+        <ion-row class="v-row" *ngIf='vtArrivalDateX == "checked"'>
           <ion-col size="6">
             <p>Arrival Date:</p>
           </ion-col>
@@ -61,15 +61,15 @@
             <p class="text-right">{{res.vuArrivalDate}}</p>
           </ion-col>
         </ion-row>
-        <ion-row class="v-row">
+        <ion-row class="v-row"  *ngIf='vtArrivalTimeX == "checked"'>
           <ion-col size="6">
             <p>Arrival Time:</p>
           </ion-col>
           <ion-col size="6">
-            <p class="text-right">{{res.vuArrivalTime}}</p>
+            <p class="text-right">{{res.vuArrivalTime | date:'h:mm a'}}</p>
           </ion-col>
         </ion-row>
-        <ion-row class="v-row">
+        <ion-row class="v-row" *ngIf='vtDepartureDateX == "checked"'>
           <ion-col size="6">
             <p>Departure Date:</p>
           </ion-col>
@@ -77,12 +77,12 @@
             <p class="text-right">{{res.vuDepartureDate}}</p>
           </ion-col>
         </ion-row>
-        <ion-row class="v-row">
+        <ion-row class="v-row" *ngIf='vtDepartureTimeX == "checked"'>
           <ion-col size="6">
             <p>Departure Time:</p>
           </ion-col>
           <ion-col size="6">
-            <p class="text-right">{{res.vuDepartureTime}}</p>
+            <p class="text-right">{{res.vuDepartureTime | date:'h:mm a'}}</p>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -94,7 +94,7 @@
     <div class="v_title_detail">Primary Visitor Details</div>
     <div class="v_details">
       <ion-grid class="nopad">
-        <ion-row class="v-row">
+        <ion-row class="v-row" *ngIf='vtPrimaryVisitorNameX == "checked"'>
           <ion-col size="6">
             <p>Name of Primary Visitor:</p>
           </ion-col>
@@ -102,7 +102,7 @@
             <p class="text-right">{{res.vuNamePrimaryVisitor}}</p>
           </ion-col>
         </ion-row>
-        <ion-row class="v-row">
+        <ion-row class="v-row" *ngIf='vtPrimaryVisitorNationalityX == "checked"'>
           <ion-col size="6">
             <p>Nationality:</p>
           </ion-col>
@@ -110,7 +110,7 @@
             <p class="text-right">{{res.vuPrimaryVisitorNationality}}</p>
           </ion-col>
         </ion-row>
-        <ion-row class="v-row">
+        <ion-row class="v-row" *ngIf='vtPrimaryVisitorContactNoX == "checked"'>
           <ion-col size="6">
             <p>Contact Noumber:</p>
           </ion-col>
@@ -118,12 +118,20 @@
             <p class="text-right">{{res.vuPrimaryVisitorContactNo}}</p>
           </ion-col>
         </ion-row>
-        <ion-row class="v-row">
+        <ion-row class="v-row" *ngIf='vtPrimaryVisitorEmailAddressX == "checked"'>
           <ion-col size="6">
             <p>Email Address:</p>
           </ion-col>
           <ion-col size="6">
             <p class="text-right">{{res.vuPrimaryVisitorEmail}}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row class="v-row" *ngIf='vtPrimaryVisitorAddressX == "checked"'>
+          <ion-col size="6">
+            <p>Address:</p>
+          </ion-col>
+          <ion-col size="6">
+            <p class="text-right">{{res.vuPrimaryVisitorAddress}}</p>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -132,7 +140,7 @@
 
   <div class="v_personal">
     <div class="v_title_detail">Additional Visitor Details</div>
-    <div class="v_details">
+    <div class="v_details" *ngIf='vtAdditionalVisitorCountX == "checked"'>
       <ion-grid class="nopad">
         <ion-row class="v-row">
           <ion-col size="3">

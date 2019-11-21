@@ -16,6 +16,7 @@ export class Tab1Page {
   newCode: number;
   hasTenant: string;
   fullname: string;
+  TUN: string;
   constructor(
     private postPvd: PostProvider,
     private router: Router,
@@ -31,6 +32,7 @@ export class Tab1Page {
     this.hasTenant = history.state['hasTenant'];
     this.newCode = history.state['newCode'];
     this.fullname = history.state['fullname'];
+    this.TUN = history.state['TUN'];
   }
 
   
@@ -41,7 +43,7 @@ export class Tab1Page {
   }
 
   openVisitorsInTabs(unit_code, newCode) {
-    this.router.navigateByUrl('/tabs/tab1/visitors-details', { state: { uCode:unit_code, newCode: newCode, fullname: this.fullname}});
+    this.router.navigateByUrl('/tabs/tab1/visitors-details', { state: { uCode:unit_code, newCode: newCode, fullname: this.fullname, TUN: this.TUN}});
   }
 
   openNoticeInTabs() {
@@ -49,7 +51,7 @@ export class Tab1Page {
   }
 
   openAmenitiesInTabs() {
-    this.router.navigateByUrl('tabs/tab1/amenities-details')
+    this.router.navigateByUrl('tabs/tab1/amenities-details',  { state: { uCode: this.unit_code, pCode: this.property_code, uType: this.typeData}})
   }
 
 }

@@ -37,6 +37,7 @@ export class VisitorAddRequestPage implements OnInit {
   vtAdditionalVisitorCount;
   vtVehicleDetailsCount;
   vtRemarks;
+  avName;
 
   //Name of data kung check o uncheck
   vtUnitOwnerX:string;
@@ -48,14 +49,24 @@ export class VisitorAddRequestPage implements OnInit {
   vtArrivalTimeX:string;
   vtDepartureDateX:string;
   vtDepartureTimeX:string;
-  vtPrimaryVisitorNamX:string;
+  vtPrimaryVisitorNameX:string;
+  vtGuestContactX: string;
   vtPrimaryVisitorNationalityX:string;
   vtPrimaryVisitorContactNoX:string;
-  vtPrimaryVisitorEmailAddresX:string;
+  vtPrimaryVisitorEmailAddressX:string;
   vtPrimaryVisitorAddressX:string;
-  vtAdditionalVisitorCounX:string;
+  vtAdditionalVisitorCountX:string;
   vtVehicleDetailsCountX:string;
   vtRemarksX:string;
+  vtRemarksByAdmin:string;
+  condition:string;
+  fullname:string;
+  TUN:string;
+  vuVehicleDetailsType:string;
+  vuVehicleDetailsModel:string;
+  vuVehicleDetailsColor:string;
+  vuVehicleDetailsPlateNo:string;
+  visitC:any = [];
 
   constructor(
     private modalController: ModalController,
@@ -68,6 +79,8 @@ export class VisitorAddRequestPage implements OnInit {
     console.log(history.state);
     this.newCode = history.state.newCode;
     this.uCode = history.state.uCode;
+    this.fullname = history.state.fullname;
+    this.TUN = history.state.TUN;
 
     this.ishidden = true;
     this.loadData();
@@ -81,6 +94,15 @@ export class VisitorAddRequestPage implements OnInit {
       }
     });
     return await modal.present();
+  }
+
+  countVisit(ev) {
+    this.visitC = [];
+    for(var i = 0; i < ev.target.value;i++){  
+      this.visitC.push({'value':'', 'valueX':''});
+    }
+    console.log('this.visitC',this.visitC);
+    // console.log(ev.target.value);
   }
 
   loadData()
@@ -116,6 +138,7 @@ export class VisitorAddRequestPage implements OnInit {
         action: 'typeData',
         value: selectedValue,
         uCode: this.uCode,
+        newCode: this.newCode,
       };
 
       this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
@@ -128,18 +151,18 @@ export class VisitorAddRequestPage implements OnInit {
         this.vtArrivalTimeX = data['typeDataX']['vtArrivalTime'];
         this.vtDepartureDateX = data['typeDataX']['vtDepartureDate'];
         this.vtDepartureTimeX = data['typeDataX']['vtDepartureTime'];
-        this.vtPrimaryVisitorNamX = data['typeDataX']['vtPrimaryVisitorNam'];
+        this.vtPrimaryVisitorNameX = data['typeDataX']['vtPrimaryVisitorName'];
+        this.vtGuestContactX = data['typeDataX']['vtGuestContact'];
         this.vtPrimaryVisitorNationalityX = data['typeDataX']['vtPrimaryVisitorNationality'];
         this.vtPrimaryVisitorContactNoX = data['typeDataX']['vtPrimaryVisitorContactNo'];
-        this.vtPrimaryVisitorEmailAddresX = data['typeDataX']['vtPrimaryVisitorEmailAddres'];
+        this.vtPrimaryVisitorEmailAddressX = data['typeDataX']['vtPrimaryVisitorEmailAddress'];
         this.vtPrimaryVisitorAddressX = data['typeDataX']['vtPrimaryVisitorAddress'];
-        this.vtAdditionalVisitorCounX = data['typeDataX']['vtAdditionalVisitorCoun'];
+        this.vtAdditionalVisitorCountX = data['typeDataX']['vtAdditionalVisitorCount'];
         this.vtVehicleDetailsCountX = data['typeDataX']['vtVehicleDetailsCount'];
         this.vtRemarksX = data['typeDataX']['vtRemarks'];
 
         // this.typesIND.push(data['typeDataX']);
         this.description = data['typeDataX']['vtTermsCondition'];
-
         resolve(true);
         console.log(data['typeDataX']);
       });
@@ -149,14 +172,13 @@ export class VisitorAddRequestPage implements OnInit {
 
   submit()
   {
+    // console.log(this.visitC);
     return new Promise(resolve => {
       let body = {
         action: 'addVisitors',
-        vuUnitCode: this.uCode,
-        ownerCode: this.newCode,
         vuVisitorType: this.label,
-        vtUnitOwner: this.vtUnitOwner,
-        vtTowerUnit: this.vtTowerUnit,
+        vtUnitOwner: this.fullname,
+        vtTowerUnit: this.TUN,
         vtCarparkSlotNo: this.vtCarparkSlotNo,
         vtGuestOnSite: this.vtGuestOnSite,
         vtGuestContact: this.vtGuestContact,
@@ -164,7 +186,7 @@ export class VisitorAddRequestPage implements OnInit {
         vtArrivalTime: this.vtArrivalTime,
         vtDepartureDate: this.vtDepartureDate,
         vtDepartureTime: this.vtDepartureTime,
-        vtPrimaryVisitorName: this.vtPrimaryVisitorName,
+        vuNamePrimaryVisitor: this.vtPrimaryVisitorName,
         vtPrimaryVisitorNationality: this.vtPrimaryVisitorNationality,
         vtPrimaryVisitorContactNo: this.vtPrimaryVisitorContactNo,
         vtPrimaryVisitorEmailAddress: this.vtPrimaryVisitorEmailAddress,
@@ -172,10 +194,26 @@ export class VisitorAddRequestPage implements OnInit {
         vtAdditionalVisitorCount: this.vtAdditionalVisitorCount,
         vtVehicleDetailsCount: this.vtVehicleDetailsCount,
         vtRemarks: this.vtRemarks,
+        vtRemarksByAdmin: this.vtRemarksByAdmin,
+        condition: this.condition,
+        vuUnitCode: this.uCode,
+        ownerCode: this.newCode,
+
+        avName: this.visitC,
+
+        vuVehicleDetailsType: this.vuVehicleDetailsType,
+        vuVehicleDetailsModel: this.vuVehicleDetailsModel,
+        vuVehicleDetailsColor: this.vuVehicleDetailsColor,
+        vuVehicleDetailsPlateNo: this.vuVehicleDetailsPlateNo,
       };
 
       this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
         // this.router.navigate(['/user-details']);
+        // if(data['status'] == "Success")
+        // {
+          this.router.navigateByUrl('/tabs/tab1/visitors-details', {state: {newCode: this.newCode, uCode: this.uCode}});
+        // }
+        
         console.log('ok');
       })
     });
