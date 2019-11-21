@@ -9,19 +9,19 @@
     
   <ion-content class="card-background-page">
       <ion-list class="list-notice">
-          <ion-item (click)="openRulesList()">Rules
+          <ion-item (click)="openRulesList(uType, 'Rules')">Rules
               <img class="img_arrow" src="assets/arrow_right_blue.png">
           </ion-item>
-          <ion-item>Notice Board
+          <ion-item (click)="openRulesList(uType, 'Notice Board')">Notice Board
               <img class="img_arrow" src="assets/arrow_right_blue.png">
           </ion-item>
-          <ion-item>News
+          <ion-item (click)="openRulesList(uType, 'News')">News
               <img class="img_arrow" src="assets/arrow_right_blue.png">
           </ion-item>
-          <ion-item>Holiday/Important Date
+          <ion-item (click)="openRulesList(uType, 'Holiday/Important Date')">Holiday/Important Date
               <img class="img_arrow" src="assets/arrow_right_blue.png">
           </ion-item>
-          <ion-item>Important Location
+          <ion-item (click)="openRulesList(uType, 'Important Location')">Important Location
               <img class="img_arrow" src="assets/arrow_right_blue.png">
           </ion-item>
         </ion-list>

@@ -8,10 +8,10 @@
 </ion-header>
     
 <ion-content class="card-background-page">
-  <ion-card>
+  <ion-card *ngFor="let res of dataX">
     <ion-card-header>
       <img class="img_amenity" src="/assets/azurebeach.png">
-      <ion-card-subtitle>Azure Beach</ion-card-subtitle>
+      <ion-card-subtitle>{{res.amenityName}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
         <ion-grid class="nopad">
@@ -20,20 +20,20 @@
               <p>Booking Date: </p>
             </ion-col>
             <ion-col size="8" class="nopad">
-              <p>November 3, 2019</p>
+              <p>{{res.bookingdate}}</p>
             </ion-col>
             <ion-col size="4" class="nopad">
               <p>Time Slot: </p>
             </ion-col>
             <ion-col size="8" class="nopad">
-              <p>7:00 AM - 12:00 PM</p>
+              <p>{{res.timeSlots}}</p>
             </ion-col>
-            <ion-col size="4" class="nopad">
+            <!-- <ion-col size="4" class="nopad">
                 <p>Stay Duration: </p>
             </ion-col>
             <ion-col size="8" class="nopad">
               <p>July 1, 2019 to July 2, 2019</p>
-            </ion-col>
+            </ion-col> -->
           </ion-row>
         </ion-grid>
     </ion-card-content>

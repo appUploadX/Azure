@@ -27,12 +27,12 @@ export class AmenitiesDetailsPage implements OnInit {
     this.loadData();
   }
 
-  openAzureBeach(amenCode) {
-    this.router.navigateByUrl('/tabs/tab1/amenities-details/amenity-info', {state: {amenCode: amenCode,pCode: this.pCode, uCode: this.uCode, uType:this.uType}})
+  openAzureBeach(amenCode, pName) {
+    this.router.navigateByUrl('/tabs/tab1/amenities-details/amenity-info', {state: {amenCode: amenCode,pCode: this.pCode, uCode: this.uCode, uType:this.uType, amenName: pName}})
   }
 
-  openBookingList() {
-    this.router.navigateByUrl('/tabs/tab1/amenities-details/amenity-booking-list')
+  openBookingList(uCode,uType) {
+    this.router.navigateByUrl('/tabs/tab1/amenities-details/amenity-booking-list',{state: {uCode: uCode,uType: uType}});
   }
 
   loadData()

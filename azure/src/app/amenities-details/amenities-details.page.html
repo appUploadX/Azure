@@ -10,13 +10,13 @@
 <ion-content class="card-background-page">
   <p class="identify_unit">UNIT 101</p>
   <div class="booking_div">
-    <ion-chip class="btn_booking_list" (click)="openBookingList()">
+    <ion-chip class="btn_booking_list" (click)="openBookingList(uCode,uType)">
       <ion-icon name="list"></ion-icon>
       <ion-label>Booking List</ion-label>
     </ion-chip>
   </div>
   <ion-list *ngFor="let res of amenType; let i = index">
-    <ion-item (click)="openAzureBeach(res[i].amenities_code)">
+    <ion-item (click)="openAzureBeach(res[i].amenities_code, res[i].pName)">
       <ion-avatar class="avatar_amenities" slot="start">
           <img class="img_amenity" src="/assets/azurebeach.png">
       </ion-avatar>

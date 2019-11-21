@@ -47,7 +47,7 @@ export class Tab1Page {
   }
 
   openNoticeInTabs() {
-    this.router.navigateByUrl('/tabs/tab1/notice-main-list');
+    this.router.navigateByUrl('/tabs/tab1/notice-main-list',  { state: { uCode: this.unit_code, pCode: this.property_code, uType: this.typeData}});
   }
 
   openAmenitiesInTabs() {

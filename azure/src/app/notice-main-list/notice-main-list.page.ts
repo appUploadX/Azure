@@ -7,14 +7,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./notice-main-list.page.scss'],
 })
 export class NoticeMainListPage implements OnInit {
-
+  uType:string;
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.uType = history.state.uType;
+    console.log(history.state);
   }
 
-  openRulesList() {
-    this.router.navigateByUrl('/tabs/tab1/notice-main-list/notice-rules-list');
+  openRulesList(uType, List) {
+    // console.log(uType, List);
+    this.router.navigateByUrl('/tabs/tab1/notice-main-list/notice-rules-list', {state: {uType:uType, List: List}});
   }
 
 }

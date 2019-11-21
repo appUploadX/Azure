@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notice-rules-details.page.scss'],
 })
 export class NoticeRulesDetailsPage implements OnInit {
-
+  desc: string;
+  title:string;
+  listType:string;
+  
   constructor() { }
 
   ngOnInit() {
+    this.title = history.state.title;
+    this.listType = history.state.listType;
+    this.desc = history.state.desc;
+    console.log(history.state);
   }
 
 }
