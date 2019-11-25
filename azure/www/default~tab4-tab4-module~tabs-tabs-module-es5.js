@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-title class=\"title_header\">Menu</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-grid class=\"nopad\">\n    <ion-row>\n      <ion-col size=\"12\" class=\"nopad\">\n        \n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col size=\"12\" class=\"nopad\">\n        <ion-list class=\"pr-20\">\n          <ion-list-header>\n            Current Unit\n          </ion-list-header>\n          <ion-item>\n            <ion-avatar slot=\"start\">\n              <img src=\"/assets/sunit.png\">\n            </ion-avatar>\n            <ion-label class=\"current\">\n              <h2>Unit 101</h2>\n              <div class=\"circle_active\"></div>\n              <p>Active</p>\n            </ion-label>\n          </ion-item>\n        </ion-list>\n        <ion-list class=\"pr-20 list_switch\">\n          <ion-list-header>\n            Switch Unit\n          </ion-list-header>\n          <ion-item>\n            <ion-avatar slot=\"start\">\n              <img src=\"/assets/sunit.png\">\n            </ion-avatar>\n            <ion-label class=\"lessmargin\">\n              <h2>Unit 102</h2>\n              <div class=\"circle\"></div>\n              <p>8 new</p>\n            </ion-label>\n          </ion-item>\n  \n          <ion-item>\n            <ion-avatar slot=\"start\">\n              <img src=\"/assets/sunit.png\">\n            </ion-avatar>\n            <ion-label class=\"lessmargin\">\n              <h2>Unit 103</h2>\n            </ion-label>\n          </ion-item>\n  \n          <ion-item>\n            <ion-avatar slot=\"start\">\n              <img src=\"/assets/sunit.png\">\n            </ion-avatar>\n            <ion-label class=\"lessmargin\">\n              <h2>Unit 104</h2>\n              <div class=\"circle\"></div>\n              <p>3 new</p>\n            </ion-label>\n          </ion-item>\n  \n          <ion-item>\n            <ion-avatar slot=\"start\">\n              <img src=\"/assets/sunit.png\">\n            </ion-avatar>\n            <ion-label class=\"lessmargin\">\n              <h2>Unit 105</h2>\n              <div class=\"circle\"></div>\n              <p>3 new</p>\n            </ion-label>\n          </ion-item>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col size=\"12\" class=\"nopad\">\n        <ion-list class=\"list_logout nopad pr-20\">\n          <ion-item (click)=\"openChangePassword()\">\n              <img class=\"imglogout\" src=\"/assets/locked.png\">\n            <ion-label>\n              <h2>Change Password</h2>\n            </ion-label>\n          </ion-item>\n          <ion-item>\n            <img class=\"imglogout\" src=\"/assets/logout.png\">\n          <ion-label>\n            <h2>Log Out</h2>\n          </ion-label>\n        </ion-item>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-title class=\"title_header\">Menu</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-grid class=\"nopad\">\n    <ion-row>\n      <ion-col size=\"12\" class=\"nopad\">\n        \n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col size=\"12\" class=\"nopad\">\n        <ion-list class=\"pr-20\">\n          <ion-list-header>\n            Current Unit\n          </ion-list-header>\n          <ion-item>\n            <ion-avatar slot=\"start\">\n              <img src=\"/assets/sunit.png\">\n            </ion-avatar>\n            <ion-label class=\"current\">\n              <h2>Unit {{RoomNo}}</h2>\n              <div class=\"circle_active\"></div>\n              <p>Active</p>\n            </ion-label>\n          </ion-item>\n        </ion-list>\n        <ion-list class=\"pr-20 list_switch\">\n          <ion-list-header>\n            Switch Unit\n          </ion-list-header>\n          <ion-item *ngFor=\"let res of Data; let i = index\" (click)=\"presentAlertConfirm(res[i].pUnitRoom)\">\n            <ion-avatar slot=\"start\">\n              <img src=\"/assets/sunit.png\">\n            </ion-avatar>\n            <ion-label class=\"lessmargin\">\n              <h2>Unit {{res[i].pUnitRoom}}</h2>\n              <div class=\"circle\"></div>\n              <!-- <p>8 new</p> -->\n              <p>Offline</p>\n            </ion-label>\n          </ion-item>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col size=\"12\" class=\"nopad\">\n        <ion-list class=\"list_logout nopad pr-20\">\n          <ion-item (click)=\"openChangePassword()\">\n              <img class=\"imglogout\" src=\"/assets/locked.png\">\n            <ion-label>\n              <h2>Change Password</h2>\n            </ion-label>\n          </ion-item>\n          <ion-item>\n            <img class=\"imglogout\" src=\"/assets/logout.png\">\n          <ion-label>\n            <h2>Log Out</h2>\n          </ion-label>\n        </ion-item>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n"
 
 /***/ }),
 
@@ -86,20 +86,139 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _providers_post_providers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../providers/post-providers */ "./src/providers/post-providers.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
 
 
 
 var Tab4Page = /** @class */ (function () {
-    function Tab4Page(router) {
+    function Tab4Page(router, postPvd, alertController) {
         this.router = router;
+        this.postPvd = postPvd;
+        this.alertController = alertController;
+        this.Data = [];
+        this.DataConfirm = [];
     }
     Tab4Page.prototype.ngOnInit = function () {
+        this.RoomNo = localStorage.getItem("ROOM_NO");
+        this.Email = localStorage.getItem("EMAIL");
+        this.Type = localStorage.getItem("TYPE_DATA");
+        console.log(localStorage);
+    };
+    Tab4Page.prototype.ionViewWillEnter = function () {
+        console.log(localStorage);
+        this.RoomNo = localStorage.getItem("ROOM_NO");
+        this.Email = localStorage.getItem("EMAIL");
+        this.Type = localStorage.getItem("TYPE_DATA");
+        this.loadData(this.Email, this.Type);
+    };
+    Tab4Page.prototype.presentAlertConfirm = function (no) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            header: 'Switch to Unit ' + no + '?',
+                            // message: 'Message <strong>text</strong>!!!',
+                            buttons: [
+                                {
+                                    text: 'Disagree',
+                                    role: 'cancel',
+                                    cssClass: 'secondary',
+                                    handler: function (blah) {
+                                        console.log('Confirm Cancel: blah');
+                                    }
+                                }, {
+                                    text: 'Agree',
+                                    handler: function () {
+                                        console.log('Confirm Okay');
+                                        _this.confirmChange(no);
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     Tab4Page.prototype.openChangePassword = function () {
         this.router.navigateByUrl('/tabs/tab4/change-password');
     };
+    Tab4Page.prototype.loadData = function (Email, Type) {
+        var _this = this;
+        this.Data = [];
+        return new Promise(function (resolve) {
+            var body = {
+                action: 'MultipleUnit',
+                Type: Type,
+                Email: Email,
+                RoomNo: _this.RoomNo,
+            };
+            _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
+                for (var i = 0; i < data['result'].length; i++) {
+                    _this.Data.push(data['result']);
+                }
+                resolve(true);
+                console.log(data);
+            });
+        });
+    };
+    Tab4Page.prototype.confirmChange = function (no) {
+        var _this = this;
+        this.Data = [];
+        return new Promise(function (resolve) {
+            var body = {
+                action: 'changeUnit',
+                Type: _this.Type,
+                Email: _this.Email,
+                RoomNo: no,
+            };
+            _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
+                // for(var i = 0; i < data['result'].length;i++){
+                //   this.DataConfirm.push(data['result']);
+                // }
+                if (data['uType'] == "Owner") {
+                    localStorage.setItem("UNIT_CODE", data['dataX']['unit_code']);
+                    localStorage.setItem("TYPE_DATA", data['uType']);
+                    localStorage.setItem("HAS_TENANT", data['hasTenant']);
+                    localStorage.setItem("NEW_CODE", data['dataX']['new_code']);
+                    localStorage.setItem("FULLNAME", data['dataX']['fullname']);
+                    localStorage.setItem("TUN", data['TUN']);
+                    localStorage.setItem("ROOM_NO", data['ROOM_NO']);
+                    localStorage.setItem("EMAIL", data['dataX']['EmailAddress']);
+                    localStorage.setItem("PROPERTY_CODE", data['dataX']['property_code']);
+                    _this.router.navigateByUrl('/tabs/tab1');
+                }
+                else if (data['uType'] == "Tenant") {
+                    localStorage.setItem("UNIT_CODE", data['dataX']['unit_code']);
+                    localStorage.setItem("TYPE_DATA", data['uType']);
+                    localStorage.setItem("HAS_TENANT", data['hasTenant']);
+                    localStorage.setItem("NEW_CODE", data['dataX']['new_code']);
+                    localStorage.setItem("FULLNAME", data['dataX']['fullname']);
+                    localStorage.setItem("TUN", data['TUN']);
+                    localStorage.setItem("ROOM_NO", data['ROOM_NO']);
+                    localStorage.setItem("EMAIL", data['dataX']['tEmailAddress']);
+                    localStorage.setItem("PROPERTY_CODE", data['propC']['property_code']);
+                    _this.router.navigateByUrl('/tabs/tab1');
+                }
+                resolve(true);
+                console.log(data);
+            });
+        });
+    };
     Tab4Page.ctorParameters = function () { return [
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+        { type: _providers_post_providers__WEBPACK_IMPORTED_MODULE_3__["PostProvider"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"] }
     ]; };
     Tab4Page = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -107,7 +226,7 @@ var Tab4Page = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./tab4.page.html */ "./node_modules/raw-loader/index.js!./src/app/tab4/tab4.page.html"),
             styles: [__webpack_require__(/*! ./tab4.page.scss */ "./src/app/tab4/tab4.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _providers_post_providers__WEBPACK_IMPORTED_MODULE_3__["PostProvider"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["AlertController"]])
     ], Tab4Page);
     return Tab4Page;
 }());

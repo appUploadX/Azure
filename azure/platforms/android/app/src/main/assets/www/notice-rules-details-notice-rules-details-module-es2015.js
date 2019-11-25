@@ -122,23 +122,6 @@ let NoticeRulesDetailsPage = class NoticeRulesDetailsPage {
         this.docPath = history.state.docPath;
         console.log(history.state);
     }
-    // download(docPath, title)
-    // {
-    //   let path = null;
-    //   if(this.platform.is('ios'))
-    //   {
-    //     path = this.file.documentsDirectory;
-    //   }
-    //   else
-    //   {
-    //     path = this.file.dataDirectory;
-    //   }
-    //   const transfer = this.transfer.create();
-    //   transfer.download('https://www.asi-ph.com/sandboxes/testAndroid/'+docPath, path + title+'.pdf').then(entry =>{
-    //     // let url = entry.toURL();
-    //     // this.document.viewDocument(url, 'application/pdf', {});
-    //   });
-    // }
     openToast(msg) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             const toast = yield this.toastController.create({

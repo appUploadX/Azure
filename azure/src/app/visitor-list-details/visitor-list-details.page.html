@@ -175,6 +175,25 @@
   </div>
 
   <div class="v_personal">
+    <div class="v_title_detail">Additional Remarks</div>
+    <div class="v_details">
+      <ion-grid class="nopad">
+        <ion-row class="v-row" *ngIf='vtRemarksX == "checked"'>
+       
+              <ion-col size="6">
+                <p>Remark:</p>
+              </ion-col>
+              <ion-col size="6">
+                <p class="text-right">{{res.vuAdditionalRemarks}}</p>
+              </ion-col>
+     
+        </ion-row>
+        
+      </ion-grid>
+    </div>
+  </div>
+
+  <div class="v_personal">
     <div class="v_title_detail">To be Filled By Admin</div>
     <div class="v_details">
       <ion-grid class="nopad">
@@ -199,5 +218,13 @@
       </ion-grid>
     </div>
   </div>
+
+  <ion-grid class="btns" *ngIf="res.vuApprovalStatus == 'Pending'">
+      <ion-row class="v-row pt-0">
+        <ion-col size="12" class="pt-0">
+          <ion-button color="primary" expand="block" (click)="confirmCancel(res.id)">Cancel Request</ion-button>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
 </ion-content>
 

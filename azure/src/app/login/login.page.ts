@@ -58,30 +58,30 @@ export class LoginPage implements OnInit {
             console.log(data['dataX'][0]);
             if(data['uType'] == "Owner")
             {
-              sessionStorage.setItem("UNIT_CODE", data['dataX'][0]['unit_code']);
-              sessionStorage.setItem("TYPE_DATA", this.typeData);
-              sessionStorage.setItem("HAS_TENANT", data['hasTenant']);
-              sessionStorage.setItem("NEW_CODE", data['dataX'][0]['new_code']);
-              sessionStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
-              sessionStorage.setItem("TUN", data['TUN']);
-              sessionStorage.setItem("ROOM_NO", data['ROOM_NO']);
-              sessionStorage.setItem("EMAIL", data['dataX'][0]['EmailAddress']);
+              localStorage.setItem("UNIT_CODE", data['dataX'][0]['unit_code']);
+              localStorage.setItem("TYPE_DATA", this.typeData);
+              localStorage.setItem("HAS_TENANT", data['hasTenant']);
+              localStorage.setItem("NEW_CODE", data['dataX'][0]['new_code']);
+              localStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
+              localStorage.setItem("TUN", data['TUN']);
+              localStorage.setItem("ROOM_NO", data['ROOM_NO']);
+              localStorage.setItem("EMAIL", data['dataX'][0]['EmailAddress']);
 
-              sessionStorage.setItem("PROPERTY_CODE", data['dataX'][0]['property_code']);
+              localStorage.setItem("PROPERTY_CODE", data['dataX'][0]['property_code']);
               this.router.navigateByUrl('/tabs/tab1');
             }
             else if(data['uType'] == "Tenant")
             {
-              sessionStorage.setItem("UNIT_CODE", data['dataX'][0]['unit_code']);
-              sessionStorage.setItem("TYPE_DATA", this.typeData);
-              sessionStorage.setItem("HAS_TENANT", data['hasTenant']);
-              sessionStorage.setItem("NEW_CODE", data['dataX'][0]['new_code']);
-              sessionStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
-              sessionStorage.setItem("TUN", data['TUN']);
-              sessionStorage.setItem("ROOM_NO", data['ROOM_NO']);
-              sessionStorage.setItem("EMAIL", data['dataX'][0]['tEmailAddress']);
+              localStorage.setItem("UNIT_CODE", data['dataX'][0]['unit_code']);
+              localStorage.setItem("TYPE_DATA", this.typeData);
+              localStorage.setItem("HAS_TENANT", data['hasTenant']);
+              localStorage.setItem("NEW_CODE", data['dataX'][0]['new_code']);
+              localStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
+              localStorage.setItem("TUN", data['TUN']);
+              localStorage.setItem("ROOM_NO", data['ROOM_NO']);
+              localStorage.setItem("EMAIL", data['dataX'][0]['tEmailAddress']);
 
-              sessionStorage.setItem("PROPERTY_CODE", data['propC']['property_code']);
+              localStorage.setItem("PROPERTY_CODE", data['propC']['property_code']);
               this.router.navigateByUrl('/tabs/tab1');
             }
           }

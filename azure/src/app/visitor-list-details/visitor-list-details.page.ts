@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { VisitorDetailsModalPage } from '../visitor-details-modal/visitor-details-modal.page';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { PostProvider } from 'src/providers/post-providers';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-visitor-list-details',
@@ -16,35 +17,38 @@ export class VisitorListDetailsPage implements OnInit {
   dataAdd:any = [];
   dataType:any = [];
   vtAdditionalVisitorCountX;
-vtApprovalX;
-vtArrivalDateX;
-vtArrivalTimeX;
-vtCanAssignIDByGatekeeperX;
-vtCanBeAddedByConciergeX;
-vtCanBeAddedByGatekeeperX;
-vtCarparkSlotNoX;
-vtDepartureDateX;
-vtDepartureTimeX;
-vtGuestContactX;
-vtGuestOnSiteX;
-vtPrimaryVisitorAddressX;
-vtPrimaryVisitorContactNoX;
-vtPrimaryVisitorEmailAddressX;
-vtPrimaryVisitorIDProofDetailsX;
-vtPrimaryVisitorNameX;
-vtPrimaryVisitorNationalityX;
-vtRemarksX;
-vtTowerUnitX;
-vtUnitOwnerX;
-vtVehicleDetailsCountX;
-vtVehiclesCanBeAddedByConciergeX;
-vtVehiclesCanBeAddedByGatekeeperX;
+  vtApprovalX;
+  vtArrivalDateX;
+  vtArrivalTimeX;
+  vtCanAssignIDByGatekeeperX;
+  vtCanBeAddedByConciergeX;
+  vtCanBeAddedByGatekeeperX;
+  vtCarparkSlotNoX;
+  vtDepartureDateX;
+  vtDepartureTimeX;
+  vtGuestContactX;
+  vtGuestOnSiteX;
+  vtPrimaryVisitorAddressX;
+  vtPrimaryVisitorContactNoX;
+  vtPrimaryVisitorEmailAddressX;
+  vtPrimaryVisitorIDProofDetailsX;
+  vtPrimaryVisitorNameX;
+  vtPrimaryVisitorNationalityX;
+  vtRemarksX;
+  vtTowerUnitX;
+  vtUnitOwnerX;
+  vtVehicleDetailsCountX;
+  vtVehiclesCanBeAddedByConciergeX;
+  vtVehiclesCanBeAddedByGatekeeperX;
 
   constructor(
     private postPvd: PostProvider,
     private router: Router,
     private actRoute: ActivatedRoute,
-    private modalController: ModalController
+    private modalController: ModalController,
+    public alertController: AlertController,
+    public toastController: ToastController,
+
   ) { }
 
   async openModal(vtTermsCondition) {
@@ -108,5 +112,58 @@ vtVehiclesCanBeAddedByGatekeeperX;
       });
     });
   }
+
+  async openToast(msg)
+  {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  async confirmCancel(ID) {
+    const alert = await this.alertController.create({
+      header: 'Cancel request?',
+      // message: 'Message <strong>text</strong>!!!',
+      buttons: [
+        {
+          text: 'Disagree',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Agree',
+          handler: () => {
+            this.cancel(ID);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  cancel(id)
+  {
+    return new Promise(resolve => {
+      let body = {
+        action: 'cancelRequest',
+        id: id,
+      };
+
+      this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
+        if(data['status'] == "Success")
+        {
+          this.openToast("Request cancelled");
+          this.router.navigateByUrl('/tabs/tab1/visitors-details');
+        }
+      });
+    });
+  }
+
+  
 
 }

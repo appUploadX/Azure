@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n    <ion-toolbar color=\"primary\">\n        <ion-title>Azure-Connect</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"card-background-page\">\n    <ion-card class=\"welcome-card\">\n        <div class=\"overlay\"></div>\n        <div class=\"inline-block\">\n            <div class=\"card-title\">Azure Urban Resort</div>\n            <div class=\"card-subtitle\">Residences</div>\n        </div>\n        \n    </ion-card>\n\n    <ion-grid>\n        <ion-row>\n            <ion-col size=\"6\" size-xs=\"6\" size-sm=\"6\" size-md=\"6\" size-lg=\"6\">\n                <a class=\"btn_a\" (click)=\"openUnitDetailsInTabs(unit_code,property_code, typeData)\">\n                    <ion-card color=\"white\" class=\"menucards nomargbot\">\n                        <ion-card-header>\n                            <img class=\"imgmenus\" src=\"assets/unit.png\">\n                            <ion-card-subtitle class=\"menutitles\">Unit Details</ion-card-subtitle>\n                        </ion-card-header>\n                    </ion-card>\n                </a>\n            </ion-col>\n            <ion-col size=\"6\" size-xs=\"6\" size-sm=\"6\" size-md=\"6\" size-lg=\"6\">\n                <a class=\"btn_a\" (click)=\"openAmenitiesInTabs()\">\n                    <ion-card color=\"white\" class=\"menucards nomargbot\">\n                        <ion-card-header>\n                            <img class=\"imgmenus\" src=\"assets/amenities.png\">\n                            <ion-card-subtitle class=\"menutitles\">Amenities</ion-card-subtitle>\n                        </ion-card-header>\n                    </ion-card>\n                </a>\n            </ion-col>\n        </ion-row>\n        <ion-row>\n            <ion-col size=\"6\" size-xs=\"6\" size-sm=\"6\" size-md=\"6\" size-lg=\"6\">\n                <a class=\"btn_a\" (click)=\"openNoticeInTabs()\">\n                    <ion-card color=\"white\" class=\"menucards\">\n                        <ion-card-header>\n                            <img class=\"imgmenus\" src=\"assets/notice.png\">\n                            <ion-card-subtitle class=\"menutitles\">Notice</ion-card-subtitle>\n                        </ion-card-header>\n                    </ion-card>\n                </a>\n            </ion-col>\n            <ion-col size=\"6\" size-xs=\"6\" size-sm=\"6\" size-md=\"6\" size-lg=\"6\">\n                <a class=\"btn_a\" *ngIf=\"typeData=='Owner' && hasTenant=='ActiveTenant'\">\n                    <ion-card color=\"white\" class=\"menucards\">\n                        <ion-card-header>\n                            <img class=\"imgmenus\" src=\"assets/visitors.png\">\n                            <ion-card-subtitle class=\"menutitles\">Visitors</ion-card-subtitle>\n                        </ion-card-header>\n                    </ion-card>\n                </a>\n\n                <a class=\"btn_a\" *ngIf=\"typeData=='Owner' && hasTenant==''\" (click)=\"openVisitorsInTabs(unit_code, newCode)\">\n                    <ion-card color=\"white\" class=\"menucards\">\n                        <ion-card-header>\n                            <img class=\"imgmenus\" src=\"assets/visitors.png\">\n                            <ion-card-subtitle class=\"menutitles\">Visitors</ion-card-subtitle>\n                        </ion-card-header>\n                    </ion-card>\n                </a>\n\n                <a class=\"btn_a\" *ngIf=\"typeData=='Tenant' && hasTenant==''\" (click)=\"openVisitorsInTabs(unit_code, newCode)\">\n                    <ion-card color=\"white\" class=\"menucards\">\n                        <ion-card-header>\n                            <img class=\"imgmenus\" src=\"assets/visitors.png\">\n                            <ion-card-subtitle class=\"menutitles\">Visitors</ion-card-subtitle>\n                        </ion-card-header>\n                    </ion-card>\n                </a>\n            </ion-col>\n        </ion-row>\n    </ion-grid>\n\n</ion-content>\n"
+module.exports = "<ion-header>\n    <ion-toolbar color=\"primary\">\n        <ion-title>Azure-Connect</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"card-background-page\">\n    <ion-card class=\"welcome-card\">\n        <div class=\"overlay\"></div>\n        <div class=\"inline-block\">\n            <div class=\"card-title\">Azure Urban Resort</div>\n            <div class=\"card-subtitle\">Residences</div>\n        </div>\n        \n    </ion-card>\n\n    <ion-grid>\n        <ion-row>\n            <ion-col size=\"6\" size-xs=\"6\" size-sm=\"6\" size-md=\"6\" size-lg=\"6\">\n                <a class=\"btn_a\" (click)=\"openUnitDetailsInTabs()\">\n                    <ion-card color=\"white\" class=\"menucards nomargbot\">\n                        <ion-card-header>\n                            <img class=\"imgmenus\" src=\"assets/unit.png\">\n                            <ion-card-subtitle class=\"menutitles\">Unit Details</ion-card-subtitle>\n                        </ion-card-header>\n                    </ion-card>\n                </a>\n            </ion-col>\n            <ion-col size=\"6\" size-xs=\"6\" size-sm=\"6\" size-md=\"6\" size-lg=\"6\">\n                <a class=\"btn_a\" (click)=\"openAmenitiesInTabs()\">\n                    <ion-card color=\"white\" class=\"menucards nomargbot\">\n                        <ion-card-header>\n                            <img class=\"imgmenus\" src=\"assets/amenities.png\">\n                            <ion-card-subtitle class=\"menutitles\">Amenities</ion-card-subtitle>\n                        </ion-card-header>\n                    </ion-card>\n                </a>\n            </ion-col>\n        </ion-row>\n        <ion-row>\n            <ion-col size=\"6\" size-xs=\"6\" size-sm=\"6\" size-md=\"6\" size-lg=\"6\">\n                <a class=\"btn_a\" (click)=\"openNoticeInTabs()\">\n                    <ion-card color=\"white\" class=\"menucards\">\n                        <ion-card-header>\n                            <img class=\"imgmenus\" src=\"assets/notice.png\">\n                            <ion-card-subtitle class=\"menutitles\">Notice</ion-card-subtitle>\n                        </ion-card-header>\n                    </ion-card>\n                </a>\n            </ion-col>\n            <ion-col size=\"6\" size-xs=\"6\" size-sm=\"6\" size-md=\"6\" size-lg=\"6\">\n                <a class=\"btn_a\" *ngIf=\"typeData=='Owner' && hasTenant=='ActiveTenant'\">\n                    <ion-card color=\"white\" class=\"menucards\">\n                        <ion-card-header>\n                            <img class=\"imgmenus\" src=\"assets/visitors.png\">\n                            <ion-card-subtitle class=\"menutitles\">Visitors</ion-card-subtitle>\n                        </ion-card-header>\n                    </ion-card>\n                </a>\n\n                <a class=\"btn_a\" *ngIf=\"typeData=='Owner' && hasTenant==''\" (click)=\"openVisitorsInTabs(unit_code, newCode)\">\n                    <ion-card color=\"white\" class=\"menucards\">\n                        <ion-card-header>\n                            <img class=\"imgmenus\" src=\"assets/visitors.png\">\n                            <ion-card-subtitle class=\"menutitles\">Visitors</ion-card-subtitle>\n                        </ion-card-header>\n                    </ion-card>\n                </a>\n\n                <a class=\"btn_a\" *ngIf=\"typeData=='Tenant' && hasTenant==''\" (click)=\"openVisitorsInTabs(unit_code, newCode)\">\n                    <ion-card color=\"white\" class=\"menucards\">\n                        <ion-card-header>\n                            <img class=\"imgmenus\" src=\"assets/visitors.png\">\n                            <ion-card-subtitle class=\"menutitles\">Visitors</ion-card-subtitle>\n                        </ion-card-header>\n                    </ion-card>\n                </a>\n            </ion-col>\n        </ion-row>\n    </ion-grid>\n\n</ion-content>\n"
 
 /***/ }),
 
@@ -18,7 +18,7 @@ module.exports = "<ion-header>\n    <ion-toolbar color=\"primary\">\n        <io
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n    <ion-toolbar color=\"primary\">\n        <ion-title class=\"title_header\">Profile</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"card-background-page\">\n    <div class=\"banner-card\">\n        <ion-grid>\n            <ion-row>\n                <ion-col size=\"12\" class=\"col_titles\">\n                    <div class=\"img_profile_border\">\n                        <div class=\"img_profile\"></div>\n                    </div>\n                    <div class=\"box_details\">\n                        <h1 class=\"title_name\">Hanah Salazar</h1>\n                        <p class=\"title_address\">New York, USA</p>\n\n                        <div class=\"number_details\">\n                            <ion-row>\n                                <ion-col size=\"4\">\n                                    <p class=\"t_small\">Units</p>\n                                    <p class=\"t_big\">1</p>\n                                </ion-col>\n                                <ion-col size=\"4\">\n                                    <p class=\"t_small\">Residents</p>\n                                    <p class=\"t_big\">10</p>\n                                </ion-col>\n                                <ion-col size=\"4\">\n                                    <p class=\"t_small\">Parking</p>\n                                    <p class=\"t_big\">1</p>\n                                </ion-col>\n                            </ion-row>\n                        </div>\n                    </div>\n                </ion-col>\n            </ion-row>\n            \n        </ion-grid>\n    </div>\n    <div class=\"banner_overlay\"></div>\n\n    <ion-grid class=\"grid_details\">\n        <ion-row class=\"profile-row\">\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">2nd Owner</p>\n                <p class=\"profile_type_name\">Duane Brick</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Email</p>\n                <p class=\"profile_type_name\">email@email.com</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Gender</p>\n                <p class=\"profile_type_name\">Male</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Contact Number</p>\n                <p class=\"profile_type_name\">09123456789</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Possession</p>\n                <p class=\"profile_type_name\">July 1, 2019</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Occupation</p>\n                <p class=\"profile_type_name\">Developer</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Blood Group</p>\n                <p class=\"profile_type_name\">B+ve</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Date of Birth</p>\n                <p class=\"profile_type_name\">July 1, 1997</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Date of Anniversary</p>\n                <p class=\"profile_type_name\">July 2, 2020</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Intercom Number</p>\n                <p class=\"profile_type_name\">1234</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Nominee</p>\n                <p class=\"profile_type_name\">Hakdog</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Company</p>\n                <p class=\"profile_type_name\">Ameritech Global Solutions Inc.</p>\n            </ion-col>\n        </ion-row>\n        </ion-grid>\n</ion-content>"
+module.exports = "<ion-header>\n    <ion-toolbar color=\"primary\">\n        <ion-title class=\"title_header\">Profile</ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"card-background-page\"  *ngFor=\"let res of Data\">\n    <div class=\"banner-card\" *ngIf=\"uType == 'Tenant'\">\n        <ion-grid>\n            <ion-row>\n                <ion-col size=\"12\" class=\"col_titles\">\n                    <div class=\"img_profile_border\">\n                        <div *ngIf=\"res.tUpload == ''\" class=\"img_profile\"></div>\n                        <div *ngIf=\"res.tUpload != ''\" class=\"img_profile\" [style.background-image]=\"'url(https://www.asi-ph.com/sandboxes/condominium/'+res.tUpload+')'\"></div>\n                    </div>\n                    <div class=\"box_details\">\n                        <h1 class=\"title_name\">{{Name}}</h1>\n                        <p class=\"title_address\">{{res.tAddress}}</p>\n\n                        <div class=\"number_details\">\n                            <ion-row>\n                                <ion-col size=\"4\">\n                                    <p class=\"t_small\">Units</p>\n                                    <p class=\"t_big\">{{uniCount}}</p>\n                                </ion-col>\n                                <ion-col size=\"4\">\n                                    <p class=\"t_small\">Residents</p>\n                                    <p class=\"t_big\">{{countResi}}</p>\n                                </ion-col>\n                                <ion-col size=\"4\">\n                                    <p class=\"t_small\">Parking</p>\n                                    <p class=\"t_big\">{{countPark}}</p>\n                                </ion-col>\n                            </ion-row>\n                        </div>\n                    </div>\n                </ion-col>\n            </ion-row>\n            \n        </ion-grid>\n    </div>\n\n    <div class=\"banner-card\" *ngIf=\"uType == 'Owner'\">\n        <ion-grid>\n            <ion-row>\n                <ion-col size=\"12\" class=\"col_titles\">\n                    <div class=\"img_profile_border\">\n                        <div *ngIf=\"res.pUpload == ''\" class=\"img_profile\"></div>\n                        <div *ngIf=\"res.pUpload != ''\" class=\"img_profile\" [style.background-image]=\"'url(https://www.asi-ph.com/sandboxes/condominium/'+res.pUpload+')'\"></div>\n                    </div>\n                    <div class=\"box_details\">\n                        <h1 class=\"title_name\">{{Name}}</h1>\n                        <p class=\"title_address\">{{res.Address}}</p>\n\n                        <div class=\"number_details\">\n                            <ion-row>\n                                <ion-col size=\"4\">\n                                    <p class=\"t_small\">Units</p>\n                                    <p class=\"t_big\">{{uniCount}}</p>\n                                </ion-col>\n                                <ion-col size=\"4\">\n                                    <p class=\"t_small\">Residents</p>\n                                    <p class=\"t_big\">{{countResi}}</p>\n                                </ion-col>\n                                <ion-col size=\"4\">\n                                    <p class=\"t_small\">Parking</p>\n                                    <p class=\"t_big\">{{countPark}}</p>\n                                </ion-col>\n                            </ion-row>\n                        </div>\n                    </div>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n    <div class=\"banner_overlay\"></div>\n\n    <ion-grid class=\"grid_details\" *ngIf=\"uType == 'Tenant'\">\n        <ion-row class=\"profile-row\">\n            <!-- <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">2nd Owner</p>\n                <p class=\"profile_type_name\">Duane Brick</p>\n            </ion-col> -->\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Email</p>\n                <p class=\"profile_type_name\">{{res.tEmailAddress}}</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Gender</p>\n                <p class=\"profile_type_name\">{{res.tGender}}</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Contact Number</p>\n                <p class=\"profile_type_name\">{{res.tPhoneNumber}}</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Possession</p>\n                <p class=\"profile_type_name\">{{res.tAgreementStart}}</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Occupation</p>\n                <p class=\"profile_type_name\">{{res.tOccupation}}</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Blood Group</p>\n                <p class=\"profile_type_name\">{{res.tBlood}}</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Date of Birth</p>\n                <p class=\"profile_type_name\">{{res.tDate}}</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Date of Anniversary</p>\n                <p class=\"profile_type_name\">{{Aniv}}</p>\n            </ion-col>\n            <!-- <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Intercom Number</p>\n                <p class=\"profile_type_name\">1234</p>\n            </ion-col> -->\n            <ion-col size=\"12\" class=\"col-profile-details\" *ngIf=\"uType == 'Owner'\">\n                <p class=\"profile_type\">Nominee</p>\n                <p class=\"profile_type_name\">Hakdog</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Company</p>\n                <p class=\"profile_type_name\">{{res.tCompany}}</p>\n            </ion-col>\n        </ion-row>\n    </ion-grid>\n\n    <ion-grid class=\"grid_details\" *ngIf=\"uType == 'Owner'\">\n        <ion-row class=\"profile-row\">\n            <!-- <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">2nd Owner</p>\n                <p class=\"profile_type_name\">Duane Brick</p>\n            </ion-col> -->\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Email</p>\n                <p class=\"profile_type_name\">{{res.EmailAddress}}</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Gender</p>\n                <p class=\"profile_type_name\">{{res.pGender}}</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Contact Number</p>\n                <p class=\"profile_type_name\">{{res.Mobile}}</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Possession</p>\n                <p class=\"profile_type_name\">{{res.pMoveindate}}</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Occupation</p>\n                <p class=\"profile_type_name\">{{res.pOccupation}}</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Blood Group</p>\n                <p class=\"profile_type_name\">{{res.pBlood}}</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Date of Birth</p>\n                <p class=\"profile_type_name\">{{res.pDate}}</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Date of Anniversary</p>\n                <p class=\"profile_type_name\">{{Aniv}}</p>\n            </ion-col>\n            <!-- <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Intercom Number</p>\n                <p class=\"profile_type_name\">1234</p>\n            </ion-col> -->\n            <ion-col size=\"12\" class=\"col-profile-details\" *ngIf=\"uType == 'Owner'\">\n                <p class=\"profile_type\">Nominee</p>\n                <p class=\"profile_type_name\">{{res.pName}}</p>\n            </ion-col>\n            <ion-col size=\"12\" class=\"col-profile-details\">\n                <p class=\"profile_type\">Company</p>\n                <p class=\"profile_type_name\">{{res.pCompany}}</p>\n            </ion-col>\n        </ion-row>\n    </ion-grid>\n</ion-content>"
 
 /***/ }),
 
@@ -122,27 +122,39 @@ let Tab1Page = class Tab1Page {
         this.actRoute = actRoute;
     }
     ngOnInit() {
-        console.log(history.state);
-        this.unit_code = history.state['uCode'];
-        this.typeData = history.state['typeCode'];
-        this.property_code = history.state['proCode'];
-        this.hasTenant = history.state['hasTenant'];
-        this.newCode = history.state['newCode'];
-        this.fullname = history.state['fullname'];
-        this.TUN = history.state['TUN'];
+        console.log(localStorage);
+        this.unit_code = localStorage.getItem("UNIT_CODE");
+        this.typeData = localStorage.getItem("TYPE_DATA");
+        this.property_code = localStorage.getItem("PROPERTY_CODE");
+        this.hasTenant = localStorage.getItem("HAS_TENANT");
+        this.newCode = localStorage.getItem("NEW_CODE");
+        this.fullname = localStorage.getItem("FULLNAME");
+        this.TUN = localStorage.getItem("TUN");
     }
-    openUnitDetailsInTabs(unit_code, property_code, typeData) {
-        console.log(unit_code, property_code, typeData);
-        this.router.navigate(['/unit-details/'], { state: { uCode: unit_code, pCode: property_code, uType: typeData } });
+    ionViewWillEnter() {
+        console.log(localStorage);
+        this.unit_code = localStorage.getItem("UNIT_CODE");
+        this.typeData = localStorage.getItem("TYPE_DATA");
+        this.property_code = localStorage.getItem("PROPERTY_CODE");
+        this.hasTenant = localStorage.getItem("HAS_TENANT");
+        this.newCode = localStorage.getItem("NEW_CODE");
+        this.fullname = localStorage.getItem("FULLNAME");
+        this.TUN = localStorage.getItem("TUN");
     }
-    openVisitorsInTabs(unit_code, newCode) {
-        this.router.navigateByUrl('/tabs/tab1/visitors-details', { state: { uCode: unit_code, newCode: newCode, fullname: this.fullname, TUN: this.TUN } });
+    openUnitDetailsInTabs() {
+        // console.log(unit_code, property_code, typeData);
+        // this.router.navigate(['/unit-details/'], { state: { uCode: unit_code, pCode: property_code, uType: typeData}});
+        this.router.navigateByUrl('/tabs/tab1/unit-details');
+    }
+    openVisitorsInTabs() {
+        // this.router.navigateByUrl('/tabs/tab1/visitors-details', { state: { uCode:unit_code, newCode: newCode, fullname: this.fullname, TUN: this.TUN}});
+        this.router.navigateByUrl('/tabs/tab1/visitors-details');
     }
     openNoticeInTabs() {
         this.router.navigateByUrl('/tabs/tab1/notice-main-list', { state: { uCode: this.unit_code, pCode: this.property_code, uType: this.typeData } });
     }
     openAmenitiesInTabs() {
-        this.router.navigateByUrl('tabs/tab1/amenities-details', { state: { uCode: this.unit_code, pCode: this.property_code, uType: this.typeData } });
+        this.router.navigateByUrl('tabs/tab1/amenities-details');
     }
 };
 Tab1Page.ctorParameters = () => [
@@ -230,18 +242,57 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tab2Page", function() { return Tab2Page; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _providers_post_providers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../providers/post-providers */ "./src/providers/post-providers.ts");
+
 
 
 let Tab2Page = class Tab2Page {
-    constructor() { }
+    constructor(postPvd) {
+        this.postPvd = postPvd;
+        this.Data = [];
+    }
+    ngOnInit() {
+        this.uType = sessionStorage.getItem("TYPE_DATA");
+        this.uCode = sessionStorage.getItem("UNIT_CODE");
+        this.Email = sessionStorage.getItem("EMAIL");
+        this.Name = sessionStorage.getItem("FULLNAME");
+        console.log(sessionStorage);
+    }
+    ionViewWillEnter() {
+        this.loadData(this.uType, this.uCode, this.Email);
+    }
+    loadData(uType, uCode, Email) {
+        this.Data = [];
+        return new Promise(resolve => {
+            let body = {
+                action: 'UserDetails',
+                uType: uType,
+                uCode: uCode,
+                Email: Email,
+                propCode: sessionStorage.getItem("PROPERTY_CODE"),
+            };
+            this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+                this.Data.push(data['data']);
+                this.Aniv = data['aniv'];
+                this.uniCount = data['uniCount'];
+                this.countResi = data['countResi'];
+                this.countPark = data['countPark'];
+                resolve(true);
+                console.log(data);
+            });
+        });
+    }
 };
+Tab2Page.ctorParameters = () => [
+    { type: _providers_post_providers__WEBPACK_IMPORTED_MODULE_2__["PostProvider"] }
+];
 Tab2Page = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-tab2',
         template: __webpack_require__(/*! raw-loader!./tab2.page.html */ "./node_modules/raw-loader/index.js!./src/app/tab2/tab2.page.html"),
         styles: [__webpack_require__(/*! ./tab2.page.scss */ "./src/app/tab2/tab2.page.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_providers_post_providers__WEBPACK_IMPORTED_MODULE_2__["PostProvider"]])
 ], Tab2Page);
 
 
@@ -381,7 +432,7 @@ const routes = [
                 ]
             },
             {
-                path: 'tab1/unit-details/',
+                path: 'tab1/unit-details',
                 children: [
                     {
                         path: '',

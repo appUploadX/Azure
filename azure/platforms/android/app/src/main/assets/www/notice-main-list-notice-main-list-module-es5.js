@@ -94,8 +94,8 @@ var NoticeMainListPage = /** @class */ (function () {
         this.router = router;
     }
     NoticeMainListPage.prototype.ngOnInit = function () {
-        this.uType = history.state.uType;
-        console.log(history.state);
+        this.uType = localStorage.getItem("UNIT_CODE");
+        console.log(localStorage);
     };
     NoticeMainListPage.prototype.openRulesList = function (uType, List) {
         // console.log(uType, List);

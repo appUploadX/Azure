@@ -11,8 +11,8 @@ export class NoticeMainListPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.uType = history.state.uType;
-    console.log(history.state);
+    this.uType = localStorage.getItem("UNIT_CODE");
+    console.log(localStorage);
   }
 
   openRulesList(uType, List) {

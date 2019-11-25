@@ -19,10 +19,10 @@ export class AmenityBookingListPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.uCode = sessionStorage.getItem("UNIT_CODE");
-    this.uType = sessionStorage.getItem("TYPE_DATA");
-    this.unit_no = sessionStorage.getItem("ROOM_NO");
-    console.log(sessionStorage);
+    this.uCode = localStorage.getItem("UNIT_CODE");
+    this.uType = localStorage.getItem("TYPE_DATA");
+    this.unit_no = localStorage.getItem("ROOM_NO");
+    console.log(localStorage);
     this.loadData(this.uCode, this.uType);
   }
 

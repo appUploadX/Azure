@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n      <ion-buttons size=\"small\" slot=\"start\">\n          <ion-back-button></ion-back-button>\n        </ion-buttons>\n    <ion-title class=\"header_title\">Visitor Request Details</ion-title>\n  </ion-toolbar>\n</ion-header>\n  \n<ion-content class=\"card-background-page\" *ngFor=\"let res of dataX\">\n  <ion-grid class=\"nopad\">\n    <ion-row>\n      <ion-col size=\"12\" class=\"nopad\">\n        <div class=\"visitor_title_div\">\n            <h2 class=\"visitor_title\">Guest Advice Form</h2>\n            <div class=\"underline\"></div>\n            <h3 class=\"visitor_type_title\">{{res.vuVisitorType}}</h3>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <div class=\"show_modal\">\n    <a (click)=\"openModal(res.vtTermsCondition)\">Show Description</a>\n  </div>\n\n  <div class=\"v_personal\">\n    <div class=\"v_title_detail\">Visitor</div>\n    <div class=\"v_details\">\n      <ion-grid class=\"nopad\">\n        <ion-row class=\"v-row\">\n          <ion-col size=\"6\">\n            <p>Visitor Advise No.:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuGuestNo}}</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\">\n          <ion-col size=\"6\">\n            <p>Tower Unit No.:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuUnitTowerNo}}</p>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n  </div>\n\n\n  <div class=\"v_personal\">\n    <div class=\"v_title_detail\">Arrival/Departure Details</div>\n    <div class=\"v_details\">\n      <ion-grid class=\"nopad\">\n        <ion-row class=\"v-row\" *ngIf='vtArrivalDateX == \"checked\"'>\n          <ion-col size=\"6\">\n            <p>Arrival Date:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuArrivalDate}}</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\"  *ngIf='vtArrivalTimeX == \"checked\"'>\n          <ion-col size=\"6\">\n            <p>Arrival Time:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuArrivalTime | date:'h:mm a'}}</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\" *ngIf='vtDepartureDateX == \"checked\"'>\n          <ion-col size=\"6\">\n            <p>Departure Date:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuDepartureDate}}</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\" *ngIf='vtDepartureTimeX == \"checked\"'>\n          <ion-col size=\"6\">\n            <p>Departure Time:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuDepartureTime | date:'h:mm a'}}</p>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n  </div>\n\n\n  <div class=\"v_personal\">\n    <div class=\"v_title_detail\">Primary Visitor Details</div>\n    <div class=\"v_details\">\n      <ion-grid class=\"nopad\">\n        <ion-row class=\"v-row\" *ngIf='vtPrimaryVisitorNameX == \"checked\"'>\n          <ion-col size=\"6\">\n            <p>Name of Primary Visitor:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuNamePrimaryVisitor}}</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\" *ngIf='vtPrimaryVisitorNationalityX == \"checked\"'>\n          <ion-col size=\"6\">\n            <p>Nationality:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuPrimaryVisitorNationality}}</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\" *ngIf='vtPrimaryVisitorContactNoX == \"checked\"'>\n          <ion-col size=\"6\">\n            <p>Contact Noumber:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuPrimaryVisitorContactNo}}</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\" *ngIf='vtPrimaryVisitorEmailAddressX == \"checked\"'>\n          <ion-col size=\"6\">\n            <p>Email Address:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuPrimaryVisitorEmail}}</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\" *ngIf='vtPrimaryVisitorAddressX == \"checked\"'>\n          <ion-col size=\"6\">\n            <p>Address:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuPrimaryVisitorAddress}}</p>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n  </div>\n\n  <div class=\"v_personal\">\n    <div class=\"v_title_detail\">Additional Visitor Details</div>\n    <div class=\"v_details\" *ngIf='vtAdditionalVisitorCountX == \"checked\"'>\n      <ion-grid class=\"nopad\">\n        <ion-row class=\"v-row\">\n          <ion-col size=\"3\">\n            <p class=\"font_semibold\">Name</p>\n          </ion-col>\n          <ion-col size=\"3\">\n            <p class=\"font_semibold\">Type</p>\n          </ion-col>\n          <ion-col size=\"3\">\n            <p class=\"font_semibold\">Checked In</p>\n          </ion-col>\n          <ion-col size=\"3\">\n            <p class=\"font_semibold\">Checked Out</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\" *ngFor=\"let rex of dataAdd; let i = index\">\n          <ion-col size=\"3\">\n            <p>{{rex[i].avName}}</p>\n          </ion-col>\n          <ion-col size=\"3\">\n            <p>{{rex[i].avMaturity}}</p>\n          </ion-col>\n          <ion-col size=\"3\">\n            <p>{{rex[i].avCheckInDate}}</p>\n          </ion-col>\n          <ion-col size=\"3\">\n            <p>{{rex[i].avCheckOutDate}}</p>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n  </div>\n\n  <div class=\"v_personal\">\n    <div class=\"v_title_detail\">To be Filled By Admin</div>\n    <div class=\"v_details\">\n      <ion-grid class=\"nopad\">\n        <ion-row class=\"v-row\">\n          <ion-col size=\"6\">\n            <p>Remark:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuRemarksByAdmin}}</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\">\n          <ion-col size=\"6\">\n            <p>Status:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuApprovalStatus}}</p>\n            <!-- <p class=\"text-right\">Admin: Azure Urban</p>\n            <p class=\"text-right\">06/11/19 4:00 PM</p> -->\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n  </div>\n</ion-content>\n\n"
+module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n      <ion-buttons size=\"small\" slot=\"start\">\n          <ion-back-button></ion-back-button>\n        </ion-buttons>\n    <ion-title class=\"header_title\">Visitor Request Details</ion-title>\n  </ion-toolbar>\n</ion-header>\n  \n<ion-content class=\"card-background-page\" *ngFor=\"let res of dataX\">\n  <ion-grid class=\"nopad\">\n    <ion-row>\n      <ion-col size=\"12\" class=\"nopad\">\n        <div class=\"visitor_title_div\">\n            <h2 class=\"visitor_title\">Guest Advice Form</h2>\n            <div class=\"underline\"></div>\n            <h3 class=\"visitor_type_title\">{{res.vuVisitorType}}</h3>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <div class=\"show_modal\">\n    <a (click)=\"openModal(res.vtTermsCondition)\">Show Description</a>\n  </div>\n\n  <div class=\"v_personal\">\n    <div class=\"v_title_detail\">Visitor</div>\n    <div class=\"v_details\">\n      <ion-grid class=\"nopad\">\n        <ion-row class=\"v-row\">\n          <ion-col size=\"6\">\n            <p>Visitor Advise No.:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuGuestNo}}</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\">\n          <ion-col size=\"6\">\n            <p>Tower Unit No.:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuUnitTowerNo}}</p>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n  </div>\n\n\n  <div class=\"v_personal\">\n    <div class=\"v_title_detail\">Arrival/Departure Details</div>\n    <div class=\"v_details\">\n      <ion-grid class=\"nopad\">\n        <ion-row class=\"v-row\" *ngIf='vtArrivalDateX == \"checked\"'>\n          <ion-col size=\"6\">\n            <p>Arrival Date:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuArrivalDate}}</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\"  *ngIf='vtArrivalTimeX == \"checked\"'>\n          <ion-col size=\"6\">\n            <p>Arrival Time:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuArrivalTime | date:'h:mm a'}}</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\" *ngIf='vtDepartureDateX == \"checked\"'>\n          <ion-col size=\"6\">\n            <p>Departure Date:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuDepartureDate}}</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\" *ngIf='vtDepartureTimeX == \"checked\"'>\n          <ion-col size=\"6\">\n            <p>Departure Time:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuDepartureTime | date:'h:mm a'}}</p>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n  </div>\n\n\n  <div class=\"v_personal\">\n    <div class=\"v_title_detail\">Primary Visitor Details</div>\n    <div class=\"v_details\">\n      <ion-grid class=\"nopad\">\n        <ion-row class=\"v-row\" *ngIf='vtPrimaryVisitorNameX == \"checked\"'>\n          <ion-col size=\"6\">\n            <p>Name of Primary Visitor:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuNamePrimaryVisitor}}</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\" *ngIf='vtPrimaryVisitorNationalityX == \"checked\"'>\n          <ion-col size=\"6\">\n            <p>Nationality:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuPrimaryVisitorNationality}}</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\" *ngIf='vtPrimaryVisitorContactNoX == \"checked\"'>\n          <ion-col size=\"6\">\n            <p>Contact Noumber:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuPrimaryVisitorContactNo}}</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\" *ngIf='vtPrimaryVisitorEmailAddressX == \"checked\"'>\n          <ion-col size=\"6\">\n            <p>Email Address:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuPrimaryVisitorEmail}}</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\" *ngIf='vtPrimaryVisitorAddressX == \"checked\"'>\n          <ion-col size=\"6\">\n            <p>Address:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuPrimaryVisitorAddress}}</p>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n  </div>\n\n  <div class=\"v_personal\">\n    <div class=\"v_title_detail\">Additional Visitor Details</div>\n    <div class=\"v_details\" *ngIf='vtAdditionalVisitorCountX == \"checked\"'>\n      <ion-grid class=\"nopad\">\n        <ion-row class=\"v-row\">\n          <ion-col size=\"3\">\n            <p class=\"font_semibold\">Name</p>\n          </ion-col>\n          <ion-col size=\"3\">\n            <p class=\"font_semibold\">Type</p>\n          </ion-col>\n          <ion-col size=\"3\">\n            <p class=\"font_semibold\">Checked In</p>\n          </ion-col>\n          <ion-col size=\"3\">\n            <p class=\"font_semibold\">Checked Out</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\" *ngFor=\"let rex of dataAdd; let i = index\">\n          <ion-col size=\"3\">\n            <p>{{rex[i].avName}}</p>\n          </ion-col>\n          <ion-col size=\"3\">\n            <p>{{rex[i].avMaturity}}</p>\n          </ion-col>\n          <ion-col size=\"3\">\n            <p>{{rex[i].avCheckInDate}}</p>\n          </ion-col>\n          <ion-col size=\"3\">\n            <p>{{rex[i].avCheckOutDate}}</p>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n  </div>\n\n  <div class=\"v_personal\">\n    <div class=\"v_title_detail\">Additional Remarks</div>\n    <div class=\"v_details\">\n      <ion-grid class=\"nopad\">\n        <ion-row class=\"v-row\" *ngIf='vtRemarksX == \"checked\"'>\n       \n              <ion-col size=\"6\">\n                <p>Remark:</p>\n              </ion-col>\n              <ion-col size=\"6\">\n                <p class=\"text-right\">{{res.vuAdditionalRemarks}}</p>\n              </ion-col>\n     \n        </ion-row>\n        \n      </ion-grid>\n    </div>\n  </div>\n\n  <div class=\"v_personal\">\n    <div class=\"v_title_detail\">To be Filled By Admin</div>\n    <div class=\"v_details\">\n      <ion-grid class=\"nopad\">\n        <ion-row class=\"v-row\">\n          <ion-col size=\"6\">\n            <p>Remark:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuRemarksByAdmin}}</p>\n          </ion-col>\n        </ion-row>\n        <ion-row class=\"v-row\">\n          <ion-col size=\"6\">\n            <p>Status:</p>\n          </ion-col>\n          <ion-col size=\"6\">\n            <p class=\"text-right\">{{res.vuApprovalStatus}}</p>\n            <!-- <p class=\"text-right\">Admin: Azure Urban</p>\n            <p class=\"text-right\">06/11/19 4:00 PM</p> -->\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n  </div>\n\n  <ion-grid class=\"btns\" *ngIf=\"res.vuApprovalStatus == 'Pending'\">\n      <ion-row class=\"v-row pt-0\">\n        <ion-col size=\"12\" class=\"pt-0\">\n          <ion-button color=\"primary\" expand=\"block\" (click)=\"confirmCancel(res.id)\">Cancel Request</ion-button>\n        </ion-col>\n      </ion-row>\n  </ion-grid>\n</ion-content>\n\n"
 
 /***/ }),
 
@@ -95,12 +95,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 let VisitorListDetailsPage = class VisitorListDetailsPage {
-    constructor(postPvd, router, actRoute, modalController) {
+    constructor(postPvd, router, actRoute, modalController, alertController, toastController) {
         this.postPvd = postPvd;
         this.router = router;
         this.actRoute = actRoute;
         this.modalController = modalController;
+        this.alertController = alertController;
+        this.toastController = toastController;
         this.dataX = [];
         this.dataAdd = [];
         this.dataType = [];
@@ -160,12 +163,61 @@ let VisitorListDetailsPage = class VisitorListDetailsPage {
             });
         });
     }
+    openToast(msg) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const toast = yield this.toastController.create({
+                message: msg,
+                duration: 2000
+            });
+            toast.present();
+        });
+    }
+    confirmCancel(ID) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const alert = yield this.alertController.create({
+                header: 'Cancel request?',
+                // message: 'Message <strong>text</strong>!!!',
+                buttons: [
+                    {
+                        text: 'Disagree',
+                        role: 'cancel',
+                        cssClass: 'secondary',
+                        handler: (blah) => {
+                            console.log('Confirm Cancel: blah');
+                        }
+                    }, {
+                        text: 'Agree',
+                        handler: () => {
+                            this.cancel(ID);
+                        }
+                    }
+                ]
+            });
+            yield alert.present();
+        });
+    }
+    cancel(id) {
+        return new Promise(resolve => {
+            let body = {
+                action: 'cancelRequest',
+                id: id,
+            };
+            this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+                if (data['status'] == "Success") {
+                    this.openToast("Request cancelled");
+                    this.router.navigateByUrl('/tabs/tab1/visitors-details');
+                }
+            });
+        });
+    }
 };
 VisitorListDetailsPage.ctorParameters = () => [
     { type: src_providers_post_providers__WEBPACK_IMPORTED_MODULE_4__["PostProvider"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] }
 ];
 VisitorListDetailsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -176,7 +228,9 @@ VisitorListDetailsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_providers_post_providers__WEBPACK_IMPORTED_MODULE_4__["PostProvider"],
         _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
         _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"],
-        _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"]])
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ModalController"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"]])
 ], VisitorListDetailsPage);
 
 

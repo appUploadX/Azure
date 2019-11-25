@@ -82,13 +82,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AmenityBookNowPage", function() { return AmenityBookNowPage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var src_providers_post_providers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/providers/post-providers */ "./src/providers/post-providers.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var src_providers_post_providers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/providers/post-providers */ "./src/providers/post-providers.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
 
 
 
 let AmenityBookNowPage = class AmenityBookNowPage {
-    constructor(postPvd) {
+    constructor(router, postPvd, toastController) {
+        this.router = router;
         this.postPvd = postPvd;
+        this.toastController = toastController;
     }
     ngOnInit() {
         this.amenCode = history.state.amenCode;
@@ -98,6 +104,15 @@ let AmenityBookNowPage = class AmenityBookNowPage {
         this.unitCode = history.state.unitCode;
         this.rateperbooking = history.state.rateperbooking;
         console.log(history.state);
+    }
+    openToast(msg) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const toast = yield this.toastController.create({
+                message: msg,
+                duration: 2000
+            });
+            toast.present();
+        });
     }
     insertBook(amenCode, amenName, propCode, uType, unitCode, rateperbooking) {
         return new Promise(resolve => {
@@ -113,13 +128,19 @@ let AmenityBookNowPage = class AmenityBookNowPage {
                 rateperbooking: rateperbooking,
             };
             this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
-                console.log("okay");
+                if (data['status'] == "Success") {
+                    console.log("okay");
+                    this.openToast("Data succesfully saved!");
+                    setTimeout(() => { this.router.navigateByUrl('tabs/tab1/amenities-details'); }, 2000);
+                }
             });
         });
     }
 };
 AmenityBookNowPage.ctorParameters = () => [
-    { type: src_providers_post_providers__WEBPACK_IMPORTED_MODULE_2__["PostProvider"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+    { type: src_providers_post_providers__WEBPACK_IMPORTED_MODULE_3__["PostProvider"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"] }
 ];
 AmenityBookNowPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -127,7 +148,9 @@ AmenityBookNowPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./amenity-book-now.page.html */ "./node_modules/raw-loader/index.js!./src/app/amenity-book-now/amenity-book-now.page.html"),
         styles: [__webpack_require__(/*! ./amenity-book-now.page.scss */ "./src/app/amenity-book-now/amenity-book-now.page.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_providers_post_providers__WEBPACK_IMPORTED_MODULE_2__["PostProvider"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+        src_providers_post_providers__WEBPACK_IMPORTED_MODULE_3__["PostProvider"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"]])
 ], AmenityBookNowPage);
 
 

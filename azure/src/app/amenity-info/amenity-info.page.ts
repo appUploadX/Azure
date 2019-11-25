@@ -31,7 +31,7 @@ export class AmenityInfoPage implements OnInit {
     this.uType = history.state.uType;
 
     this.loadData(this.amenCode);
-    console.log(history.state);
+    console.log(localStorage);
   }
 
   openAmenityBookNow(amenName, amenCode, propCode, unitCode, uType, rate) {

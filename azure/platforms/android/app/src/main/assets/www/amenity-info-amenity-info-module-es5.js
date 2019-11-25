@@ -104,7 +104,7 @@ var AmenityInfoPage = /** @class */ (function () {
         this.unitCode = history.state.uCode;
         this.uType = history.state.uType;
         this.loadData(this.amenCode);
-        console.log(history.state);
+        console.log(localStorage);
     };
     AmenityInfoPage.prototype.openAmenityBookNow = function (amenName, amenCode, propCode, unitCode, uType, rate) {
         this.router.navigateByUrl('/tabs/tab1/amenities-details/amenity-info/amenity-book-now', { state: { amenName: amenName, amenCode: amenCode, propCode: propCode, unitCode: unitCode, uType: uType, rateperbooking: rate } });

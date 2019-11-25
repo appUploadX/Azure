@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n      <ion-buttons size=\"small\" slot=\"start\">\n          <ion-back-button></ion-back-button>\n        </ion-buttons>\n    <ion-title class=\"header_title\">Amenity Booking List</ion-title>\n  </ion-toolbar>\n</ion-header>\n    \n<ion-content class=\"card-background-page\">\n  <ion-list>\n    <ion-list-header>UNIT 101</ion-list-header>\n    <ion-item *ngFor=\"let res of dataX; let i = index\" (click)=\"openBookingDetails(res[i].id)\">\n      <ion-avatar class=\"avatar_amenities\" slot=\"start\">\n          <img class=\"img_amenity\" src=\"/assets/azurebeach.png\">\n        </ion-avatar>\n        <ion-label class=\"label_div\">\n          <h2>{{res[i].amenityName}}</h2>\n          <p class=\"text_sublabels\"><ion-icon name=\"calendar\"></ion-icon> {{res[i].bookingdate}}</p>\n          <p class=\"text_sublabels\"><ion-icon name=\"time\"></ion-icon> {{res[i].timeSlots}}</p>\n          <img class=\"img_arrow\" src=\"assets/arrow_right_blue.png\">\n        </ion-label>\n    </ion-item>\n  </ion-list>\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n      <ion-buttons size=\"small\" slot=\"start\">\n          <ion-back-button></ion-back-button>\n        </ion-buttons>\n    <ion-title class=\"header_title\">Amenity Booking List</ion-title>\n  </ion-toolbar>\n</ion-header>\n    \n<ion-content class=\"card-background-page\">\n  <ion-list>\n    <ion-list-header>UNIT {{unit_no}}</ion-list-header>\n    <ion-item *ngFor=\"let res of dataX; let i = index\" (click)=\"openBookingDetails(res[i].id)\">\n      <ion-avatar class=\"avatar_amenities\" slot=\"start\">\n          <img class=\"img_amenity\" src=\"/assets/azurebeach.png\">\n        </ion-avatar>\n        <ion-label class=\"label_div\">\n          <h2>{{res[i].amenityName}}</h2>\n          <p class=\"text_sublabels\"><ion-icon name=\"calendar\"></ion-icon> {{res[i].bookingdate}}</p>\n          <p class=\"text_sublabels\"><ion-icon name=\"time\"></ion-icon> {{res[i].timeSlots}}</p>\n          <img class=\"img_arrow\" src=\"assets/arrow_right_blue.png\">\n        </ion-label>\n    </ion-item>\n  </ion-list>\n</ion-content>\n"
 
 /***/ }),
 
@@ -95,9 +95,10 @@ let AmenityBookingListPage = class AmenityBookingListPage {
         this.dataX = [];
     }
     ngOnInit() {
-        this.uCode = history.state.uCode;
-        this.uType = history.state.uType;
-        console.log(history.state);
+        this.uCode = localStorage.getItem("UNIT_CODE");
+        this.uType = localStorage.getItem("TYPE_DATA");
+        this.unit_no = localStorage.getItem("ROOM_NO");
+        console.log(localStorage);
         this.loadData(this.uCode, this.uType);
     }
     openBookingDetails(id) {

@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n      <ion-buttons size=\"small\" slot=\"start\">\n          <ion-back-button></ion-back-button>\n        </ion-buttons>\n    <ion-title class=\"header_title\">Amenity List</ion-title>\n  </ion-toolbar>\n</ion-header>\n    \n<ion-content class=\"card-background-page\">\n  <p class=\"identify_unit\">UNIT 101</p>\n  <div class=\"booking_div\">\n    <ion-chip class=\"btn_booking_list\" (click)=\"openBookingList(uCode,uType)\">\n      <ion-icon name=\"list\"></ion-icon>\n      <ion-label>Booking List</ion-label>\n    </ion-chip>\n  </div>\n  <ion-list *ngFor=\"let res of amenType; let i = index\">\n    <ion-item (click)=\"openAzureBeach(res[i].amenities_code, res[i].pName)\">\n      <ion-avatar class=\"avatar_amenities\" slot=\"start\">\n          <img class=\"img_amenity\" src=\"/assets/azurebeach.png\">\n      </ion-avatar>\n      <ion-label class=\"label_div\">\n        <h2>{{res[i].pName}}</h2>\n        <p class=\"text_sublabels\"><ion-icon name=\"fitness\"></ion-icon> {{res[i].pCategory}}</p>\n        <p class=\"text_sublabels\"><ion-icon name=\"people\"></ion-icon> {{res[i].capacity}} </p>\n        <img class=\"img_arrow\" src=\"assets/arrow_right_blue.png\">\n      </ion-label>\n    </ion-item>\n  </ion-list>\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n      <ion-buttons size=\"small\" slot=\"start\">\n          <ion-back-button></ion-back-button>\n        </ion-buttons>\n    <ion-title class=\"header_title\">Amenity List</ion-title>\n  </ion-toolbar>\n</ion-header>\n    \n<ion-content class=\"card-background-page\">\n  <p class=\"identify_unit\">UNIT {{unit_no}}</p>\n  <div class=\"booking_div\">\n    <ion-chip class=\"btn_booking_list\" (click)=\"openBookingList()\">\n      <ion-icon name=\"list\"></ion-icon>\n      <ion-label>Booking List</ion-label>\n    </ion-chip>\n  </div>\n  <ion-list *ngFor=\"let res of amenType; let i = index\">\n    <ion-item (click)=\"openAzureBeach(res[i].amenities_code, res[i].pName)\">\n      <ion-avatar class=\"avatar_amenities\" slot=\"start\">\n          <img class=\"img_amenity\" src=\"/assets/azurebeach.png\">\n      </ion-avatar>\n      <ion-label class=\"label_div\">\n        <h2>{{res[i].pName}}</h2>\n        <p class=\"text_sublabels\"><ion-icon name=\"fitness\"></ion-icon> {{res[i].pCategory}}</p>\n        <p class=\"text_sublabels\"><ion-icon name=\"people\"></ion-icon> {{res[i].capacity}} </p>\n        <img class=\"img_arrow\" src=\"assets/arrow_right_blue.png\">\n      </ion-label>\n    </ion-item>\n  </ion-list>\n</ion-content>\n"
 
 /***/ }),
 
@@ -98,17 +98,18 @@ var AmenitiesDetailsPage = /** @class */ (function () {
         this.amenType = [];
     }
     AmenitiesDetailsPage.prototype.ngOnInit = function () {
-        console.log(history.state);
-        this.pCode = history.state.pCode;
-        this.uCode = history.state.uCode;
-        this.uType = history.state.uType;
+        console.log(sessionStorage);
+        this.pCode = sessionStorage.getItem("PROPERTY_CODE");
+        this.uCode = sessionStorage.getItem("UNIT_CODE");
+        this.uType = sessionStorage.getItem("TYPE_DATA");
+        this.unit_no = sessionStorage.getItem("ROOM_NO");
         this.loadData();
     };
     AmenitiesDetailsPage.prototype.openAzureBeach = function (amenCode, pName) {
         this.router.navigateByUrl('/tabs/tab1/amenities-details/amenity-info', { state: { amenCode: amenCode, pCode: this.pCode, uCode: this.uCode, uType: this.uType, amenName: pName } });
     };
-    AmenitiesDetailsPage.prototype.openBookingList = function (uCode, uType) {
-        this.router.navigateByUrl('/tabs/tab1/amenities-details/amenity-booking-list', { state: { uCode: uCode, uType: uType } });
+    AmenitiesDetailsPage.prototype.openBookingList = function () {
+        this.router.navigateByUrl('/tabs/tab1/amenities-details/amenity-booking-list');
     };
     AmenitiesDetailsPage.prototype.loadData = function () {
         var _this = this;

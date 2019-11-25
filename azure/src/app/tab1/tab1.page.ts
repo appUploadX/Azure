@@ -25,26 +25,26 @@ export class Tab1Page {
 
   ngOnInit ()
   {
-    console.log(sessionStorage);
-    this.unit_code = sessionStorage.getItem("UNIT_CODE");
-    this.typeData = sessionStorage.getItem("TYPE_DATA");
-    this.property_code = sessionStorage.getItem("PROPERTY_CODE");
-    this.hasTenant = sessionStorage.getItem("HAS_TENANT");
-    this.newCode = sessionStorage.getItem("NEW_CODE");
-    this.fullname = sessionStorage.getItem("FULLNAME");
-    this.TUN = sessionStorage.getItem("TUN");
+    console.log(localStorage);
+    this.unit_code = localStorage.getItem("UNIT_CODE");
+    this.typeData = localStorage.getItem("TYPE_DATA");
+    this.property_code = localStorage.getItem("PROPERTY_CODE");
+    this.hasTenant = localStorage.getItem("HAS_TENANT");
+    this.newCode = localStorage.getItem("NEW_CODE");
+    this.fullname = localStorage.getItem("FULLNAME");
+    this.TUN = localStorage.getItem("TUN");
   }
 
   ionViewWillEnter()
   {
-    console.log(sessionStorage);
-    this.unit_code = sessionStorage.getItem("UNIT_CODE");
-    this.typeData = sessionStorage.getItem("TYPE_DATA");
-    this.property_code = sessionStorage.getItem("PROPERTY_CODE");
-    this.hasTenant = sessionStorage.getItem("HAS_TENANT");
-    this.newCode = sessionStorage.getItem("NEW_CODE");
-    this.fullname = sessionStorage.getItem("FULLNAME");
-    this.TUN = sessionStorage.getItem("TUN");
+    console.log(localStorage);
+    this.unit_code = localStorage.getItem("UNIT_CODE");
+    this.typeData = localStorage.getItem("TYPE_DATA");
+    this.property_code = localStorage.getItem("PROPERTY_CODE");
+    this.hasTenant = localStorage.getItem("HAS_TENANT");
+    this.newCode = localStorage.getItem("NEW_CODE");
+    this.fullname = localStorage.getItem("FULLNAME");
+    this.TUN = localStorage.getItem("TUN");
   }
   
 

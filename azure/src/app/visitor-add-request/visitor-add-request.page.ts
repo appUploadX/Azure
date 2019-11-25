@@ -4,6 +4,7 @@ import { VisitorAddRequestModalPage } from 'src/app/visitor-add-request-modal/vi
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostProvider } from 'src/providers/post-providers';
 import { ToastController } from '@ionic/angular';
+import { Validators, FormBuilder, FormGroup, FormControl, AbstractControl } from '@angular/forms';
 
 
 @Component({
@@ -68,24 +69,36 @@ export class VisitorAddRequestPage implements OnInit {
   vuVehicleDetailsColor:string;
   vuVehicleDetailsPlateNo:string;
   visitC:any = [];
+  vehicles:any = [];
   Types:string;
+  userType:string;
+  numberAllowed:number;
+
+  formgroup:FormGroup;
   constructor(
     private modalController: ModalController,
     private postPvd: PostProvider,
     private router: Router,
     private actRoute: ActivatedRoute,
     public toastController: ToastController,
-  ) { }
+    // public formbuilder: FormBuilder,
+  ) { 
+    // this.formgroup = formbuilder.group({
+    //   vtUnitOwner: ['',Validators.required],
+    //   vtTowerUnit: ['',Validators.required],
+    // });
+
+  }
 
   ngOnInit() {
     console.log(history.state);
-    this.newCode = sessionStorage.getItem("NEW_CODE");
-    this.uCode = sessionStorage.getItem("UNIT_CODE");
-    this.fullname = sessionStorage.getItem("FULLNAME");
-    this.TUN = sessionStorage.getItem("TUN");
-
+    this.newCode = localStorage.getItem("NEW_CODE");
+    this.uCode = localStorage.getItem("UNIT_CODE");
+    this.fullname = localStorage.getItem("FULLNAME");
+    this.TUN = localStorage.getItem("TUN");
+    this.userType = localStorage.getItem("TYPE_DATA");
     this.ishidden = true;
-    console.log(sessionStorage);
+    console.log(localStorage);
     this.loadData();
   }
 
@@ -110,12 +123,30 @@ export class VisitorAddRequestPage implements OnInit {
 
   countVisit(ev) {
     this.visitC = [];
-    for(var i = 0; i < ev.target.value;i++){  
-      this.visitC.push({'value':'', 'valueX':''});
+    
+    if(parseInt(ev['key']) > this.numberAllowed)
+    {
+      this.openToast("Maximum of "+this.numberAllowed+" only!");
     }
-    console.log('this.visitC',this.visitC);
+    else
+    {
+      for(var i = 0; i < ev.target.value;i++){  
+        this.visitC.push({'value':'', 'valueX':''});
+      }
+      console.log('this.visitC',this.visitC);
+      // console.log(ev.target.value);
+    }
+  }
+
+  countVehicle(ev) {
+    this.vehicles = [];
+    for(var i = 0; i < ev.target.value;i++){  
+      this.vehicles.push({'vehType':'', 'vehModel':'', 'vehColor':'', 'vehPlate':''});
+    }
+    console.log('this.vehicles',this.vehicles);
     // console.log(ev.target.value);
   }
+
 
   loadData()
   {
@@ -151,6 +182,7 @@ export class VisitorAddRequestPage implements OnInit {
         value: selectedValue,
         uCode: this.uCode,
         newCode: this.newCode,
+        userType: this.userType
       };
 
       this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
@@ -175,8 +207,9 @@ export class VisitorAddRequestPage implements OnInit {
 
         // this.typesIND.push(data['typeDataX']);
         this.description = data['typeDataX']['vtTermsCondition'];
+        this.numberAllowed = data['numberAllowed'];
         resolve(true);
-        console.log(data['typeDataX']);
+        console.log(data['numberAllowed']);
       });
     });
   }
@@ -212,11 +245,11 @@ export class VisitorAddRequestPage implements OnInit {
         ownerCode: this.newCode,
 
         avName: this.visitC,
-
-        vuVehicleDetailsType: this.vuVehicleDetailsType,
-        vuVehicleDetailsModel: this.vuVehicleDetailsModel,
-        vuVehicleDetailsColor: this.vuVehicleDetailsColor,
-        vuVehicleDetailsPlateNo: this.vuVehicleDetailsPlateNo,
+        vehicles: this.vehicles
+        // vuVehicleDetailsType: this.vuVehicleDetailsType,
+        // vuVehicleDetailsModel: this.vuVehicleDetailsModel,
+        // vuVehicleDetailsColor: this.vuVehicleDetailsColor,
+        // vuVehicleDetailsPlateNo: this.vuVehicleDetailsPlateNo,
       };
 
       this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{

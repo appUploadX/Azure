@@ -18,17 +18,17 @@ export class UnitDetailsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.unit_code = sessionStorage.getItem("UNIT_CODE");
-    this.property_code = sessionStorage.getItem("PROPERTY_CODE");
-    console.log(sessionStorage);
+    this.unit_code = localStorage.getItem("UNIT_CODE");
+    this.property_code = localStorage.getItem("PROPERTY_CODE");
+    console.log(localStorage);
     this.loadData(this.unit_code, this.property_code);
   }
 
   ionViewWillEnter()
   {
-    this.unit_code = sessionStorage.getItem("UNIT_CODE");
-    this.property_code = sessionStorage.getItem("PROPERTY_CODE");
-    console.log(sessionStorage);
+    this.unit_code = localStorage.getItem("UNIT_CODE");
+    this.property_code = localStorage.getItem("PROPERTY_CODE");
+    console.log(localStorage);
     this.loadData(this.unit_code, this.property_code);
   }
 

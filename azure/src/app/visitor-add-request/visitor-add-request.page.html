@@ -71,7 +71,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Contact Number <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="text" [(ngModel)]="vtGuestContact"></ion-input>
+                <ion-input class="text_input" type="number" [(ngModel)]="vtGuestContact"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -143,7 +143,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Contact Number <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="text" [(ngModel)]="vtPrimaryVisitorContactNo"></ion-input>
+                <ion-input class="text_input" type="number" [(ngModel)]="vtPrimaryVisitorContactNo"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -151,7 +151,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Email Address <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="text" [(ngModel)]="vtPrimaryVisitorEmailAddress"></ion-input>
+                <ion-input class="text_input" type="email" [(ngModel)]="vtPrimaryVisitorEmailAddress"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -212,7 +212,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Count <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="text" [(ngModel)]="vtVehicleDetailsCount"></ion-input>
+                <ion-input class="text_input" type="text" [(ngModel)]="vtVehicleDetailsCount" (keyup)="countVehicle($event)"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -230,18 +230,18 @@
               <p class="font_semibold countAddV">Plate No.</p>
             </ion-col>
           </ion-row>
-          <ion-row class="v-row2">
+          <ion-row class="v-row2" *ngFor="let countV of vehicles; let i = index">
             <ion-col size="3">
-              <ion-input class="text_input" placeholder="Type" [(ngModel)]="vuVehicleDetailsType"></ion-input>
+              <ion-input class="text_input" placeholder="Type" [(ngModel)]="vehicles[i].vehType"></ion-input>
             </ion-col>
             <ion-col size="3">
-              <ion-input class="text_input" placeholder="Model" [(ngModel)]="vuVehicleDetailsModel"></ion-input>
+              <ion-input class="text_input" placeholder="Model" [(ngModel)]="vehicles[i].vehModel"></ion-input>
             </ion-col>
             <ion-col size="3">
-              <ion-input class="text_input" placeholder="Color" [(ngModel)]="vuVehicleDetailsColor"></ion-input>
+              <ion-input class="text_input" placeholder="Color" [(ngModel)]="vehicles[i].vehColor"></ion-input>
             </ion-col>
             <ion-col size="3">
-              <ion-input class="text_input" placeholder="Plate No." [(ngModel)]="vuVehicleDetailsPlateNo"></ion-input>
+              <ion-input class="text_input" placeholder="Plate No." [(ngModel)]="vehicles[i].vehPlate"></ion-input>
             </ion-col>
           </ion-row>
         </ion-grid>

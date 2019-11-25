@@ -64,7 +64,7 @@
             </ion-col>
             <ion-col class="nopad" size="12">
                 <h3 *ngIf="vData[i].vuApprovalStatus == 'Approved'" class="v-status approved">{{vData[i].vuApprovalStatus}}</h3>
-                <h3 *ngIf="vData[i].vuApprovalStatus == 'Declined'" class="v-status v_cancelled">{{vData[i].vuApprovalStatus}}</h3>
+                <h3 *ngIf="vData[i].vuApprovalStatus == 'Declined' || vData[i].vuApprovalStatus == 'Cancelled'" class="v-status v_cancelled">{{vData[i].vuApprovalStatus}}</h3>
                 <h3 *ngIf="vData[i].vuApprovalStatus == 'Pending'" class="v-status v_pending">{{vData[i].vuApprovalStatus}}</h3>
             </ion-col>
           </ion-row>

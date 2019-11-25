@@ -25,12 +25,12 @@ export class VisitorsDetailsPage implements OnInit {
 
 
   ngOnInit() {
-    this.unit_code = sessionStorage.getItem("UNIT_CODE");
-    this.newCode = sessionStorage.getItem("NEW_CODE");
-    this.fullname = sessionStorage.getItem("FULLNAME");
-    this.TUN = sessionStorage.getItem("TUN");
-    this.unit_no = sessionStorage.getItem("ROOM_NO");
-    console.log(sessionStorage);
+    this.unit_code = localStorage.getItem("UNIT_CODE");
+    this.newCode = localStorage.getItem("NEW_CODE");
+    this.fullname = localStorage.getItem("FULLNAME");
+    this.TUN = localStorage.getItem("TUN");
+    this.unit_no = localStorage.getItem("ROOM_NO");
+    console.log(localStorage);
   }
 
   ionViewWillEnter()
