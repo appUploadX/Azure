@@ -10,8 +10,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule  } from '@angular/common/http';
-
 import { PostProvider  } from '../providers/post-providers';
+
+import { File } from '@ionic-native/file/ngx';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +26,11 @@ import { PostProvider  } from '../providers/post-providers';
     StatusBar,
     PostProvider,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    File,
+    FileTransfer,
+    DocumentViewer,
+    FileOpener,
   ],
   bootstrap: [AppComponent]
 })

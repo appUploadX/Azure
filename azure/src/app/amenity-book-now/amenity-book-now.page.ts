@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PostProvider } from 'src/providers/post-providers';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-amenity-book-now',
@@ -16,7 +18,10 @@ export class AmenityBookNowPage implements OnInit {
   timeSlots:string;
   rateperbooking: number;
   constructor(
+    private router: Router,
     private postPvd: PostProvider,
+    public toastController: ToastController,
+
   ) { }
 
   ngOnInit() {
@@ -27,6 +32,15 @@ export class AmenityBookNowPage implements OnInit {
     this.unitCode = history.state.unitCode;
     this.rateperbooking = history.state.rateperbooking;
     console.log(history.state);
+  }
+
+  async openToast(msg)
+  {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
   }
 
   insertBook(amenCode, amenName, propCode, uType, unitCode, rateperbooking)
@@ -45,7 +59,13 @@ export class AmenityBookNowPage implements OnInit {
       };
 
       this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
-        console.log("okay");
+        if(data['status'] == "Success")
+        {
+          console.log("okay");
+          this.openToast("Data succesfully saved!");
+          setTimeout(()=>{ this.router.navigateByUrl('tabs/tab1/amenities-details') }, 2000)
+        }
+          
       });
     });
   }

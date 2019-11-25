@@ -9,8 +9,8 @@ import { PostProvider } from 'src/providers/post-providers';
 })
 export class UnitDetailsPage implements OnInit {
   users: any = [];
-  unit_code: number;
-  property_code: number;
+  unit_code: string;
+  property_code: string;
   constructor(
     private postPvd: PostProvider,
     private router: Router,
@@ -18,11 +18,18 @@ export class UnitDetailsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-        this.unit_code = history.state['uCode'];
-        this.property_code = history.state['pCode'];
-        // this.property_code = history.state['pCode'];
-        console.log(history.state);
-        this.loadData(this.unit_code, this.property_code);
+    this.unit_code = sessionStorage.getItem("UNIT_CODE");
+    this.property_code = sessionStorage.getItem("PROPERTY_CODE");
+    console.log(sessionStorage);
+    this.loadData(this.unit_code, this.property_code);
+  }
+
+  ionViewWillEnter()
+  {
+    this.unit_code = sessionStorage.getItem("UNIT_CODE");
+    this.property_code = sessionStorage.getItem("PROPERTY_CODE");
+    console.log(sessionStorage);
+    this.loadData(this.unit_code, this.property_code);
   }
 
   openTenantDetailsInTabs(tenantCode, pUnitRoom){
@@ -43,6 +50,7 @@ export class UnitDetailsPage implements OnInit {
 
   loadData(unit_code, property_code)
   {
+    
     return new Promise(resolve => {
       let body = {
         action: 'userDetails',
@@ -51,10 +59,9 @@ export class UnitDetailsPage implements OnInit {
       };
 
       this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
+        this.users = [];
         this.users.push(data['result']);
         resolve(true);
-
-
         console.log(data['result']);
       });
     });

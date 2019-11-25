@@ -8,9 +8,9 @@
 </ion-header>
     
 <ion-content class="card-background-page">
-  <p class="identify_unit">UNIT 101</p>
+  <p class="identify_unit">UNIT {{unit_no}}</p>
   <div class="booking_div">
-    <ion-chip class="btn_booking_list" (click)="openBookingList(uCode,uType)">
+    <ion-chip class="btn_booking_list" (click)="openBookingList()">
       <ion-icon name="list"></ion-icon>
       <ion-label>Booking List</ion-label>
     </ion-chip>

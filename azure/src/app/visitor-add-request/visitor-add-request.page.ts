@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { VisitorAddRequestModalPage } from '../visitor-add-request-modal/visitor-add-request-modal.page';
+import { VisitorAddRequestModalPage } from 'src/app/visitor-add-request-modal/visitor-add-request-modal.page';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostProvider } from 'src/providers/post-providers';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -16,8 +17,8 @@ export class VisitorAddRequestPage implements OnInit {
   ishidden: boolean;
   label:string;
   description;
-  newCode:number;
-  uCode:number;
+  newCode:string;
+  uCode:string;
 
   //Name of inputs
   vtUnitOwner;
@@ -67,22 +68,24 @@ export class VisitorAddRequestPage implements OnInit {
   vuVehicleDetailsColor:string;
   vuVehicleDetailsPlateNo:string;
   visitC:any = [];
-
+  Types:string;
   constructor(
     private modalController: ModalController,
     private postPvd: PostProvider,
     private router: Router,
-    private actRoute: ActivatedRoute
+    private actRoute: ActivatedRoute,
+    public toastController: ToastController,
   ) { }
 
   ngOnInit() {
     console.log(history.state);
-    this.newCode = history.state.newCode;
-    this.uCode = history.state.uCode;
-    this.fullname = history.state.fullname;
-    this.TUN = history.state.TUN;
+    this.newCode = sessionStorage.getItem("NEW_CODE");
+    this.uCode = sessionStorage.getItem("UNIT_CODE");
+    this.fullname = sessionStorage.getItem("FULLNAME");
+    this.TUN = sessionStorage.getItem("TUN");
 
     this.ishidden = true;
+    console.log(sessionStorage);
     this.loadData();
   }
 
@@ -94,6 +97,15 @@ export class VisitorAddRequestPage implements OnInit {
       }
     });
     return await modal.present();
+  }
+
+  async openToast(msg)
+  {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
   }
 
   countVisit(ev) {
@@ -209,12 +221,13 @@ export class VisitorAddRequestPage implements OnInit {
 
       this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
         // this.router.navigate(['/user-details']);
-        // if(data['status'] == "Success")
-        // {
-          this.router.navigateByUrl('/tabs/tab1/visitors-details', {state: {newCode: this.newCode, uCode: this.uCode}});
-        // }
+        if(data['status'] == "Success")
+        {
+          this.openToast("Data succesfully saved!");
+          setTimeout(()=>{ this.router.navigateByUrl('/tabs/tab1/visitors-details') }, 2000)
+          
+        }
         
-        console.log('ok');
       })
     });
   }

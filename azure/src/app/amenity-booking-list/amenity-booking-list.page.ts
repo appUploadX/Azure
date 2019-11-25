@@ -8,8 +8,9 @@ import { PostProvider } from 'src/providers/post-providers';
   styleUrls: ['./amenity-booking-list.page.scss'],
 })
 export class AmenityBookingListPage implements OnInit {
-  uCode:number;
+  uCode:string;
   uType:string;
+  unit_no:string;
   dataX:any = [];
 
   constructor(
@@ -18,9 +19,10 @@ export class AmenityBookingListPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.uCode = history.state.uCode;
-    this.uType = history.state.uType;
-    console.log(history.state);
+    this.uCode = sessionStorage.getItem("UNIT_CODE");
+    this.uType = sessionStorage.getItem("TYPE_DATA");
+    this.unit_no = sessionStorage.getItem("ROOM_NO");
+    console.log(sessionStorage);
     this.loadData(this.uCode, this.uType);
   }
 

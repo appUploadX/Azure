@@ -12,7 +12,7 @@
     
 <ion-content class="card-background-page" *ngIf="ListType == 'Rules'">
     <ion-list class="list-notice" *ngFor="let res of Data; let i = index">
-        <ion-item (click)="openRulesDetails(res[i].title, ListType, res[i].ruleDescription)">{{res[i].title}}
+        <ion-item (click)="openRulesDetails(res[i].title, ListType, res[i].ruleDescription, res[i].documentpath)">{{res[i].title}}
             <img class="img_arrow" src="assets/arrow_right_blue.png">
         </ion-item>
     </ion-list>
@@ -20,7 +20,7 @@
 
 <ion-content class="card-background-page" *ngIf="ListType == 'Notice Board'">
     <ion-list class="list-notice" *ngFor="let res of Data; let i = index">
-        <ion-item (click)="openRulesDetails(res[i].title, ListType, res[i].noticeDescription)">{{res[i].title}}
+        <ion-item (click)="openRulesDetails(res[i].title, ListType, res[i].noticeDescription, res[i].documentpath)">{{res[i].title}}
             <img class="img_arrow" src="assets/arrow_right_blue.png">
         </ion-item>
     </ion-list>
@@ -28,7 +28,7 @@
 
 <ion-content class="card-background-page" *ngIf="ListType == 'News'">
     <ion-list class="list-notice" *ngFor="let res of Data; let i = index">
-        <ion-item (click)="openRulesDetails(res[i].title, ListType, res[i].Description)">{{res[i].title}}
+        <ion-item (click)="openRulesDetails(res[i].title, ListType, res[i].Description, res[i].documentpath)">{{res[i].title}}
             <img class="img_arrow" src="assets/arrow_right_blue.png">
         </ion-item>
     </ion-list>
@@ -36,7 +36,7 @@
 
 <ion-content class="card-background-page" *ngIf="ListType == 'Holiday/Important Date'">
     <ion-list class="list-notice" *ngFor="let res of Data; let i = index">
-        <ion-item (click)="openRulesDetails(res[i].title, ListType, res[i].Description)">{{res[i].title}}
+        <ion-item (click)="openRulesDetails(res[i].title, ListType, res[i].Description, res[i].documentpath)">{{res[i].title}}
             <img class="img_arrow" src="assets/arrow_right_blue.png">
         </ion-item>
     </ion-list>
@@ -44,7 +44,7 @@
 
 <ion-content class="card-background-page" *ngIf="ListType == 'Important Location'">
     <ion-list class="list-notice" *ngFor="let res of Data; let i = index">
-        <ion-item (click)="openRulesDetails(res[i].title, ListType, res[i].description)">{{res[i].title}}
+        <ion-item (click)="openRulesDetails(res[i].title, ListType, res[i].description, res[i].documentpath)">{{res[i].title}}
             <img class="img_arrow" src="assets/arrow_right_blue.png">
         </ion-item>
     </ion-list>

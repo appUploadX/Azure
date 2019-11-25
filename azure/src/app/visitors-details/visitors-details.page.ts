@@ -11,10 +11,11 @@ import { PostProvider } from 'src/providers/post-providers';
 export class VisitorsDetailsPage implements OnInit {
   visitData:any = [];
   visitType:any = [];
-  unit_code: number;
-  newCode: number;
+  unit_code: string;
+  newCode: string;
   fullname: string;
   TUN:string;
+  unit_no: string;
 
   constructor(
     private postPvd: PostProvider,
@@ -24,11 +25,17 @@ export class VisitorsDetailsPage implements OnInit {
 
 
   ngOnInit() {
-    this.unit_code = history.state.uCode;
-    this.newCode = history.state.newCode;
-    this.fullname = history.state.fullname;
-    this.TUN = history.state.TUN;
-    console.log(history.state);
+    this.unit_code = sessionStorage.getItem("UNIT_CODE");
+    this.newCode = sessionStorage.getItem("NEW_CODE");
+    this.fullname = sessionStorage.getItem("FULLNAME");
+    this.TUN = sessionStorage.getItem("TUN");
+    this.unit_no = sessionStorage.getItem("ROOM_NO");
+    console.log(sessionStorage);
+  }
+
+  ionViewWillEnter()
+  {
+    console.log("Enter details page");
     this.loadData(this.unit_code, this.newCode);
   }
   
@@ -37,11 +44,13 @@ export class VisitorsDetailsPage implements OnInit {
   }
 
   openAddVisitorRequest() {
-    this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request', {state: {newCode: this.newCode, uCode: this.unit_code, fullname: this.fullname, TUN: this.TUN}})
+    // this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request', {state: {newCode: this.newCode, uCode: this.unit_code, fullname: this.fullname, TUN: this.TUN}})
+    this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request')
   }
 
   loadData(unit_code, newCode)
   {
+    this.visitData = [];
     return new Promise(resolve => {
       let body = {
         action: 'visitorDetails',

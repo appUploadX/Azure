@@ -18,7 +18,7 @@
           
         </ion-card-content>
         
-        <ion-chip class="ion_chip">
+        <ion-chip class="ion_chip" *ngIf="docPath !== null" (click)="download(docPath)">
             <ion-icon name="download"></ion-icon>
             <ion-label>Download</ion-label>
         </ion-chip>

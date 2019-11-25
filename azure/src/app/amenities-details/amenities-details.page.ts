@@ -12,6 +12,7 @@ export class AmenitiesDetailsPage implements OnInit {
   pCode;
   uCode;
   uType;
+  unit_no;
 
 
   constructor(
@@ -20,10 +21,11 @@ export class AmenitiesDetailsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(history.state);
-    this.pCode = history.state.pCode;
-    this.uCode = history.state.uCode;
-    this.uType = history.state.uType;
+    console.log(sessionStorage);
+    this.pCode = sessionStorage.getItem("PROPERTY_CODE");
+    this.uCode = sessionStorage.getItem("UNIT_CODE");
+    this.uType = sessionStorage.getItem("TYPE_DATA");
+    this.unit_no = sessionStorage.getItem("ROOM_NO");
     this.loadData();
   }
 
@@ -31,8 +33,8 @@ export class AmenitiesDetailsPage implements OnInit {
     this.router.navigateByUrl('/tabs/tab1/amenities-details/amenity-info', {state: {amenCode: amenCode,pCode: this.pCode, uCode: this.uCode, uType:this.uType, amenName: pName}})
   }
 
-  openBookingList(uCode,uType) {
-    this.router.navigateByUrl('/tabs/tab1/amenities-details/amenity-booking-list',{state: {uCode: uCode,uType: uType}});
+  openBookingList() {
+    this.router.navigateByUrl('/tabs/tab1/amenities-details/amenity-booking-list');
   }
 
   loadData()

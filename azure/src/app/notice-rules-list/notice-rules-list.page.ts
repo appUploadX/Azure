@@ -25,8 +25,8 @@ export class NoticeRulesListPage implements OnInit {
     this.loadLists(this.uType, this.ListType);
   }
 
-  openRulesDetails(title, listType, description) {
-    this.router.navigateByUrl('/tabs/tab1/notice-main-list/notice-rules-list/notice-rules-details', {state: {title: title, listType: listType, desc: description}})
+  openRulesDetails(title, listType, description, documentpath) {
+    this.router.navigateByUrl('/tabs/tab1/notice-main-list/notice-rules-list/notice-rules-details', {state: {title: title, listType: listType, desc: description, docPath: documentpath}})
   }
 
   loadLists(uType, ListType) {
