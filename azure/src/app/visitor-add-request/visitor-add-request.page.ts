@@ -124,9 +124,9 @@ export class VisitorAddRequestPage implements OnInit {
   countVisit(ev) {
     this.visitC = [];
     
-    if(parseInt(ev['key']) > this.numberAllowed)
+    if(parseInt(ev.target.value) > this.numberAllowed - 1)
     {
-      this.openToast("Maximum of "+this.numberAllowed+" only!");
+      this.openToast("Maximum of "+(this.numberAllowed - 1)+" only!");
     }
     else
     {
