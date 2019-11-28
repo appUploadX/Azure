@@ -1,4 +1,9 @@
 
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
 <ion-content class="loginbg">
     <form class="box" (submit)="onSubmit(user.value, pass.value)">
       <ion-grid>
@@ -12,8 +17,8 @@
       </ion-grid>
 
       <h1>Login</h1>
-      <input type="text" #user required placeholder="Username">
-      <input type="password" #pass required placeholder="Password">
+      <input type="text" #user  class="required user" required placeholder="Username">
+      <input type="password" #pass class="required" required placeholder="Password">
       <input type="submit" value="Login">
     </form>
 </ion-content>

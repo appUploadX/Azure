@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostProvider } from 'src/providers/post-providers';
+import { ToastController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-visitors-details',
@@ -20,7 +22,9 @@ export class VisitorsDetailsPage implements OnInit {
   constructor(
     private postPvd: PostProvider,
     private router: Router,
-    private actRoute: ActivatedRoute
+    private actRoute: ActivatedRoute,
+    public toastController: ToastController,
+
   ) { }
 
 
@@ -43,9 +47,41 @@ export class VisitorsDetailsPage implements OnInit {
     this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-list-details', {state: {id: id}})
   }
 
+  async openToast(msg)
+  {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
+  }
+
   openAddVisitorRequest() {
+    let hour = new Date().getHours()
+    let min = new Date().getMinutes()
+    return new Promise(resolve => {
+      let body = {
+        action: 'checkRequest',
+        unit_code: this.unit_code,
+        newCode: this.newCode,
+        hour: hour,
+        min: min
+      };
+
+      this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
+        if(data['status'] == 'Allowed')
+        {
+          this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request')
+        }
+        else
+        {
+          this.openToast('<center>There is an existing request!</center>');
+        }
+        resolve(true);
+        console.log(data['status']);
+      });
+    });
     // this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request', {state: {newCode: this.newCode, uCode: this.unit_code, fullname: this.fullname, TUN: this.TUN}})
-    this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request')
   }
 
   loadData(unit_code, newCode)
@@ -72,4 +108,6 @@ export class VisitorsDetailsPage implements OnInit {
     });
   }
 
+
+  
 }

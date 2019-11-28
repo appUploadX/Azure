@@ -84,15 +84,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var src_providers_post_providers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/providers/post-providers */ "./src/providers/post-providers.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
 
 
 
 
 let VisitorsDetailsPage = class VisitorsDetailsPage {
-    constructor(postPvd, router, actRoute) {
+    constructor(postPvd, router, actRoute, toastController) {
         this.postPvd = postPvd;
         this.router = router;
         this.actRoute = actRoute;
+        this.toastController = toastController;
         this.visitData = [];
         this.visitType = [];
     }
@@ -111,9 +114,38 @@ let VisitorsDetailsPage = class VisitorsDetailsPage {
     OpenVisitorListDetails(id) {
         this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-list-details', { state: { id: id } });
     }
+    openToast(msg) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const toast = yield this.toastController.create({
+                message: msg,
+                duration: 2000
+            });
+            toast.present();
+        });
+    }
     openAddVisitorRequest() {
+        let hour = new Date().getHours();
+        let min = new Date().getMinutes();
+        return new Promise(resolve => {
+            let body = {
+                action: 'checkRequest',
+                unit_code: this.unit_code,
+                newCode: this.newCode,
+                hour: hour,
+                min: min
+            };
+            this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+                if (data['status'] == 'Allowed') {
+                    this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request');
+                }
+                else {
+                    this.openToast('<center>There is an existing request!</center>');
+                }
+                resolve(true);
+                console.log(data['status']);
+            });
+        });
         // this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request', {state: {newCode: this.newCode, uCode: this.unit_code, fullname: this.fullname, TUN: this.TUN}})
-        this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request');
     }
     loadData(unit_code, newCode) {
         this.visitData = [];
@@ -139,7 +171,8 @@ let VisitorsDetailsPage = class VisitorsDetailsPage {
 VisitorsDetailsPage.ctorParameters = () => [
     { type: src_providers_post_providers__WEBPACK_IMPORTED_MODULE_3__["PostProvider"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"] }
 ];
 VisitorsDetailsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -149,7 +182,8 @@ VisitorsDetailsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_providers_post_providers__WEBPACK_IMPORTED_MODULE_3__["PostProvider"],
         _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
+        _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"]])
 ], VisitorsDetailsPage);
 
 

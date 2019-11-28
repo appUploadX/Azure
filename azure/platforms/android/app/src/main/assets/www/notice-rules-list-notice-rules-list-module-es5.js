@@ -98,9 +98,12 @@ var NoticeRulesListPage = /** @class */ (function () {
         this.Data = [];
     }
     NoticeRulesListPage.prototype.ngOnInit = function () {
-        this.uType = history.state.uType;
+        this.uType = localStorage.getItem("TYPE_DATA");
         this.ListType = history.state.List;
-        console.log(history.state);
+        console.log(localStorage, history.state);
+        this.loadLists(this.uType, this.ListType);
+    };
+    NoticeRulesListPage.prototype.ionViewWillEnter = function () {
         this.loadLists(this.uType, this.ListType);
     };
     NoticeRulesListPage.prototype.openRulesDetails = function (title, listType, description, documentpath) {
@@ -115,6 +118,7 @@ var NoticeRulesListPage = /** @class */ (function () {
                 ListType: ListType
             };
             _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
+                _this.Data = [];
                 for (var index = 0; index < data['data'].length; index++) {
                     _this.Data.push(data['data']);
                 }

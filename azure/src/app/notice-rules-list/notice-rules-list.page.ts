@@ -19,9 +19,14 @@ export class NoticeRulesListPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.uType = history.state.uType;
+    this.uType = localStorage.getItem("TYPE_DATA");
     this.ListType = history.state.List;
-    console.log(history.state);
+    console.log(localStorage, history.state);
+    this.loadLists(this.uType, this.ListType);
+  }
+
+  ionViewWillEnter()
+  {
     this.loadLists(this.uType, this.ListType);
   }
 
@@ -38,6 +43,7 @@ export class NoticeRulesListPage implements OnInit {
       };
 
       this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
+        this.Data = [];
         for (let index = 0; index < data['data'].length; index++) {
             this.Data.push(data['data']);
         }

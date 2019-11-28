@@ -19,11 +19,11 @@ export class Tab2Page {
   constructor(private postPvd: PostProvider) {}
   ngOnInit ()
   {
-    this.uType = sessionStorage.getItem("TYPE_DATA");
-    this.uCode = sessionStorage.getItem("UNIT_CODE");
-    this.Email = sessionStorage.getItem("EMAIL");
-    this.Name = sessionStorage.getItem("FULLNAME");
-    console.log(sessionStorage);
+    this.uType = localStorage.getItem("TYPE_DATA");
+    this.uCode = localStorage.getItem("UNIT_CODE");
+    this.Email = localStorage.getItem("EMAIL");
+    this.Name = localStorage.getItem("FULLNAME");
+    console.log(localStorage);
   }
 
   ionViewWillEnter()

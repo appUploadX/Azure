@@ -16,6 +16,7 @@ export class VisitorListDetailsPage implements OnInit {
   dataX:any = [];
   dataAdd:any = [];
   dataType:any = [];
+  vehData:any = [];
   vtAdditionalVisitorCountX;
   vtApprovalX;
   vtArrivalDateX;
@@ -105,6 +106,10 @@ export class VisitorListDetailsPage implements OnInit {
         this.vtVehicleDetailsCountX = data['visitType']['vtVehicleDetailsCount'];
         this.vtVehiclesCanBeAddedByConciergeX = data['visitType']['vtVehiclesCanBeAddedByConcierge'];
         this.vtVehiclesCanBeAddedByGatekeeperX = data['visitType']['vtVehiclesCanBeAddedByGatekeeper'];
+
+        for (let index = 0; index < data['vehData'].length; index++) {
+          this.vehData.push(data['vehData']);    
+        }
 
 
         resolve(true);

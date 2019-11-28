@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<ion-content class=\"loginbg\">\r\n    <form class=\"box\" (submit)=\"onSubmit(user.value, pass.value)\">\r\n      <ion-grid>\r\n        <ion-row>\r\n          <ion-col col-6>\r\n            <div class=\"divimg\">\r\n              <img class=\"imgloginlogo\" src=\"/assets/azurel.png\">\r\n            </div>\r\n          </ion-col>\r\n        </ion-row>\r\n      </ion-grid>\r\n\r\n      <h1>Login</h1>\r\n      <input type=\"text\" #user required placeholder=\"Username\">\r\n      <input type=\"password\" #pass required placeholder=\"Password\">\r\n      <input type=\"submit\" value=\"Login\">\r\n    </form>\r\n</ion-content>\r\n"
+module.exports = "\r\n<script\r\n  src=\"https://code.jquery.com/jquery-3.4.1.js\"\r\n  integrity=\"sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=\"\r\n  crossorigin=\"anonymous\"></script>\r\n\r\n<ion-content class=\"loginbg\">\r\n    <form class=\"box\" (submit)=\"onSubmit(user.value, pass.value)\">\r\n      <ion-grid>\r\n        <ion-row>\r\n          <ion-col col-6>\r\n            <div class=\"divimg\">\r\n              <img class=\"imgloginlogo\" src=\"/assets/azurel.png\">\r\n            </div>\r\n          </ion-col>\r\n        </ion-row>\r\n      </ion-grid>\r\n\r\n      <h1>Login</h1>\r\n      <input type=\"text\" #user  class=\"required user\" required placeholder=\"Username\">\r\n      <input type=\"password\" #pass class=\"required\" required placeholder=\"Password\">\r\n      <input type=\"submit\" value=\"Login\">\r\n    </form>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -88,6 +88,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _providers_post_providers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../providers/post-providers */ "./src/providers/post-providers.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -109,7 +112,7 @@ var LoginPage = /** @class */ (function () {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.toastController.create({
                             message: msg,
-                            duration: 2000
+                            duration: 2000,
                         })];
                     case 1:
                         toast = _a.sent();
@@ -121,53 +124,71 @@ var LoginPage = /** @class */ (function () {
     };
     LoginPage.prototype.onSubmit = function (user, pass) {
         var _this = this;
-        if (user != "" && pass != "") {
-            return new Promise(function (resolve) {
-                var body = {
-                    action: 'login',
-                    user: user,
-                    pass: pass,
-                };
-                _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
-                    if (data['status'] == "Success") {
-                        _this.typeData = data['uType'];
-                        _this.Status = data['status'];
-                        _this.Has = data['hasTenant'];
-                        _this.Data.push(data['data']);
-                        console.log(data['dataX'][0]);
-                        if (data['uType'] == "Owner") {
-                            localStorage.setItem("UNIT_CODE", data['dataX'][0]['unit_code']);
-                            localStorage.setItem("TYPE_DATA", _this.typeData);
-                            localStorage.setItem("HAS_TENANT", data['hasTenant']);
-                            localStorage.setItem("NEW_CODE", data['dataX'][0]['new_code']);
-                            localStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
-                            localStorage.setItem("TUN", data['TUN']);
-                            localStorage.setItem("ROOM_NO", data['ROOM_NO']);
-                            localStorage.setItem("EMAIL", data['dataX'][0]['EmailAddress']);
-                            localStorage.setItem("PROPERTY_CODE", data['dataX'][0]['property_code']);
-                            _this.router.navigateByUrl('/tabs/tab1');
+        var count = 0;
+        jquery__WEBPACK_IMPORTED_MODULE_5__(".required").each(function () {
+            if (jquery__WEBPACK_IMPORTED_MODULE_5__(this).val() == "") {
+                count++;
+            }
+            if (count > 0) {
+                if (jquery__WEBPACK_IMPORTED_MODULE_5__(this).val() == "") {
+                    jquery__WEBPACK_IMPORTED_MODULE_5__(this).css({ "border": '#FF0000 1px solid' });
+                }
+            }
+        });
+        console.log(count);
+        if (count == 0) {
+            var pattern = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+            if (pattern.test(jquery__WEBPACK_IMPORTED_MODULE_5__(".user").val())) {
+                return new Promise(function (resolve) {
+                    var body = {
+                        action: 'login',
+                        user: user,
+                        pass: pass,
+                    };
+                    _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
+                        if (data['status'] == "Success") {
+                            _this.typeData = data['uType'];
+                            _this.Status = data['status'];
+                            _this.Has = data['hasTenant'];
+                            _this.Data.push(data['data']);
+                            console.log(data['dataX'][0]);
+                            if (data['uType'] == "Owner") {
+                                localStorage.setItem("UNIT_CODE", data['dataX'][0]['unit_code']);
+                                localStorage.setItem("TYPE_DATA", _this.typeData);
+                                localStorage.setItem("HAS_TENANT", data['hasTenant']);
+                                localStorage.setItem("NEW_CODE", data['dataX'][0]['new_code']);
+                                localStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
+                                localStorage.setItem("TUN", data['TUN']);
+                                localStorage.setItem("ROOM_NO", data['ROOM_NO']);
+                                localStorage.setItem("EMAIL", data['dataX'][0]['EmailAddress']);
+                                localStorage.setItem("PROPERTY_CODE", data['dataX'][0]['property_code']);
+                                _this.router.navigateByUrl('/tabs/tab1');
+                            }
+                            else if (data['uType'] == "Tenant") {
+                                localStorage.setItem("UNIT_CODE", data['dataX'][0]['unit_code']);
+                                localStorage.setItem("TYPE_DATA", _this.typeData);
+                                localStorage.setItem("HAS_TENANT", data['hasTenant']);
+                                localStorage.setItem("NEW_CODE", data['dataX'][0]['new_code']);
+                                localStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
+                                localStorage.setItem("TUN", data['TUN']);
+                                localStorage.setItem("ROOM_NO", data['ROOM_NO']);
+                                localStorage.setItem("EMAIL", data['dataX'][0]['tEmailAddress']);
+                                localStorage.setItem("PROPERTY_CODE", data['propC']['property_code']);
+                                _this.router.navigateByUrl('/tabs/tab1');
+                            }
                         }
-                        else if (data['uType'] == "Tenant") {
-                            localStorage.setItem("UNIT_CODE", data['dataX'][0]['unit_code']);
-                            localStorage.setItem("TYPE_DATA", _this.typeData);
-                            localStorage.setItem("HAS_TENANT", data['hasTenant']);
-                            localStorage.setItem("NEW_CODE", data['dataX'][0]['new_code']);
-                            localStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
-                            localStorage.setItem("TUN", data['TUN']);
-                            localStorage.setItem("ROOM_NO", data['ROOM_NO']);
-                            localStorage.setItem("EMAIL", data['dataX'][0]['tEmailAddress']);
-                            localStorage.setItem("PROPERTY_CODE", data['propC']['property_code']);
-                            _this.router.navigateByUrl('/tabs/tab1');
+                        else {
+                            _this.openToast('<center>Invalid credentials!</center>');
                         }
-                    }
-                    else {
-                        _this.openToast('Invalid credentials!');
-                    }
+                    });
                 });
-            });
+            }
+            else {
+                this.openToast("<center>Incorrect email format!</center>");
+            }
         }
         else {
-            this.openToast("All fields are required!");
+            this.openToast("<center>All fields are required!</center>");
         }
     };
     LoginPage.ctorParameters = function () { return [

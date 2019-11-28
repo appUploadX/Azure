@@ -259,11 +259,11 @@ var Tab2Page = /** @class */ (function () {
         this.Data = [];
     }
     Tab2Page.prototype.ngOnInit = function () {
-        this.uType = sessionStorage.getItem("TYPE_DATA");
-        this.uCode = sessionStorage.getItem("UNIT_CODE");
-        this.Email = sessionStorage.getItem("EMAIL");
-        this.Name = sessionStorage.getItem("FULLNAME");
-        console.log(sessionStorage);
+        this.uType = localStorage.getItem("TYPE_DATA");
+        this.uCode = localStorage.getItem("UNIT_CODE");
+        this.Email = localStorage.getItem("EMAIL");
+        this.Name = localStorage.getItem("FULLNAME");
+        console.log(localStorage);
     };
     Tab2Page.prototype.ionViewWillEnter = function () {
         this.loadData(this.uType, this.uCode, this.Email);
@@ -541,7 +541,7 @@ var routes = [
                     {
                         path: '',
                         loadChildren: function () {
-                            return Promise.all(/*! import() | visitor-add-request-visitor-add-request-module */[__webpack_require__.e("common"), __webpack_require__.e("visitor-add-request-visitor-add-request-module")]).then(__webpack_require__.bind(null, /*! ../visitor-add-request/visitor-add-request.module */ "./src/app/visitor-add-request/visitor-add-request.module.ts")).then(function (m) { return m.VisitorAddRequestPageModule; });
+                            return Promise.all(/*! import() | visitor-add-request-visitor-add-request-module */[__webpack_require__.e("default~login-login-module~visitor-add-request-visitor-add-request-module"), __webpack_require__.e("common"), __webpack_require__.e("visitor-add-request-visitor-add-request-module")]).then(__webpack_require__.bind(null, /*! ../visitor-add-request/visitor-add-request.module */ "./src/app/visitor-add-request/visitor-add-request.module.ts")).then(function (m) { return m.VisitorAddRequestPageModule; });
                         }
                     }
                 ]

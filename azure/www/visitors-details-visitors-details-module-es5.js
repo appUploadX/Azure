@@ -87,15 +87,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var src_providers_post_providers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/providers/post-providers */ "./src/providers/post-providers.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
 
 
 
 
 var VisitorsDetailsPage = /** @class */ (function () {
-    function VisitorsDetailsPage(postPvd, router, actRoute) {
+    function VisitorsDetailsPage(postPvd, router, actRoute, toastController) {
         this.postPvd = postPvd;
         this.router = router;
         this.actRoute = actRoute;
+        this.toastController = toastController;
         this.visitData = [];
         this.visitType = [];
     }
@@ -114,9 +117,47 @@ var VisitorsDetailsPage = /** @class */ (function () {
     VisitorsDetailsPage.prototype.OpenVisitorListDetails = function (id) {
         this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-list-details', { state: { id: id } });
     };
+    VisitorsDetailsPage.prototype.openToast = function (msg) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var toast;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.toastController.create({
+                            message: msg,
+                            duration: 2000
+                        })];
+                    case 1:
+                        toast = _a.sent();
+                        toast.present();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     VisitorsDetailsPage.prototype.openAddVisitorRequest = function () {
+        var _this = this;
+        var hour = new Date().getHours();
+        var min = new Date().getMinutes();
+        return new Promise(function (resolve) {
+            var body = {
+                action: 'checkRequest',
+                unit_code: _this.unit_code,
+                newCode: _this.newCode,
+                hour: hour,
+                min: min
+            };
+            _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
+                if (data['status'] == 'Allowed') {
+                    _this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request');
+                }
+                else {
+                    _this.openToast('<center>There is an existing request!</center>');
+                }
+                resolve(true);
+                console.log(data['status']);
+            });
+        });
         // this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request', {state: {newCode: this.newCode, uCode: this.unit_code, fullname: this.fullname, TUN: this.TUN}})
-        this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request');
     };
     VisitorsDetailsPage.prototype.loadData = function (unit_code, newCode) {
         var _this = this;
@@ -142,7 +183,8 @@ var VisitorsDetailsPage = /** @class */ (function () {
     VisitorsDetailsPage.ctorParameters = function () { return [
         { type: src_providers_post_providers__WEBPACK_IMPORTED_MODULE_3__["PostProvider"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] }
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"] }
     ]; };
     VisitorsDetailsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -152,7 +194,8 @@ var VisitorsDetailsPage = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_providers_post_providers__WEBPACK_IMPORTED_MODULE_3__["PostProvider"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"]])
     ], VisitorsDetailsPage);
     return VisitorsDetailsPage;
 }());

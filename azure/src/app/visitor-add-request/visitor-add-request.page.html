@@ -63,7 +63,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Visitors On-Site Contact Person <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="text" [(ngModel)]="vtGuestOnSite"></ion-input>
+                <ion-input class="text_input checked" type="text" [(ngModel)]="vtGuestOnSite"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -71,7 +71,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Contact Number <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="number" [(ngModel)]="vtGuestContact"></ion-input>
+                <ion-input class="text_input checked" type="number" [(ngModel)]="vtGuestContact"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -87,7 +87,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Arrival Date <ion-text color="danger">*</ion-text></ion-label>
-                <ion-datetime class="text_input" displayFormat="YYYY-MM-DD" min="2019-01-01" [(ngModel)]="vtArrivalDate"></ion-datetime>
+                <ion-datetime class="text_input checked" displayFormat="YYYY-MM-DD" min="2019-01-01" [(ngModel)]="vtArrivalDate"></ion-datetime>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -95,7 +95,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Arrival Time <ion-text color="danger">*</ion-text></ion-label>
-                <ion-datetime class="text_input" displayFormat="h:mm A" picker-format="h:mm A" [(ngModel)]="vtArrivalTime"></ion-datetime>
+                <ion-datetime class="text_input checked" displayFormat="h:mm A" picker-format="h:mm A" [(ngModel)]="vtArrivalTime"></ion-datetime>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -103,7 +103,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Departure Date <ion-text color="danger">*</ion-text></ion-label>
-                <ion-datetime class="text_input" displayFormat="YYYY-MM-DD" min="2019-01-01" [(ngModel)]="vtDepartureDate"></ion-datetime>
+                <ion-datetime class="text_input checked" displayFormat="YYYY-MM-DD" min="2019-01-01" [(ngModel)]="vtDepartureDate"></ion-datetime>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -111,7 +111,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Departure Time <ion-text color="danger">*</ion-text></ion-label>
-                <ion-datetime class="text_input" displayFormat="h:mm A" picker-format="h:mm A"  [(ngModel)]="vtDepartureTime"></ion-datetime>
+                <ion-datetime class="text_input checked" displayFormat="h:mm A" picker-format="h:mm A"  [(ngModel)]="vtDepartureTime"></ion-datetime>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -127,7 +127,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Name of Primary Visitor <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="text" [(ngModel)]="vtPrimaryVisitorName"></ion-input>
+                <ion-input class="text_input checked" type="text" [(ngModel)]="vtPrimaryVisitorName"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -135,7 +135,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Nationality <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="text" [(ngModel)]="vtPrimaryVisitorNationality"></ion-input>
+                <ion-input class="text_input checked" type="text" [(ngModel)]="vtPrimaryVisitorNationality"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -143,7 +143,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Contact Number <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="number" [(ngModel)]="vtPrimaryVisitorContactNo"></ion-input>
+                <ion-input class="text_input checked" type="number" [(ngModel)]="vtPrimaryVisitorContactNo"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -151,7 +151,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Email Address <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="email" [(ngModel)]="vtPrimaryVisitorEmailAddress"></ion-input>
+                <ion-input class="text_input checked email" type="email" [(ngModel)]="vtPrimaryVisitorEmailAddress"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -159,7 +159,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Address <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="text" [(ngModel)]="vtPrimaryVisitorAddress"></ion-input>
+                <ion-input class="text_input checked" type="text" [(ngModel)]="vtPrimaryVisitorAddress"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -175,7 +175,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Count <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input class="text_input" type="number" [(ngModel)]="vtAdditionalVisitorCount" (keyup)="countVisit($event)"></ion-input>
+                <ion-input class="text_input" type="number" id="additional" [(ngModel)]="vtAdditionalVisitorCount" (keyup)="countVisit($event)"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -189,13 +189,13 @@
           </ion-row>
           <ion-row class="v-row2" *ngFor="let countX of visitC; let i = index">
             <ion-col size="6">
-              <ion-input class="text_input" type="text" placeholder="Name" [(ngModel)]="visitC[i].value" ></ion-input>
+              <ion-input class="text_input visitVal" type="text" placeholder="Name" [(ngModel)]="visitC[i].value" ></ion-input>
             </ion-col>
             <ion-col size="6">
               <ion-item>
                 <ion-select class="selectadult" placeholder="Select One" [(ngModel)]="visitC[i].valueX">
-                  <ion-select-option value="Adult">Adult</ion-select-option>
-                  <ion-select-option value="Children">Children</ion-select-option>
+                  <ion-select-option class="visitSel" value="Adult">Adult</ion-select-option>
+                  <ion-select-option class="visitSel" value="Children">Children</ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
@@ -221,7 +221,7 @@
               <p class="font_semibold countAddV">Type</p>
             </ion-col>
             <ion-col class="nopad" size="3">
-              <p class="font_semibold countAddV">Model</p>
+              <p class="font_semibold countAddV">Make and Model</p>
             </ion-col>
             <ion-col class="nopad" size="3">
               <p class="font_semibold countAddV">Color</p>
@@ -235,7 +235,7 @@
               <ion-input class="text_input" placeholder="Type" [(ngModel)]="vehicles[i].vehType"></ion-input>
             </ion-col>
             <ion-col size="3">
-              <ion-input class="text_input" placeholder="Model" [(ngModel)]="vehicles[i].vehModel"></ion-input>
+              <ion-input class="text_input" placeholder="Make and Model" [(ngModel)]="vehicles[i].vehModel"></ion-input>
             </ion-col>
             <ion-col size="3">
               <ion-input class="text_input" placeholder="Color" [(ngModel)]="vehicles[i].vehColor"></ion-input>
@@ -255,7 +255,7 @@
           <ion-row class="v-row" *ngIf='vtRemarksX == "checked"'>
             <ion-col size="12">
               <ion-item>
-                <ion-input class="text_input" type="text" placeholder="Type here..." [(ngModel)]="vtRemarks"></ion-input>
+                <ion-input class="text_input checked" type="text" placeholder="Type here..." [(ngModel)]="vtRemarks"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -264,24 +264,20 @@
       </div>
     </div>
 
-    <div class="v_personal">
+    <!-- <div class="v_personal">
       <div class="v_title_detail">To Be Filled By Admin</div>
       <div class="v_details">
         <ion-grid class="nopad">
           <ion-row class="v-row">
             <ion-col size="12">
-              <!-- <ion-item> -->
-                <!-- <div class="remark_admin"> -->
-                  <ion-item>
-                    <ion-input class="text_input" type="text" placeholder="Type here..." [(ngModel)]="vtRemarksByAdmin"></ion-input>
-                  </ion-item>
-                <!-- </div> -->
-              <!-- </ion-item> -->
+              <ion-item>
+                <ion-input class="text_input" type="text" placeholder="Type here..." [(ngModel)]="vtRemarksByAdmin"></ion-input>
+              </ion-item>
             </ion-col>
           </ion-row>
         </ion-grid>
       </div>
-    </div>
+    </div> -->
 
 
     <!-- <div class="v_personal">
@@ -317,7 +313,7 @@
             </ion-col>
             <ion-col size="12" class="nopad">
               <ion-item>
-                <ion-checkbox color="primary" slot="start" [(ngModel)]="condition"></ion-checkbox>
+                <ion-checkbox class="required" color="primary" slot="start" [(ngModel)]="condition"></ion-checkbox>
                 <ion-label class="text_terms">I Accept Terms and Conditions</ion-label>
               </ion-item>
             </ion-col>

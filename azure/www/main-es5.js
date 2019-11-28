@@ -83,6 +83,7 @@ var map = {
 	],
 	"./visitor-add-request/visitor-add-request.module": [
 		"./src/app/visitor-add-request/visitor-add-request.module.ts",
+		"default~login-login-module~visitor-add-request-visitor-add-request-module",
 		"common",
 		"visitor-add-request-visitor-add-request-module"
 	],
@@ -570,7 +571,7 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     {
         path: '',
-        loadChildren: function () { return __webpack_require__.e(/*! import() | login-login-module */ "login-login-module").then(__webpack_require__.bind(null, /*! ./login/login.module */ "./src/app/login/login.module.ts")).then(function (m) { return m.LoginPageModule; }); }
+        loadChildren: function () { return Promise.all(/*! import() | login-login-module */[__webpack_require__.e("default~login-login-module~visitor-add-request-visitor-add-request-module"), __webpack_require__.e("login-login-module")]).then(__webpack_require__.bind(null, /*! ./login/login.module */ "./src/app/login/login.module.ts")).then(function (m) { return m.LoginPageModule; }); }
     },
     {
         path: '',

@@ -95,9 +95,12 @@ let NoticeRulesListPage = class NoticeRulesListPage {
         this.Data = [];
     }
     ngOnInit() {
-        this.uType = history.state.uType;
+        this.uType = localStorage.getItem("TYPE_DATA");
         this.ListType = history.state.List;
-        console.log(history.state);
+        console.log(localStorage, history.state);
+        this.loadLists(this.uType, this.ListType);
+    }
+    ionViewWillEnter() {
         this.loadLists(this.uType, this.ListType);
     }
     openRulesDetails(title, listType, description, documentpath) {
@@ -111,6 +114,7 @@ let NoticeRulesListPage = class NoticeRulesListPage {
                 ListType: ListType
             };
             this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+                this.Data = [];
                 for (let index = 0; index < data['data'].length; index++) {
                     this.Data.push(data['data']);
                 }

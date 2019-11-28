@@ -252,11 +252,11 @@ let Tab2Page = class Tab2Page {
         this.Data = [];
     }
     ngOnInit() {
-        this.uType = sessionStorage.getItem("TYPE_DATA");
-        this.uCode = sessionStorage.getItem("UNIT_CODE");
-        this.Email = sessionStorage.getItem("EMAIL");
-        this.Name = sessionStorage.getItem("FULLNAME");
-        console.log(sessionStorage);
+        this.uType = localStorage.getItem("TYPE_DATA");
+        this.uCode = localStorage.getItem("UNIT_CODE");
+        this.Email = localStorage.getItem("EMAIL");
+        this.Name = localStorage.getItem("FULLNAME");
+        console.log(localStorage);
     }
     ionViewWillEnter() {
         this.loadData(this.uType, this.uCode, this.Email);
@@ -509,7 +509,7 @@ const routes = [
                 children: [
                     {
                         path: '',
-                        loadChildren: () => Promise.all(/*! import() | visitor-add-request-visitor-add-request-module */[__webpack_require__.e("common"), __webpack_require__.e("visitor-add-request-visitor-add-request-module")]).then(__webpack_require__.bind(null, /*! ../visitor-add-request/visitor-add-request.module */ "./src/app/visitor-add-request/visitor-add-request.module.ts")).then(m => m.VisitorAddRequestPageModule)
+                        loadChildren: () => Promise.all(/*! import() | visitor-add-request-visitor-add-request-module */[__webpack_require__.e("default~login-login-module~visitor-add-request-visitor-add-request-module"), __webpack_require__.e("common"), __webpack_require__.e("visitor-add-request-visitor-add-request-module")]).then(__webpack_require__.bind(null, /*! ../visitor-add-request/visitor-add-request.module */ "./src/app/visitor-add-request/visitor-add-request.module.ts")).then(m => m.VisitorAddRequestPageModule)
                     }
                 ]
             },

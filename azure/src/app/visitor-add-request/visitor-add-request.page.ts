@@ -4,7 +4,7 @@ import { VisitorAddRequestModalPage } from 'src/app/visitor-add-request-modal/vi
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostProvider } from 'src/providers/post-providers';
 import { ToastController } from '@ionic/angular';
-import { Validators, FormBuilder, FormGroup, FormControl, AbstractControl } from '@angular/forms';
+import * as $ from "jquery";
 
 
 @Component({
@@ -74,20 +74,13 @@ export class VisitorAddRequestPage implements OnInit {
   userType:string;
   numberAllowed:number;
 
-  formgroup:FormGroup;
   constructor(
     private modalController: ModalController,
     private postPvd: PostProvider,
     private router: Router,
     private actRoute: ActivatedRoute,
     public toastController: ToastController,
-    // public formbuilder: FormBuilder,
   ) { 
-    // this.formgroup = formbuilder.group({
-    //   vtUnitOwner: ['',Validators.required],
-    //   vtTowerUnit: ['',Validators.required],
-    // });
-
   }
 
   ngOnInit() {
@@ -126,7 +119,7 @@ export class VisitorAddRequestPage implements OnInit {
     
     if(parseInt(ev.target.value) > this.numberAllowed - 1)
     {
-      this.openToast("Maximum of "+(this.numberAllowed - 1)+" only!");
+      this.openToast("<center>Maximum of "+(this.numberAllowed - 1)+" only!</center>");
     }
     else
     {
@@ -217,52 +210,124 @@ export class VisitorAddRequestPage implements OnInit {
 
   submit()
   {
-    // console.log(this.visitC);
-    return new Promise(resolve => {
-      let body = {
-        action: 'addVisitors',
-        vuVisitorType: this.label,
-        vtUnitOwner: this.fullname,
-        vtTowerUnit: this.TUN,
-        vtCarparkSlotNo: this.vtCarparkSlotNo,
-        vtGuestOnSite: this.vtGuestOnSite,
-        vtGuestContact: this.vtGuestContact,
-        vtArrivalDate: this.vtArrivalDate,
-        vtArrivalTime: this.vtArrivalTime,
-        vtDepartureDate: this.vtDepartureDate,
-        vtDepartureTime: this.vtDepartureTime,
-        vuNamePrimaryVisitor: this.vtPrimaryVisitorName,
-        vtPrimaryVisitorNationality: this.vtPrimaryVisitorNationality,
-        vtPrimaryVisitorContactNo: this.vtPrimaryVisitorContactNo,
-        vtPrimaryVisitorEmailAddress: this.vtPrimaryVisitorEmailAddress,
-        vtPrimaryVisitorAddress: this.vtPrimaryVisitorAddress,
-        vtAdditionalVisitorCount: this.vtAdditionalVisitorCount,
-        vtVehicleDetailsCount: this.vtVehicleDetailsCount,
-        vtRemarks: this.vtRemarks,
-        vtRemarksByAdmin: this.vtRemarksByAdmin,
-        condition: this.condition,
-        vuUnitCode: this.uCode,
-        ownerCode: this.newCode,
 
-        avName: this.visitC,
-        vehicles: this.vehicles
-        // vuVehicleDetailsType: this.vuVehicleDetailsType,
-        // vuVehicleDetailsModel: this.vuVehicleDetailsModel,
-        // vuVehicleDetailsColor: this.vuVehicleDetailsColor,
-        // vuVehicleDetailsPlateNo: this.vuVehicleDetailsPlateNo,
-      };
+    var count = 0;
+    $(".checked").each(function(){
+      if($(this).val() == "")
+      {
+        count++;
+      }
 
-      this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
-        // this.router.navigate(['/user-details']);
-        if(data['status'] == "Success")
+      if(count > 0)
         {
-          this.openToast("Data succesfully saved!");
-          setTimeout(()=>{ this.router.navigateByUrl('/tabs/tab1/visitors-details') }, 2000)
-          
+          if($(this).val() == "")
+          {
+            $(this).css({ "background-color": '#FF0000 1px solid'});
+          }
         }
-        
-      })
     });
+    console.log(count);
+    var addit = "";
+    if($("#additional").val() != "")
+    {
+      var countVal = 0;
+      var countSel = 0;
+      $(".visitVal").each(function(){
+        if($(this).val() != "")
+        {
+          countVal++;
+        }
+
+        if(countVal > 0)
+        {
+          if($(this).val() == "")
+          {
+            $(this).css({ "border": '#FF0000 1px solid'});
+          }
+        }
+      });
+
+      $(".visitSel").each(function(){
+        if($(this).is(":selected"))
+        {
+          countSel++;
+        }
+
+        if(countSel > 0)
+        {
+          if($(this).val() == "")
+          {
+            $(this).css({ "border": '#FF0000 1px solid'});
+          }
+        }
+      });
+    }
+    else
+    {
+      addit = "okay";
+    }
+    
+    var count_check = 0;
+    if(this.condition == "1")
+    {
+      count_check++;  
+    }
+    // console.log(count, countVal, countSel, count_check);
+
+    if(count == 0 && (countVal == $("#additional").val() || $("#additional").val() == "") && (countSel == $("#additional").val() || $("#additional").val() == "")  && count_check != 0)
+    {
+      var pattern = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+      if (pattern.test($(".email").val())) 
+      {
+        return new Promise(resolve => {
+          let body = {
+            action: 'addVisitors',
+            vuVisitorType: this.label,
+            vtUnitOwner: this.fullname,
+            vtTowerUnit: this.TUN,
+            vtCarparkSlotNo: this.vtCarparkSlotNo,
+            vtGuestOnSite: this.vtGuestOnSite,
+            vtGuestContact: this.vtGuestContact,
+            vtArrivalDate: this.vtArrivalDate,
+            vtArrivalTime: this.vtArrivalTime,
+            vtDepartureDate: this.vtDepartureDate,
+            vtDepartureTime: this.vtDepartureTime,
+            vuNamePrimaryVisitor: this.vtPrimaryVisitorName,
+            vtPrimaryVisitorNationality: this.vtPrimaryVisitorNationality,
+            vtPrimaryVisitorContactNo: this.vtPrimaryVisitorContactNo,
+            vtPrimaryVisitorEmailAddress: this.vtPrimaryVisitorEmailAddress,
+            vtPrimaryVisitorAddress: this.vtPrimaryVisitorAddress,
+            vtAdditionalVisitorCount: this.vtAdditionalVisitorCount,
+            vtVehicleDetailsCount: this.vtVehicleDetailsCount,
+            vtRemarks: this.vtRemarks,
+            vtRemarksByAdmin: this.vtRemarksByAdmin,
+            condition: this.condition,
+            vuUnitCode: this.uCode,
+            ownerCode: this.newCode,
+
+            avName: this.visitC,
+            vehicles: this.vehicles
+          };
+
+          this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
+            if(data['status'] == "Success")
+            {
+              this.openToast("<center>Data succesfully saved!</center>");
+              setTimeout(()=>{ this.router.navigateByUrl('/tabs/tab1/visitors-details') }, 2000)
+            }
+          })
+        });
+      }
+      else
+      {
+        $(".email").css({ "border": '#FF0000 1px solid'});
+        this.openToast("<center>Incorrect email format!</center>");
+      }
+    }
+    else
+    {
+      this.openToast("<center>Some of the fields are required!</center>");
+    }
   }
 
 }

@@ -112,7 +112,7 @@
         </ion-row>
         <ion-row class="v-row" *ngIf='vtPrimaryVisitorContactNoX == "checked"'>
           <ion-col size="6">
-            <p>Contact Noumber:</p>
+            <p>Contact Number:</p>
           </ion-col>
           <ion-col size="6">
             <p class="text-right">{{res.vuPrimaryVisitorContactNo}}</p>
@@ -168,6 +168,42 @@
           </ion-col>
           <ion-col size="3">
             <p>{{rex[i].avCheckOutDate}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
+  <div class="v_personal">
+    <div class="v_title_detail">Vehicle Details</div>
+    <div class="v_details">
+      <ion-grid class="nopad">
+        <ion-row class="v-row">
+          <ion-col size="3">
+            <p class="font_semibold">Type</p>
+          </ion-col>
+          <ion-col size="3">
+            <p class="font_semibold">Make and Model</p>
+          </ion-col>
+          <ion-col size="3">
+            <p class="font_semibold">Color</p>
+          </ion-col>
+          <ion-col size="3">
+            <p class="font_semibold">Plate No.</p>
+          </ion-col>
+        </ion-row>
+        <ion-row class="v-row"  *ngFor="let rex of vehData; let i = index">
+          <ion-col size="3">
+            <p>{{rex[i].Type}}</p>
+          </ion-col>
+          <ion-col size="3">
+            <p>{{rex[i].Model}}</p>
+          </ion-col>
+          <ion-col size="3">
+            <p>{{rex[i].Color}}</p>
+          </ion-col>
+          <ion-col size="3">
+            <p>{{rex[i].Plate}}</p>
           </ion-col>
         </ion-row>
       </ion-grid>

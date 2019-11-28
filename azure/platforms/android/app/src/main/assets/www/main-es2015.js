@@ -83,6 +83,7 @@ var map = {
 	],
 	"./visitor-add-request/visitor-add-request.module": [
 		"./src/app/visitor-add-request/visitor-add-request.module.ts",
+		"default~login-login-module~visitor-add-request-visitor-add-request-module",
 		"common",
 		"visitor-add-request-visitor-add-request-module"
 	],
@@ -564,7 +565,7 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: '',
-        loadChildren: () => __webpack_require__.e(/*! import() | login-login-module */ "login-login-module").then(__webpack_require__.bind(null, /*! ./login/login.module */ "./src/app/login/login.module.ts")).then(m => m.LoginPageModule)
+        loadChildren: () => Promise.all(/*! import() | login-login-module */[__webpack_require__.e("default~login-login-module~visitor-add-request-visitor-add-request-module"), __webpack_require__.e("login-login-module")]).then(__webpack_require__.bind(null, /*! ./login/login.module */ "./src/app/login/login.module.ts")).then(m => m.LoginPageModule)
     },
     {
         path: '',
