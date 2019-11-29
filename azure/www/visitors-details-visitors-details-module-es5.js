@@ -135,29 +135,30 @@ var VisitorsDetailsPage = /** @class */ (function () {
         });
     };
     VisitorsDetailsPage.prototype.openAddVisitorRequest = function () {
-        var _this = this;
-        var hour = new Date().getHours();
-        var min = new Date().getMinutes();
-        return new Promise(function (resolve) {
-            var body = {
-                action: 'checkRequest',
-                unit_code: _this.unit_code,
-                newCode: _this.newCode,
-                hour: hour,
-                min: min
-            };
-            _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
-                if (data['status'] == 'Allowed') {
-                    _this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request');
-                }
-                else {
-                    _this.openToast('<center>Sorry, You can\'t submit a request from the time being.</center>');
-                }
-                resolve(true);
-                console.log(data['status']);
-            });
-        });
-        // this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request', {state: {newCode: this.newCode, uCode: this.unit_code, fullname: this.fullname, TUN: this.TUN}})
+        // let hour = new Date().getHours()
+        // let min = new Date().getMinutes()
+        // return new Promise(resolve => {
+        //   let body = {
+        //     action: 'checkRequest',
+        //     unit_code: this.unit_code,
+        //     newCode: this.newCode,
+        //     hour: hour,
+        //     min: min
+        //   };
+        //   this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
+        //     if(data['status'] == 'Allowed')
+        //     {
+        this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request');
+        //     }
+        //     else
+        //     {
+        //       this.openToast('<center>Sorry, You can\'t submit a request from the time being.</center>');
+        //     }
+        //     resolve(true);
+        //     console.log(data['status']);
+        //   });
+        // });
+        // // this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request', {state: {newCode: this.newCode, uCode: this.unit_code, fullname: this.fullname, TUN: this.TUN}})
     };
     VisitorsDetailsPage.prototype.loadData = function (unit_code, newCode) {
         var _this = this;

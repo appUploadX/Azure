@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n      <ion-buttons size=\"small\" slot=\"start\">\r\n        <ion-back-button></ion-back-button>\r\n      </ion-buttons>\r\n    <ion-title class=\"header_title\">Booking</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n    \r\n<ion-content class=\"card-background-page\">\r\n  <div class=\"v_personal\">\r\n    <div class=\"v_details\">\r\n      <ion-grid class=\"nopad\">\r\n        <ion-row>\r\n          <ion-col size=\"12\">\r\n            <ion-item>\r\n              <ion-label class=\"text_label\">Booking Date:</ion-label>\r\n              <ion-datetime class=\"text_input\" displayFormat=\"YYYY-MM-DD\" min=\"2019-01-01\" placeholder=\"Select Date\" [(ngModel)]=\"bookingdate\"></ion-datetime>\r\n            </ion-item>\r\n          </ion-col>\r\n        </ion-row>\r\n        <ion-row>\r\n          <ion-col size=\"12\">\r\n            <ion-item>\r\n              <ion-label class=\"text_label\">Time Slot</ion-label>\r\n              <ion-select placeholder=\"Select One\" class=\"text_input\" [(ngModel)]=\"timeSlots\" >\r\n                <ion-select-option value=\"7:00 AM - 12:00 PM\">7:00 AM - 12:00 PM</ion-select-option>\r\n                <ion-select-option value=\"2:00 PM - 7:00 PM\">2:00 PM - 7:00 PM</ion-select-option>\r\n              </ion-select>\r\n            </ion-item>\r\n          </ion-col>\r\n        </ion-row>\r\n        <ion-row>\r\n          <ion-col size=\"6\" class=\"marg0auto\">\r\n              <ion-button color=\"primary\" expand=\"block\" class=\"text_label\" (click)=\"insertBook(amenCode, amenName, propCode, uType, unitCode, rateperbooking)\">Book</ion-button>\r\n          </ion-col>\r\n        </ion-row>\r\n      </ion-grid>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n      <ion-buttons size=\"small\" slot=\"start\">\r\n        <ion-back-button></ion-back-button>\r\n      </ion-buttons>\r\n    <ion-title class=\"header_title\">Booking</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n    \r\n<ion-content class=\"card-background-page\">\r\n  <div class=\"v_personal\">\r\n    <div class=\"v_details\">\r\n      <ion-grid class=\"nopad\">\r\n        <ion-row>\r\n          <ion-col size=\"12\">\r\n            <ion-item>\r\n              <ion-label class=\"text_label\">Booking Date:</ion-label>\r\n              <ion-datetime class=\"text_input checked\" displayFormat=\"YYYY-MM-DD\" min=\"2019-01-01\" placeholder=\"Select Date\" [(ngModel)]=\"bookingdate\"></ion-datetime>\r\n            </ion-item>\r\n          </ion-col>\r\n        </ion-row>\r\n        <ion-row>\r\n          <ion-col size=\"12\">\r\n            <ion-item>\r\n              <ion-label class=\"text_label\">Time Slot</ion-label>\r\n              <ion-select placeholder=\"Select One\" class=\"text_input\" [(ngModel)]=\"timeSlots\" >\r\n                <ion-select-option value=\"7:00 AM - 12:00 PM\" class=\"requiredsel\">7:00 AM - 12:00 PM</ion-select-option>\r\n                <ion-select-option value=\"2:00 PM - 7:00 PM\" class=\"requiredsel\">2:00 PM - 7:00 PM</ion-select-option>\r\n              </ion-select>\r\n            </ion-item>\r\n          </ion-col>\r\n        </ion-row>\r\n        <ion-row>\r\n          <ion-col size=\"6\" class=\"marg0auto\">\r\n              <ion-button color=\"primary\" expand=\"block\" class=\"text_label\" (click)=\"insertBook(amenCode, amenName, propCode, uType, unitCode, rateperbooking)\">Book</ion-button>\r\n          </ion-col>\r\n        </ion-row>\r\n      </ion-grid>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -88,6 +88,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var src_providers_post_providers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/providers/post-providers */ "./src/providers/post-providers.ts");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -127,26 +130,41 @@ var AmenityBookNowPage = /** @class */ (function () {
     };
     AmenityBookNowPage.prototype.insertBook = function (amenCode, amenName, propCode, uType, unitCode, rateperbooking) {
         var _this = this;
-        return new Promise(function (resolve) {
-            var body = {
-                action: 'addBooking',
-                amenCode: amenCode,
-                amenName: amenName,
-                propCode: propCode,
-                uType: uType,
-                unitCode: unitCode,
-                bookingdate: _this.bookingdate,
-                timeSlots: _this.timeSlots,
-                rateperbooking: rateperbooking,
-            };
-            _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
-                if (data['status'] == "Success") {
-                    console.log("okay");
-                    _this.openToast("Data succesfully saved!");
-                    setTimeout(function () { _this.router.navigateByUrl('tabs/tab1/amenities-details'); }, 2000);
-                }
-            });
+        var count = 0;
+        var countSel = 0;
+        if (jquery__WEBPACK_IMPORTED_MODULE_5__(".checked").val() == "") {
+            count++;
+        }
+        jquery__WEBPACK_IMPORTED_MODULE_5__(".requiredsel").each(function () {
+            if (jquery__WEBPACK_IMPORTED_MODULE_5__(this).is(":selected")) {
+                countSel++;
+            }
         });
+        if (count == 0 && countSel != 0) {
+            return new Promise(function (resolve) {
+                var body = {
+                    action: 'addBooking',
+                    amenCode: amenCode,
+                    amenName: amenName,
+                    propCode: propCode,
+                    uType: uType,
+                    unitCode: unitCode,
+                    bookingdate: _this.bookingdate,
+                    timeSlots: _this.timeSlots,
+                    rateperbooking: rateperbooking,
+                };
+                _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
+                    if (data['status'] == "Success") {
+                        console.log("okay");
+                        _this.openToast("Data succesfully saved!");
+                        setTimeout(function () { _this.router.navigateByUrl('tabs/tab1/amenities-details'); }, 2000);
+                    }
+                });
+            });
+        }
+        else {
+            this.openToast("<center>All fields are required!</center>");
+        }
     };
     AmenityBookNowPage.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
