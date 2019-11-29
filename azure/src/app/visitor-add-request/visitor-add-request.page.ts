@@ -76,6 +76,7 @@ export class VisitorAddRequestPage implements OnInit {
 
 	minDepTime: string;
 	maxDate: string = (new Date().getFullYear() + 1) + "-12-31";
+	ErrorDateTime = 0;
 	constructor(
 		private modalController: ModalController,
 		private postPvd: PostProvider,
@@ -256,10 +257,12 @@ export class VisitorAddRequestPage implements OnInit {
 
 			this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
 				if (data['status'] == 'Allowed') {
-					this.openToast('<center>Allowed!</center>');
+					this.openToast('<center>Available!</center>');
+					this.ErrorDateTime = 0;
 				}
 				else {
-					this.openToast('<center>Sorry, You can\'t submit a request from the time being.</center>');
+					this.openToast('<center>Error! You already have a guest/s on these date and time.</center>');
+					this.ErrorDateTime = 1;
 				}
 				resolve(true);
 				console.log(data['status']);
@@ -317,43 +320,51 @@ export class VisitorAddRequestPage implements OnInit {
 		if (count == 0 && (countVal == $("#additional").val() || $("#additional").val() == "") && (countSel == $("#additional").val() || $("#additional").val() == "") && count_check != 0) {
 			var pattern = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
 			if (pattern.test($(".email").val())) {
-				return new Promise(resolve => {
-					let body = {
-						action: 'addVisitors',
-						vuVisitorType: this.label,
-						vtUnitOwner: this.fullname,
-						vtTowerUnit: this.TUN,
-						vtCarparkSlotNo: this.vtCarparkSlotNo,
-						vtGuestOnSite: this.vtGuestOnSite,
-						vtGuestContact: this.vtGuestContact,
-						vtArrivalDate: this.vtArrivalDate,
-						vtArrivalTime: this.vtArrivalTime,
-						vtDepartureDate: this.vtDepartureDate,
-						vtDepartureTime: this.vtDepartureTime,
-						vuNamePrimaryVisitor: this.vtPrimaryVisitorName,
-						vtPrimaryVisitorNationality: this.vtPrimaryVisitorNationality,
-						vtPrimaryVisitorContactNo: this.vtPrimaryVisitorContactNo,
-						vtPrimaryVisitorEmailAddress: this.vtPrimaryVisitorEmailAddress,
-						vtPrimaryVisitorAddress: this.vtPrimaryVisitorAddress,
-						vtAdditionalVisitorCount: this.vtAdditionalVisitorCount,
-						vtVehicleDetailsCount: this.vtVehicleDetailsCount,
-						vtRemarks: this.vtRemarks,
-						vtRemarksByAdmin: this.vtRemarksByAdmin,
-						condition: this.condition,
-						vuUnitCode: this.uCode,
-						ownerCode: this.newCode,
-
-						avName: this.visitC,
-						vehicles: this.vehicles
-					};
-
-					this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
-						if (data['status'] == "Success") {
-							this.openToast("<center>Data succesfully saved!</center>");
-							setTimeout(() => { this.router.navigateByUrl('/tabs/tab1/visitors-details') }, 2000)
-						}
-					})
-				});
+				if(this.ErrorDateTime === 0)
+				{
+					return new Promise(resolve => {
+						let body = {
+							action: 'addVisitors',
+							vuVisitorType: this.label,
+							vtUnitOwner: this.fullname,
+							vtTowerUnit: this.TUN,
+							vtCarparkSlotNo: this.vtCarparkSlotNo,
+							vtGuestOnSite: this.vtGuestOnSite,
+							vtGuestContact: this.vtGuestContact,
+							vtArrivalDate: this.vtArrivalDate,
+							vtArrivalTime: this.vtArrivalTime,
+							vtDepartureDate: this.vtDepartureDate,
+							vtDepartureTime: this.vtDepartureTime,
+							vuNamePrimaryVisitor: this.vtPrimaryVisitorName,
+							vtPrimaryVisitorNationality: this.vtPrimaryVisitorNationality,
+							vtPrimaryVisitorContactNo: this.vtPrimaryVisitorContactNo,
+							vtPrimaryVisitorEmailAddress: this.vtPrimaryVisitorEmailAddress,
+							vtPrimaryVisitorAddress: this.vtPrimaryVisitorAddress,
+							vtAdditionalVisitorCount: this.vtAdditionalVisitorCount,
+							vtVehicleDetailsCount: this.vtVehicleDetailsCount,
+							vtRemarks: this.vtRemarks,
+							vtRemarksByAdmin: this.vtRemarksByAdmin,
+							condition: this.condition,
+							vuUnitCode: this.uCode,
+							ownerCode: this.newCode,
+	
+							avName: this.visitC,
+							vehicles: this.vehicles
+						};
+	
+						this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+							if (data['status'] == "Success") {
+								this.openToast("<center>Data succesfully saved!</center>");
+								setTimeout(() => { this.router.navigateByUrl('/tabs/tab1/visitors-details') }, 2000)
+							}
+						})
+					});
+				}
+				else
+				{
+					this.openToast('<center>Error! You already have a guest/s on these date and time.</center>');
+				}
+				
 			}
 			else {
 				$(".email").css({ "border": '#FF0000 1px solid' });
