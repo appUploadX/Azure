@@ -61,6 +61,13 @@ export class Tab4Page implements OnInit {
     this.router.navigateByUrl('/tabs/tab4/change-password')
   }
 
+  logout()
+  {
+    console.log("x");
+    localStorage.clear();
+    this.router.navigateByUrl('');
+  }
+
   loadData(Email, Type)
   {
     this.Data = [];

@@ -469,7 +469,7 @@ var routes = [
                 ]
             },
             {
-                path: 'tab1/unit-details/resident-details-list/:unit_code/:condition/:pUnitRoom',
+                path: 'tab1/unit-details/resident-details-list',
                 children: [
                     {
                         path: '',

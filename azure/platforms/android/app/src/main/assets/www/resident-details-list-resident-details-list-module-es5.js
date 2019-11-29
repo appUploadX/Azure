@@ -99,13 +99,10 @@ var ResidentDetailsListPage = /** @class */ (function () {
         this.users = [];
     }
     ResidentDetailsListPage.prototype.ngOnInit = function () {
-        var _this = this;
-        this.actRoute.params.subscribe(function (data) {
-            _this.unit_code = data.unit_code;
-            _this.condition = data.condition;
-            _this.pUnitRoom = data.pUnitRoom;
-            console.log(data);
-        });
+        this.unit_code = history.state.unit_code;
+        this.condition = history.state.condition;
+        this.pUnitRoom = history.state.pUnitRoom;
+        console.log(history);
         this.loadData(this.unit_code, this.condition);
     };
     ResidentDetailsListPage.prototype.openResidentDetailsIndividual = function (id, pUnitRoom) {

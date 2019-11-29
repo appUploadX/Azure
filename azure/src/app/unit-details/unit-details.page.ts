@@ -37,7 +37,7 @@ export class UnitDetailsPage implements OnInit {
   }
 
   openResidentDetailsListInTabs(unit_code, condition, pUnitRoom) {
-    this.router.navigateByUrl('/tabs/tab1/unit-details/resident-details-list/'+ unit_code +'/'+ condition +'/'+ pUnitRoom)
+    this.router.navigateByUrl('/tabs/tab1/unit-details/resident-details-list', {state: {unit_code: unit_code, condition: condition, pUnitRoom: pUnitRoom}}) 
   }
 
   openOldTenantDetails(unit_code) {

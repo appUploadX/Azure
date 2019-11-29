@@ -15,7 +15,7 @@
           <ion-col size="12">
             <ion-item>
               <ion-label class="text_label">Booking Date:</ion-label>
-              <ion-datetime class="text_input" displayFormat="YYYY-MM-DD" min="2019-01-01" placeholder="Select Date" [(ngModel)]="bookingdate"></ion-datetime>
+              <ion-datetime class="text_input checked" displayFormat="YYYY-MM-DD" min="2019-01-01" placeholder="Select Date" [(ngModel)]="bookingdate"></ion-datetime>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -24,8 +24,8 @@
             <ion-item>
               <ion-label class="text_label">Time Slot</ion-label>
               <ion-select placeholder="Select One" class="text_input" [(ngModel)]="timeSlots" >
-                <ion-select-option value="7:00 AM - 12:00 PM">7:00 AM - 12:00 PM</ion-select-option>
-                <ion-select-option value="2:00 PM - 7:00 PM">2:00 PM - 7:00 PM</ion-select-option>
+                <ion-select-option value="7:00 AM - 12:00 PM" class="requiredsel">7:00 AM - 12:00 PM</ion-select-option>
+                <ion-select-option value="2:00 PM - 7:00 PM" class="requiredsel">2:00 PM - 7:00 PM</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>

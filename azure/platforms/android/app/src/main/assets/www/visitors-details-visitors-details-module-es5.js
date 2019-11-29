@@ -151,7 +151,7 @@ var VisitorsDetailsPage = /** @class */ (function () {
                     _this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request');
                 }
                 else {
-                    _this.openToast('<center>There is an existing request!</center>');
+                    _this.openToast('<center>Sorry, You can\'t submit a request from the time being.</center>');
                 }
                 resolve(true);
                 console.log(data['status']);

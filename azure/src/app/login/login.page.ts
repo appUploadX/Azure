@@ -31,6 +31,24 @@ export class LoginPage implements OnInit {
     
   }
 
+  ionViewWillEnter()
+  {
+    // console.log(localStorage.getItem("UNIT_CODE"));
+    // console.log(localStorage.getItem("TYPE_DATA"));
+    // console.log(localStorage.getItem("HAS_TENANT"));
+    // console.log(localStorage.getItem("NEW_CODE"));
+    // console.log(localStorage.getItem("FULLNAME"));
+    // console.log(localStorage.getItem("TUN"));
+    // console.log(localStorage.getItem("ROOM_NO"));
+    // console.log(localStorage.getItem("EMAIL"));
+    $(".required").trigger("reset");
+    if(localStorage.getItem("UNIT_CODE") !== null && localStorage.getItem("NEW_CODE") !== null)
+    {
+      this.router.navigateByUrl('/tabs/tab1');
+    }
+    
+  }
+
   async openToast(msg)
   {
     const toast = await this.toastController.create({

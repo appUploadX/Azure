@@ -20,14 +20,11 @@ export class ResidentDetailsListPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.actRoute.params.subscribe((data: any) => 
-      {
-        this.unit_code = data.unit_code;
-        this.condition = data.condition;
-        this.pUnitRoom = data.pUnitRoom;
-        console.log(data);
-      }
-    );
+
+    this.unit_code = history.state.unit_code;
+    this.condition = history.state.condition;
+    this.pUnitRoom = history.state.pUnitRoom;
+    console.log(history);
 
     this.loadData(this.unit_code, this.condition);
   }

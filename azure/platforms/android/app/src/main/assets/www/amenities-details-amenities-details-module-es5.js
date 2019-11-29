@@ -98,14 +98,15 @@ var AmenitiesDetailsPage = /** @class */ (function () {
         this.amenType = [];
     }
     AmenitiesDetailsPage.prototype.ngOnInit = function () {
-        console.log(sessionStorage);
-        this.pCode = sessionStorage.getItem("PROPERTY_CODE");
-        this.uCode = sessionStorage.getItem("UNIT_CODE");
-        this.uType = sessionStorage.getItem("TYPE_DATA");
-        this.unit_no = sessionStorage.getItem("ROOM_NO");
+        console.log(localStorage);
+        this.pCode = localStorage.getItem("PROPERTY_CODE");
+        this.uCode = localStorage.getItem("UNIT_CODE");
+        this.uType = localStorage.getItem("TYPE_DATA");
+        this.unit_no = localStorage.getItem("ROOM_NO");
         this.loadData();
     };
     AmenitiesDetailsPage.prototype.openAzureBeach = function (amenCode, pName) {
+        // this.router.navigateByUrl('/tabs/tab1/amenities-details/amenity-info', {state: {amenCode: amenCode,pCode: this.pCode, uCode: this.uCode, uType:this.uType, amenName: pName}})
         this.router.navigateByUrl('/tabs/tab1/amenities-details/amenity-info', { state: { amenCode: amenCode, pCode: this.pCode, uCode: this.uCode, uType: this.uType, amenName: pName } });
     };
     AmenitiesDetailsPage.prototype.openBookingList = function () {

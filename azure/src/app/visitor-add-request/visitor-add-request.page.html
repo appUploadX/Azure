@@ -87,7 +87,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Arrival Date <ion-text color="danger">*</ion-text></ion-label>
-                <ion-datetime class="text_input checked" displayFormat="YYYY-MM-DD" min="2019-01-01" [(ngModel)]="vtArrivalDate"></ion-datetime>
+                <ion-datetime class="text_input checked" displayFormat="YYYY-MM-DD" min="2019-01-01" max="{{maxDate}}" [(ngModel)]="vtArrivalDate" (ionChange)="arriveChange(vtArrivalDate)"></ion-datetime>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -95,7 +95,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Arrival Time <ion-text color="danger">*</ion-text></ion-label>
-                <ion-datetime class="text_input checked" displayFormat="h:mm A" picker-format="h:mm A" [(ngModel)]="vtArrivalTime"></ion-datetime>
+                <ion-datetime class="text_input checked" id="vtArrivalTime" displayFormat="h:mm A" picker-format="h:mm A" [(ngModel)]="vtArrivalTime" (ionChange)="arriveTimeChange(vtArrivalTime)"></ion-datetime>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -103,7 +103,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Departure Date <ion-text color="danger">*</ion-text></ion-label>
-                <ion-datetime class="text_input checked" displayFormat="YYYY-MM-DD" min="2019-01-01" [(ngModel)]="vtDepartureDate"></ion-datetime>
+                <ion-datetime class="text_input checked" displayFormat="YYYY-MM-DD" min="{{minDepTime}}" max="{{maxDate}}" [(ngModel)]="vtDepartureDate" (ionChange)="departChange(vtDepartureDate)"></ion-datetime>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -111,7 +111,7 @@
             <ion-col size="12">
               <ion-item>
                 <ion-label class="text_label" position="stacked">Departure Time <ion-text color="danger">*</ion-text></ion-label>
-                <ion-datetime class="text_input checked" displayFormat="h:mm A" picker-format="h:mm A"  [(ngModel)]="vtDepartureTime"></ion-datetime>
+                <ion-datetime class="text_input checked" id="vtDepartureTime" displayFormat="h:mm A" picker-format="h:mm A" [(ngModel)]="vtDepartureTime" (ionChange)="departTimeChange(vtDepartureTime)"></ion-datetime>
               </ion-item>
             </ion-col>
           </ion-row>

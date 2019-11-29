@@ -111,7 +111,7 @@ let UnitDetailsPage = class UnitDetailsPage {
         this.router.navigateByUrl('/tabs/tab1/unit-details/tenant-details/' + tenantCode + '/' + pUnitRoom);
     }
     openResidentDetailsListInTabs(unit_code, condition, pUnitRoom) {
-        this.router.navigateByUrl('/tabs/tab1/unit-details/resident-details-list/' + unit_code + '/' + condition + '/' + pUnitRoom);
+        this.router.navigateByUrl('/tabs/tab1/unit-details/resident-details-list', { state: { unit_code: unit_code, condition: condition, pUnitRoom: pUnitRoom } });
     }
     openOldTenantDetails(unit_code) {
         this.router.navigateByUrl('/tabs/tab1/unit-details/old-tenant-details/' + unit_code);

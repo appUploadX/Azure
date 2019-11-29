@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostProvider } from 'src/providers/post-providers';
 import { ToastController } from '@ionic/angular';
+import * as $ from "jquery";
+
 
 @Component({
   selector: 'app-amenity-book-now',
@@ -45,29 +47,52 @@ export class AmenityBookNowPage implements OnInit {
 
   insertBook(amenCode, amenName, propCode, uType, unitCode, rateperbooking)
   {
-    return new Promise(resolve => {
-      let body = {
-        action: 'addBooking',
-        amenCode: amenCode,
-        amenName: amenName,
-        propCode: propCode,
-        uType: uType,
-        unitCode: unitCode,
-        bookingdate: this.bookingdate,
-        timeSlots: this.timeSlots,
-        rateperbooking: rateperbooking,
-      };
+    var count = 0;
+    var countSel = 0;
+    
+    if($(".checked").val() == "")
+    {
+      count++;
+    }
 
-      this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
-        if(data['status'] == "Success")
-        {
-          console.log("okay");
-          this.openToast("Data succesfully saved!");
-          setTimeout(()=>{ this.router.navigateByUrl('tabs/tab1/amenities-details') }, 2000)
-        }
-          
-      });
+    $(".requiredsel").each(function(){
+      if($(this).is(":selected"))
+      {
+        countSel++;
+      }
     });
+
+    if(count == 0 && countSel != 0)
+    {
+      return new Promise(resolve => {
+        let body = {
+          action: 'addBooking',
+          amenCode: amenCode,
+          amenName: amenName,
+          propCode: propCode,
+          uType: uType,
+          unitCode: unitCode,
+          bookingdate: this.bookingdate,
+          timeSlots: this.timeSlots,
+          rateperbooking: rateperbooking,
+        };
+
+        this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
+          if(data['status'] == "Success")
+          {
+            console.log("okay");
+            this.openToast("Data succesfully saved!");
+            setTimeout(()=>{ this.router.navigateByUrl('tabs/tab1/amenities-details') }, 2000)
+          }
+            
+        });
+      });
+
+    }
+    else
+    {
+      this.openToast("<center>All fields are required!</center>");
+    }
   }
 
 }
