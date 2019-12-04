@@ -1,0 +1,105 @@
+@font-face {
+    font-family: 'Assistant_light';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(/assets/fonts/assistant-light.woff2);
+}
+@font-face {
+    font-family: 'Assistant_reg';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/assets/fonts/assistant-reg.woff2);
+}
+@font-face {
+    font-family: 'Assistant_semibold';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(/assets/fonts/assistant-semibold.woff2);
+}
+@font-face {
+    font-family: 'Assistant_bold';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(/assets/fonts/assistant-bold.woff2);
+}
+@font-face {
+    font-family: 'Assistant_extrabold';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url(/assets/fonts/assistant-extrabold.woff2);
+}
+
+.header_title {
+    text-align: center;
+    font-size: 15px;
+}
+
+ion-header {
+    position: relative;
+}
+
+ion-button {
+    position: absolute;
+    right: 0;
+    font-size: 13px;
+}
+
+.nomargtop {margin-top: 0;}
+
+.card-background-page {
+    --padding-start: 15px;
+    --padding-end:15px;
+    --padding-bottom: 30px;
+    font-family: 'Assistant_reg';
+
+    p, ul li {
+        font-size:13px;
+        text-align: justify;
+    }
+
+    ul li {
+        list-style: decimal;
+    }
+
+    ul {
+        padding-inline-start: 23px;
+    }
+
+    h4 {
+        font-size: 14px;
+        font-family: "Assistant_bold";
+        text-transform: uppercase;
+        margin-top: 20px;
+    }
+
+    h2 {
+        font-size: 16px;
+        font-family: "Assistant_bold";
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .title {
+        font-family: "Assistant_bold";
+        font-size: 18px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    h3 {
+        margin-top: 25px;
+        font-size: 15px;
+        font-family: "Assistant_bold";
+        text-transform: uppercase;
+        margin-bottom: 6px;
+    }
+
+    b {
+        font-family: 'Assistant_bold';
+    }
+}

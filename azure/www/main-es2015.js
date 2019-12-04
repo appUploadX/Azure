@@ -73,6 +73,10 @@ var map = {
 		"./src/app/tenant-details/tenant-details.module.ts",
 		"tenant-details-tenant-details-module"
 	],
+	"./terms-and-conditions/terms-and-conditions.module": [
+		"./src/app/terms-and-conditions/terms-and-conditions.module.ts",
+		"terms-and-conditions-terms-and-conditions-module"
+	],
 	"./unit-details/unit-details.module": [
 		"./src/app/unit-details/unit-details.module.ts",
 		"unit-details-unit-details-module"
@@ -595,6 +599,7 @@ const routes = [
     { path: 'profile-details', loadChildren: './profile-details/profile-details.module#ProfileDetailsPageModule' },
     { path: 'tab4', loadChildren: './tab4/tab4.module#Tab4PageModule' },
     { path: 'change-password', loadChildren: './change-password/change-password.module#ChangePasswordPageModule' },
+    { path: 'terms-and-conditions', loadChildren: './terms-and-conditions/terms-and-conditions.module#TermsAndConditionsPageModule' },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };

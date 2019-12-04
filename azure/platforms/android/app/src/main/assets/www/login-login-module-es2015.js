@@ -114,6 +114,7 @@ let LoginPage = class LoginPage {
         jquery__WEBPACK_IMPORTED_MODULE_5__(".required").trigger("reset");
         if (localStorage.getItem("UNIT_CODE") !== null && localStorage.getItem("NEW_CODE") !== null) {
             this.router.navigateByUrl('/tabs/tab1');
+            // this.router.navigateByUrl('terms-and-conditions');
         }
     }
     openToast(msg) {

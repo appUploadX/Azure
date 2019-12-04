@@ -32,7 +32,8 @@ const routes: Routes = [
   { path: 'amenity-booking-details', loadChildren: './amenity-booking-details/amenity-booking-details.module#AmenityBookingDetailsPageModule' },
   { path: 'profile-details', loadChildren: './profile-details/profile-details.module#ProfileDetailsPageModule' },
   { path: 'tab4', loadChildren: './tab4/tab4.module#Tab4PageModule' },
-  { path: 'change-password', loadChildren: './change-password/change-password.module#ChangePasswordPageModule' },
+  { path: 'change-password', loadChildren: './change-password/change-password.module#ChangePasswordPageModule' },  { path: 'terms-and-conditions', loadChildren: './terms-and-conditions/terms-and-conditions.module#TermsAndConditionsPageModule' },
+
   
 ];
 @NgModule({

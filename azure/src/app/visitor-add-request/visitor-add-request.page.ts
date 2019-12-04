@@ -342,7 +342,7 @@ export class VisitorAddRequestPage implements OnInit {
 
 	submit() {
 		var count = 0;
-		this.CKSubmitTime();
+		// this.CKSubmitTime();
 		$(".checked").each(function () {
 			if ($(this).val() == "") {
 				count++;
@@ -383,12 +383,40 @@ export class VisitorAddRequestPage implements OnInit {
 			});
 		}
 
+		if ($("#vehicleCount").val() != "") {
+			var countVehVal = 0;
+			var countVehSel = 0;
+			$(".vehicleData").each(function () {
+				if ($(this).val() != "") {
+					countVehVal++;
+				}
+
+				if (countVehVal > 0) {
+					if ($(this).val() == "") {
+						$(this).css({ "border": '#FF0000 1px solid' });
+					}
+				}
+			});
+
+			$(".vehCountSel").each(function () {
+				if ($(this).is(":selected")) {
+					countVehSel++;
+				}
+
+				if (countVehSel > 0) {
+					if ($(this).val() == "") {
+						$(this).css({ "border": '#FF0000 1px solid' });
+					}
+				}
+			});
+		}
+
 		var count_check = 0;
 		if (this.condition == "1") {
 			count_check++;
 		}
-
-		if (count == 0 && (countVal == $("#additional").val() || $("#additional").val() == "") && (countSel == $("#additional").val() || $("#additional").val() == "") && count_check != 0) {
+		
+		if (count == 0 && (countVal == $("#additional").val() || $("#additional").val() == "") && (countSel == $("#additional").val() || $("#additional").val() == "") && count_check != 0 && (countVehVal == $("#vehicleCount").val() || $("#vehicleCount").val() == "") && (countVehSel == $("#vehicleCount").val() || $("#vehicleCount").val() == "")) {
 			var pattern = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
 			if (pattern.test($(".email").val())) {
 				if (this.ErrorDateTimeDep === 0 && this.ErrorDateTimeArr === 0) {
@@ -469,7 +497,7 @@ export class VisitorAddRequestPage implements OnInit {
 
 			}
 			else {
-				$(".email").css({ "border": '#FF0000 1px solid' });
+				// $(".email").css({ "border": '#FF0000 1px solid' });
 				this.openToast("<center>Incorrect email format!</center>");
 			}
 		}
@@ -477,7 +505,4 @@ export class VisitorAddRequestPage implements OnInit {
 			this.openToast("<center>Some of the fields are required!</center>");
 		}
 	}
-
-
-
 }

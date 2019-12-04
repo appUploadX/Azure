@@ -45,6 +45,7 @@ export class LoginPage implements OnInit {
     if(localStorage.getItem("UNIT_CODE") !== null && localStorage.getItem("NEW_CODE") !== null)
     {
       this.router.navigateByUrl('/tabs/tab1');
+      // this.router.navigateByUrl('terms-and-conditions');
     }
     
   }

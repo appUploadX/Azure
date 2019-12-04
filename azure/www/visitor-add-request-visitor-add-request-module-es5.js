@@ -115,6 +115,8 @@ var VisitorAddRequestPage = /** @class */ (function () {
         this.vehicles = [];
         this.maxDate = (new Date().getFullYear() + 1) + "-12-31";
         this.ErrorDateTime = 0;
+        this.ErrorDateTimeArr = 0;
+        this.ErrorDateTimeDep = 0;
     }
     VisitorAddRequestPage.prototype.ngOnInit = function () {
         console.log(history.state);
@@ -255,7 +257,7 @@ var VisitorAddRequestPage = /** @class */ (function () {
         var expTime = value.split("T");
         var expTimeSplit = expTime[1].split(":");
         var date = expDate[0] + "T" + expTimeSplit[0] + ":" + expTimeSplit[1] + ":00.000+08:00";
-        this.timeChange(date);
+        this.ArrtimeChange(date);
     };
     VisitorAddRequestPage.prototype.departChange = function (val) {
         var value = val.split('T');
@@ -269,9 +271,9 @@ var VisitorAddRequestPage = /** @class */ (function () {
         var expTime = value.split("T");
         var expTimeSplit = expTime[1].split(":");
         var date = expDate[0] + "T" + expTimeSplit[0] + ":" + expTimeSplit[1] + ":00.000+08:00";
-        this.timeChange(date);
+        this.DeptimeChange(date);
     };
-    VisitorAddRequestPage.prototype.timeChange = function (date) {
+    VisitorAddRequestPage.prototype.ArrtimeChange = function (date) {
         var _this = this;
         console.log(date);
         return new Promise(function (resolve) {
@@ -284,11 +286,75 @@ var VisitorAddRequestPage = /** @class */ (function () {
             _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
                 if (data['status'] == 'Allowed') {
                     _this.openToast('<center>Available!</center>');
+                    _this.ErrorDateTimeArr = 0;
+                    console.log(_this.ErrorDateTimeArr + "AllowedARR");
+                }
+                else {
+                    _this.openToast('<center>Error! You already have a guest/s on these date and time.</center>');
+                    _this.ErrorDateTimeArr = 1;
+                    console.log(_this.ErrorDateTimeArr + "Error");
+                }
+                resolve(true);
+                console.log(data['status']);
+            });
+        });
+    };
+    VisitorAddRequestPage.prototype.DeptimeChange = function (date) {
+        var _this = this;
+        console.log(date);
+        return new Promise(function (resolve) {
+            var body = {
+                action: 'checkRequest',
+                unit_code: _this.uCode,
+                newCode: _this.newCode,
+                departureTime: date,
+            };
+            _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
+                if (data['status'] == 'Allowed') {
+                    _this.openToast('<center>Available!</center>');
+                    _this.ErrorDateTimeDep = 0;
+                    console.log(_this.ErrorDateTimeDep + "AllowedDEP");
+                }
+                else {
+                    _this.openToast('<center>Error! You already have a guest/s on these date and time.</center>');
+                    _this.ErrorDateTimeDep = 1;
+                    console.log(_this.ErrorDateTimeDep + "NotAllowedDEP");
+                }
+                resolve(true);
+                console.log(data['status']);
+            });
+        });
+    };
+    VisitorAddRequestPage.prototype.CKSubmitTime = function () {
+        var _this = this;
+        //Arrive
+        var expDateArr = this.vtArrivalDate.split("T");
+        var expTimeArr = this.vtArrivalTime.split("T");
+        var expTimeSplitArr = expTimeArr[1].split(":");
+        var dateArr = expDateArr[0] + "T" + expTimeSplitArr[0] + ":" + expTimeSplitArr[1] + ":00.000+08:00";
+        //Depart
+        var expDateDep = this.vtDepartureDate.split("T");
+        var expTimeDep = this.vtDepartureTime.split("T");
+        var expTimeSplitDep = expTimeDep[1].split(":");
+        var dateDep = expDateDep[0] + "T" + expTimeSplitDep[0] + ":" + expTimeSplitDep[1] + ":00.000+08:00";
+        return new Promise(function (resolve) {
+            var body = {
+                action: 'checkRequestAll',
+                unit_code: _this.uCode,
+                newCode: _this.newCode,
+                ArrTime: dateArr,
+                DepTime: dateDep,
+            };
+            _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
+                if (data['status'] == 'Allowed') {
+                    _this.openToast('<center>Available!</center>');
                     _this.ErrorDateTime = 0;
+                    console.log(_this.ErrorDateTime + "AllowedDEP");
                 }
                 else {
                     _this.openToast('<center>Error! You already have a guest/s on these date and time.</center>');
                     _this.ErrorDateTime = 1;
+                    console.log(_this.ErrorDateTime + "NotAllowedDEP");
                 }
                 resolve(true);
                 console.log(data['status']);
@@ -298,6 +364,7 @@ var VisitorAddRequestPage = /** @class */ (function () {
     VisitorAddRequestPage.prototype.submit = function () {
         var _this = this;
         var count = 0;
+        this.CKSubmitTime();
         jquery__WEBPACK_IMPORTED_MODULE_6__(".checked").each(function () {
             if (jquery__WEBPACK_IMPORTED_MODULE_6__(this).val() == "") {
                 count++;
@@ -339,40 +406,68 @@ var VisitorAddRequestPage = /** @class */ (function () {
         if (count == 0 && (countVal == jquery__WEBPACK_IMPORTED_MODULE_6__("#additional").val() || jquery__WEBPACK_IMPORTED_MODULE_6__("#additional").val() == "") && (countSel == jquery__WEBPACK_IMPORTED_MODULE_6__("#additional").val() || jquery__WEBPACK_IMPORTED_MODULE_6__("#additional").val() == "") && count_check != 0) {
             var pattern = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
             if (pattern.test(jquery__WEBPACK_IMPORTED_MODULE_6__(".email").val())) {
-                if (this.ErrorDateTime === 0) {
+                if (this.ErrorDateTimeDep === 0 && this.ErrorDateTimeArr === 0) {
+                    var expDateArr = this.vtArrivalDate.split("T");
+                    var expTimeArr = this.vtArrivalTime.split("T");
+                    var expTimeSplitArr = expTimeArr[1].split(":");
+                    var dateArr = expDateArr[0] + "T" + expTimeSplitArr[0] + ":" + expTimeSplitArr[1] + ":00.000+08:00";
+                    //Depart
+                    var expDateDep = this.vtDepartureDate.split("T");
+                    var expTimeDep = this.vtDepartureTime.split("T");
+                    var expTimeSplitDep = expTimeDep[1].split(":");
+                    var dateDep = expDateDep[0] + "T" + expTimeSplitDep[0] + ":" + expTimeSplitDep[1] + ":00.000+08:00";
                     return new Promise(function (resolve) {
                         var body = {
-                            action: 'addVisitors',
-                            vuVisitorType: _this.label,
-                            vtUnitOwner: _this.fullname,
-                            vtTowerUnit: _this.TUN,
-                            vtCarparkSlotNo: _this.vtCarparkSlotNo,
-                            vtGuestOnSite: _this.vtGuestOnSite,
-                            vtGuestContact: _this.vtGuestContact,
-                            vtArrivalDate: _this.vtArrivalDate,
-                            vtArrivalTime: _this.vtArrivalTime,
-                            vtDepartureDate: _this.vtDepartureDate,
-                            vtDepartureTime: _this.vtDepartureTime,
-                            vuNamePrimaryVisitor: _this.vtPrimaryVisitorName,
-                            vtPrimaryVisitorNationality: _this.vtPrimaryVisitorNationality,
-                            vtPrimaryVisitorContactNo: _this.vtPrimaryVisitorContactNo,
-                            vtPrimaryVisitorEmailAddress: _this.vtPrimaryVisitorEmailAddress,
-                            vtPrimaryVisitorAddress: _this.vtPrimaryVisitorAddress,
-                            vtAdditionalVisitorCount: _this.vtAdditionalVisitorCount,
-                            vtVehicleDetailsCount: _this.vtVehicleDetailsCount,
-                            vtRemarks: _this.vtRemarks,
-                            vtRemarksByAdmin: _this.vtRemarksByAdmin,
-                            condition: _this.condition,
-                            vuUnitCode: _this.uCode,
-                            ownerCode: _this.newCode,
-                            avName: _this.visitC,
-                            vehicles: _this.vehicles
+                            action: 'checkRequestAll',
+                            unit_code: _this.uCode,
+                            newCode: _this.newCode,
+                            ArrTime: dateArr,
+                            DepTime: dateDep,
                         };
                         _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
-                            if (data['status'] == "Success") {
-                                _this.openToast("<center>Data succesfully saved!</center>");
-                                setTimeout(function () { _this.router.navigateByUrl('/tabs/tab1/visitors-details'); }, 2000);
+                            if (data['status'] == 'Allowed') {
+                                return new Promise(function (resolve) {
+                                    var body = {
+                                        action: 'addVisitors',
+                                        vuVisitorType: _this.label,
+                                        vtUnitOwner: _this.fullname,
+                                        vtTowerUnit: _this.TUN,
+                                        vtCarparkSlotNo: _this.vtCarparkSlotNo,
+                                        vtGuestOnSite: _this.vtGuestOnSite,
+                                        vtGuestContact: _this.vtGuestContact,
+                                        vtArrivalDate: _this.vtArrivalDate,
+                                        vtArrivalTime: _this.vtArrivalTime,
+                                        vtDepartureDate: _this.vtDepartureDate,
+                                        vtDepartureTime: _this.vtDepartureTime,
+                                        vuNamePrimaryVisitor: _this.vtPrimaryVisitorName,
+                                        vtPrimaryVisitorNationality: _this.vtPrimaryVisitorNationality,
+                                        vtPrimaryVisitorContactNo: _this.vtPrimaryVisitorContactNo,
+                                        vtPrimaryVisitorEmailAddress: _this.vtPrimaryVisitorEmailAddress,
+                                        vtPrimaryVisitorAddress: _this.vtPrimaryVisitorAddress,
+                                        vtAdditionalVisitorCount: _this.vtAdditionalVisitorCount,
+                                        vtVehicleDetailsCount: _this.vtVehicleDetailsCount,
+                                        vtRemarks: _this.vtRemarks,
+                                        vtRemarksByAdmin: _this.vtRemarksByAdmin,
+                                        condition: _this.condition,
+                                        vuUnitCode: _this.uCode,
+                                        ownerCode: _this.newCode,
+                                        avName: _this.visitC,
+                                        vehicles: _this.vehicles
+                                    };
+                                    _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
+                                        if (data['status'] == "Success") {
+                                            _this.openToast("<center>Data succesfully saved!</center>");
+                                            setTimeout(function () { _this.router.navigateByUrl('/tabs/tab1/visitors-details'); }, 2000);
+                                        }
+                                    });
+                                });
+                                // this.openToast('<center>Allowed.</center>');
                             }
+                            else {
+                                _this.openToast('<center>Error! You already have a guest/s on these date and time.</center>');
+                            }
+                            // resolve(true);
+                            console.log(data['status']);
                         });
                     });
                 }
