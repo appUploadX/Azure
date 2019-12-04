@@ -20,6 +20,7 @@ export class VisitorAddRequestPage implements OnInit {
 	description;
 	newCode: string;
 	uCode: string;
+	propCode: string;
 
 	//Name of inputs
 	vtUnitOwner;
@@ -33,6 +34,7 @@ export class VisitorAddRequestPage implements OnInit {
 	vtDepartureTime;
 	vtPrimaryVisitorName;
 	vtPrimaryVisitorNationality;
+	vtPrimaryVisitorIDProofDetails;
 	vtPrimaryVisitorContactNo;
 	vtPrimaryVisitorEmailAddress;
 	vtPrimaryVisitorAddress;
@@ -54,6 +56,7 @@ export class VisitorAddRequestPage implements OnInit {
 	vtPrimaryVisitorNameX: string;
 	vtGuestContactX: string;
 	vtPrimaryVisitorNationalityX: string;
+	vtPrimaryVisitorIDProofDetailsX: string;
 	vtPrimaryVisitorContactNoX: string;
 	vtPrimaryVisitorEmailAddressX: string;
 	vtPrimaryVisitorAddressX: string;
@@ -95,6 +98,7 @@ export class VisitorAddRequestPage implements OnInit {
 		this.fullname = localStorage.getItem("FULLNAME");
 		this.TUN = localStorage.getItem("TUN");
 		this.userType = localStorage.getItem("TYPE_DATA");
+		this.propCode = localStorage.getItem("PROPERTY_CODE");
 		this.ishidden = true;
 		console.log(localStorage);
 		this.loadData();
@@ -192,6 +196,7 @@ export class VisitorAddRequestPage implements OnInit {
 				this.vtPrimaryVisitorNameX = data['typeDataX']['vtPrimaryVisitorName'];
 				this.vtGuestContactX = data['typeDataX']['vtGuestContact'];
 				this.vtPrimaryVisitorNationalityX = data['typeDataX']['vtPrimaryVisitorNationality'];
+				this.vtPrimaryVisitorIDProofDetailsX = data['typeDataX']['vtPrimaryVisitorIDProofDetails'];
 				this.vtPrimaryVisitorContactNoX = data['typeDataX']['vtPrimaryVisitorContactNo'];
 				this.vtPrimaryVisitorEmailAddressX = data['typeDataX']['vtPrimaryVisitorEmailAddress'];
 				this.vtPrimaryVisitorAddressX = data['typeDataX']['vtPrimaryVisitorAddress'];
@@ -199,9 +204,10 @@ export class VisitorAddRequestPage implements OnInit {
 				this.vtVehicleDetailsCountX = data['typeDataX']['vtVehicleDetailsCount'];
 				this.vtRemarksX = data['typeDataX']['vtRemarks'];
 
-				// this.typesIND.push(data['typeDataX']);
+				
 				this.description = data['typeDataX']['vtTermsCondition'];
 				this.numberAllowed = data['numberAllowed'];
+
 				resolve(true);
 				console.log(data['numberAllowed']);
 			});
@@ -341,7 +347,7 @@ export class VisitorAddRequestPage implements OnInit {
 	}
 
 	submit() {
-		var count = 0;
+		var count = -2;
 		// this.CKSubmitTime();
 		$(".checked").each(function () {
 			if ($(this).val() == "") {
@@ -416,7 +422,7 @@ export class VisitorAddRequestPage implements OnInit {
 			count_check++;
 		}
 		
-		if (count == 0 && (countVal == $("#additional").val() || $("#additional").val() == "") && (countSel == $("#additional").val() || $("#additional").val() == "") && count_check != 0 && (countVehVal == $("#vehicleCount").val() || $("#vehicleCount").val() == "") && (countVehSel == $("#vehicleCount").val() || $("#vehicleCount").val() == "")) {
+		if (count == 0 && (countVal == $("#additional").val() || $("#additional").val() == "") && (countSel == $("#additional").val() || $("#additional").val() == "") && count_check != 0) {
 			var pattern = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
 			if (pattern.test($(".email").val())) {
 				if (this.ErrorDateTimeDep === 0 && this.ErrorDateTimeArr === 0) {
@@ -457,6 +463,7 @@ export class VisitorAddRequestPage implements OnInit {
 										vtDepartureTime: this.vtDepartureTime,
 										vuNamePrimaryVisitor: this.vtPrimaryVisitorName,
 										vtPrimaryVisitorNationality: this.vtPrimaryVisitorNationality,
+										vtPrimaryVisitorIDProofDetails: this.vtPrimaryVisitorIDProofDetails,
 										vtPrimaryVisitorContactNo: this.vtPrimaryVisitorContactNo,
 										vtPrimaryVisitorEmailAddress: this.vtPrimaryVisitorEmailAddress,
 										vtPrimaryVisitorAddress: this.vtPrimaryVisitorAddress,
@@ -467,9 +474,11 @@ export class VisitorAddRequestPage implements OnInit {
 										condition: this.condition,
 										vuUnitCode: this.uCode,
 										ownerCode: this.newCode,
+										propCode: this.propCode,
 
 										avName: this.visitC,
 										vehicles: this.vehicles
+
 									};
 
 									this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
@@ -502,6 +511,7 @@ export class VisitorAddRequestPage implements OnInit {
 			}
 		}
 		else {
+			console.log(count)
 			this.openToast("<center>Some of the fields are required!</center>");
 		}
 	}

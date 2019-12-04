@@ -1,20 +1,25 @@
 <ion-header>
   <ion-toolbar color="primary">
-      <ion-buttons size="small" slot="start">
-          <ion-back-button></ion-back-button>
-        </ion-buttons>
+    <ion-buttons size="small" slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title class="header_title">Visitor Request Details</ion-title>
   </ion-toolbar>
 </ion-header>
-  
+
 <ion-content class="card-background-page" *ngFor="let res of dataX">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event, res.id)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  
   <ion-grid class="nopad">
     <ion-row>
       <ion-col size="12" class="nopad">
         <div class="visitor_title_div">
-            <h2 class="visitor_title">Guest Advice Form</h2>
-            <div class="underline"></div>
-            <h3 class="visitor_type_title">{{res.vuVisitorType}}</h3>
+          <h2 class="visitor_title">Guest Advice Form</h2>
+          <div class="underline"></div>
+          <h3 class="visitor_type_title">{{res.vuVisitorType}}</h3>
         </div>
       </ion-col>
     </ion-row>
@@ -53,7 +58,7 @@
     <div class="v_title_detail">Arrival/Departure Details</div>
     <div class="v_details">
       <ion-grid class="nopad">
-        <ion-row class="v-row" *ngIf='vtArrivalDateX == "checked"'>
+        <ion-row class="v-row">
           <ion-col size="6">
             <p>Arrival Date:</p>
           </ion-col>
@@ -61,7 +66,7 @@
             <p class="text-right">{{res.vuArrivalDate}}</p>
           </ion-col>
         </ion-row>
-        <ion-row class="v-row"  *ngIf='vtArrivalTimeX == "checked"'>
+        <ion-row class="v-row">
           <ion-col size="6">
             <p>Arrival Time:</p>
           </ion-col>
@@ -69,7 +74,7 @@
             <p class="text-right">{{res.vuArrivalTime | date:'h:mm a'}}</p>
           </ion-col>
         </ion-row>
-        <ion-row class="v-row" *ngIf='vtDepartureDateX == "checked"'>
+        <ion-row class="v-row">
           <ion-col size="6">
             <p>Departure Date:</p>
           </ion-col>
@@ -77,7 +82,7 @@
             <p class="text-right">{{res.vuDepartureDate}}</p>
           </ion-col>
         </ion-row>
-        <ion-row class="v-row" *ngIf='vtDepartureTimeX == "checked"'>
+        <ion-row class="v-row">
           <ion-col size="6">
             <p>Departure Time:</p>
           </ion-col>
@@ -94,7 +99,7 @@
     <div class="v_title_detail">Primary Visitor Details</div>
     <div class="v_details">
       <ion-grid class="nopad">
-        <ion-row class="v-row" *ngIf='vtPrimaryVisitorNameX == "checked"'>
+        <ion-row class="v-row">
           <ion-col size="6">
             <p>Name of Primary Visitor:</p>
           </ion-col>
@@ -102,7 +107,7 @@
             <p class="text-right">{{res.vuNamePrimaryVisitor}}</p>
           </ion-col>
         </ion-row>
-        <ion-row class="v-row" *ngIf='vtPrimaryVisitorNationalityX == "checked"'>
+        <ion-row class="v-row">
           <ion-col size="6">
             <p>Nationality:</p>
           </ion-col>
@@ -110,7 +115,15 @@
             <p class="text-right">{{res.vuPrimaryVisitorNationality}}</p>
           </ion-col>
         </ion-row>
-        <ion-row class="v-row" *ngIf='vtPrimaryVisitorContactNoX == "checked"'>
+        <ion-row class="v-row">
+          <ion-col size="6">
+            <p>ID Proof Details:</p>
+          </ion-col>
+          <ion-col size="6">
+            <p class="text-right">{{res.vuIDProof}}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row class="v-row">
           <ion-col size="6">
             <p>Contact Number:</p>
           </ion-col>
@@ -118,7 +131,7 @@
             <p class="text-right">{{res.vuPrimaryVisitorContactNo}}</p>
           </ion-col>
         </ion-row>
-        <ion-row class="v-row" *ngIf='vtPrimaryVisitorEmailAddressX == "checked"'>
+        <ion-row class="v-row">
           <ion-col size="6">
             <p>Email Address:</p>
           </ion-col>
@@ -126,7 +139,7 @@
             <p class="text-right">{{res.vuPrimaryVisitorEmail}}</p>
           </ion-col>
         </ion-row>
-        <ion-row class="v-row" *ngIf='vtPrimaryVisitorAddressX == "checked"'>
+        <ion-row class="v-row">
           <ion-col size="6">
             <p>Address:</p>
           </ion-col>
@@ -140,7 +153,7 @@
 
   <div class="v_personal">
     <div class="v_title_detail">Additional Visitor Details</div>
-    <div class="v_details" *ngIf='vtAdditionalVisitorCountX == "checked"'>
+    <div class="v_details">
       <ion-grid class="nopad">
         <ion-row class="v-row">
           <ion-col size="3">
@@ -192,7 +205,7 @@
             <p class="font_semibold">Plate No.</p>
           </ion-col>
         </ion-row>
-        <ion-row class="v-row"  *ngFor="let rex of vehData; let i = index">
+        <ion-row class="v-row" *ngFor="let rex of vehData; let i = index">
           <ion-col size="3">
             <p>{{rex[i].Type}}</p>
           </ion-col>
@@ -214,17 +227,17 @@
     <div class="v_title_detail">Additional Remarks</div>
     <div class="v_details">
       <ion-grid class="nopad">
-        <ion-row class="v-row" *ngIf='vtRemarksX == "checked"'>
-       
-              <ion-col size="6">
-                <p>Remark:</p>
-              </ion-col>
-              <ion-col size="6">
-                <p class="text-right">{{res.vuAdditionalRemarks}}</p>
-              </ion-col>
-     
+        <ion-row class="v-row">
+
+          <ion-col size="6">
+            <p>Remark:</p>
+          </ion-col>
+          <ion-col size="6">
+            <p class="text-right">{{res.vuAdditionalRemarks}}</p>
+          </ion-col>
+
         </ion-row>
-        
+
       </ion-grid>
     </div>
   </div>
@@ -256,11 +269,10 @@
   </div>
 
   <ion-grid class="btns" *ngIf="res.vuApprovalStatus == 'Pending'">
-      <ion-row class="v-row pt-0">
-        <ion-col size="12" class="pt-0">
-          <ion-button color="primary" expand="block" (click)="confirmCancel(res.id)">Cancel Request</ion-button>
-        </ion-col>
-      </ion-row>
+    <ion-row class="v-row pt-0">
+      <ion-col size="12" class="pt-0">
+        <ion-button color="primary" expand="block" (click)="confirmCancel(res.id)">Cancel Request</ion-button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>
-
