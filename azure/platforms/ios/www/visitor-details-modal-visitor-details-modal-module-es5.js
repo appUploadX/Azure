@@ -41,7 +41,9 @@ var VisitorDetailsModalPageModule = /** @class */ (function () {
                 _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonicModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forChild(routes)
             ],
-            declarations: [_visitor_details_modal_page__WEBPACK_IMPORTED_MODULE_6__["VisitorDetailsModalPage"]]
+            declarations: [
+            // VisitorDetailsModalPage
+            ]
         })
     ], VisitorDetailsModalPageModule);
     return VisitorDetailsModalPageModule;

@@ -41,7 +41,7 @@
 						<ion-col size="12">
 							<ion-item>
 								<ion-label class="text_label" position="stacked">Unit Owner/SPA Name <ion-text
-										color="danger">*
+										color="danger" *ngIf="vtUnitOwnerX == 'checked'">*
 									</ion-text>
 								</ion-label>
 								<ion-input *ngIf="vtUnitOwnerX == 'checked'" class="text_input checked" type="text"
@@ -57,7 +57,7 @@
 						<ion-col size="12">
 							<ion-item>
 								<ion-label class="text_label" position="stacked">Tower Unit Number <ion-text
-										color="danger">*</ion-text>
+										color="danger" *ngIf="vtTowerUnitX == 'checked'">*</ion-text>
 								</ion-label>
 								<ion-input *ngIf="vtTowerUnitX == 'checked'" class="text_input checked" type="text"
 									[(ngModel)]="vtTowerUnit">{{TUN}}</ion-input>
@@ -70,11 +70,11 @@
 						<ion-col size="12">
 							<ion-item>
 								<ion-label class="text_label" position="stacked">Carpark Slot Number <ion-text
-										color="danger">*
+										color="danger" *ngIf="vtCarparkSlotNoX == 'checked'">*
 									</ion-text>
 								</ion-label>
-								<ion-input *ngIf="vtCarparkSlotNoX == 'checked'" class="text_input checked"
-									type="text" [(ngModel)]="vtCarparkSlotNo"></ion-input>
+								<ion-input *ngIf="vtCarparkSlotNoX == 'checked'" class="text_input checked" type="text"
+									[(ngModel)]="vtCarparkSlotNo"></ion-input>
 								<ion-input *ngIf="vtCarparkSlotNoX == 'unchecked'" class="text_input unchecked"
 									type="text" [(ngModel)]="vtCarparkSlotNo"></ion-input>
 							</ion-item>
@@ -84,7 +84,7 @@
 						<ion-col size="12">
 							<ion-item>
 								<ion-label class="text_label" position="stacked">Visitors On-Site Contact Person
-									<ion-text color="danger">*</ion-text>
+									<ion-text color="danger" *ngIf="vtGuestOnSiteX == 'checked'">*</ion-text>
 								</ion-label>
 								<ion-input *ngIf="vtGuestOnSiteX == 'checked'" class="text_input checked" type="text"
 									[(ngModel)]="vtGuestOnSite"></ion-input>
@@ -96,8 +96,8 @@
 					<ion-row class="v-row">
 						<ion-col size="12">
 							<ion-item>
-								<ion-label class="text_label" position="stacked">Contact Number <ion-text
-										color="danger">*</ion-text>
+								<ion-label class="text_label" position="stacked">Contact Number <ion-text color="danger"
+										*ngIf="vtGuestContactX == 'checked'">*</ion-text>
 								</ion-label>
 								<ion-input *ngIf="vtGuestContactX == 'checked'" class="text_input checked" type="number"
 									[(ngModel)]="vtGuestContact"></ion-input>
@@ -117,7 +117,8 @@
 					<ion-row class="v-row">
 						<ion-col size="12">
 							<ion-item>
-								<ion-label class="text_label" position="stacked">Arrival Date <ion-text color="danger">*
+								<ion-label class="text_label" position="stacked">Arrival Date <ion-text color="danger"
+										*ngIf="vtArrivalDateX == 'checked'">*
 									</ion-text>
 								</ion-label>
 								<ion-datetime *ngIf="vtArrivalDateX == 'checked'" class="text_input checked"
@@ -134,7 +135,8 @@
 					<ion-row class="v-row">
 						<ion-col size="12">
 							<ion-item>
-								<ion-label class="text_label" position="stacked">Arrival Time <ion-text color="danger">*
+								<ion-label class="text_label" position="stacked">Arrival Time <ion-text color="danger"
+										*ngIf="vtArrivalTimeX == 'checked'">*
 									</ion-text>
 								</ion-label>
 								<ion-datetime *ngIf="vtArrivalTimeX == 'checked'" class="text_input checked"
@@ -151,8 +153,8 @@
 					<ion-row class="v-row">
 						<ion-col size="12">
 							<ion-item>
-								<ion-label class="text_label" position="stacked">Departure Date <ion-text
-										color="danger">*</ion-text>
+								<ion-label class="text_label" position="stacked">Departure Date <ion-text color="danger"
+										*ngIf="vtDepartureDateX == 'checked'">*</ion-text>
 								</ion-label>
 								<ion-datetime *ngIf="vtDepartureDateX == 'checked'" class="text_input checked"
 									displayFormat="YYYY-MM-DD" min="{{minDepTime}}" max="{{maxDate}}"
@@ -168,8 +170,8 @@
 					<ion-row class="v-row">
 						<ion-col size="12">
 							<ion-item>
-								<ion-label class="text_label" position="stacked">Departure Time <ion-text
-										color="danger">*</ion-text>
+								<ion-label class="text_label" position="stacked">Departure Time <ion-text color="danger"
+										*ngIf="vtDepartureTimeX == 'checked'">*</ion-text>
 								</ion-label>
 								<ion-datetime *ngIf="vtDepartureTimeX == 'checked'" class="text_input checked"
 									id="vtDepartureTime" displayFormat="h:mm A" picker-format="h:mm A"
@@ -194,7 +196,7 @@
 						<ion-col size="12">
 							<ion-item>
 								<ion-label class="text_label" position="stacked">Name of Primary Visitor <ion-text
-										color="danger">*
+										color="danger" *ngIf="vtPrimaryVisitorNameX == 'checked'">*
 									</ion-text>
 								</ion-label>
 								<ion-input *ngIf="vtPrimaryVisitorNameX == 'checked'" class="text_input checked"
@@ -209,7 +211,8 @@
 					<ion-row class="v-row">
 						<ion-col size="12">
 							<ion-item>
-								<ion-label class="text_label" position="stacked">Nationality <ion-text color="danger">*
+								<ion-label class="text_label" position="stacked">Nationality <ion-text color="danger"
+										*ngIf="vtPrimaryVisitorNationalityX == 'checked'">*
 									</ion-text>
 								</ion-label>
 								<ion-input *ngIf="vtPrimaryVisitorNationalityX == 'checked'" class="text_input checked"
@@ -224,13 +227,13 @@
 						<ion-col size="12">
 							<ion-item>
 								<ion-label class="text_label" position="stacked">ID Proof Details <ion-text
-										color="danger">*</ion-text>
+										color="danger" *ngIf="vtPrimaryVisitorIDProofDetailsX == 'checked'">*</ion-text>
 								</ion-label>
 								<ion-input *ngIf="vtPrimaryVisitorIDProofDetailsX == 'checked'"
-									class="text_input checked" type="number"
-									[(ngModel)]="vtPrimaryVisitorIDProofDetails"></ion-input>
+									class="text_input checked" type="text" [(ngModel)]="vtPrimaryVisitorIDProofDetails">
+								</ion-input>
 								<ion-input *ngIf="vtPrimaryVisitorIDProofDetailsX == 'unchecked'"
-									class="text_input unchecked" type="number"
+									class="text_input unchecked" type="text"
 									[(ngModel)]="vtPrimaryVisitorIDProofDetails"></ion-input>
 							</ion-item>
 						</ion-col>
@@ -238,8 +241,8 @@
 					<ion-row class="v-row">
 						<ion-col size="12">
 							<ion-item>
-								<ion-label class="text_label" position="stacked">Contact Number <ion-text
-										color="danger">*</ion-text>
+								<ion-label class="text_label" position="stacked">Contact Number <ion-text color="danger"
+										*ngIf="vtPrimaryVisitorContactNoX == 'checked'">*</ion-text>
 								</ion-label>
 								<ion-input *ngIf="vtPrimaryVisitorContactNoX == 'checked'" class="text_input checked"
 									type="number" [(ngModel)]="vtPrimaryVisitorContactNo"></ion-input>
@@ -252,7 +255,8 @@
 					<ion-row class="v-row">
 						<ion-col size="12">
 							<ion-item>
-								<ion-label class="text_label" position="stacked">Email Address <ion-text color="danger">
+								<ion-label class="text_label" position="stacked">Email Address <ion-text color="danger"
+										*ngIf="vtPrimaryVisitorEmailAddressX == 'checked'">
 										*</ion-text>
 								</ion-label>
 								<ion-input *ngIf="vtPrimaryVisitorEmailAddressX == 'checked'"
@@ -269,7 +273,8 @@
 					<ion-row class="v-row">
 						<ion-col size="12">
 							<ion-item>
-								<ion-label class="text_label" position="stacked">Address <ion-text color="danger">*
+								<ion-label class="text_label" position="stacked">Address <ion-text color="danger"
+										*ngIf="vtPrimaryVisitorAddressX == 'checked'">*
 									</ion-text>
 								</ion-label>
 								<ion-input *ngIf="vtPrimaryVisitorAddressX == 'checked'" class="text_input checked"
@@ -292,7 +297,8 @@
 					<ion-row class="v-row">
 						<ion-col size="12">
 							<ion-item>
-								<ion-label class="text_label" position="stacked">Count <ion-text color="danger">*
+								<ion-label class="text_label" position="stacked">Count <ion-text color="danger"
+										*ngIf="vtAdditionalVisitorCountX == 'checked'">*
 									</ion-text>
 								</ion-label>
 								<ion-input *ngIf="vtAdditionalVisitorCountX == 'checked'" class="text_input checked"
@@ -340,7 +346,8 @@
 					<ion-row class="v-row">
 						<ion-col size="12">
 							<ion-item>
-								<ion-label class="text_label" position="stacked">Count <ion-text color="danger">*
+								<ion-label class="text_label" position="stacked">Count <ion-text color="danger"
+										*ngIf="vtVehicleDetailsCountX == 'checked'">*
 									</ion-text>
 								</ion-label>
 								<ion-input *ngIf="vtVehicleDetailsCountX == 'checked'" class="text_input checked"
@@ -393,7 +400,8 @@
 		</div>
 
 		<div class="v_personal">
-			<div class="v_title_detail">Additional Remarks</div>
+			<div class="v_title_detail">Additional Remarks <span color="danger" *ngIf="vtRemarksX == 'checked'">*</span>
+			</div>
 			<div class="v_details">
 				<ion-grid class="nopad">
 					<ion-row class="v-row">
