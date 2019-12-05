@@ -106,5 +106,36 @@ export class VisitorsDetailsPage implements OnInit {
     }
 
 
+    doRefresh(event, unit_code, newCode) {
+        console.log('Begin async operation');
+
+        setTimeout(() => {
+            this.visitData = [];
+            this.visitType = [];
+            return new Promise(resolve => {
+                let body = {
+                    action: 'visitorDetails',
+                    unit_code: unit_code,
+                    newCode: newCode
+                };
+
+                this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+                    for (var i = 0; i < data['visitData'].length; i++) {
+                        this.visitData.push(data['visitData']);
+                    }
+
+                    for (var x = 0; x < data['visitData'].length; x++) {
+                        this.visitType.push(data['visitType']);
+                    }
+
+                    event.target.complete();
+                    resolve(true);
+                    console.log(data['visitData']);
+                });
+            });
+
+        }, 2000);
+    }
+
 
 }

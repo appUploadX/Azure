@@ -169,6 +169,20 @@
             <p class="font_semibold">Checked Out</p>
           </ion-col>
         </ion-row>
+        <ion-row class="v-row">
+            <ion-col size="3">
+              <p>{{res.vuNamePrimaryVisitor}} (Primary)</p>
+            </ion-col>
+            <ion-col size="3">
+              <p>Adult</p>
+            </ion-col>
+            <ion-col size="3">
+              <p>{{res.vuCheckInPrimaryDate}}</p>
+            </ion-col>
+            <ion-col size="3">
+              <p>{{res.vuCheckOutPrimaryDate}}</p>
+            </ion-col>
+          </ion-row>
         <ion-row class="v-row" *ngFor="let rex of dataAdd; let i = index">
           <ion-col size="3">
             <p>{{rex[i].avName}}</p>
