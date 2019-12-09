@@ -1,12 +1,12 @@
 <ion-header>
   <ion-toolbar color="primary">
-      <ion-buttons size="small" slot="start">
-        <ion-back-button></ion-back-button>
-      </ion-buttons>
+    <ion-buttons size="small" slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title class="header_title">Booking</ion-title>
   </ion-toolbar>
 </ion-header>
-    
+
 <ion-content class="card-background-page">
   <div class="v_personal">
     <div class="v_details">
@@ -15,7 +15,8 @@
           <ion-col size="12">
             <ion-item>
               <ion-label class="text_label">Booking Date:</ion-label>
-              <ion-datetime class="text_input checked" displayFormat="YYYY-MM-DD" min="2019-01-01" placeholder="Select Date" [(ngModel)]="bookingdate"></ion-datetime>
+              <ion-datetime class="text_input checked" displayFormat="YYYY-MM-DD" min="2019-01-01"
+                placeholder="Select Date" (ionChange)="checkVisitors($event)" [(ngModel)]="bookingdate" ></ion-datetime>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -23,16 +24,91 @@
           <ion-col size="12">
             <ion-item>
               <ion-label class="text_label">Time Slot</ion-label>
-              <ion-select placeholder="Select One" class="text_input" [(ngModel)]="timeSlots" >
+              <ion-select placeholder="Select One" class="text_input" [(ngModel)]="timeSlots">
                 <ion-select-option value="7:00 AM - 12:00 PM" class="requiredsel">7:00 AM - 12:00 PM</ion-select-option>
                 <ion-select-option value="2:00 PM - 7:00 PM" class="requiredsel">2:00 PM - 7:00 PM</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>
         </ion-row>
+      </ion-grid>
+
+
+      <div class="v_personal" [hidden]=ishidden>
+        <div class="v_title_detail">Details</div>
+        <div class="v_details">
+          <ion-grid class="nopad">
+            <ion-row class="v-row">
+              <ion-col size="6">
+                <p>Unit Number:</p>
+              </ion-col>
+              <ion-col size="6">
+                <p class="text-right">{{TUN}}</p>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="v-row">
+              <ion-col size="6">
+                <p>Free User: </p>
+              </ion-col>
+              <ion-col size="6">
+                <p class="text-right">{{amenDetails[0].FreeUsers}}</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </div>
+
+      <div class="v_personal" [hidden]=ishidden>
+        <div class="v_title_detail"> </div>
+        <div class="v_details">
+          <ion-grid class="nopad">
+            <ion-row class="v-row">
+              <ion-col size="4">
+                <p class="font_semibold">Name</p>
+              </ion-col>
+              <ion-col size="4">
+                <p class="font_semibold tablecheck">Check</p>
+              </ion-col>
+              <ion-col size="4">
+                <p class="font_semibold">Amount (₱)</p>
+              </ion-col>
+            </ion-row>
+            <ion-row class="v-row" *ngFor="let res of visitUnit">
+              <ion-col size="4">
+                <p>{{res.vuNamePrimaryVisitor}}</p>
+              </ion-col>
+              <ion-col size="4">
+                <ion-item class="divcheck">
+                  <ion-checkbox class="checkbook" color="primary" slot="start"></ion-checkbox>
+                </ion-item>
+              </ion-col>
+              <ion-col size="4">
+                <p>{{amenDetails[0].RateArr[0]}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row class="v-row" *ngFor="let res of visitAdditional; let x = index">
+              <ion-col size="4">
+                <p>{{res[x].avName}}</p>
+              </ion-col>
+              <ion-col size="4">
+                <ion-item class="divcheck">
+                  <ion-checkbox class="checkbook" color="primary" slot="start"></ion-checkbox>
+                </ion-item>
+              </ion-col>
+              <ion-col size="4">
+                <p>{{amenDetails[0].RateArr[x+1]}}</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </div>
+
+      <ion-grid>
         <ion-row>
           <ion-col size="6" class="marg0auto">
-              <ion-button color="primary" expand="block" class="text_label" (click)="insertBook(amenCode, amenName, propCode, uType, unitCode, rateperbooking)">Book</ion-button>
+            <ion-button color="primary" expand="block" class="text_label"
+              (click)="insertBook(amenCode, amenName, propCode, uType, unitCode, rateperbooking)">Book</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

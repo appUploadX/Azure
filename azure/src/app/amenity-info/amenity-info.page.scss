@@ -33,6 +33,12 @@
     font-display: swap;
     src: url(/assets/fonts/assistant-extrabold.woff2);
 }
+.btnbook {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    --box-shadow: none;
+}
 p,
 ion-content {font-family: 'Assistant_reg'; color: #323232;}
 

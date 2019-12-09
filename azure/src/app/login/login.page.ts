@@ -11,12 +11,12 @@ import * as $ from "jquery";
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  user:string;
-  pass:string;
+  user: string;
+  pass: string;
 
-  typeData:string;
-  Status:string;
-  Has:string;
+  typeData: string;
+  Status: string;
+  Has: string;
   Data: any = [];
   TUN: string;
   constructor(
@@ -25,14 +25,13 @@ export class LoginPage implements OnInit {
     public toastController: ToastController,
   ) { }
 
-  
+
 
   ngOnInit() {
-    
+    $(".required").val("");
   }
 
-  ionViewWillEnter()
-  {
+  ionViewWillEnter() {
     // console.log(localStorage.getItem("UNIT_CODE"));
     // console.log(localStorage.getItem("TYPE_DATA"));
     // console.log(localStorage.getItem("HAS_TENANT"));
@@ -42,66 +41,63 @@ export class LoginPage implements OnInit {
     // console.log(localStorage.getItem("ROOM_NO"));
     // console.log(localStorage.getItem("EMAIL"));
     $(".required").trigger("reset");
-    if(localStorage.getItem("UNIT_CODE") !== null && localStorage.getItem("NEW_CODE") !== null)
-    {
-      // this.router.navigateByUrl('/tabs/tab1');
-      this.router.navigateByUrl('terms-and-conditions');
+    $(".required").val("");
+
+    console.log(localStorage);
+    if (localStorage.getItem("UNIT_CODE") !== null && localStorage.getItem("NEW_CODE") !== null) {
+      if (localStorage.getItem("TERMS") !== 'null') {
+        this.router.navigateByUrl('/tabs/tab1');
+      }
+      else {
+        this.router.navigateByUrl('terms-and-conditions');
+      }
     }
-    
+
   }
 
-  async openToast(msg)
-  {
+  async openToast(msg) {
     const toast = await this.toastController.create({
       message: msg,
       duration: 2000,
     });
     toast.present();
   }
-  
 
-  onSubmit(user, pass)
-  {
+
+  onSubmit(user, pass) {
     var count = 0;
-    $(".required").each(function(){
-      if($(this).val() == "")
-      {
+    $(".required").each(function () {
+      if ($(this).val() == "") {
         count++;
       }
 
-      if(count > 0)
-      {
-        if($(this).val() == "")
-        {
-          $(this).css({ "border": '#FF0000 1px solid'});
+      if (count > 0) {
+        if ($(this).val() == "") {
+          $(this).css({ "border": '#FF0000 1px solid' });
         }
       }
     });
 
     console.log(count);
 
-    if(count == 0)
-    {
+    if (count == 0) {
       var pattern = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
-      if (pattern.test($(".user").val())) 
-      {
+      if (pattern.test($(".user").val())) {
         return new Promise(resolve => {
           let body = {
             action: 'login',
             user: user,
             pass: pass,
           };
-  
-          this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
-            if(data['status'] == "Success")
-            {
+
+          this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+            if (data['status'] == "Success") {
               this.typeData = data['uType'];
               this.Status = data['status'];
               this.Has = data['hasTenant'];
               this.Data.push(data['data']);
               console.log(data['dataX'][0]);
-              if(data['uType'] == "Owner")
-              {
+              if (data['uType'] == "Owner") {
                 localStorage.setItem("UNIT_CODE", data['dataX'][0]['unit_code']);
                 localStorage.setItem("TYPE_DATA", this.typeData);
                 localStorage.setItem("HAS_TENANT", data['hasTenant']);
@@ -110,12 +106,22 @@ export class LoginPage implements OnInit {
                 localStorage.setItem("TUN", data['TUN']);
                 localStorage.setItem("ROOM_NO", data['ROOM_NO']);
                 localStorage.setItem("EMAIL", data['dataX'][0]['EmailAddress']);
-  
+
                 localStorage.setItem("PROPERTY_CODE", data['dataX'][0]['property_code']);
-                this.router.navigateByUrl('/tabs/tab1');
+                localStorage.setItem("USER_ID", data['dataX'][0]['id']);
+                localStorage.setItem("TERMS", data['dataX'][0]['pTermsAndCondition']);
+
+                localStorage.setItem("BEDROOM", data['unit_details']['bedroom']);
+                localStorage.setItem("UNITSIZE", data['unit_details']['unitsize']);
+
+                if (data['dataX'][0]['pTermsAndCondition'] !== null) {
+                  this.router.navigateByUrl('/tabs/tab1');
+                }
+                else {
+                  this.router.navigateByUrl('terms-and-conditions');
+                }
               }
-              else if(data['uType'] == "Tenant")
-              {
+              else if (data['uType'] == "Tenant") {
                 localStorage.setItem("UNIT_CODE", data['dataX'][0]['unit_code']);
                 localStorage.setItem("TYPE_DATA", this.typeData);
                 localStorage.setItem("HAS_TENANT", data['hasTenant']);
@@ -124,30 +130,40 @@ export class LoginPage implements OnInit {
                 localStorage.setItem("TUN", data['TUN']);
                 localStorage.setItem("ROOM_NO", data['ROOM_NO']);
                 localStorage.setItem("EMAIL", data['dataX'][0]['tEmailAddress']);
-  
+
                 localStorage.setItem("PROPERTY_CODE", data['propC']['property_code']);
-                this.router.navigateByUrl('/tabs/tab1');
+                localStorage.setItem("USER_ID", data['dataX'][0]['id']);
+                localStorage.setItem("TERMS", data['dataX'][0]['tTermsAndCondition']);
+
+                localStorage.setItem("BEDROOM", data['unit_details']['bedroom']);
+                localStorage.setItem("UNITSIZE", data['unit_details']['unitsize']);
+
+                if (data['dataX'][0]['tTermsAndCondition'] !== null) {
+                  this.router.navigateByUrl('/tabs/tab1');
+                }
+                else {
+                  this.router.navigateByUrl('terms-and-conditions');
+                }
+
+
               }
             }
-            else
-            {
+            else {
               this.openToast('<center>Invalid credentials!</center>');
             }
-            
+
           })
         });
       }
-      else
-      {
+      else {
         this.openToast("<center>Incorrect email format!</center>");
       }
-      
+
     }
-    else
-    {
+    else {
       this.openToast("<center>All fields are required!</center>");
     }
-    
+
   }
 
 

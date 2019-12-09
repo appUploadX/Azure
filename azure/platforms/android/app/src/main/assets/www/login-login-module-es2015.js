@@ -101,6 +101,7 @@ let LoginPage = class LoginPage {
         this.Data = [];
     }
     ngOnInit() {
+        jquery__WEBPACK_IMPORTED_MODULE_5__(".required").val("");
     }
     ionViewWillEnter() {
         // console.log(localStorage.getItem("UNIT_CODE"));
@@ -112,9 +113,15 @@ let LoginPage = class LoginPage {
         // console.log(localStorage.getItem("ROOM_NO"));
         // console.log(localStorage.getItem("EMAIL"));
         jquery__WEBPACK_IMPORTED_MODULE_5__(".required").trigger("reset");
+        jquery__WEBPACK_IMPORTED_MODULE_5__(".required").val("");
+        console.log(localStorage);
         if (localStorage.getItem("UNIT_CODE") !== null && localStorage.getItem("NEW_CODE") !== null) {
-            this.router.navigateByUrl('/tabs/tab1');
-            // this.router.navigateByUrl('terms-and-conditions');
+            if (localStorage.getItem("TERMS") !== 'null') {
+                this.router.navigateByUrl('/tabs/tab1');
+            }
+            else {
+                this.router.navigateByUrl('terms-and-conditions');
+            }
         }
     }
     openToast(msg) {
@@ -165,7 +172,16 @@ let LoginPage = class LoginPage {
                                 localStorage.setItem("ROOM_NO", data['ROOM_NO']);
                                 localStorage.setItem("EMAIL", data['dataX'][0]['EmailAddress']);
                                 localStorage.setItem("PROPERTY_CODE", data['dataX'][0]['property_code']);
-                                this.router.navigateByUrl('/tabs/tab1');
+                                localStorage.setItem("USER_ID", data['dataX'][0]['id']);
+                                localStorage.setItem("TERMS", data['dataX'][0]['pTermsAndCondition']);
+                                localStorage.setItem("BEDROOM", data['unit_details']['bedroom']);
+                                localStorage.setItem("UNITSIZE", data['unit_details']['unitsize']);
+                                if (data['dataX'][0]['pTermsAndCondition'] !== null) {
+                                    this.router.navigateByUrl('/tabs/tab1');
+                                }
+                                else {
+                                    this.router.navigateByUrl('terms-and-conditions');
+                                }
                             }
                             else if (data['uType'] == "Tenant") {
                                 localStorage.setItem("UNIT_CODE", data['dataX'][0]['unit_code']);
@@ -177,7 +193,16 @@ let LoginPage = class LoginPage {
                                 localStorage.setItem("ROOM_NO", data['ROOM_NO']);
                                 localStorage.setItem("EMAIL", data['dataX'][0]['tEmailAddress']);
                                 localStorage.setItem("PROPERTY_CODE", data['propC']['property_code']);
-                                this.router.navigateByUrl('/tabs/tab1');
+                                localStorage.setItem("USER_ID", data['dataX'][0]['id']);
+                                localStorage.setItem("TERMS", data['dataX'][0]['tTermsAndCondition']);
+                                localStorage.setItem("BEDROOM", data['unit_details']['bedroom']);
+                                localStorage.setItem("UNITSIZE", data['unit_details']['unitsize']);
+                                if (data['dataX'][0]['tTermsAndCondition'] !== null) {
+                                    this.router.navigateByUrl('/tabs/tab1');
+                                }
+                                else {
+                                    this.router.navigateByUrl('terms-and-conditions');
+                                }
                             }
                         }
                         else {

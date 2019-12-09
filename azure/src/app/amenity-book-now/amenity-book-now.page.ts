@@ -11,14 +11,23 @@ import * as $ from "jquery";
   styleUrls: ['./amenity-book-now.page.scss'],
 })
 export class AmenityBookNowPage implements OnInit {
-  amenCode:number;
-  amenName:string;
-  propCode:number;
-  uType:string;
-  unitCode:number;
-  bookingdate:string;
-  timeSlots:string;
+  amenCode: number;
+  amenName: string;
+  propCode: number;
+  uType: string;
+  unitCode: number;
+  bookingdate: string;
+  timeSlots: string;
   rateperbooking: number;
+  TUN: String;
+  unit_code: String;
+  newCode: String;
+  ishidden: boolean;
+  visitUnit: any;
+  visitAdditional: any;
+  bedroom:String;
+
+  amenDetails:any;
   constructor(
     private router: Router,
     private postPvd: PostProvider,
@@ -33,11 +42,17 @@ export class AmenityBookNowPage implements OnInit {
     this.uType = history.state.uType;
     this.unitCode = history.state.unitCode;
     this.rateperbooking = history.state.rateperbooking;
+    this.TUN = localStorage.getItem("TUN");
+    this.unit_code = localStorage.getItem("UNIT_CODE");
+    this.newCode = localStorage.getItem("NEW_CODE");
+    this.bedroom = localStorage.getItem("BEDROOM");
+    this.ishidden = true;
+
     console.log(history.state);
+    console.log(localStorage);
   }
 
-  async openToast(msg)
-  {
+  async openToast(msg) {
     const toast = await this.toastController.create({
       message: msg,
       duration: 2000
@@ -45,25 +60,60 @@ export class AmenityBookNowPage implements OnInit {
     toast.present();
   }
 
-  insertBook(amenCode, amenName, propCode, uType, unitCode, rateperbooking)
-  {
+  checkVisitors(val) {
+    this.ishidden = false;
+    console.log(val.detail.value);
+    var date = val.detail.value.split("T");
+    return new Promise(resolve => {
+      let body = {
+        action: 'checkVisitors',
+        date: date[0],
+        uCode: this.unit_code,
+        newCode: this.newCode,
+        amenCode: this.amenCode,
+        amenName: this.amenName,
+        bedroom: this.bedroom,
+      };
+
+      this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+        this.visitUnit = [];
+        this.visitAdditional = [];
+        this.amenDetails = [];
+
+        if (data['status'] == "Success") {
+          this.visitUnit.push(data['visitUnit'][0]);
+          for (let index = 0; index < data['visitAdditional'].length; index++) {
+            this.visitAdditional.push(data['visitAdditional']);
+          }
+
+          // for (let i = 0; i < data['amenDetails'].length; i++) {
+            this.amenDetails.push(data['amenDetails']);
+          // }
+        }
+        console.log(this.amenDetails);
+        console.log(data);
+        resolve(true);
+      });
+    });
+
+
+  }
+
+  insertBook(amenCode, amenName, propCode, uType, unitCode, rateperbooking) {
     var count = 0;
     var countSel = 0;
-    
-    if($(".checked").val() == "")
-    {
+
+    if ($(".checked").val() == "") {
       count++;
     }
 
-    $(".requiredsel").each(function(){
-      if($(this).is(":selected"))
-      {
+    $(".requiredsel").each(function () {
+      if ($(this).is(":selected")) {
         countSel++;
       }
     });
 
-    if(count == 0 && countSel != 0)
-    {
+    if (count == 0 && countSel != 0) {
       return new Promise(resolve => {
         let body = {
           action: 'addBooking',
@@ -77,22 +127,22 @@ export class AmenityBookNowPage implements OnInit {
           rateperbooking: rateperbooking,
         };
 
-        this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
-          if(data['status'] == "Success")
-          {
+        this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+          if (data['status'] == "Success") {
             console.log("okay");
             this.openToast("Data succesfully saved!");
-            setTimeout(()=>{ this.router.navigateByUrl('tabs/tab1/amenities-details') }, 2000)
+            setTimeout(() => { this.router.navigateByUrl('tabs/tab1/amenities-details') }, 2000)
           }
-            
+
         });
       });
 
     }
-    else
-    {
+    else {
       this.openToast("<center>All fields are required!</center>");
     }
   }
+
+
 
 }
