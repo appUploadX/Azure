@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-buttons size=\"small\" slot=\"start\">\r\n      <ion-back-button></ion-back-button>\r\n    </ion-buttons>\r\n    <ion-title class=\"header_title\">Booking</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content class=\"card-background-page\">\r\n  <div class=\"v_personal\">\r\n    <div class=\"v_details\">\r\n      <ion-grid class=\"nopad\">\r\n        <ion-row>\r\n          <ion-col size=\"12\">\r\n            <ion-item>\r\n              <ion-label class=\"text_label\">Booking Date:</ion-label>\r\n              <ion-datetime class=\"text_input checked\" displayFormat=\"YYYY-MM-DD\" min=\"2019-01-01\"\r\n                placeholder=\"Select Date\" (ionChange)=\"checkVisitors($event)\" [(ngModel)]=\"bookingdate\" ></ion-datetime>\r\n            </ion-item>\r\n          </ion-col>\r\n        </ion-row>\r\n        <ion-row>\r\n          <ion-col size=\"12\">\r\n            <ion-item>\r\n              <ion-label class=\"text_label\">Time Slot</ion-label>\r\n              <ion-select placeholder=\"Select One\" class=\"text_input\" [(ngModel)]=\"timeSlots\">\r\n                <ion-select-option value=\"7:00 AM - 12:00 PM\" class=\"requiredsel\">7:00 AM - 12:00 PM</ion-select-option>\r\n                <ion-select-option value=\"2:00 PM - 7:00 PM\" class=\"requiredsel\">2:00 PM - 7:00 PM</ion-select-option>\r\n              </ion-select>\r\n            </ion-item>\r\n          </ion-col>\r\n        </ion-row>\r\n      </ion-grid>\r\n\r\n\r\n      <div class=\"v_personal\" [hidden]=ishidden>\r\n        <div class=\"v_title_detail\">Details</div>\r\n        <div class=\"v_details\">\r\n          <ion-grid class=\"nopad\">\r\n            <ion-row class=\"v-row\">\r\n              <ion-col size=\"6\">\r\n                <p>Unit Number:</p>\r\n              </ion-col>\r\n              <ion-col size=\"6\">\r\n                <p class=\"text-right\">{{TUN}}</p>\r\n              </ion-col>\r\n            </ion-row>\r\n\r\n            <ion-row class=\"v-row\">\r\n              <ion-col size=\"6\">\r\n                <p>Free User: </p>\r\n              </ion-col>\r\n              <ion-col size=\"6\">\r\n                <p class=\"text-right\">{{amenDetails[0].FreeUsers}}</p>\r\n              </ion-col>\r\n            </ion-row>\r\n          </ion-grid>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"v_personal\" [hidden]=ishidden>\r\n        <div class=\"v_title_detail\"> </div>\r\n        <div class=\"v_details\">\r\n          <ion-grid class=\"nopad\">\r\n            <ion-row class=\"v-row\">\r\n              <ion-col size=\"4\">\r\n                <p class=\"font_semibold\">Name</p>\r\n              </ion-col>\r\n              <ion-col size=\"4\">\r\n                <p class=\"font_semibold tablecheck\">Check</p>\r\n              </ion-col>\r\n              <ion-col size=\"4\">\r\n                <p class=\"font_semibold\">Amount (₱)</p>\r\n              </ion-col>\r\n            </ion-row>\r\n            <ion-row class=\"v-row\" *ngFor=\"let res of visitUnit\">\r\n              <ion-col size=\"4\">\r\n                <p>{{res.vuNamePrimaryVisitor}}</p>\r\n              </ion-col>\r\n              <ion-col size=\"4\">\r\n                <ion-item class=\"divcheck\">\r\n                  <ion-checkbox class=\"checkbook\" color=\"primary\" slot=\"start\"></ion-checkbox>\r\n                </ion-item>\r\n              </ion-col>\r\n              <ion-col size=\"4\">\r\n                <p>{{amenDetails[0].RateArr[0]}}</p>\r\n              </ion-col>\r\n            </ion-row>\r\n            <ion-row class=\"v-row\" *ngFor=\"let res of visitAdditional; let x = index\">\r\n              <ion-col size=\"4\">\r\n                <p>{{res[x].avName}}</p>\r\n              </ion-col>\r\n              <ion-col size=\"4\">\r\n                <ion-item class=\"divcheck\">\r\n                  <ion-checkbox class=\"checkbook\" color=\"primary\" slot=\"start\"></ion-checkbox>\r\n                </ion-item>\r\n              </ion-col>\r\n              <ion-col size=\"4\">\r\n                <p>{{amenDetails[0].RateArr[x+1]}}</p>\r\n              </ion-col>\r\n            </ion-row>\r\n          </ion-grid>\r\n        </div>\r\n      </div>\r\n\r\n      <ion-grid>\r\n        <ion-row>\r\n          <ion-col size=\"6\" class=\"marg0auto\">\r\n            <ion-button color=\"primary\" expand=\"block\" class=\"text_label\"\r\n              (click)=\"insertBook(amenCode, amenName, propCode, uType, unitCode, rateperbooking)\">Book</ion-button>\r\n          </ion-col>\r\n        </ion-row>\r\n      </ion-grid>\r\n    </div>\r\n  </div>\r\n</ion-content>"
+module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-buttons size=\"small\" slot=\"start\">\r\n      <ion-back-button></ion-back-button>\r\n    </ion-buttons>\r\n    <ion-title class=\"header_title\">Booking</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content class=\"card-background-page\">\r\n  <div class=\"v_personal\">\r\n    <div class=\"v_details\">\r\n      <ion-grid class=\"nopad\">\r\n        <ion-row>\r\n          <ion-col size=\"12\">\r\n            <ion-item>\r\n              <ion-label class=\"text_label\">Booking Date:</ion-label>\r\n              <ion-datetime class=\"text_input checked\" displayFormat=\"YYYY-MM-DD\" min=\"2019-01-01\"\r\n                placeholder=\"Select Date\" min=\"{{minDate}}\" max=\"{{maxDate}}\" (ionChange)=\"checkVisitors($event)\" [(ngModel)]=\"bookingdate\" ></ion-datetime>\r\n            </ion-item>\r\n          </ion-col>\r\n        </ion-row>\r\n        <ion-row>\r\n          <ion-col size=\"12\">\r\n            <ion-item>\r\n              <ion-label class=\"text_label\">Time Slot</ion-label>\r\n              <ion-select placeholder=\"Select One\" class=\"text_input\" (ionChange)=\"checkFree($event)\" [(ngModel)]=\"timeSlots\">\r\n                <ion-select-option value=\"7:00 AM to 12:00 PM\" class=\"requiredsel\">7:00 AM to 12:00 PM</ion-select-option>\r\n                <ion-select-option value=\"2:00 PM to 7:00 PM\" class=\"requiredsel\">2:00 PM to 7:00 PM</ion-select-option>\r\n              </ion-select>\r\n            </ion-item>\r\n          </ion-col>\r\n        </ion-row>\r\n      </ion-grid>\r\n\r\n\r\n      <!-- <div class=\"v_personal\" [hidden]=ishidden>\r\n        <div class=\"v_title_detail\">Details</div>\r\n        <div class=\"v_details\">\r\n          <ion-grid class=\"nopad\">\r\n            <ion-row class=\"v-row\">\r\n              <ion-col size=\"6\">\r\n                <p>Unit Number:</p>\r\n              </ion-col>\r\n              <ion-col size=\"6\">\r\n                <p class=\"text-right\">{{TUN}}</p>\r\n              </ion-col>\r\n            </ion-row>\r\n\r\n            <ion-row class=\"v-row\">\r\n              <ion-col size=\"6\">\r\n                <p>Free User: </p>\r\n              </ion-col>\r\n              <ion-col size=\"6\">\r\n                <p class=\"text-right\">{{amenDetails[0].FreeUsers}}</p>\r\n              </ion-col>\r\n            </ion-row>\r\n          </ion-grid>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"v_personal\" [hidden]=ishidden>\r\n        <div class=\"v_title_detail\"> </div>\r\n        <div class=\"v_details\">\r\n          <ion-grid class=\"nopad\">\r\n            <ion-row class=\"v-row\">\r\n              <ion-col size=\"4\">\r\n                <p class=\"font_semibold\">Name</p>\r\n              </ion-col>\r\n              <ion-col size=\"4\">\r\n                <p class=\"font_semibold tablecheck\">Check</p>\r\n              </ion-col>\r\n              <ion-col size=\"4\">\r\n                <p class=\"font_semibold\">Amount (₱)</p>\r\n              </ion-col>\r\n            </ion-row>\r\n            <ion-row class=\"v-row\" *ngFor=\"let res of visitUnit\">\r\n              <ion-col size=\"4\">\r\n                <p>{{res.vuNamePrimaryVisitor}}</p>\r\n              </ion-col>\r\n              <ion-col size=\"4\">\r\n                <ion-item class=\"divcheck\">\r\n                  <ion-checkbox class=\"checkbook\" color=\"primary\" slot=\"start\"></ion-checkbox>\r\n                </ion-item>\r\n              </ion-col>\r\n              <ion-col size=\"4\">\r\n                <p>{{amenDetails[0].RateArr[0]}}</p>\r\n              </ion-col>\r\n            </ion-row>\r\n            <ion-row class=\"v-row\" *ngFor=\"let res of visitAdditional; let x = index\">\r\n              <ion-col size=\"4\">\r\n                <p>{{res[x].avName}}</p>\r\n              </ion-col>\r\n              <ion-col size=\"4\">\r\n                <ion-item class=\"divcheck\">\r\n                  <ion-checkbox class=\"checkbook\" color=\"primary\" slot=\"start\"></ion-checkbox>\r\n                </ion-item>\r\n              </ion-col>\r\n              <ion-col size=\"4\">\r\n                <p>{{amenDetails[0].RateArr[x+1]}}</p>\r\n              </ion-col>\r\n            </ion-row>\r\n          </ion-grid>\r\n        </div>\r\n      </div> -->\r\n\r\n      <ion-grid >\r\n        <ion-row>\r\n          <ion-col size=\"6\" class=\"marg0auto\">\r\n            <ion-button color=\"primary\" expand=\"block\" class=\"text_label\"\r\n              (click)=\"insertBook(amenCode, amenName, propCode, uType, unitCode, rateperbooking)\">Book</ion-button>\r\n          </ion-col>\r\n        </ion-row>\r\n      </ion-grid>\r\n    </div>\r\n  </div>\r\n</ion-content>"
 
 /***/ }),
 
@@ -98,6 +98,7 @@ let AmenityBookNowPage = class AmenityBookNowPage {
         this.router = router;
         this.postPvd = postPvd;
         this.toastController = toastController;
+        this.maxDate = (new Date().getFullYear() + 1) + "-12-31";
     }
     ngOnInit() {
         this.amenCode = history.state.amenCode;
@@ -111,8 +112,13 @@ let AmenityBookNowPage = class AmenityBookNowPage {
         this.newCode = localStorage.getItem("NEW_CODE");
         this.bedroom = localStorage.getItem("BEDROOM");
         this.ishidden = true;
+        this.ishiddenbtn = true;
+        this.Name = localStorage.getItem("FULLNAME");
+        var dateX = new Date().toISOString().split("T");
+        this.minDate = dateX[0];
         console.log(history.state);
         console.log(localStorage);
+        console.log(dateX[0]);
     }
     openToast(msg) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
@@ -148,6 +154,7 @@ let AmenityBookNowPage = class AmenityBookNowPage {
                     }
                     // for (let i = 0; i < data['amenDetails'].length; i++) {
                     this.amenDetails.push(data['amenDetails']);
+                    this.Free = data['amenDetails']['FreeUsers'];
                     // }
                 }
                 console.log(this.amenDetails);
@@ -155,6 +162,39 @@ let AmenityBookNowPage = class AmenityBookNowPage {
                 resolve(true);
             });
         });
+    }
+    checkFree(val) {
+        // this.ishidden = false;
+        console.log(val.detail.value, jquery__WEBPACK_IMPORTED_MODULE_5__(".checked").val());
+        // var date = val.detail.value.split("T");
+        // return new Promise(resolve => {
+        //   let body = {
+        //     action: 'checkVisitors',
+        //     date: date[0],
+        //     uCode: this.unit_code,
+        //     newCode: this.newCode,
+        //     amenCode: this.amenCode,
+        //     amenName: this.amenName,
+        //     bedroom: this.bedroom,
+        //   };
+        //   this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+        //     this.visitUnit = [];
+        //     this.visitAdditional = [];
+        //     this.amenDetails = [];
+        //     if (data['status'] == "Success") {
+        //       this.visitUnit.push(data['visitUnit'][0]);
+        //       for (let index = 0; index < data['visitAdditional'].length; index++) {
+        //         this.visitAdditional.push(data['visitAdditional']);
+        //       }
+        //       // for (let i = 0; i < data['amenDetails'].length; i++) {
+        //         this.amenDetails.push(data['amenDetails']);
+        //       // }
+        //     }
+        //     console.log(this.amenDetails);
+        //     console.log(data);
+        //     resolve(true);
+        //   });
+        // });
     }
     insertBook(amenCode, amenName, propCode, uType, unitCode, rateperbooking) {
         var count = 0;
@@ -179,12 +219,17 @@ let AmenityBookNowPage = class AmenityBookNowPage {
                     bookingdate: this.bookingdate,
                     timeSlots: this.timeSlots,
                     rateperbooking: rateperbooking,
+                    Free: this.Free,
+                    Name: this.Name,
                 };
                 this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
                     if (data['status'] == "Success") {
                         console.log("okay");
-                        this.openToast("Data succesfully saved!");
+                        this.openToast("<center>Data succesfully saved!</center>");
                         setTimeout(() => { this.router.navigateByUrl('tabs/tab1/amenities-details'); }, 2000);
+                    }
+                    else {
+                        this.openToast("<center>All free slots are used!</center>");
                     }
                 });
             });

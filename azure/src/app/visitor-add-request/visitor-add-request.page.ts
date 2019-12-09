@@ -78,6 +78,8 @@ export class VisitorAddRequestPage implements OnInit {
 	numberAllowed: number;
 
 	minDepTime: string;
+    minDate: string;
+
 	maxDate: string = (new Date().getFullYear() + 1) + "-12-31";
 	ErrorDateTime = 0;
 	ErrorDateTimeArr = 0;
@@ -100,6 +102,10 @@ export class VisitorAddRequestPage implements OnInit {
 		this.userType = localStorage.getItem("TYPE_DATA");
 		this.propCode = localStorage.getItem("PROPERTY_CODE");
 		this.ishidden = true;
+
+		var dateX = new Date().toISOString().split("T");
+        this.minDate = dateX[0];
+
 		console.log(localStorage);
 		this.loadData();
 

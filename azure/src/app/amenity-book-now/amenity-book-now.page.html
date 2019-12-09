@@ -16,7 +16,7 @@
             <ion-item>
               <ion-label class="text_label">Booking Date:</ion-label>
               <ion-datetime class="text_input checked" displayFormat="YYYY-MM-DD" min="2019-01-01"
-                placeholder="Select Date" (ionChange)="checkVisitors($event)" [(ngModel)]="bookingdate" ></ion-datetime>
+                placeholder="Select Date" min="{{minDate}}" max="{{maxDate}}" (ionChange)="checkVisitors($event)" [(ngModel)]="bookingdate" ></ion-datetime>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -24,9 +24,9 @@
           <ion-col size="12">
             <ion-item>
               <ion-label class="text_label">Time Slot</ion-label>
-              <ion-select placeholder="Select One" class="text_input" [(ngModel)]="timeSlots">
-                <ion-select-option value="7:00 AM - 12:00 PM" class="requiredsel">7:00 AM - 12:00 PM</ion-select-option>
-                <ion-select-option value="2:00 PM - 7:00 PM" class="requiredsel">2:00 PM - 7:00 PM</ion-select-option>
+              <ion-select placeholder="Select One" class="text_input" (ionChange)="checkFree($event)" [(ngModel)]="timeSlots">
+                <ion-select-option value="7:00 AM to 12:00 PM" class="requiredsel">7:00 AM to 12:00 PM</ion-select-option>
+                <ion-select-option value="2:00 PM to 7:00 PM" class="requiredsel">2:00 PM to 7:00 PM</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>
@@ -34,7 +34,7 @@
       </ion-grid>
 
 
-      <div class="v_personal" [hidden]=ishidden>
+      <!-- <div class="v_personal" [hidden]=ishidden>
         <div class="v_title_detail">Details</div>
         <div class="v_details">
           <ion-grid class="nopad">
@@ -102,9 +102,9 @@
             </ion-row>
           </ion-grid>
         </div>
-      </div>
+      </div> -->
 
-      <ion-grid>
+      <ion-grid >
         <ion-row>
           <ion-col size="6" class="marg0auto">
             <ion-button color="primary" expand="block" class="text_label"
