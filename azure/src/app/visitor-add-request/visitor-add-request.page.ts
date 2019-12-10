@@ -86,6 +86,9 @@ export class VisitorAddRequestPage implements OnInit {
 	ErrorDateTimeDep = 0;
 
 	isReadonly: boolean;
+
+	minDateArrX: string;
+
 	constructor(
 		private modalController: ModalController,
 		private postPvd: PostProvider,
@@ -242,6 +245,19 @@ export class VisitorAddRequestPage implements OnInit {
 		var value = val.split('T');
 		this.minDepTime = value[0];
 
+		var datex = new Date().toISOString().split("T");
+
+		console.log(new Date().toLocaleString());
+
+		var datexx = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }).split(" ");
+		if (datex[0] == value[0]) {
+			var exp = datex[1].split(".");
+			this.minDateArrX = datexx[0];
+			
+			console.log(datexx[0]);
+			
+		}
+
 		if ($("#vtArrivalTime").val() != "") {
 			this.arriveTimeChange(this.vtArrivalTime);
 		}
@@ -371,7 +387,7 @@ export class VisitorAddRequestPage implements OnInit {
 	}
 
 	submit() {
-		var count = -2;
+		var count = 0;
 		// this.CKSubmitTime();
 		$(".checked").each(function () {
 			if ($(this).val() == "") {

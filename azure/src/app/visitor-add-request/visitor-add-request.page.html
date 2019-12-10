@@ -146,11 +146,11 @@
 									</ion-text>
 								</ion-label>
 								<ion-datetime *ngIf="vtArrivalTimeX == 'checked'" class="text_input checked"
-									id="vtArrivalTime" displayFormat="h:mm A" picker-format="h:mm A"
+									id="vtArrivalTime" min="{{minDateArrX}}" displayFormat="h:mm A" picker-format="h:mm A"
 									[(ngModel)]="vtArrivalTime" (ionChange)="arriveTimeChange(vtArrivalTime)">
 								</ion-datetime>
 								<ion-datetime *ngIf="vtArrivalTimeX == 'unchecked'" class="text_input unchecked"
-									id="vtArrivalTime" displayFormat="h:mm A" picker-format="h:mm A"
+									id="vtArrivalTime" min="{{minDateArrX}}" displayFormat="h:mm A" picker-format="h:mm A"
 									[(ngModel)]="vtArrivalTime" (ionChange)="arriveTimeChange(vtArrivalTime)">
 								</ion-datetime>
 							</ion-item>

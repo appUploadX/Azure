@@ -273,7 +273,8 @@
             <p>Status:</p>
           </ion-col>
           <ion-col size="6">
-            <p class="text-right">{{res.vuApprovalStatus}}</p>
+            <p class="text-right" *ngIf="res.vuRequestStatus != 'Cancelled'">{{res.vuApprovalStatus}}</p>
+            <p class="text-right" *ngIf="res.vuRequestStatus == 'Cancelled'">Cancelled</p>
             <!-- <p class="text-right">Admin: Azure Urban</p>
             <p class="text-right">06/11/19 4:00 PM</p> -->
           </ion-col>
@@ -285,7 +286,7 @@
   <ion-grid class="btns" *ngIf="res.vuApprovalStatus == 'Pending' && res.vuRequestStatus != 'Cancelled'">
     <ion-row class="v-row pt-0">
       <ion-col size="12" class="pt-0">
-        <ion-button color="primary" expand="block" (click)="confirmCancel(res.id)">Cancel Request</ion-button>
+        <ion-button color="primary" expand="block" (click)="confirmCancel(res.id, res.vuUnitOwner)">Cancel Request</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

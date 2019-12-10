@@ -42,6 +42,9 @@ export class VisitorListDetailsPage implements OnInit {
 	vtVehiclesCanBeAddedByConciergeX;
 	vtVehiclesCanBeAddedByGatekeeperX;
 
+	Name:String;
+	Type:String;
+
 	constructor(
 		private postPvd: PostProvider,
 		private router: Router,
@@ -64,6 +67,8 @@ export class VisitorListDetailsPage implements OnInit {
 
 	ngOnInit() {
 		this.id = history.state.id;
+		this.Name = localStorage.getItem("FULLNAME");
+		this.Type = localStorage.getItem("TYPE_DATA");
 		this.loadData(this.id);
 	}
 
@@ -154,6 +159,8 @@ export class VisitorListDetailsPage implements OnInit {
 			let body = {
 				action: 'cancelRequest',
 				id: id,
+				Name: this.Name,
+				Type: this.Type,
 			};
 
 			this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
