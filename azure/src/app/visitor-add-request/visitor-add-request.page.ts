@@ -78,12 +78,14 @@ export class VisitorAddRequestPage implements OnInit {
 	numberAllowed: number;
 
 	minDepTime: string;
-    minDate: string;
+	minDate: string;
 
 	maxDate: string = (new Date().getFullYear() + 1) + "-12-31";
 	ErrorDateTime = 0;
 	ErrorDateTimeArr = 0;
 	ErrorDateTimeDep = 0;
+
+	isReadonly: boolean;
 	constructor(
 		private modalController: ModalController,
 		private postPvd: PostProvider,
@@ -104,7 +106,9 @@ export class VisitorAddRequestPage implements OnInit {
 		this.ishidden = true;
 
 		var dateX = new Date().toISOString().split("T");
-        this.minDate = dateX[0];
+		this.minDate = dateX[0];
+
+		this.isReadonly = true;
 
 		console.log(localStorage);
 		this.loadData();
@@ -210,7 +214,7 @@ export class VisitorAddRequestPage implements OnInit {
 				this.vtVehicleDetailsCountX = data['typeDataX']['vtVehicleDetailsCount'];
 				this.vtRemarksX = data['typeDataX']['vtRemarks'];
 
-				
+
 				this.description = data['typeDataX']['vtTermsCondition'];
 				this.numberAllowed = data['numberAllowed'];
 
@@ -218,6 +222,20 @@ export class VisitorAddRequestPage implements OnInit {
 				console.log(data['numberAllowed']);
 			});
 		});
+	}
+
+
+	textChange(Val, elem) {
+		var letters = /^[A-Za-z]+$/;
+		if (letters.test(Val)) {
+			console.log("true");
+		}
+		else {
+			elem.setFocus();
+			console.log("false");
+			this.openToast("Only text are allowed!");
+
+		}
 	}
 
 	arriveChange(val) {
@@ -427,7 +445,7 @@ export class VisitorAddRequestPage implements OnInit {
 		if (this.condition == "1") {
 			count_check++;
 		}
-		
+
 		if (count == 0 && (countVal == $("#additional").val() || $("#additional").val() == "") && (countSel == $("#additional").val() || $("#additional").val() == "") && count_check != 0) {
 			var pattern = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
 			if (pattern.test($(".email").val())) {

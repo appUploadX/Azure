@@ -44,12 +44,14 @@
 										color="danger" *ngIf="vtUnitOwnerX == 'checked'">*
 									</ion-text>
 								</ion-label>
-								<ion-input *ngIf="vtUnitOwnerX == 'checked'" class="text_input checked" type="text"
+								<ion-input class="text_input" type="text" [readonly]="isReadonly"
+									[(ngModel)]="vtUnitOwner">{{fullname}}</ion-input>
+								<!-- <ion-input *ngIf="vtUnitOwnerX == 'checked'" class="text_input checked" type="text"
 									[(ngModel)]="vtUnitOwner">{{fullname}}
 								</ion-input>
 								<ion-input *ngIf="vtUnitOwnerX == 'unchecked'" class="text_input unchecked" type="text"
 									[(ngModel)]="vtUnitOwner">{{fullname}}
-								</ion-input>
+								</ion-input> -->
 							</ion-item>
 						</ion-col>
 					</ion-row>
@@ -59,10 +61,12 @@
 								<ion-label class="text_label" position="stacked">Tower Unit Number <ion-text
 										color="danger" *ngIf="vtTowerUnitX == 'checked'">*</ion-text>
 								</ion-label>
-								<ion-input *ngIf="vtTowerUnitX == 'checked'" class="text_input checked" type="text"
+								<ion-input class="text_input" type="text" [readonly]="isReadonly"
+									[(ngModel)]="vtTowerUnit">{{TUN}}</ion-input>
+								<!-- <ion-input *ngIf="vtTowerUnitX == 'checked'" class="text_input checked" type="text"
 									[(ngModel)]="vtTowerUnit">{{TUN}}</ion-input>
 								<ion-input *ngIf="vtTowerUnitX == 'unchecked'" class="text_input unchecked" type="text"
-									[(ngModel)]="vtTowerUnit">{{TUN}}</ion-input>
+									[(ngModel)]="vtTowerUnit">{{TUN}}</ion-input> -->
 							</ion-item>
 						</ion-col>
 					</ion-row>
@@ -73,10 +77,10 @@
 										color="danger" *ngIf="vtCarparkSlotNoX == 'checked'">*
 									</ion-text>
 								</ion-label>
-								<ion-input *ngIf="vtCarparkSlotNoX == 'checked'" class="text_input checked" type="text"
-									[(ngModel)]="vtCarparkSlotNo"></ion-input>
-								<ion-input *ngIf="vtCarparkSlotNoX == 'unchecked'" class="text_input unchecked"
-									type="text" [(ngModel)]="vtCarparkSlotNo"></ion-input>
+								<ion-input class="text_input" type="text" [(ngModel)]="vtCarparkSlotNo">
+								</ion-input>
+								<!-- <ion-input *ngIf="vtCarparkSlotNoX == 'unchecked'" class="text_input unchecked"
+									type="text" [(ngModel)]="vtCarparkSlotNo"></ion-input> -->
 							</ion-item>
 						</ion-col>
 					</ion-row>
@@ -86,10 +90,12 @@
 								<ion-label class="text_label" position="stacked">Visitors On-Site Contact Person
 									<ion-text color="danger" *ngIf="vtGuestOnSiteX == 'checked'">*</ion-text>
 								</ion-label>
-								<ion-input *ngIf="vtGuestOnSiteX == 'checked'" class="text_input checked" type="text"
+								<ion-input *ngIf="vtGuestOnSiteX == 'checked'" class="text_input checked text"
+									type="text" #XvtGuestOnSite attr="XvtGuestOnSite" (focusout)="textChange(vtGuestOnSite, XvtGuestOnSite)"
 									[(ngModel)]="vtGuestOnSite"></ion-input>
-								<ion-input *ngIf="vtGuestOnSiteX == 'unchecked'" class="text_input unchecked"
-									type="text" [(ngModel)]="vtGuestOnSite"></ion-input>
+								<ion-input *ngIf="vtGuestOnSiteX == 'unchecked'" class="text_input unchecked text"
+									#XvtGuestOnSite (focusout)="textChange(vtGuestOnSite, XvtGuestOnSite)" type="text"
+									[(ngModel)]="vtGuestOnSite"></ion-input>
 							</ion-item>
 						</ion-col>
 					</ion-row>
@@ -199,11 +205,15 @@
 										color="danger" *ngIf="vtPrimaryVisitorNameX == 'checked'">*
 									</ion-text>
 								</ion-label>
-								<ion-input *ngIf="vtPrimaryVisitorNameX == 'checked'" class="text_input checked"
-									type="text" [(ngModel)]="vtPrimaryVisitorName">
+								<ion-input *ngIf="vtPrimaryVisitorNameX == 'checked'" class="text_input checked text"
+									type="text" #XvtPrimaryVisitorName
+									(focusout)="textChange(vtPrimaryVisitorName, XvtPrimaryVisitorName)"
+									[(ngModel)]="vtPrimaryVisitorName">
 								</ion-input>
-								<ion-input *ngIf="vtPrimaryVisitorNameX == 'unchecked'" class="text_input unchecked"
-									type="text" [(ngModel)]="vtPrimaryVisitorName">
+								<ion-input *ngIf="vtPrimaryVisitorNameX == 'unchecked'"
+									class="text_input unchecked text" type="text" #XvtPrimaryVisitorName
+									(focusout)="textChange(vtPrimaryVisitorName, XvtPrimaryVisitorName)"
+									[(ngModel)]="vtPrimaryVisitorName">
 								</ion-input>
 							</ion-item>
 						</ion-col>
@@ -215,10 +225,14 @@
 										*ngIf="vtPrimaryVisitorNationalityX == 'checked'">*
 									</ion-text>
 								</ion-label>
-								<ion-input *ngIf="vtPrimaryVisitorNationalityX == 'checked'" class="text_input checked"
-									type="text" [(ngModel)]="vtPrimaryVisitorNationality"></ion-input>
+								<ion-input *ngIf="vtPrimaryVisitorNationalityX == 'checked'"
+									class="text_input checked text" type="text" #XvtPrimaryVisitorNationality
+									(focusout)="textChange(vtPrimaryVisitorNationality, XvtPrimaryVisitorNationality)"
+									[(ngModel)]="vtPrimaryVisitorNationality"></ion-input>
 								<ion-input *ngIf="vtPrimaryVisitorNationalityX == 'unchecked'"
-									class="text_input unchecked" type="text" [(ngModel)]="vtPrimaryVisitorNationality">
+									class="text_input unchecked text" type="text" #XvtPrimaryVisitorNationality
+									(focusout)="textChange(vtPrimaryVisitorNationality, XvtPrimaryVisitorNationality)"
+									[(ngModel)]="vtPrimaryVisitorNationality">
 								</ion-input>
 							</ion-item>
 						</ion-col>
@@ -301,14 +315,17 @@
 										*ngIf="vtAdditionalVisitorCountX == 'checked'">*
 									</ion-text>
 								</ion-label>
-								<ion-input *ngIf="vtAdditionalVisitorCountX == 'checked'" class="text_input checked"
+								<ion-input class="text_input" type="number" id="additional"
+									[(ngModel)]="vtAdditionalVisitorCount" (keyup)="countVisit($event)">
+								</ion-input>
+								<!-- <ion-input *ngIf="vtAdditionalVisitorCountX == 'checked'" class="text_input checked"
 									type="number" id="additional" [(ngModel)]="vtAdditionalVisitorCount"
 									(keyup)="countVisit($event)">
-								</ion-input>
-								<ion-input *ngIf="vtAdditionalVisitorCountX == 'unchecked'" class="text_input unchecked"
+								</ion-input> -->
+								<!-- <ion-input *ngIf="vtAdditionalVisitorCountX == 'unchecked'" class="text_input unchecked"
 									type="number" id="additional" [(ngModel)]="vtAdditionalVisitorCount"
 									(keyup)="countVisit($event)">
-								</ion-input>
+								</ion-input> -->
 							</ion-item>
 						</ion-col>
 					</ion-row>
@@ -350,12 +367,14 @@
 										*ngIf="vtVehicleDetailsCountX == 'checked'">*
 									</ion-text>
 								</ion-label>
-								<ion-input *ngIf="vtVehicleDetailsCountX == 'checked'" class="text_input checked"
+								<ion-input class="text_input" type="number" id="vehicleCount"
+									[(ngModel)]="vtVehicleDetailsCount" (keyup)="countVehicle($event)"></ion-input>
+								<!-- <ion-input *ngIf="vtVehicleDetailsCountX == 'checked'" class="text_input checked"
 									type="number" id="vehicleCount" [(ngModel)]="vtVehicleDetailsCount"
 									(keyup)="countVehicle($event)"></ion-input>
 								<ion-input *ngIf="vtVehicleDetailsCountX == 'unchecked'" class="text_input unchecked"
 									type="number" id="vehicleCount" [(ngModel)]="vtVehicleDetailsCount"
-									(keyup)="countVehicle($event)"></ion-input>
+									(keyup)="countVehicle($event)"></ion-input> -->
 							</ion-item>
 						</ion-col>
 					</ion-row>
