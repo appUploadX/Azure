@@ -201,6 +201,7 @@ var Tab4Page = /** @class */ (function () {
                     localStorage.setItem("ROOM_NO", data['ROOM_NO']);
                     localStorage.setItem("EMAIL", data['dataX']['EmailAddress']);
                     localStorage.setItem("PROPERTY_CODE", data['dataX']['property_code']);
+                    localStorage.setItem("SIGLO", data['dataX']['sigloType']);
                     _this.router.navigateByUrl('/tabs/tab1');
                 }
                 else if (data['uType'] == "Tenant") {
@@ -213,6 +214,7 @@ var Tab4Page = /** @class */ (function () {
                     localStorage.setItem("ROOM_NO", data['ROOM_NO']);
                     localStorage.setItem("EMAIL", data['dataX']['tEmailAddress']);
                     localStorage.setItem("PROPERTY_CODE", data['propC']['property_code']);
+                    localStorage.setItem("SIGLO", data['dataX']['sigloType']);
                     _this.router.navigateByUrl('/tabs/tab1');
                 }
                 resolve(true);

@@ -91,7 +91,7 @@
 									<ion-text color="danger" *ngIf="vtGuestOnSiteX == 'checked'">*</ion-text>
 								</ion-label>
 								<ion-input *ngIf="vtGuestOnSiteX == 'checked'" class="text_input checked text"
-									type="text" #XvtGuestOnSite attr="XvtGuestOnSite" (focusout)="textChange(vtGuestOnSite, XvtGuestOnSite)"
+									type="text" #XvtGuestOnSite id="XvtGuestOnSite" (focusout)="textChange(vtGuestOnSite, XvtGuestOnSite)"
 									[(ngModel)]="vtGuestOnSite"></ion-input>
 								<ion-input *ngIf="vtGuestOnSiteX == 'unchecked'" class="text_input unchecked text"
 									#XvtGuestOnSite (focusout)="textChange(vtGuestOnSite, XvtGuestOnSite)" type="text"
@@ -132,7 +132,7 @@
 									[(ngModel)]="vtArrivalDate" (ionChange)="arriveChange(vtArrivalDate)">
 								</ion-datetime>
 								<ion-datetime *ngIf="vtArrivalDateX == 'unchecked'" class="text_input unchecked"
-									displayFormat="YYYY-MM-DD" min="2019-01-01" max="{{maxDate}}"
+									displayFormat="YYYY-MM-DD" min="{{minDate}}" max="{{maxDate}}"
 									[(ngModel)]="vtArrivalDate" (ionChange)="arriveChange(vtArrivalDate)">
 								</ion-datetime>
 							</ion-item>
@@ -146,11 +146,11 @@
 									</ion-text>
 								</ion-label>
 								<ion-datetime *ngIf="vtArrivalTimeX == 'checked'" class="text_input checked"
-									id="vtArrivalTime" min="{{minDateArrX}}" displayFormat="h:mm A" picker-format="h:mm A"
+									id="vtArrivalTime" min="{{minDateArrX}}" [readonly]="isATime" displayFormat="HH:mm" 
 									[(ngModel)]="vtArrivalTime" (ionChange)="arriveTimeChange(vtArrivalTime)">
 								</ion-datetime>
 								<ion-datetime *ngIf="vtArrivalTimeX == 'unchecked'" class="text_input unchecked"
-									id="vtArrivalTime" min="{{minDateArrX}}" displayFormat="h:mm A" picker-format="h:mm A"
+									id="vtArrivalTime" min="{{minDateArrX}}" [readonly]="isATime" displayFormat="HH:mm" 
 									[(ngModel)]="vtArrivalTime" (ionChange)="arriveTimeChange(vtArrivalTime)">
 								</ion-datetime>
 							</ion-item>
@@ -180,11 +180,11 @@
 										*ngIf="vtDepartureTimeX == 'checked'">*</ion-text>
 								</ion-label>
 								<ion-datetime *ngIf="vtDepartureTimeX == 'checked'" class="text_input checked"
-									id="vtDepartureTime" displayFormat="h:mm A" picker-format="h:mm A"
+									id="vtDepartureTime" [readonly]="isDTime" min="{{minDepTimeX}}" displayFormat="HH:mm"
 									[(ngModel)]="vtDepartureTime" (ionChange)="departTimeChange(vtDepartureTime)">
 								</ion-datetime>
 								<ion-datetime *ngIf="vtDepartureTimeX == 'unchecked'" class="text_input unchecked"
-									id="vtDepartureTime" displayFormat="h:mm A" picker-format="h:mm A"
+									id="vtDepartureTime" [readonly]="isDTime" min="{{minDepTimeX}}" displayFormat="HH:mm"
 									[(ngModel)]="vtDepartureTime" (ionChange)="departTimeChange(vtDepartureTime)">
 								</ion-datetime>
 							</ion-item>
@@ -347,7 +347,7 @@
 							<ion-item>
 								<ion-select class="selectadult" placeholder="Select One" [(ngModel)]="visitC[i].valueX">
 									<ion-select-option class="visitSel" value="Adult">Adult</ion-select-option>
-									<ion-select-option class="visitSel" value="Children">Children</ion-select-option>
+									<ion-select-option class="visitSel" value="Children">Child</ion-select-option>
 								</ion-select>
 							</ion-item>
 						</ion-col>
@@ -367,14 +367,14 @@
 										*ngIf="vtVehicleDetailsCountX == 'checked'">*
 									</ion-text>
 								</ion-label>
-								<ion-input class="text_input" type="number" id="vehicleCount"
-									[(ngModel)]="vtVehicleDetailsCount" (keyup)="countVehicle($event)"></ion-input>
-								<!-- <ion-input *ngIf="vtVehicleDetailsCountX == 'checked'" class="text_input checked"
+								<!-- <ion-input class="text_input" type="number" id="vehicleCount"
+									[(ngModel)]="vtVehicleDetailsCount" (keyup)="countVehicle($event)"></ion-input> -->
+								<ion-input *ngIf="vtVehicleDetailsCountX == 'checked'" class="text_input checked"
 									type="number" id="vehicleCount" [(ngModel)]="vtVehicleDetailsCount"
 									(keyup)="countVehicle($event)"></ion-input>
 								<ion-input *ngIf="vtVehicleDetailsCountX == 'unchecked'" class="text_input unchecked"
 									type="number" id="vehicleCount" [(ngModel)]="vtVehicleDetailsCount"
-									(keyup)="countVehicle($event)"></ion-input> -->
+									(keyup)="countVehicle($event)"></ion-input>
 							</ion-item>
 						</ion-col>
 					</ion-row>

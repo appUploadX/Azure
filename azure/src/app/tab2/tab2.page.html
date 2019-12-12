@@ -10,8 +10,8 @@
             <ion-row>
                 <ion-col size="12" class="col_titles">
                     <div class="img_profile_border">
-                        <div *ngIf="res.tUpload == ''" class="img_profile"></div>
-                        <div *ngIf="res.tUpload != ''" class="img_profile" [style.background-image]="'url(https://www.asi-ph.com/sandboxes/condominium/'+res.tUpload+')'"></div>
+                        <div *ngIf="res.tUpload == 'null'" class="img_profile"></div>
+                        <div *ngIf="res.tUpload != 'null'" class="img_profile" [style.background-image]="'url(https://www.asi-ph.com/sandboxes/condominium/'+res.tUpload+')'"></div>
                     </div>
                     <div class="box_details">
                         <h1 class="title_name">{{Name}}</h1>

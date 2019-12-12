@@ -185,6 +185,7 @@ let Tab4Page = class Tab4Page {
                     localStorage.setItem("ROOM_NO", data['ROOM_NO']);
                     localStorage.setItem("EMAIL", data['dataX']['EmailAddress']);
                     localStorage.setItem("PROPERTY_CODE", data['dataX']['property_code']);
+                    localStorage.setItem("SIGLO", data['dataX']['sigloType']);
                     this.router.navigateByUrl('/tabs/tab1');
                 }
                 else if (data['uType'] == "Tenant") {
@@ -197,6 +198,7 @@ let Tab4Page = class Tab4Page {
                     localStorage.setItem("ROOM_NO", data['ROOM_NO']);
                     localStorage.setItem("EMAIL", data['dataX']['tEmailAddress']);
                     localStorage.setItem("PROPERTY_CODE", data['propC']['property_code']);
+                    localStorage.setItem("SIGLO", data['dataX']['sigloType']);
                     this.router.navigateByUrl('/tabs/tab1');
                 }
                 resolve(true);

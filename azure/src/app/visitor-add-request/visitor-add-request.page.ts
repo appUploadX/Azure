@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
 import { VisitorAddRequestModalPage } from 'src/app/visitor-add-request-modal/visitor-add-request-modal.page';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostProvider } from 'src/providers/post-providers';
@@ -86,8 +86,16 @@ export class VisitorAddRequestPage implements OnInit {
 	ErrorDateTimeDep = 0;
 
 	isReadonly: boolean;
+	isATime: boolean;
 
 	minDateArrX: string;
+	maxDateArrX: string;
+	isDTime: boolean;
+	minDepTimeX: string;
+
+	EMAIL:string;
+	
+	private loading;
 
 	constructor(
 		private modalController: ModalController,
@@ -95,6 +103,7 @@ export class VisitorAddRequestPage implements OnInit {
 		private router: Router,
 		private actRoute: ActivatedRoute,
 		public toastController: ToastController,
+		private loadingControl: LoadingController,
 	) {
 	}
 
@@ -112,7 +121,11 @@ export class VisitorAddRequestPage implements OnInit {
 		this.minDate = dateX[0];
 
 		this.isReadonly = true;
+		this.isATime = true;
+		this.isDTime = true;
 
+
+		this.EMAIL = localStorage.getItem("EMAIL");
 		console.log(localStorage);
 		this.loadData();
 
@@ -229,7 +242,8 @@ export class VisitorAddRequestPage implements OnInit {
 
 
 	textChange(Val, elem) {
-		var letters = /^[A-Za-z]+$/;
+		console.log(elem)
+		var letters = /^[A-Za-z ]+$/;
 		if (letters.test(Val)) {
 			console.log("true");
 		}
@@ -244,18 +258,39 @@ export class VisitorAddRequestPage implements OnInit {
 	arriveChange(val) {
 		var value = val.split('T');
 		this.minDepTime = value[0];
+		if (this.vtArrivalTime != undefined) {
+			this.vtArrivalTime = null;
+		}
 
+		if (this.vtDepartureDate != undefined) {
+			this.vtDepartureDate = null;
+		}
+
+		if (this.vtDepartureTime != undefined) {
+			this.vtDepartureTime = null;
+		}
 		var datex = new Date().toISOString().split("T");
 
-		console.log(new Date().toLocaleString());
+		this.isATime = false;
 
-		var datexx = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }).split(" ");
+		var datexx = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: false }).split(" ");
 		if (datex[0] == value[0]) {
-			var exp = datex[1].split(".");
-			this.minDateArrX = datexx[0];
-			
+			var exp = datexx[0].split(":");
+
+			var expLen = exp[0].length;
+
+			if (expLen == 1) {
+				this.minDateArrX = "0" + exp[0] + ":" + exp[1];
+				this.maxDateArrX = "12:59";
+			}
+			else {
+				this.minDateArrX = datexx[0];
+				this.maxDateArrX = "12:59";
+			}
 			console.log(datexx[0]);
-			
+		}
+		else {
+			this.minDateArrX = "00:00";
 		}
 
 		if ($("#vtArrivalTime").val() != "") {
@@ -276,6 +311,66 @@ export class VisitorAddRequestPage implements OnInit {
 
 	departChange(val) {
 		var value = val.split('T');
+		// var datex = new Date().toISOString().split("T");
+		var datex = this.vtArrivalDate.split("T");
+
+		console.log(datex[0], value[0]);
+
+		this.isDTime = false;
+
+		var datexx = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: false }).split(" ");
+		if (datex[0] == value[0]) {
+			var exp = this.vtArrivalTime.split(":");
+
+			var expLen = exp[0].length;
+
+			console.log(exp[0], expLen)
+			if (expLen == 1) {
+				if (exp[1] == "59") {
+					if (exp[0] != "9") {
+						this.minDepTimeX = "0" + (parseInt(exp[0]) + 1) + ":00";
+					}
+					else {
+						this.minDepTimeX = "10:00";
+					}
+				}
+				else {
+					if (exp[1].charAt(0) == "0") {
+						var newex = exp[1].substring(0);
+						this.minDepTimeX = "0" + exp[0] + ":0" + (parseInt(newex) + 1);
+					}
+					else {
+						this.minDepTimeX = "0" + exp[0] + ":" + (parseInt(exp[1]) + 1);
+					}
+				}
+
+			}
+			else {
+				if (exp[1] == "59") {
+					if (exp[0] != "23") {
+						this.minDepTimeX = (parseInt(exp[0]) + 1) + ":00";
+					}
+					else {
+						this.minDepTimeX = "23:59";
+					}
+				}
+				else {
+					if (exp[1].charAt(0) == "0") {
+						var newex = exp[1].substring(0);
+						this.minDepTimeX = exp[0] + ":0" + (parseInt(newex) + 1);
+					}
+					else {
+						this.minDepTimeX = exp[0] + ":" + (parseInt(exp[1]) + 1);
+					}
+				}
+			}
+			console.log(this.minDepTimeX);
+		}
+		else {
+			this.minDepTimeX = "00:00";
+		}
+
+
 		if ($("#vtDepartureTime").val() != "") {
 			this.departTimeChange(this.vtDepartureTime);
 		}
@@ -388,10 +483,16 @@ export class VisitorAddRequestPage implements OnInit {
 
 	submit() {
 		var count = 0;
+		var req = [];
+		var reqType = [];
+
+		var reqCk = [];
 		// this.CKSubmitTime();
 		$(".checked").each(function () {
 			if ($(this).val() == "") {
 				count++;
+				req.push(this);
+				reqType.push($(this));
 			}
 
 			if (count > 0) {
@@ -461,6 +562,9 @@ export class VisitorAddRequestPage implements OnInit {
 		if (this.condition == "1") {
 			count_check++;
 		}
+		else {
+			reqCk.push(this);
+		}
 
 		if (count == 0 && (countVal == $("#additional").val() || $("#additional").val() == "") && (countSel == $("#additional").val() || $("#additional").val() == "") && count_check != 0) {
 			var pattern = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
@@ -488,6 +592,14 @@ export class VisitorAddRequestPage implements OnInit {
 
 						this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
 							if (data['status'] == 'Allowed') {
+
+								this.loadingControl.create({
+									message: "Loading, please wait....."
+								}).then((overlay => {
+									this.loading = overlay,
+									this.loading.present()
+								}))
+
 								return new Promise(resolve => {
 									let body = {
 										action: 'addVisitors',
@@ -517,12 +629,13 @@ export class VisitorAddRequestPage implements OnInit {
 										propCode: this.propCode,
 
 										avName: this.visitC,
-										vehicles: this.vehicles
-
+										vehicles: this.vehicles,
+										theEmail: this.EMAIL,
 									};
 
 									this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
 										if (data['status'] == "Success") {
+											this.loading.dismiss();
 											this.openToast("<center>Data succesfully saved!</center>");
 											setTimeout(() => { this.router.navigateByUrl('/tabs/tab1/visitors-details') }, 2000)
 										}
@@ -551,8 +664,28 @@ export class VisitorAddRequestPage implements OnInit {
 			}
 		}
 		else {
-			console.log(count)
-			this.openToast("<center>Some of the fields are required!</center>");
+			console.log(count);
+			console.log(reqType[0]);
+			if (count != 0) {
+				if (req[0].tagName == "ION-DATETIME") {
+					req[0].open();
+				}
+				else {
+					req[0].setFocus();
+				}
+				this.openToast("<center>Some of the fields are required!</center>");
+			}
+			else {
+				if (count_check == 0) {
+					console.log(reqCk[0]);
+					this.openToast("<center>You need to accept Terms and Conditions</center>");
+				}
+				else {
+					this.openToast("<center>Some of the fields are required!</center>");
+				}
+			}
+
+			
 		}
 	}
 }

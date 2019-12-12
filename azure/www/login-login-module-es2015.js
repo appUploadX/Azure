@@ -176,6 +176,7 @@ let LoginPage = class LoginPage {
                                 localStorage.setItem("TERMS", data['dataX'][0]['pTermsAndCondition']);
                                 localStorage.setItem("BEDROOM", data['unit_details']['bedroom']);
                                 localStorage.setItem("UNITSIZE", data['unit_details']['unitsize']);
+                                localStorage.setItem("SIGLO", data['dataX'][0]['sigloType']);
                                 if (data['dataX'][0]['pTermsAndCondition'] !== null) {
                                     this.router.navigateByUrl('/tabs/tab1');
                                 }
@@ -197,6 +198,7 @@ let LoginPage = class LoginPage {
                                 localStorage.setItem("TERMS", data['dataX'][0]['tTermsAndCondition']);
                                 localStorage.setItem("BEDROOM", data['unit_details']['bedroom']);
                                 localStorage.setItem("UNITSIZE", data['unit_details']['unitsize']);
+                                localStorage.setItem("SIGLO", data['dataX'][0]['sigloType']);
                                 if (data['dataX'][0]['tTermsAndCondition'] !== null) {
                                     this.router.navigateByUrl('/tabs/tab1');
                                 }

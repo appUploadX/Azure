@@ -42,9 +42,10 @@ export class VisitorListDetailsPage implements OnInit {
 	vtVehiclesCanBeAddedByConciergeX;
 	vtVehiclesCanBeAddedByGatekeeperX;
 
-	Name:String;
-	Type:String;
+	Name: String;
+	Type: String;
 
+	Siglo: String;
 	constructor(
 		private postPvd: PostProvider,
 		private router: Router,
@@ -69,6 +70,7 @@ export class VisitorListDetailsPage implements OnInit {
 		this.id = history.state.id;
 		this.Name = localStorage.getItem("FULLNAME");
 		this.Type = localStorage.getItem("TYPE_DATA");
+		this.Siglo = localStorage.getItem("SIGLO");
 		this.loadData(this.id);
 	}
 
@@ -181,17 +183,17 @@ export class VisitorListDetailsPage implements OnInit {
 					action: 'visitorData',
 					id: id,
 				};
-	
+
 				this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
 					this.dataX = [];
 					this.dataAdd = [];
 					this.vehData = [];
-					
+
 					this.dataX.push(data['visitData']);
 					for (let index = 0; index < data['visitAdditional'].length; index++) {
 						this.dataAdd.push(data['visitAdditional']);
 					}
-	
+
 					this.vtAdditionalVisitorCountX = data['visitType']['vtAdditionalVisitorCount'];
 					this.vtApprovalX = data['visitType']['vtApproval'];
 					this.vtArrivalDateX = data['visitType']['vtArrivalDate'];
@@ -216,18 +218,18 @@ export class VisitorListDetailsPage implements OnInit {
 					this.vtVehicleDetailsCountX = data['visitType']['vtVehicleDetailsCount'];
 					this.vtVehiclesCanBeAddedByConciergeX = data['visitType']['vtVehiclesCanBeAddedByConcierge'];
 					this.vtVehiclesCanBeAddedByGatekeeperX = data['visitType']['vtVehiclesCanBeAddedByGatekeeper'];
-	
+
 					for (let index = 0; index < data['vehData'].length; index++) {
 						this.vehData.push(data['vehData']);
 					}
-					
+
 					event.target.complete();
-	
+
 					resolve(true);
 					console.log(data);
 				});
 			});
-			
+
 		}, 2000);
 	}
 

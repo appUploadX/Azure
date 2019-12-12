@@ -19,6 +19,8 @@ export class VisitorsDetailsPage implements OnInit {
     TUN: string;
     unit_no: string;
 
+    Siglo: String;
+
     constructor(
         private postPvd: PostProvider,
         private router: Router,
@@ -34,6 +36,7 @@ export class VisitorsDetailsPage implements OnInit {
         this.fullname = localStorage.getItem("FULLNAME");
         this.TUN = localStorage.getItem("TUN");
         this.unit_no = localStorage.getItem("ROOM_NO");
+        this.Siglo = localStorage.getItem("SIGLO");
         console.log(localStorage);
     }
 
@@ -55,31 +58,12 @@ export class VisitorsDetailsPage implements OnInit {
     }
 
     openAddVisitorRequest() {
-        // let hour = new Date().getHours()
-        // let min = new Date().getMinutes()
-        // return new Promise(resolve => {
-        //   let body = {
-        //     action: 'checkRequest',
-        //     unit_code: this.unit_code,
-        //     newCode: this.newCode,
-        //     hour: hour,
-        //     min: min
-        //   };
-
-        //   this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
-        //     if(data['status'] == 'Allowed')
-        //     {
-        this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request')
-        //     }
-        //     else
-        //     {
-        //       this.openToast('<center>Sorry, You can\'t submit a request from the time being.</center>');
-        //     }
-        //     resolve(true);
-        //     console.log(data['status']);
-        //   });
-        // });
-        // // this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request', {state: {newCode: this.newCode, uCode: this.unit_code, fullname: this.fullname, TUN: this.TUN}})
+        if (this.Siglo == "On") {
+            this.openToast("<center>Sorry you're not allowed to make a request!</center>");
+        }
+        else { 
+            this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request')
+        }
     }
 
     loadData(unit_code, newCode) {

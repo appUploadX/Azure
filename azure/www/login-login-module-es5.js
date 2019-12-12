@@ -188,6 +188,7 @@ var LoginPage = /** @class */ (function () {
                                 localStorage.setItem("TERMS", data['dataX'][0]['pTermsAndCondition']);
                                 localStorage.setItem("BEDROOM", data['unit_details']['bedroom']);
                                 localStorage.setItem("UNITSIZE", data['unit_details']['unitsize']);
+                                localStorage.setItem("SIGLO", data['dataX'][0]['sigloType']);
                                 if (data['dataX'][0]['pTermsAndCondition'] !== null) {
                                     _this.router.navigateByUrl('/tabs/tab1');
                                 }
@@ -209,6 +210,7 @@ var LoginPage = /** @class */ (function () {
                                 localStorage.setItem("TERMS", data['dataX'][0]['tTermsAndCondition']);
                                 localStorage.setItem("BEDROOM", data['unit_details']['bedroom']);
                                 localStorage.setItem("UNITSIZE", data['unit_details']['unitsize']);
+                                localStorage.setItem("SIGLO", data['dataX'][0]['sigloType']);
                                 if (data['dataX'][0]['tTermsAndCondition'] !== null) {
                                     _this.router.navigateByUrl('/tabs/tab1');
                                 }

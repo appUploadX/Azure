@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { PostProvider } from '../../providers/post-providers';
 
@@ -8,6 +8,7 @@ import { PostProvider } from '../../providers/post-providers';
   styleUrls: ['./terms-and-conditions.page.scss'],
 })
 export class TermsAndConditionsPage implements OnInit {
+  @Input() vtTermsConditionX: any;
   USER_ID: String;
   TYPE_DATA: String;
   isChecked:Boolean;
@@ -56,6 +57,7 @@ export class TermsAndConditionsPage implements OnInit {
             localStorage.setItem("TERMS", data['Terms']);
             this.router.navigateByUrl('/tabs/tab1');
           }
+          this.vtTermsConditionX = data['TermsCondition'];
         }
       })
     });

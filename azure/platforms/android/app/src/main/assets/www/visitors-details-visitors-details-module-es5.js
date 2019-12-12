@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-buttons size=\"small\" slot=\"start\">\r\n      <ion-back-button></ion-back-button>\r\n    </ion-buttons>\r\n    <ion-title class=\"header_title\">Visitors Requests</ion-title>\r\n  </ion-toolbar>\r\n  <ion-toolbar class=\"toolbar2\">\r\n    <ion-grid>\r\n      <ion-row>\r\n        <ion-col size=\"6\">\r\n          <ion-item class=\"selectitemtoolbar\">\r\n            <ion-select class=\"selecttoolbar\" placeholder=\"View\">\r\n              <ion-select-option value=\"f\">Today</ion-select-option>\r\n              <ion-select-option value=\"m\">By Month</ion-select-option>\r\n            </ion-select>\r\n          </ion-item>\r\n        </ion-col>\r\n\r\n        <ion-col size=\"6\">\r\n          <ion-item class=\"selectitemtoolbar\">\r\n            <ion-select class=\"selecttoolbar\" placeholder=\"Month\">\r\n              <ion-select-option value=\"01\">January</ion-select-option>\r\n              <ion-select-option value=\"02\">February</ion-select-option>\r\n              <ion-select-option value=\"03\">March</ion-select-option>\r\n              <ion-select-option value=\"04\">April</ion-select-option>\r\n              <ion-select-option value=\"05\">May</ion-select-option>\r\n              <ion-select-option value=\"06\">June</ion-select-option>\r\n              <ion-select-option value=\"07\">July</ion-select-option>\r\n              <ion-select-option value=\"08\">August</ion-select-option>\r\n              <ion-select-option value=\"09\">September</ion-select-option>\r\n              <ion-select-option value=\"10\">October</ion-select-option>\r\n              <ion-select-option value=\"11\">November</ion-select-option>\r\n              <ion-select-option value=\"12\">December</ion-select-option>\r\n            </ion-select>\r\n          </ion-item>\r\n        </ion-col>\r\n      </ion-row>\r\n    </ion-grid>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content class=\"card-background-page\">\r\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event,unit_code,newCode)\">\r\n    <ion-refresher-content pullingIcon=\"arrow-dropdown\" refreshingSpinner=\"circles\" refreshingText=\"Refreshing...\">\r\n    </ion-refresher-content>\r\n  </ion-refresher>\r\n\r\n  <p class=\"identify_unit\">UNIT {{unit_no}}</p>\r\n  <!-- PLUS BUTTON TO ADD VISITOR REQUEST -->\r\n  <ion-fab horizontal=\"end\" vertical=\"bottom\" slot=\"fixed\">\r\n    <ion-fab-button color=\"primary\" (click)=\"openAddVisitorRequest()\">\r\n      <ion-icon name=\"add\"></ion-icon>\r\n    </ion-fab-button>\r\n  </ion-fab>\r\n\r\n  <ion-list>\r\n    <!-- <ion-list-header>August</ion-list-header> -->\r\n    <ion-item *ngFor=\"let vData of visitData; let i = index\" (click)=\"OpenVisitorListDetails(vData[i].id)\">\r\n      <ion-label>\r\n        <ion-grid>\r\n          <ion-row>\r\n            <ion-col class=\"nopad\" size=\"6\">\r\n              <h2 class=\"v_name\">{{vData[i].vuNamePrimaryVisitor}}</h2>\r\n            </ion-col>\r\n            <ion-col class=\"nopad\" size=\"6\">\r\n              <p class=\"v-date\">{{vData[i].vuArrivalDate}}</p>\r\n              <img class=\"img_arrow\" src=\"assets/arrow_right_blue.png\">\r\n            </ion-col>\r\n            <ion-col class=\"nopad\" size=\"12\" *ngIf=\"vData[i].vuRequestStatus != 'Cancelled'\">\r\n              <h3 *ngIf=\"vData[i].vuApprovalStatus == 'Approved'\" class=\"v-status approved\">\r\n                {{vData[i].vuApprovalStatus}}</h3>\r\n              <h3 *ngIf=\"vData[i].vuApprovalStatus == 'Declined' || vData[i].vuApprovalStatus == 'Cancelled'\"\r\n                class=\"v-status v_cancelled\">{{vData[i].vuApprovalStatus}}</h3>\r\n              <h3 *ngIf=\"vData[i].vuApprovalStatus == 'Pending'\" class=\"v-status v_pending\">\r\n                {{vData[i].vuApprovalStatus}}</h3>\r\n            </ion-col>\r\n            <ion-col class=\"nopad\" size=\"12\" *ngIf=\"vData[i].vuRequestStatus == 'Cancelled'\">\r\n                <h3 class=\"v-status v_cancelled\"> Cancelled</h3>\r\n            </ion-col>\r\n          </ion-row>\r\n        </ion-grid>\r\n      </ion-label>\r\n    </ion-item>\r\n  </ion-list>\r\n\r\n\r\n</ion-content>"
+module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-buttons size=\"small\" slot=\"start\">\r\n      <ion-back-button></ion-back-button>\r\n    </ion-buttons>\r\n    <ion-title class=\"header_title\">Visitors Requests</ion-title>\r\n  </ion-toolbar>\r\n  <!-- <ion-toolbar class=\"toolbar2\">\r\n    <ion-grid>\r\n      <ion-row>\r\n        <ion-col size=\"6\">\r\n          <ion-item class=\"selectitemtoolbar\">\r\n            <ion-select class=\"selecttoolbar\" placeholder=\"View\">\r\n              <ion-select-option value=\"f\">Today</ion-select-option>\r\n              <ion-select-option value=\"m\">By Month</ion-select-option>\r\n            </ion-select>\r\n          </ion-item>\r\n        </ion-col>\r\n\r\n        <ion-col size=\"6\">\r\n          <ion-item class=\"selectitemtoolbar\">\r\n            <ion-select class=\"selecttoolbar\" placeholder=\"Month\">\r\n              <ion-select-option value=\"01\">January</ion-select-option>\r\n              <ion-select-option value=\"02\">February</ion-select-option>\r\n              <ion-select-option value=\"03\">March</ion-select-option>\r\n              <ion-select-option value=\"04\">April</ion-select-option>\r\n              <ion-select-option value=\"05\">May</ion-select-option>\r\n              <ion-select-option value=\"06\">June</ion-select-option>\r\n              <ion-select-option value=\"07\">July</ion-select-option>\r\n              <ion-select-option value=\"08\">August</ion-select-option>\r\n              <ion-select-option value=\"09\">September</ion-select-option>\r\n              <ion-select-option value=\"10\">October</ion-select-option>\r\n              <ion-select-option value=\"11\">November</ion-select-option>\r\n              <ion-select-option value=\"12\">December</ion-select-option>\r\n            </ion-select>\r\n          </ion-item>\r\n        </ion-col>\r\n      </ion-row>\r\n    </ion-grid>\r\n  </ion-toolbar> -->\r\n</ion-header>\r\n\r\n<ion-content class=\"card-background-page\">\r\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event,unit_code,newCode)\">\r\n    <ion-refresher-content pullingIcon=\"arrow-dropdown\" refreshingSpinner=\"circles\" refreshingText=\"Refreshing...\">\r\n    </ion-refresher-content>\r\n  </ion-refresher>\r\n\r\n  <p class=\"identify_unit\">UNIT {{unit_no}}</p>\r\n  <!-- PLUS BUTTON TO ADD VISITOR REQUEST -->\r\n  <ion-fab horizontal=\"end\" vertical=\"bottom\" slot=\"fixed\">\r\n    <ion-fab-button color=\"primary\" (click)=\"openAddVisitorRequest()\">\r\n      <ion-icon name=\"add\"></ion-icon>\r\n    </ion-fab-button>\r\n  </ion-fab>\r\n\r\n  <ion-list>\r\n    <!-- <ion-list-header>August</ion-list-header> -->\r\n    <ion-item *ngFor=\"let vData of visitData; let i = index\" (click)=\"OpenVisitorListDetails(vData[i].id)\">\r\n      <ion-label>\r\n        <ion-grid>\r\n          <ion-row>\r\n            <ion-col class=\"nopad\" size=\"6\">\r\n              <h2 class=\"v_name\">{{vData[i].vuNamePrimaryVisitor}}</h2>\r\n            </ion-col>\r\n            <ion-col class=\"nopad\" size=\"6\">\r\n              <p class=\"v-date\">{{vData[i].vuArrivalDate}}</p>\r\n              <img class=\"img_arrow\" src=\"assets/arrow_right_blue.png\">\r\n            </ion-col>\r\n            <ion-col class=\"nopad\" size=\"12\" *ngIf=\"vData[i].vuRequestStatus != 'Cancelled'\">\r\n              <h3 *ngIf=\"vData[i].vuApprovalStatus == 'Approved'\" class=\"v-status approved\">\r\n                {{vData[i].vuApprovalStatus}}</h3>\r\n              <h3 *ngIf=\"vData[i].vuApprovalStatus == 'Declined' || vData[i].vuApprovalStatus == 'Cancelled'\"\r\n                class=\"v-status v_cancelled\">{{vData[i].vuApprovalStatus}}</h3>\r\n              <h3 *ngIf=\"vData[i].vuApprovalStatus == 'Pending'\" class=\"v-status v_pending\">\r\n                {{vData[i].vuApprovalStatus}}</h3>\r\n            </ion-col>\r\n            <ion-col class=\"nopad\" size=\"12\" *ngIf=\"vData[i].vuRequestStatus == 'Cancelled'\">\r\n                <h3 class=\"v-status v_cancelled\"> Cancelled</h3>\r\n            </ion-col>\r\n          </ion-row>\r\n        </ion-grid>\r\n      </ion-label>\r\n    </ion-item>\r\n  </ion-list>\r\n\r\n\r\n</ion-content>"
 
 /***/ }),
 
@@ -108,6 +108,7 @@ var VisitorsDetailsPage = /** @class */ (function () {
         this.fullname = localStorage.getItem("FULLNAME");
         this.TUN = localStorage.getItem("TUN");
         this.unit_no = localStorage.getItem("ROOM_NO");
+        this.Siglo = localStorage.getItem("SIGLO");
         console.log(localStorage);
     };
     VisitorsDetailsPage.prototype.ionViewWillEnter = function () {
@@ -135,30 +136,12 @@ var VisitorsDetailsPage = /** @class */ (function () {
         });
     };
     VisitorsDetailsPage.prototype.openAddVisitorRequest = function () {
-        // let hour = new Date().getHours()
-        // let min = new Date().getMinutes()
-        // return new Promise(resolve => {
-        //   let body = {
-        //     action: 'checkRequest',
-        //     unit_code: this.unit_code,
-        //     newCode: this.newCode,
-        //     hour: hour,
-        //     min: min
-        //   };
-        //   this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
-        //     if(data['status'] == 'Allowed')
-        //     {
-        this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request');
-        //     }
-        //     else
-        //     {
-        //       this.openToast('<center>Sorry, You can\'t submit a request from the time being.</center>');
-        //     }
-        //     resolve(true);
-        //     console.log(data['status']);
-        //   });
-        // });
-        // // this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request', {state: {newCode: this.newCode, uCode: this.unit_code, fullname: this.fullname, TUN: this.TUN}})
+        if (this.Siglo == "On") {
+            this.openToast("<center>Sorry you're not allowed to make a request!</center>");
+        }
+        else {
+            this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request');
+        }
     };
     VisitorsDetailsPage.prototype.loadData = function (unit_code, newCode) {
         var _this = this;
