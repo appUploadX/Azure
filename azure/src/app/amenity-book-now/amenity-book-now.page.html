@@ -15,7 +15,7 @@
                     <ion-col size="12">
                         <ion-item>
                             <ion-label class="text_label">Booking Date:</ion-label>
-                            <ion-datetime class="text_input checked" displayFormat="YYYY-MM-DD" min="2019-01-01"
+                            <ion-datetime class="text_input checked" displayFormat="YYYY-MM-DD" min="{{minDate}}"
                                 placeholder="Select Date" max="{{maxDate}}" (ionChange)="checkVisitors($event)"
                                 [(ngModel)]="bookingdate"></ion-datetime>
                         </ion-item>
