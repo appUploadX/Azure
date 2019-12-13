@@ -93,8 +93,8 @@ export class VisitorAddRequestPage implements OnInit {
 	isDTime: boolean;
 	minDepTimeX: string;
 
-	EMAIL:string;
-	
+	EMAIL: string;
+
 	private loading;
 
 	constructor(
@@ -305,6 +305,32 @@ export class VisitorAddRequestPage implements OnInit {
 		var expTime = value.split("T");
 		var expTimeSplit = expTime[1].split(":");
 
+		if (expTimeSplit[0] == "23" && expTimeSplit[1] == "59") {
+			var dateXPLODE = expDate[0].split("-");
+			var today = new Date(dateXPLODE[0] + "-" + dateXPLODE[1] + "-" + dateXPLODE[2]);
+			var tomorrow = new Date(today);
+			tomorrow.setDate(today.getDate() + 1);
+			var tom = tomorrow.toLocaleDateString('en-US', { hour: 'numeric', minute: 'numeric', hour12: false }).split(", ");
+			var expTom = tom[0].split("/");
+
+			if (expTom[0].length == 1) {
+				var m = "0"+expTom[0];
+			}
+			else {
+				var m = expTom[0];
+			}
+
+			if (expTom[1].length == 1) {
+				var d = "0"+expTom[1];
+			}
+			else {
+				var d = expTom[1];
+			}
+
+			this.minDepTime = expTom[2]+"-"+m+"-"+d;
+			console.log( expTom[2]+"-"+m+"-"+d);
+		}
+
 		var date = expDate[0] + "T" + expTimeSplit[0] + ":" + expTimeSplit[1] + ":00.000+08:00";
 		this.ArrtimeChange(date);
 	}
@@ -349,6 +375,7 @@ export class VisitorAddRequestPage implements OnInit {
 				if (exp[1] == "59") {
 					if (exp[0] != "23") {
 						this.minDepTimeX = (parseInt(exp[0]) + 1) + ":00";
+						console.log((parseInt(exp[0]) + 1) + ":00");
 					}
 					else {
 						this.minDepTimeX = "23:59";
@@ -597,7 +624,7 @@ export class VisitorAddRequestPage implements OnInit {
 									message: "Loading, please wait....."
 								}).then((overlay => {
 									this.loading = overlay,
-									this.loading.present()
+										this.loading.present()
 								}))
 
 								return new Promise(resolve => {
@@ -685,7 +712,7 @@ export class VisitorAddRequestPage implements OnInit {
 				}
 			}
 
-			
+
 		}
 	}
 }

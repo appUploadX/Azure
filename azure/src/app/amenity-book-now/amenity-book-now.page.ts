@@ -33,6 +33,8 @@ export class AmenityBookNowPage implements OnInit {
 
     minDate: string;
     maxDate: string = (new Date().getFullYear() + 1) + "-12-31";
+
+    countCK: number = 0;
     constructor(
         private router: Router,
         private postPvd: PostProvider,
@@ -145,6 +147,46 @@ export class AmenityBookNowPage implements OnInit {
         // });
     }
 
+    addCheckbox(e, free) {
+        var thisAttr = [];
+        if (e.detail.checked == true) {
+            this.countCK += 1;
+        }
+        else {
+            this.countCK -= 1;
+        }
+        console.log(e.detail.value, e.detail.checked, this.countCK, free);
+
+        if (this.countCK >= free) {
+            console.log("hops!")
+            $(".checkbook").each(function () {
+                thisAttr.push($(this));
+            });
+
+            for (var i = 0; i < thisAttr.length; i++) {
+                console.log(thisAttr[i][0].disabled, thisAttr[i][0].checked, thisAttr[i])
+                if (thisAttr[i][0].checked == false) {
+                    thisAttr[i][0].disabled = true;
+                }
+            }
+
+        }
+        else {
+            console.log("sige")
+            $(".checkbook").each(function () {
+                thisAttr.push($(this));
+            });
+
+            for (var i = 0; i < thisAttr.length; i++) {
+                console.log(thisAttr[i][0].disabled, thisAttr[i][0].checked)
+                // if (thisAttr[i][0].checked == true) {
+                    thisAttr[i][0].disabled = false;
+                // }
+            }
+        }
+
+    }
+
     insertBook(amenCode, amenName, propCode, uType, unitCode, rateperbooking) {
         var count = 0;
         var countSel = 0;
@@ -153,11 +195,27 @@ export class AmenityBookNowPage implements OnInit {
             count++;
         }
 
+        var thisAttr = [];
+        var visitor = [];
+
+        $(".checkbook").each(function () {
+            thisAttr.push($(this));
+        });
+
+        for (var i = 0; i < thisAttr.length; i++) {
+            // console.log(thisAttr[i][0].disabled, thisAttr[i][0].checked, thisAttr[i])
+            if (thisAttr[i][0].checked == true) {
+                visitor.push(thisAttr[i][0].value)
+            }
+        }
+
         $(".requiredsel").each(function () {
             if ($(this).is(":selected")) {
                 countSel++;
             }
         });
+
+        // console.log(visitor);
 
         if (count == 0 && countSel != 0) {
             return new Promise(resolve => {
@@ -173,6 +231,7 @@ export class AmenityBookNowPage implements OnInit {
                     rateperbooking: rateperbooking,
                     Free: this.Free,
                     Name: this.Name,
+                    Visitors: visitor,
                 };
 
                 this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
