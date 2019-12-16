@@ -28,12 +28,12 @@
             <ion-col size="8" class="nopad">
               <p>{{res.timeSlots}}</p>
             </ion-col>
-            <!-- <ion-col size="4" class="nopad">
-                <p>Stay Duration: </p>
+            <ion-col size="4" class="nopad">
+                <p>Name(s): </p>
             </ion-col>
-            <ion-col size="8" class="nopad">
-              <p>July 1, 2019 to July 2, 2019</p>
-            </ion-col> -->
+            <ion-col size="8" class="nopad" *ngFor="let resx of names; let x = index">
+              <p >{{names[x]}}</p>
+            </ion-col>
           </ion-row>
         </ion-grid>
     </ion-card-content>

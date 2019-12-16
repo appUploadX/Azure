@@ -107,7 +107,7 @@ var AmenityInfoPage = /** @class */ (function () {
         console.log(localStorage);
     };
     AmenityInfoPage.prototype.openAmenityBookNow = function (amenName, amenCode, propCode, unitCode, uType, rate) {
-        this.router.navigateByUrl('/tabs/tab1/amenities-details/amenity-info/amenity-book-now', { state: { amenName: amenName, amenCode: amenCode, propCode: propCode, unitCode: unitCode, uType: uType, rateperbooking: rate } });
+        this.router.navigateByUrl('/tabs/tab1/amenities-details/amenity-info/amenity-book-now', { state: { amenName: amenName, amenCode: amenCode, propCode: propCode, unitCode: unitCode, uType: uType, rateperbooking: rate, start: this.start } });
     };
     AmenityInfoPage.prototype.loadData = function (amenCode) {
         var _this = this;
@@ -119,6 +119,7 @@ var AmenityInfoPage = /** @class */ (function () {
             _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
                 _this.amenData.push(data['data']);
                 _this.rate = data['data']['rateperbooking'];
+                _this.start = data['slotTime'];
                 resolve(true);
                 console.log(data['data'], data['amenDaysData']);
             });

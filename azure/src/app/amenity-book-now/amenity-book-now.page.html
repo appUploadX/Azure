@@ -16,8 +16,8 @@
                         <ion-item>
                             <ion-label class="text_label">Booking Date:</ion-label>
                             <ion-datetime class="text_input checked" displayFormat="YYYY-MM-DD" min="{{minDate}}"
-                                placeholder="Select Date" max="{{maxDate}}" (ionChange)="checkVisitors($event)"
-                                [(ngModel)]="bookingdate"></ion-datetime>
+                                placeholder="Select Date" max="{{maxDate}}" [(ngModel)]="bookingdate"
+                                (ionChange)="read($event)"></ion-datetime>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -25,11 +25,10 @@
                     <ion-col size="12">
                         <ion-item>
                             <ion-label class="text_label">Time Slot</ion-label>
-                            <ion-select placeholder="Select One" class="text_input" (ionChange)="checkFree($event)"
-                                [(ngModel)]="timeSlots">
-                                <ion-select-option value="7:00 AM to 12:00 PM" class="requiredsel">7:00 AM to 12:00 PM
-                                </ion-select-option>
-                                <ion-select-option value="2:00 PM to 7:00 PM" class="requiredsel">2:00 PM to 7:00 PM
+                            <ion-select placeholder="Select One" class="text_input" (ionChange)="checkVisitors($event)"
+                                [(ngModel)]="timeSlots" disabled="{{isReadonly}}">
+                                <ion-select-option *ngFor='let res of start; let i = index' value="{{start[i]}}"
+                                    class="requiredsel">{{start[i]}}
                                 </ion-select-option>
                             </ion-select>
                         </ion-item>
@@ -81,13 +80,14 @@
                         </ion-row>
 
 
-                        <ion-row class="v-row" *ngFor="let res of visitUnit">
-                            <ion-col size="4" *ngIf="res.vuNamePrimaryVisitor != '' || res.vuNamePrimaryVisitor != 'undefined'">
-                                <p>{{res.vuNamePrimaryVisitor}}</p>
+                        <ion-row class="v-row" *ngIf="countVUnit != 0">
+                            <ion-col size="4">
+                                <p>{{visitUnit[0].vuNamePrimaryVisitor}}</p>
                             </ion-col>
-                            <ion-col size="4" *ngIf="res.vuNamePrimaryVisitor != '' || res.vuNamePrimaryVisitor != 'undefined'">
+                            <ion-col size="4">
                                 <ion-item class="divcheck">
-                                    <ion-checkbox class="checkbook" value="{{res.vuNamePrimaryVisitor}}"
+                                    <ion-checkbox class="checkbook" id="primary {{visitUnit[0].vuCode}}"
+                                        value="{{visitUnit[0].vuNamePrimaryVisitor}}" disabled="{{ckDisable}}"
                                         (ionChange)="addCheckbox($event, amenDetails[0].FreeUsers)" color="primary"
                                         slot="start"></ion-checkbox>
                                 </ion-item>
@@ -104,6 +104,7 @@
                             <ion-col size="4" *ngIf="res[x].avName != ''">
                                 <ion-item class="divcheck">
                                     <ion-checkbox class="checkbook" value="{{res[x].avName}}"
+                                        id="secondary {{res[x].avCode}}" disabled="{{ckDisable}}"
                                         (ionChange)="addCheckbox($event, amenDetails[0].FreeUsers)" color="primary"
                                         slot="start">
                                     </ion-checkbox>

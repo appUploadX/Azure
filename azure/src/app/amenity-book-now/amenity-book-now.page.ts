@@ -22,8 +22,10 @@ export class AmenityBookNowPage implements OnInit {
     TUN: String;
     unit_code: String;
     newCode: String;
+    isReadonly: boolean;
     ishidden: boolean;
     ishiddenbtn: boolean;
+    ckDisable: boolean;
     visitUnit: any;
     visitAdditional: any;
     bedroom: String;
@@ -34,7 +36,13 @@ export class AmenityBookNowPage implements OnInit {
     minDate: string;
     maxDate: string = (new Date().getFullYear() + 1) + "-12-31";
 
+    start: any;
+    end: any;
+
+    propertyCode: string;
     countCK: number = 0;
+    countVUnit: number = 0;
+    refNo:string;
     constructor(
         private router: Router,
         private postPvd: PostProvider,
@@ -56,9 +64,17 @@ export class AmenityBookNowPage implements OnInit {
         this.ishidden = true;
         this.ishiddenbtn = true;
         this.Name = localStorage.getItem("FULLNAME");
+        this.propertyCode = localStorage.getItem("PROPERTY_CODE");
+        this.start = history.state.start;
+        console.log(history.state.start);
+
+        // this.end = history.state.end.split(",");
 
         var dateX = new Date().toISOString().split("T");
         this.minDate = dateX[0];
+
+        this.isReadonly = true;
+        this.ckDisable = false;
         console.log(history.state);
         console.log(localStorage);
         console.log(dateX[0]);
@@ -75,13 +91,16 @@ export class AmenityBookNowPage implements OnInit {
     checkVisitors(val) {
         this.ishidden = false;
         console.log(val.detail.value);
-        var date = val.detail.value.split("T");
+        var time = val.detail.value;
+        var date = this.bookingdate.split("T");
         return new Promise(resolve => {
             let body = {
                 action: 'checkVisitors',
                 date: date[0],
+                slot: time,
                 uCode: this.unit_code,
                 newCode: this.newCode,
+                propertyCode: this.propertyCode,
                 amenCode: this.amenCode,
                 amenName: this.amenName,
                 bedroom: this.bedroom,
@@ -93,6 +112,8 @@ export class AmenityBookNowPage implements OnInit {
                 this.amenDetails = [];
 
                 if (data['status'] == "Success") {
+                    this.refNo = data['refNo'];
+                    this.countVUnit = data['countVUnit'];
                     this.visitUnit.push(data['visitUnit'][0]);
                     for (let index = 0; index < data['visitAdditional'].length; index++) {
                         this.visitAdditional.push(data['visitAdditional']);
@@ -101,6 +122,12 @@ export class AmenityBookNowPage implements OnInit {
                     // for (let i = 0; i < data['amenDetails'].length; i++) {
                     this.amenDetails.push(data['amenDetails']);
                     this.Free = data['amenDetails']['FreeUsers'];
+                    if (data['amenDetails']['FreeUsers'] == 0) {
+                        this.ckDisable = true;
+                    }
+                    else {
+                        this.ckDisable = false;
+                    }
                     // }
                 }
                 console.log(this.amenDetails);
@@ -110,41 +137,8 @@ export class AmenityBookNowPage implements OnInit {
         });
     }
 
-    checkFree(val) {
-        // this.ishidden = false;
-        console.log(val.detail.value, $(".checked").val());
-        // var date = val.detail.value.split("T");
-        // return new Promise(resolve => {
-        //   let body = {
-        //     action: 'checkVisitors',
-        //     date: date[0],
-        //     uCode: this.unit_code,
-        //     newCode: this.newCode,
-        //     amenCode: this.amenCode,
-        //     amenName: this.amenName,
-        //     bedroom: this.bedroom,
-        //   };
-
-        //   this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
-        //     this.visitUnit = [];
-        //     this.visitAdditional = [];
-        //     this.amenDetails = [];
-
-        //     if (data['status'] == "Success") {
-        //       this.visitUnit.push(data['visitUnit'][0]);
-        //       for (let index = 0; index < data['visitAdditional'].length; index++) {
-        //         this.visitAdditional.push(data['visitAdditional']);
-        //       }
-
-        //       // for (let i = 0; i < data['amenDetails'].length; i++) {
-        //         this.amenDetails.push(data['amenDetails']);
-        //       // }
-        //     }
-        //     console.log(this.amenDetails);
-        //     console.log(data);
-        //     resolve(true);
-        //   });
-        // });
+    read(e) {
+        this.isReadonly = false
     }
 
     addCheckbox(e, free) {
@@ -178,9 +172,10 @@ export class AmenityBookNowPage implements OnInit {
             });
 
             for (var i = 0; i < thisAttr.length; i++) {
+                console.log(thisAttr[i]);
                 console.log(thisAttr[i][0].disabled, thisAttr[i][0].checked)
                 // if (thisAttr[i][0].checked == true) {
-                    thisAttr[i][0].disabled = false;
+                thisAttr[i][0].disabled = false;
                 // }
             }
         }
@@ -197,7 +192,8 @@ export class AmenityBookNowPage implements OnInit {
 
         var thisAttr = [];
         var visitor = [];
-
+        var category = [];
+        var code = [];
         $(".checkbook").each(function () {
             thisAttr.push($(this));
         });
@@ -206,6 +202,8 @@ export class AmenityBookNowPage implements OnInit {
             // console.log(thisAttr[i][0].disabled, thisAttr[i][0].checked, thisAttr[i])
             if (thisAttr[i][0].checked == true) {
                 visitor.push(thisAttr[i][0].value)
+                category.push(thisAttr[i][0].id.split(" ")[0]);
+                code.push(thisAttr[i][0].id.split(" ")[1]);
             }
         }
 
@@ -232,6 +230,9 @@ export class AmenityBookNowPage implements OnInit {
                     Free: this.Free,
                     Name: this.Name,
                     Visitors: visitor,
+                    Category: category,
+                    Code: code,
+                    refNo: this.refNo,
                 };
 
                 this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {

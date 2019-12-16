@@ -9,6 +9,7 @@ import { PostProvider } from 'src/providers/post-providers';
 export class AmenityBookingDetailsPage implements OnInit {
   id:number;
   dataX:any = [];
+  names:any = [];
   constructor(
     private postPvd: PostProvider,
   ) { }
@@ -28,9 +29,13 @@ export class AmenityBookingDetailsPage implements OnInit {
       };
 
       this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
-        this.dataX.push(data['data']);
+      
+        this.names.push(data['names']);
+        this.dataX.push(data['data'][0]);
+
+        // this.dataX.push(data['data']);
         resolve(true);
-        console.log(data['data']);
+        console.log(data['data'][0]);
       });
     });
   }
