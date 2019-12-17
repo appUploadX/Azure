@@ -286,7 +286,7 @@
   <ion-grid class="btns" *ngIf="res.vuApprovalStatus == 'Pending' && res.vuRequestStatus != 'Cancelled'">
     <ion-row class="v-row pt-0">
       <ion-col size="12" class="pt-0">
-        <ion-button color="primary" expand="block" (click)="confirmCancel(res.id, res.vuUnitOwner)">Cancel Request</ion-button>
+        <ion-button color="primary" expand="block" (click)="confirmCancel(res.id)">Cancel Request</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

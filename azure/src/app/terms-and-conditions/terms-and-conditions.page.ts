@@ -12,6 +12,8 @@ export class TermsAndConditionsPage implements OnInit {
   USER_ID: String;
   TYPE_DATA: String;
   isChecked:Boolean;
+
+  condition:string;
   constructor(private postPvd: PostProvider, private router: Router) { }
 
   ngOnInit() {
