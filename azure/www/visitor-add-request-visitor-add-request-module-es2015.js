@@ -224,6 +224,7 @@ let VisitorAddRequestPage = class VisitorAddRequestPage {
                 this.vtAdditionalVisitorCountX = data['typeDataX']['vtAdditionalVisitorCount'];
                 this.vtVehicleDetailsCountX = data['typeDataX']['vtVehicleDetailsCount'];
                 this.vtRemarksX = data['typeDataX']['vtRemarks'];
+                this.vtCode = data['typeDataX']['vtCode'];
                 this.description = data['typeDataX']['vtTermsCondition'];
                 this.numberAllowed = data['numberAllowed'];
                 resolve(true);
@@ -589,6 +590,7 @@ let VisitorAddRequestPage = class VisitorAddRequestPage {
                                         vuUnitCode: this.uCode,
                                         ownerCode: this.newCode,
                                         propCode: this.propCode,
+                                        vuVisitorTypeCode: this.vtCode,
                                         avName: this.visitC,
                                         vehicles: this.vehicles,
                                         theEmail: this.EMAIL,

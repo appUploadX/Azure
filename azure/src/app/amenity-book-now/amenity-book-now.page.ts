@@ -114,7 +114,11 @@ export class AmenityBookNowPage implements OnInit {
                 if (data['status'] == "Success") {
                     this.refNo = data['refNo'];
                     this.countVUnit = data['countVUnit'];
-                    this.visitUnit.push(data['visitUnit'][0]);
+
+                    for (let index = 0; index < data['visitUnit'].length; index++) {
+                        this.visitUnit.push(data['visitUnit']);
+                    }
+                    
                     for (let index = 0; index < data['visitAdditional'].length; index++) {
                         this.visitAdditional.push(data['visitAdditional']);
                     }
@@ -139,6 +143,9 @@ export class AmenityBookNowPage implements OnInit {
 
     read(e) {
         this.isReadonly = false
+        var sel = $(".requiredsel");
+        this.timeSlots = null;
+        this.ishidden = true;
     }
 
     addCheckbox(e, free) {

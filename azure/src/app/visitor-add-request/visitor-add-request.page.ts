@@ -96,6 +96,7 @@ export class VisitorAddRequestPage implements OnInit {
 	EMAIL: string;
 
 	private loading;
+	vtCode: string;
 
 	constructor(
 		private modalController: ModalController,
@@ -229,7 +230,7 @@ export class VisitorAddRequestPage implements OnInit {
 				this.vtAdditionalVisitorCountX = data['typeDataX']['vtAdditionalVisitorCount'];
 				this.vtVehicleDetailsCountX = data['typeDataX']['vtVehicleDetailsCount'];
 				this.vtRemarksX = data['typeDataX']['vtRemarks'];
-
+				this.vtCode = data['typeDataX']['vtCode'];
 
 				this.description = data['typeDataX']['vtTermsCondition'];
 				this.numberAllowed = data['numberAllowed'];
@@ -654,6 +655,7 @@ export class VisitorAddRequestPage implements OnInit {
 										vuUnitCode: this.uCode,
 										ownerCode: this.newCode,
 										propCode: this.propCode,
+										vuVisitorTypeCode: this.vtCode,
 
 										avName: this.visitC,
 										vehicles: this.vehicles,

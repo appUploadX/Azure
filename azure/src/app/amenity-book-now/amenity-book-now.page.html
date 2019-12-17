@@ -37,7 +37,7 @@
             </ion-grid>
 
 
-            <div class="v_personal" [hidden]=ishidden>
+            <div class="v_personal hide" [hidden]=ishidden>
                 <div class="v_title_detail">Details</div>
                 <div class="v_details">
                     <ion-grid class="nopad">
@@ -63,12 +63,12 @@
                 </div>
             </div>
 
-            <div class="v_personal" [hidden]=ishidden>
+            <div class="v_personal hide" [hidden]=ishidden>
                 <div class="v_title_detail"> </div>
                 <div class="v_details">
                     <ion-grid class="nopad">
                         <ion-row class="v-row">
-                            <ion-col size="4">
+                            <ion-col size="8">
                                 <p class="font_semibold">Name</p>
                             </ion-col>
                             <ion-col size="4">
@@ -80,14 +80,15 @@
                         </ion-row>
 
 
-                        <ion-row class="v-row" *ngIf="countVUnit != 0">
-                            <ion-col size="4">
-                                <p>{{visitUnit[0].vuNamePrimaryVisitor}}</p>
+                        <!-- <ion-row class="v-row" *ngIf="countVUnit != 0"> -->
+                        <ion-row class="v-row" *ngFor="let res of visitUnit; let i = index">
+                            <ion-col size="8">
+                                <p>{{res[i].vuNamePrimaryVisitor}}</p>
                             </ion-col>
                             <ion-col size="4">
                                 <ion-item class="divcheck">
-                                    <ion-checkbox class="checkbook" id="primary {{visitUnit[0].vuCode}}"
-                                        value="{{visitUnit[0].vuNamePrimaryVisitor}}" disabled="{{ckDisable}}"
+                                    <ion-checkbox class="checkbook" id="primary {{res[i].vuCode}}"
+                                        value="{{res[i].vuNamePrimaryVisitor}}" disabled="{{ckDisable}}"
                                         (ionChange)="addCheckbox($event, amenDetails[0].FreeUsers)" color="primary"
                                         slot="start"></ion-checkbox>
                                 </ion-item>
@@ -98,7 +99,7 @@
                         </ion-row>
 
                         <ion-row class="v-row" *ngFor="let res of visitAdditional; let x = index">
-                            <ion-col size="4" *ngIf="res[x].avName != ''">
+                            <ion-col size="8" *ngIf="res[x].avName != ''">
                                 <p>{{res[x].avName}}</p>
                             </ion-col>
                             <ion-col size="4" *ngIf="res[x].avName != ''">
@@ -118,7 +119,7 @@
                 </div>
             </div>
 
-            <ion-grid>
+            <ion-grid class="hide">
                 <ion-row>
                     <ion-col size="6" class="marg0auto">
                         <ion-button color="primary" expand="block" class="text_label"

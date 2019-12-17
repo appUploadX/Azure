@@ -14,7 +14,7 @@ var map = {
 	],
 	"./amenity-book-now/amenity-book-now.module": [
 		"./src/app/amenity-book-now/amenity-book-now.module.ts",
-		"default~amenity-book-now-amenity-book-now-module~login-login-module~visitor-add-request-visitor-add-~eba8b2a5",
+		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5ef60644",
 		"amenity-book-now-amenity-book-now-module"
 	],
 	"./amenity-booking-details/amenity-booking-details.module": [
@@ -31,6 +31,7 @@ var map = {
 	],
 	"./change-password/change-password.module": [
 		"./src/app/change-password/change-password.module.ts",
+		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5ef60644",
 		"change-password-change-password-module"
 	],
 	"./notice-main-list/notice-main-list.module": [
@@ -88,7 +89,7 @@ var map = {
 	],
 	"./visitor-add-request/visitor-add-request.module": [
 		"./src/app/visitor-add-request/visitor-add-request.module.ts",
-		"default~amenity-book-now-amenity-book-now-module~login-login-module~visitor-add-request-visitor-add-~eba8b2a5",
+		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5ef60644",
 		"common",
 		"visitor-add-request-visitor-add-request-module"
 	],
@@ -576,7 +577,7 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     {
         path: '',
-        loadChildren: function () { return Promise.all(/*! import() | login-login-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~login-login-module~visitor-add-request-visitor-add-~eba8b2a5"), __webpack_require__.e("login-login-module")]).then(__webpack_require__.bind(null, /*! ./login/login.module */ "./src/app/login/login.module.ts")).then(function (m) { return m.LoginPageModule; }); }
+        loadChildren: function () { return Promise.all(/*! import() | login-login-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5ef60644"), __webpack_require__.e("login-login-module")]).then(__webpack_require__.bind(null, /*! ./login/login.module */ "./src/app/login/login.module.ts")).then(function (m) { return m.LoginPageModule; }); }
     },
     {
         path: '',

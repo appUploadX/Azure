@@ -245,6 +245,7 @@ var VisitorAddRequestPage = /** @class */ (function () {
                 _this.vtAdditionalVisitorCountX = data['typeDataX']['vtAdditionalVisitorCount'];
                 _this.vtVehicleDetailsCountX = data['typeDataX']['vtVehicleDetailsCount'];
                 _this.vtRemarksX = data['typeDataX']['vtRemarks'];
+                _this.vtCode = data['typeDataX']['vtCode'];
                 _this.description = data['typeDataX']['vtTermsCondition'];
                 _this.numberAllowed = data['numberAllowed'];
                 resolve(true);
@@ -614,6 +615,7 @@ var VisitorAddRequestPage = /** @class */ (function () {
                                         vuUnitCode: _this.uCode,
                                         ownerCode: _this.newCode,
                                         propCode: _this.propCode,
+                                        vuVisitorTypeCode: _this.vtCode,
                                         avName: _this.visitC,
                                         vehicles: _this.vehicles,
                                         theEmail: _this.EMAIL,

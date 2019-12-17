@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n      <ion-buttons size=\"small\" slot=\"start\">\r\n          <ion-back-button></ion-back-button>\r\n        </ion-buttons>\r\n    <ion-title class=\"header_title\">Booking Details</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n    \r\n<ion-content class=\"card-background-page\">\r\n  <ion-card *ngFor=\"let res of dataX\">\r\n    <ion-card-header>\r\n      <img class=\"img_amenity\" src=\"/assets/azurebeach.png\">\r\n      <ion-card-subtitle>{{res.amenityName}}</ion-card-subtitle>\r\n    </ion-card-header>\r\n    <ion-card-content>\r\n        <ion-grid class=\"nopad\">\r\n          <ion-row>\r\n            <ion-col size=\"4\" class=\"nopad\">\r\n              <p>Booking Date: </p>\r\n            </ion-col>\r\n            <ion-col size=\"8\" class=\"nopad\">\r\n              <p>{{res.bookingdate}}</p>\r\n            </ion-col>\r\n            <ion-col size=\"4\" class=\"nopad\">\r\n              <p>Time Slot: </p>\r\n            </ion-col>\r\n            <ion-col size=\"8\" class=\"nopad\">\r\n              <p>{{res.timeSlots}}</p>\r\n            </ion-col>\r\n            <!-- <ion-col size=\"4\" class=\"nopad\">\r\n                <p>Stay Duration: </p>\r\n            </ion-col>\r\n            <ion-col size=\"8\" class=\"nopad\">\r\n              <p>July 1, 2019 to July 2, 2019</p>\r\n            </ion-col> -->\r\n          </ion-row>\r\n        </ion-grid>\r\n    </ion-card-content>\r\n  </ion-card>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n      <ion-buttons size=\"small\" slot=\"start\">\r\n          <ion-back-button></ion-back-button>\r\n        </ion-buttons>\r\n    <ion-title class=\"header_title\">Booking Details</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n    \r\n<ion-content class=\"card-background-page\">\r\n  <ion-card *ngFor=\"let res of dataX\">\r\n    <ion-card-header>\r\n      <img class=\"img_amenity\" src=\"/assets/azurebeach.png\">\r\n      <ion-card-subtitle>{{res.amenityName}}</ion-card-subtitle>\r\n    </ion-card-header>\r\n    <ion-card-content>\r\n        <ion-grid class=\"nopad\">\r\n          <ion-row>\r\n            <ion-col size=\"4\" class=\"nopad\">\r\n              <p>Booking Date: </p>\r\n            </ion-col>\r\n            <ion-col size=\"8\" class=\"nopad\">\r\n              <p>{{res.bookingdate}}</p>\r\n            </ion-col>\r\n            <ion-col size=\"4\" class=\"nopad\">\r\n              <p>Time Slot: </p>\r\n            </ion-col>\r\n            <ion-col size=\"8\" class=\"nopad\">\r\n              <p>{{res.timeSlots}}</p>\r\n            </ion-col>\r\n            <ion-col size=\"4\" class=\"nopad\">\r\n                <p>Name(s): </p>\r\n            </ion-col>\r\n            <ion-col size=\"8\" class=\"nopad\" *ngFor=\"let resx of names; let x = index\">\r\n              <p >{{names[x]}}</p>\r\n            </ion-col>\r\n          </ion-row>\r\n        </ion-grid>\r\n    </ion-card-content>\r\n  </ion-card>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -90,6 +90,7 @@ let AmenityBookingDetailsPage = class AmenityBookingDetailsPage {
     constructor(postPvd) {
         this.postPvd = postPvd;
         this.dataX = [];
+        this.names = [];
     }
     ngOnInit() {
         console.log(history.state);
@@ -103,9 +104,11 @@ let AmenityBookingDetailsPage = class AmenityBookingDetailsPage {
                 ID: id,
             };
             this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
-                this.dataX.push(data['data']);
+                this.names.push(data['names']);
+                this.dataX.push(data['data'][0]);
+                // this.dataX.push(data['data']);
                 resolve(true);
-                console.log(data['data']);
+                console.log(data['data'][0]);
             });
         });
     }

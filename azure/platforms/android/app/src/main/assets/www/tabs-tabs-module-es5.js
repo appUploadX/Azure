@@ -541,7 +541,7 @@ var routes = [
                     {
                         path: '',
                         loadChildren: function () {
-                            return Promise.all(/*! import() | visitor-add-request-visitor-add-request-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~login-login-module~visitor-add-request-visitor-add-~eba8b2a5"), __webpack_require__.e("common"), __webpack_require__.e("visitor-add-request-visitor-add-request-module")]).then(__webpack_require__.bind(null, /*! ../visitor-add-request/visitor-add-request.module */ "./src/app/visitor-add-request/visitor-add-request.module.ts")).then(function (m) { return m.VisitorAddRequestPageModule; });
+                            return Promise.all(/*! import() | visitor-add-request-visitor-add-request-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5ef60644"), __webpack_require__.e("common"), __webpack_require__.e("visitor-add-request-visitor-add-request-module")]).then(__webpack_require__.bind(null, /*! ../visitor-add-request/visitor-add-request.module */ "./src/app/visitor-add-request/visitor-add-request.module.ts")).then(function (m) { return m.VisitorAddRequestPageModule; });
                         }
                     }
                 ]
@@ -609,7 +609,7 @@ var routes = [
                     {
                         path: '',
                         loadChildren: function () {
-                            return Promise.all(/*! import() | amenity-book-now-amenity-book-now-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~login-login-module~visitor-add-request-visitor-add-~eba8b2a5"), __webpack_require__.e("amenity-book-now-amenity-book-now-module")]).then(__webpack_require__.bind(null, /*! ../amenity-book-now/amenity-book-now.module */ "./src/app/amenity-book-now/amenity-book-now.module.ts")).then(function (m) { return m.AmenityBookNowPageModule; });
+                            return Promise.all(/*! import() | amenity-book-now-amenity-book-now-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5ef60644"), __webpack_require__.e("amenity-book-now-amenity-book-now-module")]).then(__webpack_require__.bind(null, /*! ../amenity-book-now/amenity-book-now.module */ "./src/app/amenity-book-now/amenity-book-now.module.ts")).then(function (m) { return m.AmenityBookNowPageModule; });
                         }
                     }
                 ]
@@ -678,7 +678,7 @@ var routes = [
                     {
                         path: '',
                         loadChildren: function () {
-                            return __webpack_require__.e(/*! import() | change-password-change-password-module */ "change-password-change-password-module").then(__webpack_require__.bind(null, /*! ../change-password/change-password.module */ "./src/app/change-password/change-password.module.ts")).then(function (m) { return m.ChangePasswordPageModule; });
+                            return Promise.all(/*! import() | change-password-change-password-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5ef60644"), __webpack_require__.e("change-password-change-password-module")]).then(__webpack_require__.bind(null, /*! ../change-password/change-password.module */ "./src/app/change-password/change-password.module.ts")).then(function (m) { return m.ChangePasswordPageModule; });
                         }
                     }
                 ]
