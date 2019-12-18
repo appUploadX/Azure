@@ -80,7 +80,8 @@
       "cordova-plugin-document-viewer": {},
       "cordova-plugin-file-opener2": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
-      }
+      },
+      "cordova-ios-plugin-no-export-compliance": {}
     },
     "platforms": [
       "android",

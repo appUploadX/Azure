@@ -1,0 +1,58 @@
+{
+  "_from": "cordova-ios-plugin-no-export-compliance",
+  "_id": "cordova-ios-plugin-no-export-compliance@0.0.6",
+  "_inBundle": false,
+  "_integrity": "sha512-6DMhszDRuGOU0Zqu2s8LZqK55waJvVp67bJt3QariVNjSasBPxFHy4TFYrd4o1HMrBHLlT9uEb52Uh0Cibt3vQ==",
+  "_location": "/cordova-ios-plugin-no-export-compliance",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-ios-plugin-no-export-compliance",
+    "name": "cordova-ios-plugin-no-export-compliance",
+    "escapedName": "cordova-ios-plugin-no-export-compliance",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-ios-plugin-no-export-compliance/-/cordova-ios-plugin-no-export-compliance-0.0.6.tgz",
+  "_shasum": "cd51d3c4ebc9bf0b18b0b23afce145b4e7019d39",
+  "_spec": "cordova-ios-plugin-no-export-compliance",
+  "_where": "C:\\Users\\AGSI\\Desktop\\Bago\\Azure\\azure",
+  "author": {
+    "name": "mikaoelitiana"
+  },
+  "bugs": {
+    "url": "https://github.com/mikaoelitiana/cordova-ios-plugin-no-export-compliance/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-ios-plugin-no-export-compliance",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "This plugin sets ITSAppUsesNonExemptEncryption to false in *-Info.plist file",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "homepage": "https://github.com/mikaoelitiana/cordova-ios-plugin-no-export-compliance#readme",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "license": "BSD-3-Clause",
+  "name": "cordova-ios-plugin-no-export-compliance",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikaoelitiana/cordova-ios-plugin-no-export-compliance.git"
+  },
+  "version": "0.0.6"
+}

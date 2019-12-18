@@ -78,5 +78,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-ios-plugin-no-export-compliance": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-ios-plugin-no-export-compliance"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }
