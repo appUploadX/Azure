@@ -1,12 +1,12 @@
 <ion-header>
   <ion-toolbar color="primary">
-      <ion-buttons size="small" slot="start">
-          <ion-back-button></ion-back-button>
-        </ion-buttons>
+    <ion-buttons size="small" slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title class="header_title">Booking Details</ion-title>
   </ion-toolbar>
 </ion-header>
-    
+
 <ion-content class="card-background-page">
   <ion-card *ngFor="let res of dataX">
     <ion-card-header>
@@ -14,28 +14,34 @@
       <ion-card-subtitle>{{res.amenityName}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-        <ion-grid class="nopad">
-          <ion-row>
-            <ion-col size="4" class="nopad">
-              <p>Booking Date: </p>
-            </ion-col>
-            <ion-col size="8" class="nopad">
-              <p>{{res.bookingdate}}</p>
-            </ion-col>
-            <ion-col size="4" class="nopad">
-              <p>Time Slot: </p>
-            </ion-col>
-            <ion-col size="8" class="nopad">
-              <p>{{res.timeSlots}}</p>
-            </ion-col>
-            <ion-col size="4" class="nopad">
-                <p>Name(s): </p>
-            </ion-col>
-            <ion-col size="8" class="nopad" *ngFor="let resx of names; let x = index">
-              <p >{{names[x]}}</p>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+      <ion-grid class="nopad">
+        <ion-row>
+          <ion-col size="4" class="nopad">
+            <p>Reference Number: </p>
+          </ion-col>
+          <ion-col size="8" class="nopad">
+            <p>{{res.referrenceNo}}</p>
+          </ion-col>
+          <ion-col size="4" class="nopad">
+            <p>Booking Date: </p>
+          </ion-col>
+          <ion-col size="8" class="nopad">
+            <p>{{res.bookingdate}}</p>
+          </ion-col>
+          <ion-col size="4" class="nopad">
+            <p>Time Slot: </p>
+          </ion-col>
+          <ion-col size="8" class="nopad">
+            <p>{{res.timeSlots}}</p>
+          </ion-col>
+          <ion-col size="4" class="nopad">
+            <p>Name(s): </p>
+          </ion-col>
+          <ion-col size="8" class="nopad" *ngFor="let resx of names; let x = index">
+            <p>{{names[x]}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
   </ion-card>
 </ion-content>

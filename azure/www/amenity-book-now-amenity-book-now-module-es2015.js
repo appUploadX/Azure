@@ -121,7 +121,25 @@ let AmenityBookNowPage = class AmenityBookNowPage {
         console.log(history.state.start);
         // this.end = history.state.end.split(",");
         var dateX = new Date().toISOString().split("T");
-        this.minDate = dateX[0];
+        var newDate = new Date(dateX[0]);
+        var addDate = new Date(newDate);
+        addDate.setDate(newDate.getDate() + 2);
+        var addTwo = addDate.toLocaleDateString('en-US', { hour: 'numeric', minute: 'numeric', hour12: false }).split(", ");
+        var expTom = addTwo[0].split("/");
+        if (expTom[0].length == 1) {
+            var m = "0" + expTom[0];
+        }
+        else {
+            var m = expTom[0];
+        }
+        if (expTom[1].length == 1) {
+            var d = "0" + expTom[1];
+        }
+        else {
+            var d = expTom[1];
+        }
+        this.minDate = expTom[2] + "-" + m + "-" + d;
+        console.log(expTom[2] + "-" + m + "-" + d);
         this.isReadonly = true;
         this.ckDisable = false;
         console.log(history.state);
