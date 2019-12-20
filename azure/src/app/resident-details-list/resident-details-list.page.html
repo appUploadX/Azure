@@ -14,8 +14,8 @@
   <ion-list>
     <ion-item *ngFor="let res of users; let i = index" (click)="openResidentDetailsIndividual(res[i].id, this.pUnitRoom)">
       <ion-avatar slot="start">
-        <img *ngIf="res[i].p_upload == ''" src="/assets/person.png">
-        <img *ngIf="res[i].p_upload != ''" src="https://www.asi-ph.com/sandboxes/condominium/{{res[i].p_upload}}">
+        <img *ngIf="res[i].p_upload == null" src="/assets/defaultimg.png">
+        <img *ngIf="res[i].p_upload != null" src="https://www.asi-ph.com/sandboxes/condominium/{{res[i].p_upload}}">
       </ion-avatar>
       <ion-label>
         <h2>{{res[i].p_name}} {{res[i].p_lastname}}</h2>

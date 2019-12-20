@@ -40,7 +40,7 @@ export class Tab2Page {
         uType: uType,
         uCode: uCode,
         Email: Email,
-        propCode: sessionStorage.getItem("PROPERTY_CODE"),
+        propCode: localStorage.getItem("PROPERTY_CODE"),
       };
 
       this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
