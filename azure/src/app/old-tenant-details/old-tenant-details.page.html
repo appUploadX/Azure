@@ -10,8 +10,8 @@
 <ion-content class="card-background-page">
   <ion-card *ngFor="let res of users; let i = index">
     <ion-card-header>
-      <div *ngIf="res[i].tUpload == ''" class="img_old_tenant"></div>
-      <div *ngIf="res[i].tUpload != ''" class="img_old_tenant" [style.background-image]="'url(https://www.asi-ph.com/sandboxes/condominium/'+res[i].tUpload+')'"></div>
+      <div *ngIf="res[i].tUpload == null" class="img_old_tenant"></div>
+      <div *ngIf="res[i].tUpload != null" class="img_old_tenant" [style.background-image]="'url(https://www.asi-ph.com/sandboxes/condominium/'+res[i].tUpload+')'"></div>
       <ion-card-subtitle>{{res[i].fullname}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>

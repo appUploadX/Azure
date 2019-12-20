@@ -172,7 +172,7 @@ var Tab1Page = /** @class */ (function () {
     Tab1Page.prototype.openVisitorsInTabs = function () {
         // this.router.navigateByUrl('/tabs/tab1/visitors-details', { state: { uCode:unit_code, newCode: newCode, fullname: this.fullname, TUN: this.TUN}});
         if (this.hasTenant == "ActiveTenant") {
-            this.openToast("You have active tenant.");
+            this.openToast("<center>You have active tenant.</center>");
         }
         else {
             this.router.navigateByUrl('/tabs/tab1/visitors-details');
@@ -183,7 +183,7 @@ var Tab1Page = /** @class */ (function () {
     };
     Tab1Page.prototype.openAmenitiesInTabs = function () {
         if (this.hasTenant == "ActiveTenant") {
-            this.openToast("You have active tenant.");
+            this.openToast("<center>You have active tenant.</center>");
         }
         else {
             this.router.navigateByUrl('tabs/tab1/amenities-details');

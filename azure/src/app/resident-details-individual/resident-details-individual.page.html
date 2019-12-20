@@ -13,8 +13,8 @@
     <ion-card class="banner-card">
       <div class="banner-tenant">
         <div class="img_tenant_border">
-          <div *ngIf="res.tUpload == ''" class="img_tenant"></div>
-          <div *ngIf="res.tUpload != ''" class="img_tenant" [style.background-image]="'url(https://www.asi-ph.com/sandboxes/condominium/'+res.p_upload+')'"></div>
+          <div *ngIf="res.p_upload == null" class="img_tenant"></div>
+          <div *ngIf="res.p_upload != null" class="img_tenant" [style.background-image]="'url(https://www.asi-ph.com/sandboxes/condominium/'+res.p_upload+')'"></div>
         </div>
         <p class="tenant_name">{{res.p_name}} {{res.p_middle}} {{res.p_lastname}}</p>
         <p class="tenant_title">{{res.owner}} - {{res.pUnitCode}} </p>
