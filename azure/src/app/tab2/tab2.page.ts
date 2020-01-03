@@ -28,7 +28,13 @@ export class Tab2Page {
 
   ionViewWillEnter()
   {
+    this.uType = localStorage.getItem("TYPE_DATA");
+    this.uCode = localStorage.getItem("UNIT_CODE");
+    this.Email = localStorage.getItem("EMAIL");
+    this.Name = localStorage.getItem("FULLNAME");
     this.loadData(this.uType, this.uCode, this.Email);
+    console.log(localStorage, "xxxxx");
+
   }
 
   loadData(uType, uCode, Email)

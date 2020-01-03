@@ -10,6 +10,10 @@
 </ion-header>
 
 <ion-content class="card-background-page">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event,unit_code,property_code)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-card class="welcome-card"></ion-card>
   <div class="building_div"></div>
 

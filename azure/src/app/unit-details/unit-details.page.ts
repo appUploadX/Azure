@@ -24,33 +24,30 @@ export class UnitDetailsPage implements OnInit {
     this.loadData(this.unit_code, this.property_code);
   }
 
-  ionViewWillEnter()
-  {
+  ionViewWillEnter() {
     this.unit_code = localStorage.getItem("UNIT_CODE");
     this.property_code = localStorage.getItem("PROPERTY_CODE");
     console.log(localStorage);
     this.loadData(this.unit_code, this.property_code);
   }
 
-  openTenantDetailsInTabs(tenantCode, pUnitRoom){
-    this.router.navigateByUrl('/tabs/tab1/unit-details/tenant-details/'+tenantCode+'/'+pUnitRoom)
+  openTenantDetailsInTabs(tenantCode, pUnitRoom) {
+    this.router.navigateByUrl('/tabs/tab1/unit-details/tenant-details/' + tenantCode + '/' + pUnitRoom)
   }
 
   openResidentDetailsListInTabs(unit_code, condition, pUnitRoom) {
-    this.router.navigateByUrl('/tabs/tab1/unit-details/resident-details-list', {state: {unit_code: unit_code, condition: condition, pUnitRoom: pUnitRoom}}) 
+    this.router.navigateByUrl('/tabs/tab1/unit-details/resident-details-list', { state: { unit_code: unit_code, condition: condition, pUnitRoom: pUnitRoom } })
   }
 
   openOldTenantDetails(unit_code) {
-    this.router.navigateByUrl('/tabs/tab1/unit-details/old-tenant-details/'+ unit_code)
+    this.router.navigateByUrl('/tabs/tab1/unit-details/old-tenant-details/' + unit_code)
   }
 
   openParkingDetails(property_code, floorNo, roomNo, propertyBuilding) {
-    this.router.navigateByUrl('/tabs/tab1/unit-details/parking-details/'+property_code+'/'+floorNo+'/'+roomNo+'/'+propertyBuilding)
+    this.router.navigateByUrl('/tabs/tab1/unit-details/parking-details/' + property_code + '/' + floorNo + '/' + roomNo + '/' + propertyBuilding)
   }
 
-  loadData(unit_code, property_code)
-  {
-    
+  loadData(unit_code, property_code) {
     return new Promise(resolve => {
       let body = {
         action: 'userDetails',
@@ -58,12 +55,32 @@ export class UnitDetailsPage implements OnInit {
         property_code: property_code,
       };
 
-      this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data=>{
+      this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
         this.users = [];
         this.users.push(data['result']);
         resolve(true);
         console.log(data['result']);
       });
     });
+  }
+
+  doRefresh(event, unit_code, property_code) {
+    setTimeout(() => {
+      return new Promise(resolve => {
+        let body = {
+          action: 'userDetails',
+          unit_code: unit_code,
+          property_code: property_code,
+        };
+
+        this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+          this.users = [];
+          this.users.push(data['result']);
+          event.target.complete();
+          resolve(true);
+          console.log(data['result']);
+        });
+      });
+    }, 2000);
   }
 }
