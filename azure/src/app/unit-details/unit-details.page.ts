@@ -11,6 +11,7 @@ export class UnitDetailsPage implements OnInit {
   users: any = [];
   unit_code: string;
   property_code: string;
+  type_data: string;
   constructor(
     private postPvd: PostProvider,
     private router: Router,
@@ -20,6 +21,7 @@ export class UnitDetailsPage implements OnInit {
   ngOnInit() {
     this.unit_code = localStorage.getItem("UNIT_CODE");
     this.property_code = localStorage.getItem("PROPERTY_CODE");
+    this.type_data = localStorage.getItem("TYPE_DATA");
     console.log(localStorage);
     this.loadData(this.unit_code, this.property_code);
   }
@@ -27,6 +29,7 @@ export class UnitDetailsPage implements OnInit {
   ionViewWillEnter() {
     this.unit_code = localStorage.getItem("UNIT_CODE");
     this.property_code = localStorage.getItem("PROPERTY_CODE");
+    this.type_data = localStorage.getItem("TYPE_DATA");
     console.log(localStorage);
     this.loadData(this.unit_code, this.property_code);
   }

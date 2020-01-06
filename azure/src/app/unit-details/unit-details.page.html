@@ -73,8 +73,8 @@
           <ion-button expand="block" (click)="openTenantDetailsInTabs(res.tenantCode, res.pUnitRoom)" color="primary">Tenant Details</ion-button>
         </ion-col>
         <ion-col size="12">
-          <ion-button expand="block" *ngIf="res.tenantCode == null"  (click)="openResidentDetailsListInTabs(res.unit_code, 'Owner', res.pUnitRoom)" color="primary">Resident Details</ion-button>
-          <ion-button expand="block" *ngIf="res.tenantCode != null"  (click)="openResidentDetailsListInTabs(res.tenantCode, 'Tenant', res.pUnitRoom)" color="primary">Resident Details</ion-button>
+          <ion-button expand="block" *ngIf="type_data == 'Owner'"  (click)="openResidentDetailsListInTabs(res.unit_code, 'Owner', res.pUnitRoom)" color="primary">Resident Details</ion-button>
+          <ion-button expand="block" *ngIf="type_data == 'Tenant'"  (click)="openResidentDetailsListInTabs(res.tenantCode, 'Tenant', res.pUnitRoom)" color="primary">Resident Details</ion-button>
         </ion-col>
         <ion-col size="12">
           <ion-button expand="block" (click)="openParkingDetails(res.unit_code, res.floorNo, res.roomNo, res.propertyBuilding)" color="primary">Parking Details</ion-button>
