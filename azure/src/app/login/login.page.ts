@@ -32,14 +32,6 @@ export class LoginPage implements OnInit {
 	}
 
 	ionViewWillEnter() {
-		// console.log(localStorage.getItem("UNIT_CODE"));
-		// console.log(localStorage.getItem("TYPE_DATA"));
-		// console.log(localStorage.getItem("HAS_TENANT"));
-		// console.log(localStorage.getItem("NEW_CODE"));
-		// console.log(localStorage.getItem("FULLNAME"));
-		// console.log(localStorage.getItem("TUN"));
-		// console.log(localStorage.getItem("ROOM_NO"));
-		// console.log(localStorage.getItem("EMAIL"));
 		$(".required").trigger("reset");
 		$(".required").val("");
 

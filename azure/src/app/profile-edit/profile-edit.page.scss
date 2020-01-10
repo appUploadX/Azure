@@ -1,0 +1,79 @@
+@font-face {
+    font-family: 'Assistant_light';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(/assets/fonts/assistant-light.woff2);
+}
+@font-face {
+    font-family: 'Assistant_reg';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/assets/fonts/assistant-reg.woff2);
+}
+@font-face {
+    font-family: 'Assistant_semibold';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(/assets/fonts/assistant-semibold.woff2);
+}
+@font-face {
+    font-family: 'Assistant_bold';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(/assets/fonts/assistant-bold.woff2);
+}
+@font-face {
+    font-family: 'Assistant_extrabold';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url(/assets/fonts/assistant-extrabold.woff2);
+}
+
+.font_reg {
+    font-family: 'Assistant_reg';
+}
+.font_light {
+    font-family: 'Assistant_light';
+}
+.font_semibold {
+    font-family: 'Assistant_semibold';
+}
+.font_bold {
+    font-family: 'Assistant_bold';
+}
+.font_extrabold {
+    font-family: 'Assistant_extrabold';
+}
+
+ion-content {
+    font-family: 'Assistant_reg';
+}
+
+.title_header {
+    text-align: center;
+}
+
+.txtinput {
+    border: none;
+    width: 100%;
+    box-shadow: none;
+    transition: 0.2s;
+    height: 30px;
+    font-size: 12px;
+    padding-bottom: 0;
+}
+.txtinput:focus {
+    outline: 0;
+    box-shadow: none;
+    border-bottom: 2px solid rgb(22, 127, 247);
+}
+
+.btn_close {
+    position: absolute;
+    right: 0;
+}

@@ -1,0 +1,142 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_header">Edit Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="btn_close" (click)="closeModal()">
+        Cancel
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="card-background-page" *ngFor="let res of Data">
+  <ion-grid *ngIf="uType == 'Owner'">
+    <ion-row>
+      <ion-col size="12" class="lineborder">
+        <ion-item>
+          <input type="hidden" value="{{res.id}}" id="user_id">
+          <ion-label position="stacked">Name</ion-label>
+          <ion-input required type="text" class="txtinput" value="{{res.fullname}}" id="name"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" class="lineborder">
+        <ion-item>
+          <ion-label position="stacked">Gender</ion-label>
+          <ion-select name="" id="gender">
+            <ion-select-option value="Male" *ngIf="res.pGender == 'Male'" selected>Male</ion-select-option>
+            <ion-select-option value="Male" *ngIf="res.pGender != 'Male'">Male</ion-select-option>
+            <ion-select-option value="Female" *ngIf="res.pGender == 'Female'" selected>Female</ion-select-option>
+            <ion-select-option value="Female" *ngIf="res.pGender != 'Female'">Female</ion-select-option>
+          </ion-select>
+          <!-- <input type="text" class="txtinput" value="{{res.pGender}}"> -->
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12" class="lineborder">
+        <ion-item>
+          <ion-label position="stacked">Occupation</ion-label>
+          <ion-input type="text" class="txtinput" value="{{res.pOccupation}}" id="occupation"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12" class="lineborder">
+        <ion-item>
+          <ion-label position="stacked">Date of Birth</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD" class="txtinput" value="{{res.pDate}}" id="bday"></ion-datetime>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12" class="lineborder">
+        <ion-item>
+          <ion-label position="stacked">Address</ion-label>
+          <ion-input type="text" class="txtinput" value="{{res.Address}}" id="address"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12" class="lineborder">
+        <ion-item>
+          <ion-label position="stacked">Nationality</ion-label>
+          <ion-input type="text" class="txtinput" value="{{res.pNationality}}" id="nationality"></ion-input>
+        </ion-item>
+      </ion-col>
+
+
+      <ion-col size="12" class="lineborder">
+        <ion-item>
+          <ion-label position="stacked">Country</ion-label>
+          <ion-input type="text" class="txtinput" value="{{res.pCountry}}" id="country"></ion-input>
+        </ion-item>
+      </ion-col>
+      
+      <ion-col size="12" class="pt-0">
+        <ion-button color="primary" expand="block" (click)="saveData()">Save</ion-button>
+      </ion-col>
+      
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="uType == 'Tenant'">
+    <ion-row>
+      <ion-col size="12" class="lineborder">
+        <ion-item>
+          <input type="hidden" value="{{res.id}}" id="user_id">
+          <ion-label position="stacked">Name</ion-label>
+          <ion-input required type="text" class="txtinput" value="{{res.fullname}}" id="name"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" class="lineborder">
+        <ion-item>
+          <ion-label position="stacked">Gender</ion-label>
+          <ion-select name="" id="gender">
+            <ion-select-option value="Male" *ngIf="res.tGender == 'Male'" selected>Male</ion-select-option>
+            <ion-select-option value="Male" *ngIf="res.tGender != 'Male'">Male</ion-select-option>
+            <ion-select-option value="Female" *ngIf="res.tGender == 'Female'" selected>Female</ion-select-option>
+            <ion-select-option value="Female" *ngIf="res.tGender != 'Female'">Female</ion-select-option>
+          </ion-select>
+          <!-- <input type="text" class="txtinput" value="{{res.pGender}}"> -->
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12" class="lineborder">
+        <ion-item>
+          <ion-label position="stacked">Occupation</ion-label>
+          <ion-input type="text" class="txtinput" value="{{res.tOccupation}}" id="occupation"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12" class="lineborder">
+        <ion-item>
+          <ion-label position="stacked">Date of Birth</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD" class="txtinput" value="{{res.tDate}}" id="bday"></ion-datetime>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12" class="lineborder">
+        <ion-item>
+          <ion-label position="stacked">Address</ion-label>
+          <ion-input type="text" class="txtinput" value="{{res.tAddress}}" id="address"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12" class="lineborder">
+        <ion-item>
+          <ion-label position="stacked">Nationality</ion-label>
+          <ion-input type="text" class="txtinput" value="{{res.tNationality}}" id="nationality"></ion-input>
+        </ion-item>
+      </ion-col>
+
+
+      <ion-col size="12" class="lineborder">
+        <ion-item>
+          <ion-label position="stacked">Country</ion-label>
+          <ion-input type="text" class="txtinput" value="{{res.tCountry}}" id="country"></ion-input>
+        </ion-item>
+      </ion-col>
+      
+      <ion-col size="12" class="pt-0">
+        <ion-button color="primary" expand="block" (click)="saveData()">Save</ion-button>
+      </ion-col>
+      
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { PostProvider } from '../../providers/post-providers';
+import { Subject } from 'rxjs/subject';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-tab1',
@@ -18,6 +20,18 @@ export class Tab1Page {
   hasTenant: string;
   fullname: string;
   TUN: string;
+  Siglo: string;
+  
+  valin: any;
+  private refreshSubject: Subject<void>;
+  private refreshObservable: Observable<void>;
+  refreshSubscription: any;
+  private timeoutId: any;
+
+  // private initRefresh() {
+  //   this.timeoutId = setInterval(() => this.checkFunction(), 1000);
+  // }
+  
   constructor(
     private postPvd: PostProvider,
     private router: Router,
@@ -34,6 +48,8 @@ export class Tab1Page {
     this.newCode = localStorage.getItem("NEW_CODE");
     this.fullname = localStorage.getItem("FULLNAME");
     this.TUN = localStorage.getItem("TUN");
+    this.Siglo = localStorage.getItem("SIGLO");
+    
   }
 
   ionViewWillEnter() {
@@ -45,7 +61,61 @@ export class Tab1Page {
     this.newCode = localStorage.getItem("NEW_CODE");
     this.fullname = localStorage.getItem("FULLNAME");
     this.TUN = localStorage.getItem("TUN");
+    this.Siglo = localStorage.getItem("SIGLO");
+
+    // this.valin = setInterval(() => {
+    //   this.checkFunction();
+    // }, 10000);
   }
+
+  // checkFunction() {
+  //   return new Promise(resolve => {
+  //     let body = {
+  //       action: 'checkLocal',
+  //       new_code: localStorage.getItem("NEW_CODE"),
+  //       email: localStorage.getItem("EMAIL"),
+  //       type: localStorage.getItem("TYPE_DATA"),
+  //     };
+
+  //     this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+  //       if (data['uType'] == "Owner") {
+  //         localStorage.setItem("HAS_TENANT", data['hasTenant']);
+  //         localStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
+  //         localStorage.setItem("TERMS", data['dataX'][0]['pTermsAndCondition']);
+  //         localStorage.setItem("SIGLO", data['dataX'][0]['sigloType']);
+  //       }
+  //       else if (data['uType'] == "Tenant") {
+  //         localStorage.setItem("HAS_TENANT", data['hasTenant']);
+  //         localStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
+  //         localStorage.setItem("TERMS", data['dataX'][0]['tTermsAndCondition']);
+  //         localStorage.setItem("SIGLO", data['dataX'][0]['sigloType']);
+  //       }
+  //       console.log(localStorage);
+  //     })
+  //   });
+  // }
+
+  // ionViewDidEnter() {
+  //   // this.initRefresh();
+  //   this.refreshSubject = new Subject<void>();
+  //   this.refreshObservable = this.refreshSubject.asObservable();
+  //   this.refreshSubscription = this.refreshObservable.subscribe(() => this.checkFunction());
+  // }
+  
+  // ionViewDidLeave() {
+  //   // this.stopRefresh();
+  //   this.refreshSubscription.unsubscribe();
+  // }
+
+  // private stopRefresh() {
+  //   clearInterval(this.timeoutId);
+  // }
+
+  // ionViewWillLeave() {
+  //   clearInterval(this.valin);
+  //   clearInterval(this.valin);
+  // }
+
 
   async openToast(msg) {
     const toast = await this.toastController.create({
@@ -68,7 +138,13 @@ export class Tab1Page {
       this.openToast("<center>You have active tenant.</center>");
     }
     else {
-      this.router.navigateByUrl('/tabs/tab1/visitors-details');
+      if (this.Siglo != "On") {
+        this.router.navigateByUrl('/tabs/tab1/visitors-details');
+      }
+      else {
+        this.openToast("<center>Your unit is under by Siglo.</center>");
+      }
+
     }
   }
 
@@ -81,7 +157,12 @@ export class Tab1Page {
       this.openToast("<center>You have active tenant.</center>");
     }
     else {
-      this.router.navigateByUrl('tabs/tab1/amenities-details')
+      if (this.Siglo != "On") {
+        this.router.navigateByUrl('tabs/tab1/amenities-details')
+      }
+      else {
+        this.openToast("<center>Your unit is under by Siglo.</center>");
+      }
     }
   }
 

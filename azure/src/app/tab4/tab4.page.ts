@@ -118,6 +118,9 @@ export class Tab4Page implements OnInit {
             localStorage.setItem("ROOM_NO", data['ROOM_NO']);
             localStorage.setItem("EMAIL", data['dataX']['EmailAddress']);
 
+            localStorage.setItem("BEDROOM", data['unit_details']['bedroom']);
+            localStorage.setItem("UNITSIZE", data['unit_details']['unitsize']);
+            
             localStorage.setItem("PROPERTY_CODE", data['dataX']['property_code']);
             localStorage.setItem("SIGLO", data['dataX']['sigloType']);
             this.router.navigateByUrl('/tabs/tab1');
@@ -132,6 +135,9 @@ export class Tab4Page implements OnInit {
             localStorage.setItem("TUN", data['TUN']);
             localStorage.setItem("ROOM_NO", data['ROOM_NO']);
             localStorage.setItem("EMAIL", data['dataX']['tEmailAddress']);
+
+            localStorage.setItem("BEDROOM", data['unit_details']['bedroom']);
+            localStorage.setItem("UNITSIZE", data['unit_details']['unitsize']);
 
             localStorage.setItem("PROPERTY_CODE", data['propC']['property_code']);
             localStorage.setItem("SIGLO", data['dataX']['sigloType']);

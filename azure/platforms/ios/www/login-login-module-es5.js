@@ -108,14 +108,6 @@ var LoginPage = /** @class */ (function () {
     };
     LoginPage.prototype.ionViewWillEnter = function () {
         var _this = this;
-        // console.log(localStorage.getItem("UNIT_CODE"));
-        // console.log(localStorage.getItem("TYPE_DATA"));
-        // console.log(localStorage.getItem("HAS_TENANT"));
-        // console.log(localStorage.getItem("NEW_CODE"));
-        // console.log(localStorage.getItem("FULLNAME"));
-        // console.log(localStorage.getItem("TUN"));
-        // console.log(localStorage.getItem("ROOM_NO"));
-        // console.log(localStorage.getItem("EMAIL"));
         jquery__WEBPACK_IMPORTED_MODULE_5__(".required").trigger("reset");
         jquery__WEBPACK_IMPORTED_MODULE_5__(".required").val("");
         console.log(localStorage);

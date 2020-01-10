@@ -14,7 +14,7 @@ var map = {
 	],
 	"./amenity-book-now/amenity-book-now.module": [
 		"./src/app/amenity-book-now/amenity-book-now.module.ts",
-		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5ef60644",
+		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5d89d616",
 		"amenity-book-now-amenity-book-now-module"
 	],
 	"./amenity-booking-details/amenity-booking-details.module": [
@@ -31,7 +31,7 @@ var map = {
 	],
 	"./change-password/change-password.module": [
 		"./src/app/change-password/change-password.module.ts",
-		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5ef60644",
+		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5d89d616",
 		"change-password-change-password-module"
 	],
 	"./notice-main-list/notice-main-list.module": [
@@ -57,6 +57,12 @@ var map = {
 	"./profile-details/profile-details.module": [
 		"./src/app/profile-details/profile-details.module.ts",
 		"profile-details-profile-details-module"
+	],
+	"./profile-edit/profile-edit.module": [
+		"./src/app/profile-edit/profile-edit.module.ts",
+		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5d89d616",
+		"default~profile-edit-profile-edit-module~tabs-tabs-module",
+		"profile-edit-profile-edit-module"
 	],
 	"./resident-details-individual/resident-details-individual.module": [
 		"./src/app/resident-details-individual/resident-details-individual.module.ts",
@@ -89,7 +95,7 @@ var map = {
 	],
 	"./visitor-add-request/visitor-add-request.module": [
 		"./src/app/visitor-add-request/visitor-add-request.module.ts",
-		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5ef60644",
+		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5d89d616",
 		"common",
 		"visitor-add-request-visitor-add-request-module"
 	],
@@ -577,11 +583,11 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     {
         path: '',
-        loadChildren: function () { return Promise.all(/*! import() | login-login-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5ef60644"), __webpack_require__.e("login-login-module")]).then(__webpack_require__.bind(null, /*! ./login/login.module */ "./src/app/login/login.module.ts")).then(function (m) { return m.LoginPageModule; }); }
+        loadChildren: function () { return Promise.all(/*! import() | login-login-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5d89d616"), __webpack_require__.e("login-login-module")]).then(__webpack_require__.bind(null, /*! ./login/login.module */ "./src/app/login/login.module.ts")).then(function (m) { return m.LoginPageModule; }); }
     },
     {
         path: '',
-        loadChildren: function () { return Promise.all(/*! import() | tabs-tabs-module */[__webpack_require__.e("default~tab4-tab4-module~tabs-tabs-module"), __webpack_require__.e("tabs-tabs-module")]).then(__webpack_require__.bind(null, /*! ./tabs/tabs.module */ "./src/app/tabs/tabs.module.ts")).then(function (m) { return m.TabsPageModule; }); }
+        loadChildren: function () { return Promise.all(/*! import() | tabs-tabs-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5d89d616"), __webpack_require__.e("default~tab4-tab4-module~tabs-tabs-module"), __webpack_require__.e("default~profile-edit-profile-edit-module~tabs-tabs-module"), __webpack_require__.e("tabs-tabs-module")]).then(__webpack_require__.bind(null, /*! ./tabs/tabs.module */ "./src/app/tabs/tabs.module.ts")).then(function (m) { return m.TabsPageModule; }); }
     },
     // { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
     { path: 'unit-details', loadChildren: './unit-details/unit-details.module#UnitDetailsPageModule' },
@@ -607,6 +613,7 @@ var routes = [
     { path: 'tab4', loadChildren: './tab4/tab4.module#Tab4PageModule' },
     { path: 'change-password', loadChildren: './change-password/change-password.module#ChangePasswordPageModule' },
     { path: 'terms-and-conditions', loadChildren: './terms-and-conditions/terms-and-conditions.module#TermsAndConditionsPageModule' },
+    { path: 'profile-edit', loadChildren: './profile-edit/profile-edit.module#ProfileEditPageModule' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
