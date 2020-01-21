@@ -115,6 +115,7 @@ let VisitorAddRequestPage = class VisitorAddRequestPage {
         this.ErrorDateTime = 0;
         this.ErrorDateTimeArr = 0;
         this.ErrorDateTimeDep = 0;
+        this.counterSave = 0;
     }
     ngOnInit() {
         console.log(history.state);
@@ -547,71 +548,75 @@ let VisitorAddRequestPage = class VisitorAddRequestPage {
                     var expTimeDep = this.vtDepartureTime.split("T");
                     var expTimeSplitDep = expTimeDep[1].split(":");
                     var dateDep = expDateDep[0] + "T" + expTimeSplitDep[0] + ":" + expTimeSplitDep[1] + ":00.000+08:00";
-                    return new Promise(resolve => {
-                        let body = {
-                            action: 'checkRequestAll',
-                            unit_code: this.uCode,
-                            newCode: this.newCode,
-                            ArrTime: dateArr,
-                            DepTime: dateDep,
-                        };
-                        this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
-                            if (data['status'] == 'Allowed') {
-                                this.loadingControl.create({
-                                    message: "Loading, please wait....."
-                                }).then((overlay => {
-                                    this.loading = overlay,
-                                        this.loading.present();
-                                }));
-                                return new Promise(resolve => {
-                                    let body = {
-                                        action: 'addVisitors',
-                                        vuVisitorType: this.label,
-                                        vtUnitOwner: this.fullname,
-                                        vtTowerUnit: this.TUN,
-                                        vtCarparkSlotNo: this.vtCarparkSlotNo,
-                                        vtGuestOnSite: this.vtGuestOnSite,
-                                        vtGuestContact: this.vtGuestContact,
-                                        vtArrivalDate: this.vtArrivalDate,
-                                        vtArrivalTime: this.vtArrivalTime,
-                                        vtDepartureDate: this.vtDepartureDate,
-                                        vtDepartureTime: this.vtDepartureTime,
-                                        vuNamePrimaryVisitor: this.vtPrimaryVisitorName,
-                                        vtPrimaryVisitorNationality: this.vtPrimaryVisitorNationality,
-                                        vtPrimaryVisitorIDProofDetails: this.vtPrimaryVisitorIDProofDetails,
-                                        vtPrimaryVisitorContactNo: this.vtPrimaryVisitorContactNo,
-                                        vtPrimaryVisitorEmailAddress: this.vtPrimaryVisitorEmailAddress,
-                                        vtPrimaryVisitorAddress: this.vtPrimaryVisitorAddress,
-                                        vtAdditionalVisitorCount: this.vtAdditionalVisitorCount,
-                                        vtVehicleDetailsCount: this.vtVehicleDetailsCount,
-                                        vtRemarks: this.vtRemarks,
-                                        vtRemarksByAdmin: this.vtRemarksByAdmin,
-                                        condition: this.condition,
-                                        vuUnitCode: this.uCode,
-                                        ownerCode: this.newCode,
-                                        propCode: this.propCode,
-                                        vuVisitorTypeCode: this.vtCode,
-                                        avName: this.visitC,
-                                        vehicles: this.vehicles,
-                                        theEmail: this.EMAIL,
-                                    };
-                                    this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
-                                        if (data['status'] == "Success") {
-                                            this.loading.dismiss();
-                                            this.openToast("<center>Data succesfully saved!</center>");
-                                            setTimeout(() => { this.router.navigateByUrl('/tabs/tab1/visitors-details'); }, 2000);
-                                        }
+                    if (this.counterSave == 0) {
+                        this.counterSave += 1;
+                        return new Promise(resolve => {
+                            let body = {
+                                action: 'checkRequestAll',
+                                unit_code: this.uCode,
+                                newCode: this.newCode,
+                                ArrTime: dateArr,
+                                DepTime: dateDep,
+                            };
+                            this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+                                if (data['status'] == 'Allowed') {
+                                    this.loadingControl.create({
+                                        message: "Loading, please wait....."
+                                    }).then((overlay => {
+                                        this.loading = overlay,
+                                            this.loading.present();
+                                    }));
+                                    return new Promise(resolve => {
+                                        let body = {
+                                            action: 'addVisitors',
+                                            vuVisitorType: this.label,
+                                            vtUnitOwner: this.fullname,
+                                            vtTowerUnit: this.TUN,
+                                            vtCarparkSlotNo: this.vtCarparkSlotNo,
+                                            vtGuestOnSite: this.vtGuestOnSite,
+                                            vtGuestContact: this.vtGuestContact,
+                                            vtArrivalDate: this.vtArrivalDate,
+                                            vtArrivalTime: this.vtArrivalTime,
+                                            vtDepartureDate: this.vtDepartureDate,
+                                            vtDepartureTime: this.vtDepartureTime,
+                                            vuNamePrimaryVisitor: this.vtPrimaryVisitorName,
+                                            vtPrimaryVisitorNationality: this.vtPrimaryVisitorNationality,
+                                            vtPrimaryVisitorIDProofDetails: this.vtPrimaryVisitorIDProofDetails,
+                                            vtPrimaryVisitorContactNo: this.vtPrimaryVisitorContactNo,
+                                            vtPrimaryVisitorEmailAddress: this.vtPrimaryVisitorEmailAddress,
+                                            vtPrimaryVisitorAddress: this.vtPrimaryVisitorAddress,
+                                            vtAdditionalVisitorCount: this.vtAdditionalVisitorCount,
+                                            vtVehicleDetailsCount: this.vtVehicleDetailsCount,
+                                            vtRemarks: this.vtRemarks,
+                                            vtRemarksByAdmin: this.vtRemarksByAdmin,
+                                            condition: this.condition,
+                                            vuUnitCode: this.uCode,
+                                            ownerCode: this.newCode,
+                                            propCode: this.propCode,
+                                            vuVisitorTypeCode: this.vtCode,
+                                            avName: this.visitC,
+                                            vehicles: this.vehicles,
+                                            theEmail: this.EMAIL,
+                                        };
+                                        this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+                                            if (data['status'] == "Success") {
+                                                this.loading.dismiss();
+                                                this.openToast("<center>Data succesfully saved!</center>");
+                                                setTimeout(() => { this.router.navigateByUrl('/tabs/tab1/visitors-details'); }, 2000);
+                                            }
+                                        });
                                     });
-                                });
-                                // this.openToast('<center>Allowed.</center>');
-                            }
-                            else {
-                                this.openToast('<center>Error! You already have a guest/s on these date and time.</center>');
-                            }
-                            // resolve(true);
-                            console.log(data['status']);
+                                    // this.openToast('<center>Allowed.</center>');
+                                }
+                                else {
+                                    this.openToast('<center>Error! You already have a guest/s on these date and time.</center>');
+                                }
+                                // resolve(true);
+                                console.log(data['status']);
+                            });
                         });
-                    });
+                    }
+                    this.counterSave += 1;
                 }
                 else {
                     this.openToast('<center>Error! You already have a guest/s on these date and time.</center>');

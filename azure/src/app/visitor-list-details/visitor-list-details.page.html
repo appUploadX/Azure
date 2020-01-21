@@ -12,7 +12,7 @@
     <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
-  
+
   <ion-grid class="nopad">
     <ion-row>
       <ion-col size="12" class="nopad">
@@ -170,19 +170,19 @@
           </ion-col>
         </ion-row>
         <ion-row class="v-row">
-            <ion-col size="3">
-              <p>{{res.vuNamePrimaryVisitor}} (Primary)</p>
-            </ion-col>
-            <ion-col size="3">
-              <p>Adult</p>
-            </ion-col>
-            <ion-col size="3">
-              <p>{{res.vuCheckInPrimaryDate}}</p>
-            </ion-col>
-            <ion-col size="3">
-              <p>{{res.vuCheckOutPrimaryDate}}</p>
-            </ion-col>
-          </ion-row>
+          <ion-col size="3">
+            <p>{{res.vuNamePrimaryVisitor}} (Primary)</p>
+          </ion-col>
+          <ion-col size="3">
+            <p>Adult</p>
+          </ion-col>
+          <ion-col size="3">
+            <p>{{res.vuCheckInPrimaryDate}}</p>
+          </ion-col>
+          <ion-col size="3">
+            <p>{{res.vuCheckOutPrimaryDate}}</p>
+          </ion-col>
+        </ion-row>
         <ion-row class="v-row" *ngFor="let rex of dataAdd; let i = index">
           <ion-col size="3">
             <p>{{rex[i].avName}}</p>
@@ -279,8 +279,15 @@
             <p class="text-right">06/11/19 4:00 PM</p> -->
           </ion-col>
         </ion-row>
+
       </ion-grid>
     </div>
+  </div>
+  <div class="v_personal btns" *ngIf="res.pdf_path != ''" style="text-align: center;">
+    <ion-chip class="ion_chip" (click)="downloadGAF(res.pdf_path)">
+      <ion-icon name="download"></ion-icon>
+      <ion-label>Download GAF</ion-label>
+    </ion-chip>
   </div>
 
   <ion-grid class="btns" *ngIf="res.vuRequestStatus != 'Cancelled'">

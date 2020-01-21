@@ -118,6 +118,7 @@ var VisitorAddRequestPage = /** @class */ (function () {
         this.ErrorDateTime = 0;
         this.ErrorDateTimeArr = 0;
         this.ErrorDateTimeDep = 0;
+        this.counterSave = 0;
     }
     VisitorAddRequestPage.prototype.ngOnInit = function () {
         console.log(history.state);
@@ -572,71 +573,75 @@ var VisitorAddRequestPage = /** @class */ (function () {
                     var expTimeDep = this.vtDepartureTime.split("T");
                     var expTimeSplitDep = expTimeDep[1].split(":");
                     var dateDep = expDateDep[0] + "T" + expTimeSplitDep[0] + ":" + expTimeSplitDep[1] + ":00.000+08:00";
-                    return new Promise(function (resolve) {
-                        var body = {
-                            action: 'checkRequestAll',
-                            unit_code: _this.uCode,
-                            newCode: _this.newCode,
-                            ArrTime: dateArr,
-                            DepTime: dateDep,
-                        };
-                        _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
-                            if (data['status'] == 'Allowed') {
-                                _this.loadingControl.create({
-                                    message: "Loading, please wait....."
-                                }).then((function (overlay) {
-                                    _this.loading = overlay,
-                                        _this.loading.present();
-                                }));
-                                return new Promise(function (resolve) {
-                                    var body = {
-                                        action: 'addVisitors',
-                                        vuVisitorType: _this.label,
-                                        vtUnitOwner: _this.fullname,
-                                        vtTowerUnit: _this.TUN,
-                                        vtCarparkSlotNo: _this.vtCarparkSlotNo,
-                                        vtGuestOnSite: _this.vtGuestOnSite,
-                                        vtGuestContact: _this.vtGuestContact,
-                                        vtArrivalDate: _this.vtArrivalDate,
-                                        vtArrivalTime: _this.vtArrivalTime,
-                                        vtDepartureDate: _this.vtDepartureDate,
-                                        vtDepartureTime: _this.vtDepartureTime,
-                                        vuNamePrimaryVisitor: _this.vtPrimaryVisitorName,
-                                        vtPrimaryVisitorNationality: _this.vtPrimaryVisitorNationality,
-                                        vtPrimaryVisitorIDProofDetails: _this.vtPrimaryVisitorIDProofDetails,
-                                        vtPrimaryVisitorContactNo: _this.vtPrimaryVisitorContactNo,
-                                        vtPrimaryVisitorEmailAddress: _this.vtPrimaryVisitorEmailAddress,
-                                        vtPrimaryVisitorAddress: _this.vtPrimaryVisitorAddress,
-                                        vtAdditionalVisitorCount: _this.vtAdditionalVisitorCount,
-                                        vtVehicleDetailsCount: _this.vtVehicleDetailsCount,
-                                        vtRemarks: _this.vtRemarks,
-                                        vtRemarksByAdmin: _this.vtRemarksByAdmin,
-                                        condition: _this.condition,
-                                        vuUnitCode: _this.uCode,
-                                        ownerCode: _this.newCode,
-                                        propCode: _this.propCode,
-                                        vuVisitorTypeCode: _this.vtCode,
-                                        avName: _this.visitC,
-                                        vehicles: _this.vehicles,
-                                        theEmail: _this.EMAIL,
-                                    };
-                                    _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
-                                        if (data['status'] == "Success") {
-                                            _this.loading.dismiss();
-                                            _this.openToast("<center>Data succesfully saved!</center>");
-                                            setTimeout(function () { _this.router.navigateByUrl('/tabs/tab1/visitors-details'); }, 2000);
-                                        }
+                    if (this.counterSave == 0) {
+                        this.counterSave += 1;
+                        return new Promise(function (resolve) {
+                            var body = {
+                                action: 'checkRequestAll',
+                                unit_code: _this.uCode,
+                                newCode: _this.newCode,
+                                ArrTime: dateArr,
+                                DepTime: dateDep,
+                            };
+                            _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
+                                if (data['status'] == 'Allowed') {
+                                    _this.loadingControl.create({
+                                        message: "Loading, please wait....."
+                                    }).then((function (overlay) {
+                                        _this.loading = overlay,
+                                            _this.loading.present();
+                                    }));
+                                    return new Promise(function (resolve) {
+                                        var body = {
+                                            action: 'addVisitors',
+                                            vuVisitorType: _this.label,
+                                            vtUnitOwner: _this.fullname,
+                                            vtTowerUnit: _this.TUN,
+                                            vtCarparkSlotNo: _this.vtCarparkSlotNo,
+                                            vtGuestOnSite: _this.vtGuestOnSite,
+                                            vtGuestContact: _this.vtGuestContact,
+                                            vtArrivalDate: _this.vtArrivalDate,
+                                            vtArrivalTime: _this.vtArrivalTime,
+                                            vtDepartureDate: _this.vtDepartureDate,
+                                            vtDepartureTime: _this.vtDepartureTime,
+                                            vuNamePrimaryVisitor: _this.vtPrimaryVisitorName,
+                                            vtPrimaryVisitorNationality: _this.vtPrimaryVisitorNationality,
+                                            vtPrimaryVisitorIDProofDetails: _this.vtPrimaryVisitorIDProofDetails,
+                                            vtPrimaryVisitorContactNo: _this.vtPrimaryVisitorContactNo,
+                                            vtPrimaryVisitorEmailAddress: _this.vtPrimaryVisitorEmailAddress,
+                                            vtPrimaryVisitorAddress: _this.vtPrimaryVisitorAddress,
+                                            vtAdditionalVisitorCount: _this.vtAdditionalVisitorCount,
+                                            vtVehicleDetailsCount: _this.vtVehicleDetailsCount,
+                                            vtRemarks: _this.vtRemarks,
+                                            vtRemarksByAdmin: _this.vtRemarksByAdmin,
+                                            condition: _this.condition,
+                                            vuUnitCode: _this.uCode,
+                                            ownerCode: _this.newCode,
+                                            propCode: _this.propCode,
+                                            vuVisitorTypeCode: _this.vtCode,
+                                            avName: _this.visitC,
+                                            vehicles: _this.vehicles,
+                                            theEmail: _this.EMAIL,
+                                        };
+                                        _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
+                                            if (data['status'] == "Success") {
+                                                _this.loading.dismiss();
+                                                _this.openToast("<center>Data succesfully saved!</center>");
+                                                setTimeout(function () { _this.router.navigateByUrl('/tabs/tab1/visitors-details'); }, 2000);
+                                            }
+                                        });
                                     });
-                                });
-                                // this.openToast('<center>Allowed.</center>');
-                            }
-                            else {
-                                _this.openToast('<center>Error! You already have a guest/s on these date and time.</center>');
-                            }
-                            // resolve(true);
-                            console.log(data['status']);
+                                    // this.openToast('<center>Allowed.</center>');
+                                }
+                                else {
+                                    _this.openToast('<center>Error! You already have a guest/s on these date and time.</center>');
+                                }
+                                // resolve(true);
+                                console.log(data['status']);
+                            });
                         });
-                    });
+                    }
+                    this.counterSave += 1;
                 }
                 else {
                     this.openToast('<center>Error! You already have a guest/s on these date and time.</center>');

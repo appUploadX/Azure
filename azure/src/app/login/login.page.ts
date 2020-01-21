@@ -106,6 +106,10 @@ export class LoginPage implements OnInit {
 		toast.present();
 	}
 
+	openForgotPassword() {
+		this.router.navigateByUrl('/forgot-password');
+	}
+ 
 
 	onSubmit(user, pass) {
 		var count = 0;

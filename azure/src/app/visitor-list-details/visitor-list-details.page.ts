@@ -5,6 +5,12 @@ import { PostProvider } from 'src/providers/post-providers';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
+import { File } from '@ionic-native/file/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
+import { Platform } from '@ionic/angular';
+
 @Component({
 	selector: 'app-visitor-list-details',
 	templateUrl: './visitor-list-details.page.html',
@@ -46,6 +52,8 @@ export class VisitorListDetailsPage implements OnInit {
 	Type: String;
 
 	Siglo: String;
+
+	docPath: string;
 	constructor(
 		private postPvd: PostProvider,
 		private router: Router,
@@ -53,7 +61,11 @@ export class VisitorListDetailsPage implements OnInit {
 		private modalController: ModalController,
 		public alertController: AlertController,
 		public toastController: ToastController,
-
+		private platform: Platform,
+		private document: DocumentViewer,
+		private file: File,
+		private fileOpener: FileOpener,
+		private transfer: FileTransfer,
 	) { }
 
 	async openModal(vtTermsCondition) {
@@ -231,6 +243,75 @@ export class VisitorListDetailsPage implements OnInit {
 			});
 
 		}, 2000);
+	}
+
+
+	extToMimes = [
+		{ ext: 'pdf', MType: 'application/pdf' }
+	];
+
+	downloadGAF(name) {
+		const fileTransfer: FileTransferObject = this.transfer.create();
+		const url = 'https://www.azure-connect.com/pdf/' + name;
+
+		this.file.checkDir(this.file.externalRootDirectory, 'downloads')
+			.then(
+				// Directory exists, check for file with the same name
+				_ => this.file.checkFile(this.file.externalRootDirectory, 'downloads/' + name)
+					.then(_ => { 
+						alert("A file with the same name already exists!") 
+					})
+					// File does not exist yet, we can save normally
+					.catch(err =>
+						fileTransfer.download(url, this.file.externalRootDirectory + '/downloads/' + name).then((entry) => {
+							alert('File saved in:  ' + entry.nativeURL);
+						})
+							.catch((err) => {
+								alert('Error saving file: ' + err.message);
+							})
+					))
+			.catch(
+				// Directory does not exists, create a new one
+				err => this.file.createDir(this.file.externalRootDirectory, 'downloads', false)
+					.then(response => {
+						alert('New folder created:  ' + response.fullPath);
+						fileTransfer.download(url, this.file.externalRootDirectory + '/downloads/' + name).then((entry) => {
+							alert('File saved in : /downloads/' + name);
+						})
+							.catch((err) => {
+								alert('Error saving file:  ' + err.message);
+							});
+
+					}).catch(err => {
+						alert('It was not possible to create the dir "downloads". Err: ' + err.message);
+					})
+			);
+		console.log(url);
+
+
+
+
+		// fileTransfer.download(url, this.file.externalRootDirectory + name).then((entry) => {
+		// 	// this.fileOpener.open(entry.toURL(), this.getMimeByExt(name))
+		// 	// 	.then(() => this.openToast('File is opened'))
+		// 	// 	.catch(e => this.openToast('Error opening file'));
+
+		// 	this.openToast('File downloaded in '+this.file.externalRootDirectory + name);
+
+		// }, (error) => {
+		// 	console.log(error);
+
+		// });
+	}
+
+	getMimeByExt(name: any) {
+		var extention = name.split('.').pop();
+		for (let i = 0; i < this.extToMimes.length; i++) {
+			const element = this.extToMimes[i];
+			if (element.ext == extention) {
+				return element.MType;
+			}
+		}
 	}
 
 }

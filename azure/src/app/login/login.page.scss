@@ -87,6 +87,7 @@ ion-col div {
     color: #ffffff;
     border-radius: 24px;
     transition: 0.25s;
+    margin-bottom: 10px;
 }
 
 .box input[type = "text"]:focus, .box input[type = "password"]:focus {
@@ -117,6 +118,13 @@ ion-col div {
     border-radius: 2px;
     padding: 5px;
     text-align: center;
+}
+.forgotbtn {
+    margin-bottom: 15px;
+    width: 100%;
+    display: block;
+    text-decoration: underline;
+    color: #a0b1c5;
 }
   
   

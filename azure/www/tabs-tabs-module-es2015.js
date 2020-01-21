@@ -625,7 +625,7 @@ const routes = [
                 children: [
                     {
                         path: '',
-                        loadChildren: () => Promise.all(/*! import() | visitor-add-request-visitor-add-request-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5d89d616"), __webpack_require__.e("common"), __webpack_require__.e("visitor-add-request-visitor-add-request-module")]).then(__webpack_require__.bind(null, /*! ../visitor-add-request/visitor-add-request.module */ "./src/app/visitor-add-request/visitor-add-request.module.ts")).then(m => m.VisitorAddRequestPageModule)
+                        loadChildren: () => Promise.all(/*! import() | visitor-add-request-visitor-add-request-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~0da7d097"), __webpack_require__.e("common"), __webpack_require__.e("visitor-add-request-visitor-add-request-module")]).then(__webpack_require__.bind(null, /*! ../visitor-add-request/visitor-add-request.module */ "./src/app/visitor-add-request/visitor-add-request.module.ts")).then(m => m.VisitorAddRequestPageModule)
                     }
                 ]
             },
@@ -681,7 +681,7 @@ const routes = [
                 children: [
                     {
                         path: '',
-                        loadChildren: () => Promise.all(/*! import() | amenity-book-now-amenity-book-now-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5d89d616"), __webpack_require__.e("amenity-book-now-amenity-book-now-module")]).then(__webpack_require__.bind(null, /*! ../amenity-book-now/amenity-book-now.module */ "./src/app/amenity-book-now/amenity-book-now.module.ts")).then(m => m.AmenityBookNowPageModule)
+                        loadChildren: () => Promise.all(/*! import() | amenity-book-now-amenity-book-now-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~0da7d097"), __webpack_require__.e("amenity-book-now-amenity-book-now-module")]).then(__webpack_require__.bind(null, /*! ../amenity-book-now/amenity-book-now.module */ "./src/app/amenity-book-now/amenity-book-now.module.ts")).then(m => m.AmenityBookNowPageModule)
                     }
                 ]
             },
@@ -738,7 +738,7 @@ const routes = [
                 children: [
                     {
                         path: '',
-                        loadChildren: () => Promise.all(/*! import() | change-password-change-password-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5d89d616"), __webpack_require__.e("change-password-change-password-module")]).then(__webpack_require__.bind(null, /*! ../change-password/change-password.module */ "./src/app/change-password/change-password.module.ts")).then(m => m.ChangePasswordPageModule)
+                        loadChildren: () => Promise.all(/*! import() | change-password-change-password-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~0da7d097"), __webpack_require__.e("change-password-change-password-module")]).then(__webpack_require__.bind(null, /*! ../change-password/change-password.module */ "./src/app/change-password/change-password.module.ts")).then(m => m.ChangePasswordPageModule)
                     }
                 ]
             },

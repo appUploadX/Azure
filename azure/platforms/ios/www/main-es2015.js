@@ -14,7 +14,7 @@ var map = {
 	],
 	"./amenity-book-now/amenity-book-now.module": [
 		"./src/app/amenity-book-now/amenity-book-now.module.ts",
-		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5d89d616",
+		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~0da7d097",
 		"amenity-book-now-amenity-book-now-module"
 	],
 	"./amenity-booking-details/amenity-booking-details.module": [
@@ -31,8 +31,13 @@ var map = {
 	],
 	"./change-password/change-password.module": [
 		"./src/app/change-password/change-password.module.ts",
-		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5d89d616",
+		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~0da7d097",
 		"change-password-change-password-module"
+	],
+	"./forgot-password/forgot-password.module": [
+		"./src/app/forgot-password/forgot-password.module.ts",
+		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~0da7d097",
+		"forgot-password-forgot-password-module"
 	],
 	"./notice-main-list/notice-main-list.module": [
 		"./src/app/notice-main-list/notice-main-list.module.ts",
@@ -60,7 +65,7 @@ var map = {
 	],
 	"./profile-edit/profile-edit.module": [
 		"./src/app/profile-edit/profile-edit.module.ts",
-		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5d89d616",
+		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~0da7d097",
 		"default~profile-edit-profile-edit-module~tabs-tabs-module",
 		"profile-edit-profile-edit-module"
 	],
@@ -95,7 +100,7 @@ var map = {
 	],
 	"./visitor-add-request/visitor-add-request.module": [
 		"./src/app/visitor-add-request/visitor-add-request.module.ts",
-		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5d89d616",
+		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~0da7d097",
 		"common",
 		"visitor-add-request-visitor-add-request-module"
 	],
@@ -577,11 +582,11 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: '',
-        loadChildren: () => Promise.all(/*! import() | login-login-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5d89d616"), __webpack_require__.e("login-login-module")]).then(__webpack_require__.bind(null, /*! ./login/login.module */ "./src/app/login/login.module.ts")).then(m => m.LoginPageModule)
+        loadChildren: () => Promise.all(/*! import() | login-login-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~0da7d097"), __webpack_require__.e("login-login-module")]).then(__webpack_require__.bind(null, /*! ./login/login.module */ "./src/app/login/login.module.ts")).then(m => m.LoginPageModule)
     },
     {
         path: '',
-        loadChildren: () => Promise.all(/*! import() | tabs-tabs-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~login-login-~5d89d616"), __webpack_require__.e("default~tab4-tab4-module~tabs-tabs-module"), __webpack_require__.e("default~profile-edit-profile-edit-module~tabs-tabs-module"), __webpack_require__.e("tabs-tabs-module")]).then(__webpack_require__.bind(null, /*! ./tabs/tabs.module */ "./src/app/tabs/tabs.module.ts")).then(m => m.TabsPageModule)
+        loadChildren: () => Promise.all(/*! import() | tabs-tabs-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~0da7d097"), __webpack_require__.e("default~tab4-tab4-module~tabs-tabs-module"), __webpack_require__.e("default~profile-edit-profile-edit-module~tabs-tabs-module"), __webpack_require__.e("tabs-tabs-module")]).then(__webpack_require__.bind(null, /*! ./tabs/tabs.module */ "./src/app/tabs/tabs.module.ts")).then(m => m.TabsPageModule)
     },
     // { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
     { path: 'unit-details', loadChildren: './unit-details/unit-details.module#UnitDetailsPageModule' },
@@ -608,6 +613,7 @@ const routes = [
     { path: 'change-password', loadChildren: './change-password/change-password.module#ChangePasswordPageModule' },
     { path: 'terms-and-conditions', loadChildren: './terms-and-conditions/terms-and-conditions.module#TermsAndConditionsPageModule' },
     { path: 'profile-edit', loadChildren: './profile-edit/profile-edit.module#ProfileEditPageModule' },
+    { path: 'forgot-password', loadChildren: './forgot-password/forgot-password.module#ForgotPasswordPageModule' },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };

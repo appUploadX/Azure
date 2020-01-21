@@ -98,6 +98,8 @@ export class VisitorAddRequestPage implements OnInit {
 	private loading;
 	vtCode: string;
 
+	counterSave: number = 0;
+
 	constructor(
 		private modalController: ModalController,
 		private postPvd: PostProvider,
@@ -315,21 +317,21 @@ export class VisitorAddRequestPage implements OnInit {
 			var expTom = tom[0].split("/");
 
 			if (expTom[0].length == 1) {
-				var m = "0"+expTom[0];
+				var m = "0" + expTom[0];
 			}
 			else {
 				var m = expTom[0];
 			}
 
 			if (expTom[1].length == 1) {
-				var d = "0"+expTom[1];
+				var d = "0" + expTom[1];
 			}
 			else {
 				var d = expTom[1];
 			}
 
-			this.minDepTime = expTom[2]+"-"+m+"-"+d;
-			console.log( expTom[2]+"-"+m+"-"+d);
+			this.minDepTime = expTom[2] + "-" + m + "-" + d;
+			console.log(expTom[2] + "-" + m + "-" + d);
 		}
 
 		var date = expDate[0] + "T" + expTimeSplit[0] + ":" + expTimeSplit[1] + ":00.000+08:00";
@@ -608,79 +610,82 @@ export class VisitorAddRequestPage implements OnInit {
 					var expTimeSplitDep = expTimeDep[1].split(":");
 
 					var dateDep = expDateDep[0] + "T" + expTimeSplitDep[0] + ":" + expTimeSplitDep[1] + ":00.000+08:00";
+					if (this.counterSave == 0) {
+						this.counterSave += 1;
+						return new Promise(resolve => {
+							let body = {
+								action: 'checkRequestAll',
+								unit_code: this.uCode,
+								newCode: this.newCode,
+								ArrTime: dateArr,
+								DepTime: dateDep,
+							};
 
-					return new Promise(resolve => {
-						let body = {
-							action: 'checkRequestAll',
-							unit_code: this.uCode,
-							newCode: this.newCode,
-							ArrTime: dateArr,
-							DepTime: dateDep,
-						};
+							this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+								if (data['status'] == 'Allowed') {
 
-						this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
-							if (data['status'] == 'Allowed') {
+									this.loadingControl.create({
+										message: "Loading, please wait....."
+									}).then((overlay => {
+										this.loading = overlay,
+											this.loading.present()
+									}))
 
-								this.loadingControl.create({
-									message: "Loading, please wait....."
-								}).then((overlay => {
-									this.loading = overlay,
-										this.loading.present()
-								}))
+									return new Promise(resolve => {
+										let body = {
+											action: 'addVisitors',
+											vuVisitorType: this.label,
+											vtUnitOwner: this.fullname,
+											vtTowerUnit: this.TUN,
+											vtCarparkSlotNo: this.vtCarparkSlotNo,
+											vtGuestOnSite: this.vtGuestOnSite,
+											vtGuestContact: this.vtGuestContact,
+											vtArrivalDate: this.vtArrivalDate,
+											vtArrivalTime: this.vtArrivalTime,
+											vtDepartureDate: this.vtDepartureDate,
+											vtDepartureTime: this.vtDepartureTime,
+											vuNamePrimaryVisitor: this.vtPrimaryVisitorName,
+											vtPrimaryVisitorNationality: this.vtPrimaryVisitorNationality,
+											vtPrimaryVisitorIDProofDetails: this.vtPrimaryVisitorIDProofDetails,
+											vtPrimaryVisitorContactNo: this.vtPrimaryVisitorContactNo,
+											vtPrimaryVisitorEmailAddress: this.vtPrimaryVisitorEmailAddress,
+											vtPrimaryVisitorAddress: this.vtPrimaryVisitorAddress,
+											vtAdditionalVisitorCount: this.vtAdditionalVisitorCount,
+											vtVehicleDetailsCount: this.vtVehicleDetailsCount,
+											vtRemarks: this.vtRemarks,
+											vtRemarksByAdmin: this.vtRemarksByAdmin,
+											condition: this.condition,
+											vuUnitCode: this.uCode,
+											ownerCode: this.newCode,
+											propCode: this.propCode,
+											vuVisitorTypeCode: this.vtCode,
 
-								return new Promise(resolve => {
-									let body = {
-										action: 'addVisitors',
-										vuVisitorType: this.label,
-										vtUnitOwner: this.fullname,
-										vtTowerUnit: this.TUN,
-										vtCarparkSlotNo: this.vtCarparkSlotNo,
-										vtGuestOnSite: this.vtGuestOnSite,
-										vtGuestContact: this.vtGuestContact,
-										vtArrivalDate: this.vtArrivalDate,
-										vtArrivalTime: this.vtArrivalTime,
-										vtDepartureDate: this.vtDepartureDate,
-										vtDepartureTime: this.vtDepartureTime,
-										vuNamePrimaryVisitor: this.vtPrimaryVisitorName,
-										vtPrimaryVisitorNationality: this.vtPrimaryVisitorNationality,
-										vtPrimaryVisitorIDProofDetails: this.vtPrimaryVisitorIDProofDetails,
-										vtPrimaryVisitorContactNo: this.vtPrimaryVisitorContactNo,
-										vtPrimaryVisitorEmailAddress: this.vtPrimaryVisitorEmailAddress,
-										vtPrimaryVisitorAddress: this.vtPrimaryVisitorAddress,
-										vtAdditionalVisitorCount: this.vtAdditionalVisitorCount,
-										vtVehicleDetailsCount: this.vtVehicleDetailsCount,
-										vtRemarks: this.vtRemarks,
-										vtRemarksByAdmin: this.vtRemarksByAdmin,
-										condition: this.condition,
-										vuUnitCode: this.uCode,
-										ownerCode: this.newCode,
-										propCode: this.propCode,
-										vuVisitorTypeCode: this.vtCode,
+											avName: this.visitC,
+											vehicles: this.vehicles,
+											theEmail: this.EMAIL,
+										};
 
-										avName: this.visitC,
-										vehicles: this.vehicles,
-										theEmail: this.EMAIL,
-									};
+										this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+											if (data['status'] == "Success") {
+												this.loading.dismiss();
+												this.openToast("<center>Data succesfully saved!</center>");
+												setTimeout(() => { this.router.navigateByUrl('/tabs/tab1/visitors-details') }, 2000)
+											}
+										})
+									});
+									// this.openToast('<center>Allowed.</center>');
 
-									this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
-										if (data['status'] == "Success") {
-											this.loading.dismiss();
-											this.openToast("<center>Data succesfully saved!</center>");
-											setTimeout(() => { this.router.navigateByUrl('/tabs/tab1/visitors-details') }, 2000)
-										}
-									})
-								});
-								// this.openToast('<center>Allowed.</center>');
+								}
+								else {
+									this.openToast('<center>Error! You already have a guest/s on these date and time.</center>');
 
-							}
-							else {
-								this.openToast('<center>Error! You already have a guest/s on these date and time.</center>');
-
-							}
-							// resolve(true);
-							console.log(data['status']);
+								}
+								// resolve(true);
+								console.log(data['status']);
+							});
 						});
-					});
+					}
+					this.counterSave += 1;
 				}
 				else {
 					this.openToast('<center>Error! You already have a guest/s on these date and time.</center>');
