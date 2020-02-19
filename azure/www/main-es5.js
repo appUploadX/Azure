@@ -14,7 +14,7 @@ var map = {
 	],
 	"./amenity-book-now/amenity-book-now.module": [
 		"./src/app/amenity-book-now/amenity-book-now.module.ts",
-		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~0da7d097",
+		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~adbc2eec",
 		"amenity-book-now-amenity-book-now-module"
 	],
 	"./amenity-booking-details/amenity-booking-details.module": [
@@ -31,12 +31,12 @@ var map = {
 	],
 	"./change-password/change-password.module": [
 		"./src/app/change-password/change-password.module.ts",
-		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~0da7d097",
+		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~adbc2eec",
 		"change-password-change-password-module"
 	],
 	"./forgot-password/forgot-password.module": [
 		"./src/app/forgot-password/forgot-password.module.ts",
-		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~0da7d097",
+		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~adbc2eec",
 		"forgot-password-forgot-password-module"
 	],
 	"./notice-main-list/notice-main-list.module": [
@@ -65,7 +65,7 @@ var map = {
 	],
 	"./profile-edit/profile-edit.module": [
 		"./src/app/profile-edit/profile-edit.module.ts",
-		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~0da7d097",
+		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~adbc2eec",
 		"default~profile-edit-profile-edit-module~tabs-tabs-module",
 		"profile-edit-profile-edit-module"
 	],
@@ -100,7 +100,7 @@ var map = {
 	],
 	"./visitor-add-request/visitor-add-request.module": [
 		"./src/app/visitor-add-request/visitor-add-request.module.ts",
-		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~0da7d097",
+		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~adbc2eec",
 		"common",
 		"visitor-add-request-visitor-add-request-module"
 	],
@@ -116,6 +116,7 @@ var map = {
 	],
 	"./visitors-details/visitors-details.module": [
 		"./src/app/visitors-details/visitors-details.module.ts",
+		"default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~adbc2eec",
 		"visitors-details-visitors-details-module"
 	]
 };
@@ -588,11 +589,11 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     {
         path: '',
-        loadChildren: function () { return Promise.all(/*! import() | login-login-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~0da7d097"), __webpack_require__.e("login-login-module")]).then(__webpack_require__.bind(null, /*! ./login/login.module */ "./src/app/login/login.module.ts")).then(function (m) { return m.LoginPageModule; }); }
+        loadChildren: function () { return Promise.all(/*! import() | login-login-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~adbc2eec"), __webpack_require__.e("login-login-module")]).then(__webpack_require__.bind(null, /*! ./login/login.module */ "./src/app/login/login.module.ts")).then(function (m) { return m.LoginPageModule; }); }
     },
     {
         path: '',
-        loadChildren: function () { return Promise.all(/*! import() | tabs-tabs-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~0da7d097"), __webpack_require__.e("default~tab4-tab4-module~tabs-tabs-module"), __webpack_require__.e("default~profile-edit-profile-edit-module~tabs-tabs-module"), __webpack_require__.e("tabs-tabs-module")]).then(__webpack_require__.bind(null, /*! ./tabs/tabs.module */ "./src/app/tabs/tabs.module.ts")).then(function (m) { return m.TabsPageModule; }); }
+        loadChildren: function () { return Promise.all(/*! import() | tabs-tabs-module */[__webpack_require__.e("default~amenity-book-now-amenity-book-now-module~change-password-change-password-module~forgot-passw~adbc2eec"), __webpack_require__.e("default~tab4-tab4-module~tabs-tabs-module"), __webpack_require__.e("default~profile-edit-profile-edit-module~tabs-tabs-module"), __webpack_require__.e("tabs-tabs-module")]).then(__webpack_require__.bind(null, /*! ./tabs/tabs.module */ "./src/app/tabs/tabs.module.ts")).then(function (m) { return m.TabsPageModule; }); }
     },
     // { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
     { path: 'unit-details', loadChildren: './unit-details/unit-details.module#UnitDetailsPageModule' },
@@ -666,6 +667,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
 /* harmony import */ var rxjs_observable_timer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/observable/timer */ "./node_modules/rxjs-compat/_esm5/observable/timer.js");
+/* harmony import */ var _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/app-version/ngx */ "./node_modules/@ionic-native/app-version/ngx/index.js");
+/* harmony import */ var _providers_post_providers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../providers/post-providers */ "./src/providers/post-providers.ts");
+
+
 
 
 
@@ -673,10 +678,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(platform, splashScreen, statusBar) {
+    function AppComponent(platform, splashScreen, statusBar, 
+    //CheckVer
+    appVersion, postPvd, alertController) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
+        this.appVersion = appVersion;
+        this.postPvd = postPvd;
+        this.alertController = alertController;
         this.showSplash = true;
         this.initializeApp();
     }
@@ -686,12 +696,75 @@ var AppComponent = /** @class */ (function () {
             _this.statusBar.styleDefault();
             _this.splashScreen.hide();
             Object(rxjs_observable_timer__WEBPACK_IMPORTED_MODULE_5__["timer"])(3000).subscribe(function () { return _this.showSplash = false; });
+            _this.appVersion.getVersionNumber().then(function (versionNumber) {
+                _this.AppVer = versionNumber;
+                if (_this.platform.is('android')) {
+                    var devPlat = 'android';
+                }
+                if (_this.platform.is('ios')) {
+                    var devPlat = 'ios';
+                }
+                if (versionNumber != undefined) {
+                    return new Promise(function (resolve) {
+                        var body = {
+                            action: 'checkVersion',
+                            currentVersion: versionNumber,
+                            devPlat: devPlat,
+                        };
+                        _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
+                            if (data['platform'] == 'android') {
+                                if (data['updated'] == 'no') {
+                                    // alert(JSON.stringify(data));
+                                    _this.presentAlertConfirm();
+                                }
+                            }
+                        });
+                    });
+                }
+            }).catch(function (err) {
+                console.log(err);
+            });
+        });
+    };
+    AppComponent.prototype.presentAlertConfirm = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            header: 'The app needs to be updated before you use Azure-Connect app.',
+                            backdropDismiss: false,
+                            // message: 'Message <strong>text</strong>!!!',
+                            buttons: [
+                                {
+                                    text: 'Update',
+                                    handler: function () {
+                                        // window.location.href = "https://play.app.goo.gl/?link=https://https://play.google.com/store/apps/details?id=com.agsi.AzureConnect";
+                                        window.open("https://play.google.com/store/apps/details?id=com.agsi.AzureConnect", "_system");
+                                        navigator['app'].exitApp();
+                                        // console.log('Confirm Okay');
+                                        // document.location.href = 'index.html';
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
         });
     };
     AppComponent.ctorParameters = function () { return [
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
         { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"] },
-        { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] }
+        { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] },
+        { type: _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_6__["AppVersion"] },
+        { type: _providers_post_providers__WEBPACK_IMPORTED_MODULE_7__["PostProvider"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] }
     ]; };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -701,7 +774,10 @@ var AppComponent = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"],
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"],
-            _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"]])
+            _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"],
+            _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_6__["AppVersion"],
+            _providers_post_providers__WEBPACK_IMPORTED_MODULE_7__["PostProvider"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -735,6 +811,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic-native/file-transfer/ngx */ "./node_modules/@ionic-native/file-transfer/ngx/index.js");
 /* harmony import */ var _ionic_native_file_opener_ngx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ionic-native/file-opener/ngx */ "./node_modules/@ionic-native/file-opener/ngx/index.js");
 /* harmony import */ var _ionic_native_document_viewer_ngx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic-native/document-viewer/ngx */ "./node_modules/@ionic-native/document-viewer/ngx/index.js");
+/* harmony import */ var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ionic-native/camera/ngx */ "./node_modules/@ionic-native/camera/ngx/index.js");
+/* harmony import */ var _app_service_image_provider_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../app/service/image-provider.service */ "./src/app/service/image-provider.service.ts");
+/* harmony import */ var _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ionic-native/app-version/ngx */ "./node_modules/@ionic-native/app-version/ngx/index.js");
+
+
+
 
 
 
@@ -767,11 +849,58 @@ var AppModule = /** @class */ (function () {
                 _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_12__["FileTransfer"],
                 _ionic_native_document_viewer_ngx__WEBPACK_IMPORTED_MODULE_14__["DocumentViewer"],
                 _ionic_native_file_opener_ngx__WEBPACK_IMPORTED_MODULE_13__["FileOpener"],
+                _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_15__["Camera"],
+                _app_service_image_provider_service__WEBPACK_IMPORTED_MODULE_16__["ImageProviderService"],
+                _ionic_native_app_version_ngx__WEBPACK_IMPORTED_MODULE_17__["AppVersion"],
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
-        })
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/service/image-provider.service.ts":
+/*!***************************************************!*\
+  !*** ./src/app/service/image-provider.service.ts ***!
+  \***************************************************/
+/*! exports provided: ImageProviderService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ImageProviderService", function() { return ImageProviderService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+
+
+var ImageProviderService = /** @class */ (function () {
+    function ImageProviderService(http) {
+        this.http = http;
+        this.base64img = '';
+    }
+    ImageProviderService.prototype.setImage = function (img) {
+        this.base64img = img;
+    };
+    ImageProviderService.prototype.getImage = function () {
+        return this.base64img;
+    };
+    ImageProviderService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+    ]; };
+    ImageProviderService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], ImageProviderService);
+    return ImageProviderService;
 }());
 
 

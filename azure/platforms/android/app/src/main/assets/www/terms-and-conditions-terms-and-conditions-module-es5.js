@@ -130,7 +130,9 @@ var TermsAndConditionsPage = /** @class */ (function () {
                 if (data['status'] == "Success") {
                     if (option !== 'checkLogin') {
                         localStorage.setItem("TERMS", data['Terms']);
-                        _this.router.navigateByUrl('/tabs/tab1');
+                        alert("We advise you to change your password to ensure the safety of your account.");
+                        // this.router.navigateByUrl('/tabs/tab1');
+                        _this.router.navigateByUrl('/change-password', { state: { 'from': 'TERMS' } });
                     }
                     _this.vtTermsConditionX = data['TermsCondition'];
                 }

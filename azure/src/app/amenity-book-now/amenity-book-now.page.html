@@ -17,7 +17,7 @@
                             <ion-label class="text_label">Booking Date:</ion-label>
                             <ion-datetime class="text_input checked" displayFormat="YYYY-MM-DD" min="{{minDate}}"
                                 placeholder="Select Date" max="{{maxDate}}" [(ngModel)]="bookingdate"
-                                (ionChange)="read($event)"></ion-datetime>
+                                (ionChange)="read()"></ion-datetime>
                         </ion-item>
                     </ion-col>
                 </ion-row>
@@ -55,8 +55,8 @@
                                 <p>Free User: </p>
                             </ion-col>
                             <ion-col size="6">
-                                <p class="text-right" *ngIf="amenDetails != null">{{amenDetails[0].Used}}</p>
-                                <p class="text-right" *ngIf="amenDetails == null">0</p>
+                                <p class="text-right" *ngIf="Used != null">{{Used}}</p>
+                                <!-- <p class="text-right" *ngIf="amenDetails == null">0</p> -->
                             </ion-col>
                         </ion-row>
 
@@ -65,8 +65,8 @@
                                 <p>Slot Used: </p>
                             </ion-col>
                             <ion-col size="6">
-                                <p class="text-right" *ngIf="amenDetails != null">{{amenDetails[0].FreeUsers}}</p>
-                                <p class="text-right" *ngIf="amenDetails == null">0</p>
+                                <p class="text-right" *ngIf="Free != null">{{Free}}</p>
+                                <!-- <p class="text-right" *ngIf="amenDetails == null">0</p> -->
                             </ion-col>
                         </ion-row>
                     </ion-grid>
@@ -129,7 +129,7 @@
                 </div>
             </div>
 
-            <ion-grid class="hide">
+            <ion-grid class="hide" [hidden]=ishiddenbtn>
                 <ion-row>
                     <ion-col size="6" class="marg0auto">
                         <ion-button color="primary" expand="block" class="text_label"

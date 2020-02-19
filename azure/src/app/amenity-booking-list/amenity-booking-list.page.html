@@ -8,6 +8,10 @@
 </ion-header>
     
 <ion-content class="card-background-page">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-list>
     <ion-list-header>UNIT {{unit_no}}</ion-list-header>
     <ion-item *ngFor="let res of dataX; let i = index" (click)="openBookingDetails(res[i].referrenceNo)">

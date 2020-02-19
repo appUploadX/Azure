@@ -1,68 +1,69 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title class="title_header">Menu</ion-title>
-  </ion-toolbar>
+	<ion-toolbar color="primary">
+		<ion-title class="title_header">Menu</ion-title>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid class="nopad">
-    <ion-row>
-      <ion-col size="12" class="nopad">
-        
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="12" class="nopad">
-        <ion-list class="pr-20">
-          <ion-list-header>
-            Current Unit
-          </ion-list-header>
-          <ion-item>
-            <ion-avatar slot="start">
-              <img src="/assets/sunit.png">
-            </ion-avatar>
-            <ion-label class="current">
-              <h2>Unit {{RoomNo}}</h2>
-              <div class="circle_active"></div>
-              <p>Active</p>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-        <ion-list class="pr-20 list_switch">
-          <ion-list-header>
-            Switch Unit
-          </ion-list-header>
-          <ion-item *ngFor="let res of Data; let i = index" (click)="presentAlertConfirm(res[i].pUnitRoom)">
-            <ion-avatar slot="start">
-              <img src="/assets/sunit.png">
-            </ion-avatar>
-            <ion-label class="lessmargin">
-              <h2>Unit {{res[i].pUnitRoom}}</h2>
-              <div class="circle"></div>
-              <!-- <p>8 new</p> -->
-              <p>Offline</p>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="12" class="nopad">
-        <ion-list class="list_logout nopad pr-20">
-          <ion-item (click)="openChangePassword()">
-              <img class="imglogout" src="/assets/locked.png">
-            <ion-label>
-              <h2>Change Password</h2>
-            </ion-label>
-          </ion-item>
-          <ion-item (click)="logout()">
-            <img class="imglogout" src="/assets/logout.png">
-            <ion-label>
-              <h2>Log Out</h2>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+	<ion-grid class="nopad">
+		<ion-row>
+			<ion-col size="12" class="nopad">
+
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col size="12" class="nopad">
+				<ion-list class="pr-20">
+					<ion-list-header>
+						Current Unit
+					</ion-list-header>
+					<ion-item>
+						<ion-avatar slot="start">
+							<img src="/assets/sunit.png">
+						</ion-avatar>
+						<ion-label class="current">
+							<h2>Unit {{RoomNo}}</h2>
+							<div class="circle_active"></div>
+							<p>Active</p>
+						</ion-label>
+					</ion-item>
+				</ion-list>
+				<ion-list class="pr-20 list_switch">
+					<ion-list-header>
+						Switch Unit
+					</ion-list-header>
+					<ion-item *ngFor="let res of Data; let i = index"
+						(click)="presentAlertConfirm(res[i].pUnitRoom, res[i].unit_code, res[i].type, res[i].ID)">
+						<ion-avatar slot="start">
+							<img src="/assets/sunit.png">
+						</ion-avatar>
+						<ion-label class="lessmargin">
+							<h2>Unit {{res[i].pUnitRoom}}</h2>
+							<div class="circle"></div>
+							<!-- <p>8 new</p> -->
+							<p>Offline</p>
+						</ion-label>
+					</ion-item>
+				</ion-list>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col size="12" class="nopad">
+				<ion-list class="list_logout nopad pr-20">
+					<ion-item (click)="openChangePassword()">
+						<img class="imglogout" src="/assets/locked.png">
+						<ion-label>
+							<h2>Change Password</h2>
+						</ion-label>
+					</ion-item>
+					<ion-item (click)="logout()">
+						<img class="imglogout" src="/assets/logout.png">
+						<ion-label>
+							<h2>Log Out</h2>
+						</ion-label>
+					</ion-item>
+				</ion-list>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 </ion-content>

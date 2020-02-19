@@ -100,6 +100,8 @@ export class VisitorAddRequestPage implements OnInit {
 
 	counterSave: number = 0;
 
+	disableSelect: boolean = false;
+
 	constructor(
 		private modalController: ModalController,
 		private postPvd: PostProvider,
@@ -130,6 +132,8 @@ export class VisitorAddRequestPage implements OnInit {
 
 		this.EMAIL = localStorage.getItem("EMAIL");
 		console.log(localStorage);
+
+		this.counterSave = 0;
 		this.loadData();
 
 	}
@@ -276,7 +280,7 @@ export class VisitorAddRequestPage implements OnInit {
 
 		this.isATime = false;
 
-		var datexx = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: false }).split(" ");
+		var datexx = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: false, timeZone: "Asia/Manila" }).split(" ");
 		if (datex[0] == value[0]) {
 			var exp = datexx[0].split(":");
 
@@ -347,7 +351,7 @@ export class VisitorAddRequestPage implements OnInit {
 
 		this.isDTime = false;
 
-		var datexx = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: false }).split(" ");
+		var datexx = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: false, timeZone: "Asia/Manila"}).split(" ");
 		if (datex[0] == value[0]) {
 			var exp = this.vtArrivalTime.split(":");
 
@@ -517,7 +521,6 @@ export class VisitorAddRequestPage implements OnInit {
 		var reqType = [];
 
 		var reqCk = [];
-		// this.CKSubmitTime();
 		$(".checked").each(function () {
 			if ($(this).val() == "") {
 				count++;
@@ -610,27 +613,26 @@ export class VisitorAddRequestPage implements OnInit {
 					var expTimeSplitDep = expTimeDep[1].split(":");
 
 					var dateDep = expDateDep[0] + "T" + expTimeSplitDep[0] + ":" + expTimeSplitDep[1] + ":00.000+08:00";
-					if (this.counterSave == 0) {
-						this.counterSave += 1;
-						return new Promise(resolve => {
-							let body = {
-								action: 'checkRequestAll',
-								unit_code: this.uCode,
-								newCode: this.newCode,
-								ArrTime: dateArr,
-								DepTime: dateDep,
-							};
 
-							this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
-								if (data['status'] == 'Allowed') {
+					return new Promise(resolve => {
+						let body = {
+							action: 'checkRequestAll',
+							unit_code: this.uCode,
+							newCode: this.newCode,
+							ArrTime: dateArr,
+							DepTime: dateDep,
+						};
 
+						this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+							if (data['status'] == 'Allowed') {
+								if (this.counterSave == 0) {
 									this.loadingControl.create({
 										message: "Loading, please wait....."
 									}).then((overlay => {
 										this.loading = overlay,
 											this.loading.present()
 									}))
-
+									this.counterSave += 1;
 									return new Promise(resolve => {
 										let body = {
 											action: 'addVisitors',
@@ -674,18 +676,17 @@ export class VisitorAddRequestPage implements OnInit {
 										})
 									});
 									// this.openToast('<center>Allowed.</center>');
-
 								}
-								else {
-									this.openToast('<center>Error! You already have a guest/s on these date and time.</center>');
 
-								}
-								// resolve(true);
-								console.log(data['status']);
-							});
+							}
+							else {
+								this.openToast('<center>Error! You already have a guest/s on these date and time.</center>');
+
+							}
+							// resolve(true);
+							console.log(data['status']);
 						});
-					}
-					this.counterSave += 1;
+					});
 				}
 				else {
 					this.openToast('<center>Error! You already have a guest/s on these date and time.</center>');
@@ -722,4 +723,31 @@ export class VisitorAddRequestPage implements OnInit {
 
 		}
 	}
+
+	AdditionalName(i, elemx, elemSelectx) {
+		var Val = i.srcElement.value;
+		var elem = $("#" + elemx)[0];
+		var elemSelect = $("#" + elemSelectx)[0];
+
+		var letters = /^[A-Za-z ]+$/;
+		if (letters.test(Val)) {
+			console.log("true");
+			this.disableSelect = false;
+
+		}
+		else {
+			this.disableSelect = true;
+			elem.setFocus();
+
+			// elemSelect.dismiss();
+			// console.log(elemSelect);
+			// console.log(elem);
+			this.openToast("No special characters allowed!");
+		}
+	}
+
+	theClick(x) {
+		console.log(x);
+	}
+
 }

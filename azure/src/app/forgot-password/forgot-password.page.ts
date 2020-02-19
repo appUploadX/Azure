@@ -23,7 +23,7 @@ export class ForgotPasswordPage implements OnInit {
 	async openToast(msg) {
 		const toast = await this.toastController.create({
 			message: msg,
-			duration: 2000
+			duration: 3000
 		});
 		toast.present();
 	}
@@ -51,6 +51,7 @@ export class ForgotPasswordPage implements OnInit {
 			this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
 				if (data['status'] == 'Success') {
 					$("#sendEmail").hide();
+					$("#email").hide();
 					$("#textCode").show();
 					this.openToast("Reset code has been sent please see your email!");
 				}
@@ -70,6 +71,7 @@ export class ForgotPasswordPage implements OnInit {
 
 				this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
 					if (data['status'] == 'Success') {
+						$("#textCode").hide();
 						$(".password").show();
 						this.openToast("Enter your new password!");
 					}
@@ -120,4 +122,41 @@ export class ForgotPasswordPage implements OnInit {
 		});
 	}
 
+	returnLogin(){
+		this.router.navigateByUrl('');
+	}
+
+
+	checkEmail(){
+		var email = $("#email").val();
+		var pattern = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+
+		if (pattern.test(email)) {
+			// this.openToast("Valid email!");
+			// $("#sendEmail").show();
+			return new Promise(resolve => {
+				let body = {
+					action: 'verifyEmail',
+					email: email
+				}
+				
+				this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data =>{
+					if(data['success'] == 'success'){
+						this.openToast("Email is verified. Please click 'Send code' to continue!");
+						$("#sendEmail").show();
+						$("#verifyEmail").hide();
+					}
+					else
+					{
+						this.openToast("Email is not registered!");
+					}
+				})
+	
+			});
+		}
+		else {
+			this.openToast("Invalid email pattern!");
+		}
+	}
+	
 }

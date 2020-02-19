@@ -12,13 +12,14 @@
 <ion-content class="card-background-page" *ngFor="let res of Data">
   <ion-grid *ngIf="uType == 'Owner'">
     <ion-row>
-      <ion-col size="12" class="lineborder">
+      <input type="hidden" value="{{res.id}}" id="user_id">
+      <!-- <ion-col size="12" class="lineborder">
         <ion-item>
           <input type="hidden" value="{{res.id}}" id="user_id">
           <ion-label position="stacked">Name</ion-label>
           <ion-input required type="text" class="txtinput" value="{{res.fullname}}" id="name"></ion-input>
         </ion-item>
-      </ion-col>
+      </ion-col> -->
       <ion-col size="12" class="lineborder">
         <ion-item>
           <ion-label position="stacked">Gender</ion-label>
@@ -39,12 +40,12 @@
         </ion-item>
       </ion-col>
 
-      <ion-col size="12" class="lineborder">
+      <!-- <ion-col size="12" class="lineborder">
         <ion-item>
           <ion-label position="stacked">Date of Birth</ion-label>
           <ion-datetime displayFormat="YYYY-MM-DD" class="txtinput" value="{{res.pDate}}" id="bday"></ion-datetime>
         </ion-item>
-      </ion-col>
+      </ion-col> -->
 
       <ion-col size="12" class="lineborder">
         <ion-item>
@@ -77,13 +78,14 @@
 
   <ion-grid *ngIf="uType == 'Tenant'">
     <ion-row>
-      <ion-col size="12" class="lineborder">
+      <input type="hidden" value="{{res.id}}" id="user_id">
+      <!-- <ion-col size="12" class="lineborder">
         <ion-item>
           <input type="hidden" value="{{res.id}}" id="user_id">
           <ion-label position="stacked">Name</ion-label>
           <ion-input required type="text" class="txtinput" value="{{res.fullname}}" id="name"></ion-input>
         </ion-item>
-      </ion-col>
+      </ion-col> -->
       <ion-col size="12" class="lineborder">
         <ion-item>
           <ion-label position="stacked">Gender</ion-label>
@@ -104,12 +106,12 @@
         </ion-item>
       </ion-col>
 
-      <ion-col size="12" class="lineborder">
+      <!-- <ion-col size="12" class="lineborder">
         <ion-item>
           <ion-label position="stacked">Date of Birth</ion-label>
           <ion-datetime displayFormat="YYYY-MM-DD" class="txtinput" value="{{res.tDate}}" id="bday"></ion-datetime>
         </ion-item>
-      </ion-col>
+      </ion-col> -->
 
       <ion-col size="12" class="lineborder">
         <ion-item>

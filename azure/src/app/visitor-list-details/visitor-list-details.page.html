@@ -283,14 +283,14 @@
       </ion-grid>
     </div>
   </div>
-  <div class="v_personal btns" *ngIf="res.pdf_path != ''" style="text-align: center;">
+  <div class="v_personal btns" *ngIf="res.pdf_path !== null" style="text-align: center;">
     <ion-chip class="ion_chip" (click)="downloadGAF(res.pdf_path)">
       <ion-icon name="download"></ion-icon>
       <ion-label>Download GAF</ion-label>
     </ion-chip>
   </div>
 
-  <ion-grid class="btns" *ngIf="res.vuRequestStatus != 'Cancelled'">
+  <ion-grid class="btns" *ngIf="res.vuRequestStatus != 'Cancelled' && res.vuDepartureTime > ThisDateTime">
     <ion-row class="v-row pt-0" *ngIf="res.vuCheckIn == 'Not Yet Check In' || res.vuCheckIn == ''">
       <ion-col size="12" class="pt-0">
         <ion-button color="primary" expand="block" (click)="confirmCancel(res.id)">Cancel Request</ion-button>

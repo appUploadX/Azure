@@ -131,11 +131,11 @@ var LoginPage = /** @class */ (function () {
                             localStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
                             localStorage.setItem("TERMS", data['dataX'][0]['pTermsAndCondition']);
                             localStorage.setItem("SIGLO", data['dataX'][0]['sigloType']);
-                            if (data['dataX'][0]['pTermsAndCondition'] !== null || data['dataX'][0]['pTermsAndCondition'] !== '') {
-                                _this.router.navigateByUrl('/tabs/tab1');
+                            if (data['dataX'][0]['pTermsAndCondition'] == null || data['dataX'][0]['pTermsAndCondition'] == '') {
+                                _this.router.navigateByUrl('terms-and-conditions');
                             }
                             else {
-                                _this.router.navigateByUrl('terms-and-conditions');
+                                _this.router.navigateByUrl('/tabs/tab1', { state: { 'from': 'Login' } });
                             }
                         }
                         else if (data['uType'] == "Tenant") {
@@ -143,11 +143,11 @@ var LoginPage = /** @class */ (function () {
                             localStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
                             localStorage.setItem("TERMS", data['dataX'][0]['tTermsAndCondition']);
                             localStorage.setItem("SIGLO", data['dataX'][0]['sigloType']);
-                            if (data['dataX'][0]['tTermsAndCondition'] !== null || data['dataX'][0]['tTermsAndCondition'] !== '') {
-                                _this.router.navigateByUrl('/tabs/tab1');
+                            if (data['dataX'][0]['tTermsAndCondition'] == null || data['dataX'][0]['tTermsAndCondition'] == '') {
+                                _this.router.navigateByUrl('terms-and-conditions');
                             }
                             else {
-                                _this.router.navigateByUrl('terms-and-conditions');
+                                _this.router.navigateByUrl('/tabs/tab1', { state: { 'from': 'Login' } });
                             }
                         }
                     }
@@ -156,12 +156,6 @@ var LoginPage = /** @class */ (function () {
                     }
                 });
             });
-            if (localStorage.getItem("TERMS") !== 'null') {
-                this.router.navigateByUrl('/tabs/tab1');
-            }
-            else {
-                this.router.navigateByUrl('terms-and-conditions');
-            }
         }
     };
     LoginPage.prototype.openToast = function (msg) {
@@ -222,6 +216,7 @@ var LoginPage = /** @class */ (function () {
                                 localStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
                                 localStorage.setItem("TUN", data['TUN']);
                                 localStorage.setItem("ROOM_NO", data['ROOM_NO']);
+                                localStorage.setItem("SHORT_NAME", data['SHORT_NAME']);
                                 localStorage.setItem("EMAIL", data['dataX'][0]['EmailAddress']);
                                 localStorage.setItem("PROPERTY_CODE", data['dataX'][0]['property_code']);
                                 localStorage.setItem("USER_ID", data['dataX'][0]['id']);
@@ -229,11 +224,11 @@ var LoginPage = /** @class */ (function () {
                                 localStorage.setItem("BEDROOM", data['unit_details']['bedroom']);
                                 localStorage.setItem("UNITSIZE", data['unit_details']['unitsize']);
                                 localStorage.setItem("SIGLO", data['dataX'][0]['sigloType']);
-                                if (data['dataX'][0]['pTermsAndCondition'] !== null) {
-                                    _this.router.navigateByUrl('/tabs/tab1');
+                                if (data['dataX'][0]['pTermsAndCondition'] == null || data['dataX'][0]['pTermsAndCondition'] == '') {
+                                    _this.router.navigateByUrl('terms-and-conditions');
                                 }
                                 else {
-                                    _this.router.navigateByUrl('terms-and-conditions');
+                                    _this.router.navigateByUrl('/tabs/tab1', { state: { 'from': 'Login' } });
                                 }
                             }
                             else if (data['uType'] == "Tenant") {
@@ -244,6 +239,7 @@ var LoginPage = /** @class */ (function () {
                                 localStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
                                 localStorage.setItem("TUN", data['TUN']);
                                 localStorage.setItem("ROOM_NO", data['ROOM_NO']);
+                                localStorage.setItem("SHORT_NAME", data['SHORT_NAME']);
                                 localStorage.setItem("EMAIL", data['dataX'][0]['tEmailAddress']);
                                 localStorage.setItem("PROPERTY_CODE", data['propC']['property_code']);
                                 localStorage.setItem("USER_ID", data['dataX'][0]['id']);
@@ -251,11 +247,11 @@ var LoginPage = /** @class */ (function () {
                                 localStorage.setItem("BEDROOM", data['unit_details']['bedroom']);
                                 localStorage.setItem("UNITSIZE", data['unit_details']['unitsize']);
                                 localStorage.setItem("SIGLO", data['dataX'][0]['sigloType']);
-                                if (data['dataX'][0]['tTermsAndCondition'] !== null) {
-                                    _this.router.navigateByUrl('/tabs/tab1');
+                                if (data['dataX'][0]['tTermsAndCondition'] == null || data['dataX'][0]['tTermsAndCondition'] == '') {
+                                    _this.router.navigateByUrl('terms-and-conditions');
                                 }
                                 else {
-                                    _this.router.navigateByUrl('terms-and-conditions');
+                                    _this.router.navigateByUrl('/tabs/tab1', { state: { 'from': 'Login' } });
                                 }
                             }
                         }

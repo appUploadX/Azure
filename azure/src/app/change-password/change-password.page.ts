@@ -21,7 +21,11 @@ export class ChangePasswordPage implements OnInit {
 	unit_code: string;
 	u_type: string;
 	ID: string;
-	constructor(private router: Router, private postPvd: PostProvider, public toastController: ToastController, ) { }
+
+	from: string = '';
+	constructor(private router: Router, private postPvd: PostProvider, public toastController: ToastController) {
+		// alert(this.router.getP);
+	}
 
 	ngOnInit() {
 		this.isHidden = true;
@@ -30,6 +34,9 @@ export class ChangePasswordPage implements OnInit {
 		this.unit_code = localStorage.getItem("UNIT_CODE");
 		this.u_type = localStorage.getItem("TYPE_DATA");
 		console.log(localStorage);
+
+		this.from = history.state.from;
+		console.log(history.state.from);
 	}
 
 	async openToast(msg) {
@@ -133,7 +140,7 @@ export class ChangePasswordPage implements OnInit {
 							this.isHidden = true;
 							this.Hidden = false;
 							this.openToast("<center>Password successfully changed!</center>");
-							this.router.navigateByUrl('/tabs/tab1');
+							this.router.navigateByUrl('/tabs/tab1', {state: {'from': 'CP'}});
 						}
 						else {
 							this.openToast("<center>Password is incorrect!</center>");

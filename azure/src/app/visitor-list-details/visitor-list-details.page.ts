@@ -54,6 +54,9 @@ export class VisitorListDetailsPage implements OnInit {
 	Siglo: String;
 
 	docPath: string;
+	ThisDateTime: string;
+
+
 	constructor(
 		private postPvd: PostProvider,
 		private router: Router,
@@ -84,6 +87,13 @@ export class VisitorListDetailsPage implements OnInit {
 		this.Type = localStorage.getItem("TYPE_DATA");
 		this.Siglo = localStorage.getItem("SIGLO");
 		this.loadData(this.id);
+
+		var time = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: false }).split(" ");
+        var date = new Date().toLocaleString('en-US', { year:  'numeric', month: '2-digit', day:   '2-digit'}).replace(/\//g, '-').split('-');
+
+        var finalDate = date[2]+'-'+date[0]+'-'+date[1];
+
+        this.ThisDateTime = finalDate+'T'+time+':00:000+8:00';
 	}
 
 	loadData(id) {
@@ -255,21 +265,28 @@ export class VisitorListDetailsPage implements OnInit {
 		const url = 'https://www.azure-connect.com/pdf/' + name;
 
 		this.file.checkDir(this.file.externalRootDirectory, 'downloads')
-			.then(
+			.then(_ =>
 				// Directory exists, check for file with the same name
-				_ => this.file.checkFile(this.file.externalRootDirectory, 'downloads/' + name)
-					.then(_ => { 
-						alert("A file with the same name already exists!") 
+				// _ => this.file.checkFile(this.file.externalRootDirectory, 'downloads/' + name)
+				// 	.then(_ => { 
+				// 		alert("A file with the same name already exists!") 
+				// 	})
+				// 	// File does not exist yet, we can save normally
+				// 	.catch(err =>
+				// 		fileTransfer.download(url, this.file.externalRootDirectory + '/downloads/' + name).then((entry) => {
+				// 			alert('File saved in:  ' + entry.nativeURL);
+				// 		})
+				// 			.catch((err) => {
+				// 				alert('Error saving file: ' + err.message);
+				// 			})
+				fileTransfer.download(url, this.file.externalRootDirectory + '/downloads/' + name).then((entry) => {
+					alert('File saved in:  ' + entry.nativeURL);
+				})
+					.catch((err) => {
+						alert('Error saving file: ' + err.message);
 					})
-					// File does not exist yet, we can save normally
-					.catch(err =>
-						fileTransfer.download(url, this.file.externalRootDirectory + '/downloads/' + name).then((entry) => {
-							alert('File saved in:  ' + entry.nativeURL);
-						})
-							.catch((err) => {
-								alert('Error saving file: ' + err.message);
-							})
-					))
+
+			)
 			.catch(
 				// Directory does not exists, create a new one
 				err => this.file.createDir(this.file.externalRootDirectory, 'downloads', false)

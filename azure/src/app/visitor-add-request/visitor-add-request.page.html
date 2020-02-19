@@ -339,13 +339,13 @@
 					</ion-row>
 					<ion-row class="v-row2" *ngFor="let countX of visitC; let i = index">
 						<ion-col size="6">
-							<ion-input class="text_input visitVal" type="text" placeholder="Name"
+							<ion-input class="text_input visitVal" type="text" placeholder="Name" id="AddiName{{i}}" #AddiName{{i}} (focusout)="AdditionalName($event, 'AddiName'+i, 'AddiSelect'+i)"
 								[(ngModel)]="visitC[i].value">
 							</ion-input>
 						</ion-col>
 						<ion-col size="6">
 							<ion-item>
-								<ion-select class="selectadult" placeholder="Select One" [(ngModel)]="visitC[i].valueX">
+								<ion-select class="selectadult" placeholder="Select One" [(ngModel)]="visitC[i].valueX" id="AddiSelect{{i}}" #AddiSelect{{i}} (click)="theClick($event)" [disabled]="disableSelect"> 
 									<ion-select-option class="visitSel" value="Adult">Adult</ion-select-option>
 									<ion-select-option class="visitSel" value="Children">Child</ion-select-option>
 								</ion-select>

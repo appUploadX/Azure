@@ -59,11 +59,11 @@ export class LoginPage implements OnInit {
 							localStorage.setItem("TERMS", data['dataX'][0]['pTermsAndCondition']);
 							localStorage.setItem("SIGLO", data['dataX'][0]['sigloType']);
 
-							if (data['dataX'][0]['pTermsAndCondition'] !== null || data['dataX'][0]['pTermsAndCondition'] !== '') {
-								this.router.navigateByUrl('/tabs/tab1');
+							if (data['dataX'][0]['pTermsAndCondition'] == null || data['dataX'][0]['pTermsAndCondition'] == '') {
+								this.router.navigateByUrl('terms-and-conditions');
 							}
 							else {
-								this.router.navigateByUrl('terms-and-conditions');
+								this.router.navigateByUrl('/tabs/tab1', {state: {'from': 'Login'}});
 							}
 						}
 						else if (data['uType'] == "Tenant") {
@@ -72,11 +72,11 @@ export class LoginPage implements OnInit {
 							localStorage.setItem("TERMS", data['dataX'][0]['tTermsAndCondition']);
 							localStorage.setItem("SIGLO", data['dataX'][0]['sigloType']);
 
-							if (data['dataX'][0]['tTermsAndCondition'] !== null || data['dataX'][0]['tTermsAndCondition'] !== '') {
-								this.router.navigateByUrl('/tabs/tab1');
+							if (data['dataX'][0]['tTermsAndCondition'] == null || data['dataX'][0]['tTermsAndCondition'] == '') {
+								this.router.navigateByUrl('terms-and-conditions');
 							}
 							else {
-								this.router.navigateByUrl('terms-and-conditions');
+								this.router.navigateByUrl('/tabs/tab1', {state: {'from': 'Login'}});
 							}
 						}
 					}
@@ -86,14 +86,6 @@ export class LoginPage implements OnInit {
 
 				})
 			});
-
-
-			if (localStorage.getItem("TERMS") !== 'null') {
-				this.router.navigateByUrl('/tabs/tab1');
-			}
-			else {
-				this.router.navigateByUrl('terms-and-conditions');
-			}
 		}
 
 	}
@@ -109,7 +101,7 @@ export class LoginPage implements OnInit {
 	openForgotPassword() {
 		this.router.navigateByUrl('/forgot-password');
 	}
- 
+
 
 	onSubmit(user, pass) {
 		var count = 0;
@@ -152,6 +144,7 @@ export class LoginPage implements OnInit {
 								localStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
 								localStorage.setItem("TUN", data['TUN']);
 								localStorage.setItem("ROOM_NO", data['ROOM_NO']);
+								localStorage.setItem("SHORT_NAME", data['SHORT_NAME']);
 								localStorage.setItem("EMAIL", data['dataX'][0]['EmailAddress']);
 
 								localStorage.setItem("PROPERTY_CODE", data['dataX'][0]['property_code']);
@@ -163,11 +156,11 @@ export class LoginPage implements OnInit {
 
 								localStorage.setItem("SIGLO", data['dataX'][0]['sigloType']);
 
-								if (data['dataX'][0]['pTermsAndCondition'] !== null) {
-									this.router.navigateByUrl('/tabs/tab1');
+								if (data['dataX'][0]['pTermsAndCondition'] == null || data['dataX'][0]['pTermsAndCondition'] == '') {
+									this.router.navigateByUrl('terms-and-conditions');
 								}
 								else {
-									this.router.navigateByUrl('terms-and-conditions');
+									this.router.navigateByUrl('/tabs/tab1', {state: {'from': 'Login'}});
 								}
 							}
 							else if (data['uType'] == "Tenant") {
@@ -178,6 +171,7 @@ export class LoginPage implements OnInit {
 								localStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
 								localStorage.setItem("TUN", data['TUN']);
 								localStorage.setItem("ROOM_NO", data['ROOM_NO']);
+								localStorage.setItem("SHORT_NAME", data['SHORT_NAME']);
 								localStorage.setItem("EMAIL", data['dataX'][0]['tEmailAddress']);
 
 								localStorage.setItem("PROPERTY_CODE", data['propC']['property_code']);
@@ -189,11 +183,11 @@ export class LoginPage implements OnInit {
 
 								localStorage.setItem("SIGLO", data['dataX'][0]['sigloType']);
 
-								if (data['dataX'][0]['tTermsAndCondition'] !== null) {
-									this.router.navigateByUrl('/tabs/tab1');
+								if (data['dataX'][0]['tTermsAndCondition'] == null || data['dataX'][0]['tTermsAndCondition'] == '') {
+									this.router.navigateByUrl('terms-and-conditions');
 								}
 								else {
-									this.router.navigateByUrl('terms-and-conditions');
+									this.router.navigateByUrl('/tabs/tab1', {state: {'from': 'Login'}});
 								}
 
 

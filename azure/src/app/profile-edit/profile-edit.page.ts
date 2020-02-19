@@ -68,17 +68,17 @@ export class ProfileEditPage implements OnInit {
 	}
 
 	saveData() {
-		console.log($("#bday").val());
-		var splitbday = $("#bday").val().split("T");
+		// console.log($("#bday").val());
+		// var splitbday = $("#bday").val().split("T");
 
-		console.log(splitbday[0]);
+		// console.log(splitbday[0]);
 		return new Promise(resolve => {
 			let body = {
 				action: "updateUserDetails",
-				name: $("#name").val(),
+				// name: $("#name").val(),
 				gender: $("#gender").val(),
 				occupation: $("#occupation").val(),
-				bday: splitbday[0],
+				// bday: splitbday[0],
 				address: $("#address").val(),
 				nationality: $("#nationality").val(),
 				country: $("#country").val(),
@@ -88,8 +88,6 @@ export class ProfileEditPage implements OnInit {
 
 			this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
 				if (data['status'] == "Success") {
-					localStorage.setItem("FULLNAME", data['fullname']);
-					console.log(localStorage.getItem("FULLNAME"));
 					this.openToast("Profile updated successfully!");
 					this.router.navigateByUrl('/tabs/tab2');
 					this.modalController.dismiss();

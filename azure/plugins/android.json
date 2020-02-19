@@ -7,6 +7,16 @@
     "files": {}
   },
   "installed_plugins": {
+    "cordova-ios-plugin-no-export-compliance": {
+      "PACKAGE_NAME": "com.agsi.AzureConnect"
+    },
+    "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "com.agsi.AzureConnect"
+    },
+    "cordova-plugin-camera": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "com.agsi.AzureConnect"
+    },
     "cordova-plugin-device": {
       "PACKAGE_NAME": "com.agsi.AzureConnect"
     },
@@ -37,9 +47,6 @@
       "PACKAGE_NAME": "com.agsi.AzureConnect"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.agsi.AzureConnect"
-    },
-    "cordova-ios-plugin-no-export-compliance": {
       "PACKAGE_NAME": "com.agsi.AzureConnect"
     }
   },

@@ -7,15 +7,29 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content class="card-background-page"  *ngFor="let res of Data">
+<ion-content class="card-background-page" *ngFor="let res of Data">
     <div class="banner-card" *ngIf="uType == 'Tenant'">
         <ion-grid>
             <ion-row>
                 <ion-col size="12" class="col_titles">
-                    <div class="img_profile_border">
-                        <div *ngIf="res.tUpload == null" class="img_profile"></div>
-                        <div *ngIf="res.tUpload != null" class="img_profile" [style.background-image]="'url(https://www.asi-ph.com/sandboxes/condominium/'+res.tUpload+')'"></div>
+                    <div class="img_profile_border" *ngIf="base64ImageX == ''">
+                        <div *ngIf="res.tUpload == null" class="img_profile">
+                            <ion-icon class="icon_camera" name="camera" (click)="openGallery()"></ion-icon>
+                        </div>
+                        <div *ngIf="res.tUpload != null" class="img_profile"
+                            [style.background-image]="'url(https://www.asi-ph.com/sandboxes/condominium/'+res.tUpload+')'">
+                            <ion-icon class="icon_camera" name="camera" (click)="openGallery()"></ion-icon>
+                        </div>
                     </div>
+
+                    <div class="img_profile_border" *ngIf="base64ImageX != ''">
+                        <div class="img_profile" [style.background-image]="'url('+base64ImageX+')'" (click)="openGallery()">
+                            <ion-icon class="icon_camera" name="camera" (click)="openGallery()"></ion-icon>
+                            <!-- <img class="img_profile" [src]="base64ImageX" (click)="openGallery()" /> -->
+                        </div>
+                        <!-- <div class="img_profile" [style.background-image]="'url('+base64ImageX+')'"><ion-icon name="camera" (click)="openGallery()"></ion-icon></div> -->
+                    </div>
+
                     <div class="box_details">
                         <h1 class="title_name">{{Name}}</h1>
                         <p class="title_address">{{res.tAddress}}</p>
@@ -39,7 +53,7 @@
                     </div>
                 </ion-col>
             </ion-row>
-            
+
         </ion-grid>
     </div>
 
@@ -47,10 +61,24 @@
         <ion-grid>
             <ion-row>
                 <ion-col size="12" class="col_titles">
-                    <div class="img_profile_border">
-                        <div *ngIf="res.pUpload == null" class="img_profile"></div>
-                        <div *ngIf="res.pUpload != null" class="img_profile" [style.background-image]="'url(https://www.asi-ph.com/sandboxes/condominium/'+res.pUpload+')'"></div>
+                    <div class="img_profile_border" *ngIf="base64ImageX == ''">
+                        <div *ngIf="res.pUpload == null" class="img_profile">
+                            <ion-icon class="icon_camera" name="camera" (click)="openGallery()"></ion-icon>
+                        </div>
+                        <div *ngIf="res.pUpload != null" class="img_profile"
+                            [style.background-image]="'url(https://www.asi-ph.com/sandboxes/condominium/'+res.pUpload+')'">
+                            <ion-icon class="icon_camera" name="camera" (click)="openGallery()"></ion-icon>
+                        </div>
                     </div>
+
+                    <div class="img_profile_border" *ngIf="base64ImageX != ''">
+                        <div class="img_profile" [style.background-image]="'url('+base64ImageX+')'" (click)="openGallery()">
+                            <ion-icon class="icon_camera" name="camera" (click)="openGallery()"></ion-icon>
+                            <!-- <img class="img_profile" [src]="base64ImageX" (click)="openGallery()" /> -->
+                        </div>
+                        <!-- <div class="img_profile" [style.background-image]="'url('+base64ImageX+')'"><ion-icon name="camera" (click)="openGallery()"></ion-icon></div> -->
+                    </div>
+
                     <div class="box_details">
                         <h1 class="title_name">{{Name}}</h1>
                         <p class="title_address">{{res.Address}}</p>
@@ -116,17 +144,17 @@
                 <p class="profile_type">Date of Anniversary</p>
                 <p class="profile_type_name">{{Aniv}}</p>
             </ion-col>
-            <!-- <ion-col size="12" class="col-profile-details">
-                <p class="profile_type">Intercom Number</p>
-                <p class="profile_type_name">1234</p>
-            </ion-col> -->
-            <ion-col size="12" class="col-profile-details" *ngIf="uType == 'Owner'">
-                <p class="profile_type">Nominee</p>
-                <p class="profile_type_name">Hakdog</p>
-            </ion-col>
             <ion-col size="12" class="col-profile-details">
                 <p class="profile_type">Company</p>
                 <p class="profile_type_name">{{res.tCompany}}</p>
+            </ion-col>
+            <ion-col size="12" class="col-profile-details">
+                <p class="profile_type">Nationality</p>
+                <p class="profile_type_name">{{res.tNationality}}</p>
+            </ion-col>
+            <ion-col size="12" class="col-profile-details">
+                <p class="profile_type">Country</p>
+                <p class="profile_type_name">{{res.tCountry}}</p>
             </ion-col>
         </ion-row>
     </ion-grid>
@@ -181,6 +209,17 @@
                 <p class="profile_type">Company</p>
                 <p class="profile_type_name">{{res.pCompany}}</p>
             </ion-col>
+
+            <ion-col size="12" class="col-profile-details">
+                <p class="profile_type">Nationality</p>
+                <p class="profile_type_name">{{res.pNationality}}</p>
+            </ion-col>
+            <ion-col size="12" class="col-profile-details">
+                <p class="profile_type">Country</p>
+                <p class="profile_type_name">{{res.pCountry}}</p>
+            </ion-col>
+            
+
         </ion-row>
     </ion-grid>
 </ion-content>

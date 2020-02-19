@@ -61,7 +61,7 @@
     border-radius: 0;
 }
 .img_profile_border {
-    top: 70px;
+    top: 9vh;
     position: absolute;
     width: 100%;
     left: 0;
@@ -78,6 +78,16 @@
     border-radius: 50%;
     margin: 0 auto;
     box-shadow: 1px 14px 25px #a2b7cf;
+}
+.icon_camera {
+    background: #0967d3!important;
+    border-radius: 50%;
+    padding: 5px;
+    position: relative;
+    top: 12vh;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 14px;
 }
 .box_details {
     width: 100%;
