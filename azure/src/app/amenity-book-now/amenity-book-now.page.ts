@@ -176,11 +176,26 @@ export class AmenityBookNowPage implements OnInit {
         }
     }
 
-    read() {
-        this.isReadonly = false
-        // var sel = $(".requiredsel");
-        this.timeSlots = null;
-        this.ishidden = true;
+    read(value) {
+        
+
+        var day = new Date(value);
+        var whatday = day.getDay();
+        
+        if(whatday != 1){
+            this.isReadonly = false;
+            this.timeSlots = null;
+            this.ishidden = true;
+        }
+        else
+        {
+            this.isReadonly = true;
+            this.timeSlots = null;
+            this.ishidden = true;
+            this.openToast("Sorry the selected date is scheduled closed.");
+        }
+
+        
     }
 
     addCheckbox(e, free) {
