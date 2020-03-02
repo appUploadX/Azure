@@ -84,14 +84,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var src_providers_post_providers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/providers/post-providers */ "./src/providers/post-providers.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
 
 
 
 
 let AmenityInfoPage = class AmenityInfoPage {
-    constructor(postPvd, router) {
+    constructor(postPvd, router, toastController) {
         this.postPvd = postPvd;
         this.router = router;
+        this.toastController = toastController;
         this.amenData = [];
     }
     ngOnInit() {
@@ -103,8 +106,39 @@ let AmenityInfoPage = class AmenityInfoPage {
         this.loadData(this.amenCode);
         console.log(localStorage);
     }
+    openToast(msg) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const toast = yield this.toastController.create({
+                message: msg,
+                duration: 2000,
+            });
+            toast.present();
+        });
+    }
     openAmenityBookNow(amenName, amenCode, propCode, unitCode, uType, rate) {
-        this.router.navigateByUrl('/tabs/tab1/amenities-details/amenity-info/amenity-book-now', { state: { amenName: amenName, amenCode: amenCode, propCode: propCode, unitCode: unitCode, uType: uType, rateperbooking: rate, start: this.start } });
+        return new Promise(resolve => {
+            let body = {
+                action: 'check_hastenant',
+                uType: localStorage.getItem('TYPE_DATA'),
+                uCode: localStorage.getItem('UNIT_CODE'),
+                propCode: localStorage.getItem("PROPERTY_CODE"),
+            };
+            this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+                if (data['hasTenant'] == "ActiveTenant") {
+                    this.openToast("<center>You have active tenant.</center>");
+                }
+                else {
+                    if (data['siglo'] != "On") {
+                        this.router.navigateByUrl('/tabs/tab1/amenities-details/amenity-info/amenity-book-now', { state: { amenName: amenName, amenCode: amenCode, propCode: propCode, unitCode: unitCode, uType: uType, rateperbooking: rate, start: this.start } });
+                    }
+                    else {
+                        this.openToast("<center>This unit is managed by Siglo.</center>");
+                    }
+                }
+                resolve(true);
+                console.log(data);
+            });
+        });
     }
     loadData(amenCode) {
         return new Promise(resolve => {
@@ -124,7 +158,8 @@ let AmenityInfoPage = class AmenityInfoPage {
 };
 AmenityInfoPage.ctorParameters = () => [
     { type: src_providers_post_providers__WEBPACK_IMPORTED_MODULE_3__["PostProvider"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"] }
 ];
 AmenityInfoPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -133,7 +168,8 @@ AmenityInfoPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         styles: [__webpack_require__(/*! ./amenity-info.page.scss */ "./src/app/amenity-info/amenity-info.page.scss")]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_providers_post_providers__WEBPACK_IMPORTED_MODULE_3__["PostProvider"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"]])
 ], AmenityInfoPage);
 
 

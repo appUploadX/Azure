@@ -147,12 +147,36 @@ var VisitorsDetailsPage = /** @class */ (function () {
         });
     };
     VisitorsDetailsPage.prototype.openAddVisitorRequest = function () {
-        if (this.Siglo == "On") {
-            this.openToast("<center>Sorry you're not allowed to make a request!</center>");
-        }
-        else {
-            this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request');
-        }
+        var _this = this;
+        // if (this.Siglo == "On") {
+        //     this.openToast("<center>Sorry you're not allowed to make a request!</center>");
+        // }
+        // else {
+        //     this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request')
+        // }
+        return new Promise(function (resolve) {
+            var body = {
+                action: 'check_hastenant',
+                uType: localStorage.getItem('TYPE_DATA'),
+                uCode: localStorage.getItem('UNIT_CODE'),
+                propCode: localStorage.getItem("PROPERTY_CODE"),
+            };
+            _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
+                if (data['hasTenant'] == "ActiveTenant") {
+                    _this.openToast("<center>You have active tenant.</center>");
+                }
+                else {
+                    if (data['siglo'] != "On") {
+                        _this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request');
+                    }
+                    else {
+                        _this.openToast("<center>This unit is managed by Siglo.</center>");
+                    }
+                }
+                resolve(true);
+                console.log(data);
+            });
+        });
     };
     VisitorsDetailsPage.prototype.loadData = function (unit_code, newCode) {
         var _this = this;

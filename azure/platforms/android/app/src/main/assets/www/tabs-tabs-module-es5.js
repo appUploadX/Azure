@@ -229,59 +229,13 @@ var Tab1Page = /** @class */ (function () {
         this.router.navigateByUrl('/tabs/tab1/unit-details');
     };
     Tab1Page.prototype.openVisitorsInTabs = function () {
-        var _this = this;
-        return new Promise(function (resolve) {
-            var body = {
-                action: 'check_hastenant',
-                uType: localStorage.getItem('TYPE_DATA'),
-                uCode: localStorage.getItem('UNIT_CODE'),
-                propCode: localStorage.getItem("PROPERTY_CODE"),
-            };
-            _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
-                if (data['hasTenant'] == "ActiveTenant") {
-                    _this.openToast("<center>You have active tenant.</center>");
-                }
-                else {
-                    if (data['siglo'] != "On") {
-                        _this.router.navigateByUrl('/tabs/tab1/visitors-details');
-                    }
-                    else {
-                        _this.openToast("<center>Your unit is under by Siglo.</center>");
-                    }
-                }
-                resolve(true);
-                console.log(data);
-            });
-        });
+        this.router.navigateByUrl('/tabs/tab1/visitors-details');
     };
     Tab1Page.prototype.openNoticeInTabs = function () {
         this.router.navigateByUrl('/tabs/tab1/notice-main-list', { state: { uCode: this.unit_code, pCode: this.property_code, uType: this.typeData } });
     };
     Tab1Page.prototype.openAmenitiesInTabs = function () {
-        var _this = this;
-        return new Promise(function (resolve) {
-            var body = {
-                action: 'check_hastenant',
-                uType: localStorage.getItem('TYPE_DATA'),
-                uCode: localStorage.getItem('UNIT_CODE'),
-                propCode: localStorage.getItem("PROPERTY_CODE"),
-            };
-            _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
-                if (data['hasTenant'] == "ActiveTenant") {
-                    _this.openToast("<center>You have active tenant.</center>");
-                }
-                else {
-                    if (data['siglo'] != "On") {
-                        _this.router.navigateByUrl('tabs/tab1/amenities-details');
-                    }
-                    else {
-                        _this.openToast("<center>Your unit is under by Siglo.</center>");
-                    }
-                }
-                resolve(true);
-                console.log(data);
-            });
-        });
+        this.router.navigateByUrl('tabs/tab1/amenities-details');
     };
     Tab1Page.prototype.checkIfDefault = function () {
         var _this = this;

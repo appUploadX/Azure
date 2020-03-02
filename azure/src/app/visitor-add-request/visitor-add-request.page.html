@@ -46,12 +46,6 @@
 								</ion-label>
 								<ion-input class="text_input" type="text" [readonly]="isReadonly"
 									[(ngModel)]="vtUnitOwner">{{fullname}}</ion-input>
-								<!-- <ion-input *ngIf="vtUnitOwnerX == 'checked'" class="text_input checked" type="text"
-									[(ngModel)]="vtUnitOwner">{{fullname}}
-								</ion-input>
-								<ion-input *ngIf="vtUnitOwnerX == 'unchecked'" class="text_input unchecked" type="text"
-									[(ngModel)]="vtUnitOwner">{{fullname}}
-								</ion-input> -->
 							</ion-item>
 						</ion-col>
 					</ion-row>
@@ -63,10 +57,6 @@
 								</ion-label>
 								<ion-input class="text_input" type="text" [readonly]="isReadonly"
 									[(ngModel)]="vtTowerUnit">{{TUN}}</ion-input>
-								<!-- <ion-input *ngIf="vtTowerUnitX == 'checked'" class="text_input checked" type="text"
-									[(ngModel)]="vtTowerUnit">{{TUN}}</ion-input>
-								<ion-input *ngIf="vtTowerUnitX == 'unchecked'" class="text_input unchecked" type="text"
-									[(ngModel)]="vtTowerUnit">{{TUN}}</ion-input> -->
 							</ion-item>
 						</ion-col>
 					</ion-row>
@@ -77,10 +67,13 @@
 										color="danger" *ngIf="vtCarparkSlotNoX == 'checked'">*
 									</ion-text>
 								</ion-label>
-								<ion-input class="text_input" type="text" [(ngModel)]="vtCarparkSlotNo">
-								</ion-input>
-								<!-- <ion-input *ngIf="vtCarparkSlotNoX == 'unchecked'" class="text_input unchecked"
-									type="text" [(ngModel)]="vtCarparkSlotNo"></ion-input> -->
+								<!-- <ion-input class="text_input" type="text" [(ngModel)]="vtCarparkSlotNo">
+								</ion-input> -->
+								<ion-select multiple="true" [(ngModel)]="vtCarparkSlotNo">
+									<ion-select-option *ngFor="let park of parkDetails; let pk = index">{{park[pk].pprefix+' '+park[pk].pallocation+' - '+park[pk].ptype}}</ion-select-option>
+								</ion-select>
+
+
 							</ion-item>
 						</ion-col>
 					</ion-row>
@@ -516,6 +509,7 @@
 					<ion-button color="primary" expand="block">Cancel</ion-button>
 				</ion-col>
 				<ion-col size="6" class="pt-0">
+					<!-- <ion-button color="primary" expand="block" (click)="submit()">Submit</ion-button> -->
 					<ion-button color="primary" expand="block" (click)="submit()">Submit</ion-button>
 				</ion-col>
 			</ion-row>

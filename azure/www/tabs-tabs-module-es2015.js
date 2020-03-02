@@ -218,57 +218,13 @@ let Tab1Page = class Tab1Page {
         this.router.navigateByUrl('/tabs/tab1/unit-details');
     }
     openVisitorsInTabs() {
-        return new Promise(resolve => {
-            let body = {
-                action: 'check_hastenant',
-                uType: localStorage.getItem('TYPE_DATA'),
-                uCode: localStorage.getItem('UNIT_CODE'),
-                propCode: localStorage.getItem("PROPERTY_CODE"),
-            };
-            this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
-                if (data['hasTenant'] == "ActiveTenant") {
-                    this.openToast("<center>You have active tenant.</center>");
-                }
-                else {
-                    if (data['siglo'] != "On") {
-                        this.router.navigateByUrl('/tabs/tab1/visitors-details');
-                    }
-                    else {
-                        this.openToast("<center>Your unit is under by Siglo.</center>");
-                    }
-                }
-                resolve(true);
-                console.log(data);
-            });
-        });
+        this.router.navigateByUrl('/tabs/tab1/visitors-details');
     }
     openNoticeInTabs() {
         this.router.navigateByUrl('/tabs/tab1/notice-main-list', { state: { uCode: this.unit_code, pCode: this.property_code, uType: this.typeData } });
     }
     openAmenitiesInTabs() {
-        return new Promise(resolve => {
-            let body = {
-                action: 'check_hastenant',
-                uType: localStorage.getItem('TYPE_DATA'),
-                uCode: localStorage.getItem('UNIT_CODE'),
-                propCode: localStorage.getItem("PROPERTY_CODE"),
-            };
-            this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
-                if (data['hasTenant'] == "ActiveTenant") {
-                    this.openToast("<center>You have active tenant.</center>");
-                }
-                else {
-                    if (data['siglo'] != "On") {
-                        this.router.navigateByUrl('tabs/tab1/amenities-details');
-                    }
-                    else {
-                        this.openToast("<center>Your unit is under by Siglo.</center>");
-                    }
-                }
-                resolve(true);
-                console.log(data);
-            });
-        });
+        this.router.navigateByUrl('tabs/tab1/amenities-details');
     }
     checkIfDefault() {
         return new Promise(resolve => {

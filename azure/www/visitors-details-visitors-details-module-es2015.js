@@ -136,12 +136,35 @@ let VisitorsDetailsPage = class VisitorsDetailsPage {
         });
     }
     openAddVisitorRequest() {
-        if (this.Siglo == "On") {
-            this.openToast("<center>Sorry you're not allowed to make a request!</center>");
-        }
-        else {
-            this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request');
-        }
+        // if (this.Siglo == "On") {
+        //     this.openToast("<center>Sorry you're not allowed to make a request!</center>");
+        // }
+        // else {
+        //     this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request')
+        // }
+        return new Promise(resolve => {
+            let body = {
+                action: 'check_hastenant',
+                uType: localStorage.getItem('TYPE_DATA'),
+                uCode: localStorage.getItem('UNIT_CODE'),
+                propCode: localStorage.getItem("PROPERTY_CODE"),
+            };
+            this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+                if (data['hasTenant'] == "ActiveTenant") {
+                    this.openToast("<center>You have active tenant.</center>");
+                }
+                else {
+                    if (data['siglo'] != "On") {
+                        this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request');
+                    }
+                    else {
+                        this.openToast("<center>This unit is managed by Siglo.</center>");
+                    }
+                }
+                resolve(true);
+                console.log(data);
+            });
+        });
     }
     loadData(unit_code, newCode) {
         this.DateSelect = true;

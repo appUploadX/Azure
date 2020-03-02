@@ -55,6 +55,7 @@ export class VisitorListDetailsPage implements OnInit {
 
 	docPath: string;
 	ThisDateTime: string;
+	carPark: any[];
 
 
 	constructor(
@@ -89,11 +90,11 @@ export class VisitorListDetailsPage implements OnInit {
 		this.loadData(this.id);
 
 		var time = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: false }).split(" ");
-        var date = new Date().toLocaleString('en-US', { year:  'numeric', month: '2-digit', day:   '2-digit'}).replace(/\//g, '-').split('-');
+		var date = new Date().toLocaleString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '-').split('-');
 
-        var finalDate = date[2]+'-'+date[0]+'-'+date[1];
+		var finalDate = date[2] + '-' + date[0] + '-' + date[1];
 
-        this.ThisDateTime = finalDate+'T'+time+':00:000+8:00';
+		this.ThisDateTime = finalDate + 'T' + time + ':00:000+8:00';
 	}
 
 	loadData(id) {
@@ -109,6 +110,15 @@ export class VisitorListDetailsPage implements OnInit {
 				for (let index = 0; index < data['visitAdditional'].length; index++) {
 					this.dataAdd.push(data['visitAdditional']);
 				}
+
+				this.carPark = [];
+				this.carPark = data['visitData']['vuCarparkSlotNo'].split(",");
+				// console.log(splitter);
+				// for (let pk = 0; pk < splitter.length; pk++) {
+				// 	this.carPark.push(splitter[pk]);
+				// 	console.log(splitter[pk]);
+				// }
+				console.log(this.carPark);
 
 				this.vtAdditionalVisitorCountX = data['visitType']['vtAdditionalVisitorCount'];
 				this.vtApprovalX = data['visitType']['vtApproval'];
@@ -215,6 +225,10 @@ export class VisitorListDetailsPage implements OnInit {
 					for (let index = 0; index < data['visitAdditional'].length; index++) {
 						this.dataAdd.push(data['visitAdditional']);
 					}
+
+					this.carPark = [];
+					var split = data['visitData']['vuCarparkSlotNo'];
+					console.log(split + "zxczxczxc");
 
 					this.vtAdditionalVisitorCountX = data['visitType']['vtAdditionalVisitorCount'];
 					this.vtApprovalX = data['visitType']['vtApproval'];

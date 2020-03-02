@@ -43,12 +43,30 @@
         </ion-row>
         <ion-row class="v-row">
           <ion-col size="6">
-            <p>Tower Unit No.:</p>
+            <p>Carpark slot No.:</p>
           </ion-col>
-          <ion-col size="6">
-            <p class="text-right">{{res.vuUnitTowerNo}}</p>
+          <ion-col size="6" >
+            <p class="text-right" *ngFor="let pk of carPark">{{pk}}</p>
           </ion-col>
         </ion-row>
+        <ion-row class="v-row">
+          <ion-col size="6">
+            <p>Visitors On-Site Contact Person:</p>
+          </ion-col>
+          <ion-col size="6">
+            <p class="text-right">{{res.vuGuestOnSiteContact}}</p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="v-row">
+          <ion-col size="6">
+            <p>Contact No.:</p>
+          </ion-col>
+          <ion-col size="6">
+            <p class="text-right">{{res.vuContact}}</p>
+          </ion-col>
+        </ion-row>
+
       </ion-grid>
     </div>
   </div>

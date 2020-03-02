@@ -102,6 +102,8 @@ export class VisitorAddRequestPage implements OnInit {
 
 	disableSelect: boolean = false;
 
+	parkDetails: any = [];
+
 	constructor(
 		private modalController: ModalController,
 		private postPvd: PostProvider,
@@ -217,6 +219,7 @@ export class VisitorAddRequestPage implements OnInit {
 			};
 
 			this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+				
 				this.vtUnitOwnerX = data['typeDataX']['vtUnitOwner'];
 				this.vtTowerUnitX = data['typeDataX']['vtTowerUnit'];
 				this.vtCarparkSlotNoX = data['typeDataX']['vtCarparkSlotNo'];
@@ -240,6 +243,11 @@ export class VisitorAddRequestPage implements OnInit {
 
 				this.description = data['typeDataX']['vtTermsCondition'];
 				this.numberAllowed = data['numberAllowed'];
+				
+				for (let index = 0; index < data['parkDetails'].length; index++) {
+					this.parkDetails.push(data['parkDetails']);
+				}
+				
 
 				resolve(true);
 				console.log(data['numberAllowed']);
@@ -635,7 +643,7 @@ export class VisitorAddRequestPage implements OnInit {
 									this.counterSave += 1;
 									return new Promise(resolve => {
 										let body = {
-											action: 'addVisitors',
+											action: 'addVisitorsNew',
 											vuVisitorType: this.label,
 											vtUnitOwner: this.fullname,
 											vtTowerUnit: this.TUN,
@@ -749,5 +757,6 @@ export class VisitorAddRequestPage implements OnInit {
 	theClick(x) {
 		console.log(x);
 	}
+
 
 }
