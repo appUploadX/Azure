@@ -700,9 +700,11 @@ var AppComponent = /** @class */ (function () {
                 _this.AppVer = versionNumber;
                 if (_this.platform.is('android')) {
                     var devPlat = 'android';
+                    localStorage.setItem("PLATFORM", 'AND');
                 }
                 if (_this.platform.is('ios')) {
                     var devPlat = 'ios';
+                    localStorage.setItem("PLATFORM", 'IOS');
                 }
                 if (versionNumber != undefined) {
                     return new Promise(function (resolve) {

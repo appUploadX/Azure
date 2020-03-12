@@ -311,7 +311,7 @@ var AmenityBookNowPage = /** @class */ (function () {
                 this.counterSave += 1;
                 return new Promise(function (resolve) {
                     var body = {
-                        action: 'addBooking',
+                        action: 'addBookingNew',
                         amenCode: amenCode,
                         amenName: amenName,
                         propCode: propCode,
@@ -326,6 +326,7 @@ var AmenityBookNowPage = /** @class */ (function () {
                         Category: category,
                         Code: code,
                         refNo: _this.refNo,
+                        platf: localStorage.getItem("PLATFORM"),
                     };
                     _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
                         if (data['status'] == "Success") {

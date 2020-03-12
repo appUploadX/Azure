@@ -101,7 +101,7 @@ export class VisitorAddRequestPage implements OnInit {
 	counterSave: number = 0;
 
 	disableSelect: boolean = false;
-
+	disableSubmit: boolean = false;
 	parkDetails: any = [];
 
 	constructor(
@@ -643,7 +643,7 @@ export class VisitorAddRequestPage implements OnInit {
 									this.counterSave += 1;
 									return new Promise(resolve => {
 										let body = {
-											action: 'addVisitorsNew',
+											action: 'addVisitorsNewNew',
 											vuVisitorType: this.label,
 											vtUnitOwner: this.fullname,
 											vtTowerUnit: this.TUN,
@@ -673,10 +673,12 @@ export class VisitorAddRequestPage implements OnInit {
 											avName: this.visitC,
 											vehicles: this.vehicles,
 											theEmail: this.EMAIL,
+											platf: localStorage.getItem("PLATFORM"),
 										};
 
 										this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
 											if (data['status'] == "Success") {
+												this.disableSubmit = true;
 												this.loading.dismiss();
 												this.openToast("<center>Data succesfully saved!</center>");
 												setTimeout(() => { this.router.navigateByUrl('/tabs/tab1/visitors-details') }, 2000)

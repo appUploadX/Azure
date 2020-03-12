@@ -690,9 +690,11 @@ let AppComponent = class AppComponent {
                 this.AppVer = versionNumber;
                 if (this.platform.is('android')) {
                     var devPlat = 'android';
+                    localStorage.setItem("PLATFORM", 'AND');
                 }
                 if (this.platform.is('ios')) {
                     var devPlat = 'ios';
+                    localStorage.setItem("PLATFORM", 'IOS');
                 }
                 if (versionNumber != undefined) {
                     return new Promise(resolve => {

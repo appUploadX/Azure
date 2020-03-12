@@ -298,7 +298,7 @@ let AmenityBookNowPage = class AmenityBookNowPage {
                 this.counterSave += 1;
                 return new Promise(resolve => {
                     let body = {
-                        action: 'addBooking',
+                        action: 'addBookingNew',
                         amenCode: amenCode,
                         amenName: amenName,
                         propCode: propCode,
@@ -313,6 +313,7 @@ let AmenityBookNowPage = class AmenityBookNowPage {
                         Category: category,
                         Code: code,
                         refNo: this.refNo,
+                        platf: localStorage.getItem("PLATFORM"),
                     };
                     this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
                         if (data['status'] == "Success") {

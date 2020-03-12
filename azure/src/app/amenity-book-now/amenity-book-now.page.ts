@@ -282,7 +282,7 @@ export class AmenityBookNowPage implements OnInit {
 
                 return new Promise(resolve => {
                     let body = {
-                        action: 'addBooking',
+                        action: 'addBookingNew',
                         amenCode: amenCode,
                         amenName: amenName,
                         propCode: propCode,
@@ -297,6 +297,7 @@ export class AmenityBookNowPage implements OnInit {
                         Category: category,
                         Code: code,
                         refNo: this.refNo,
+                        platf: localStorage.getItem("PLATFORM"),
                     };
 
                     this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
