@@ -707,7 +707,13 @@ let AppComponent = class AppComponent {
                             if (data['platform'] == 'android') {
                                 if (data['updated'] == 'no') {
                                     // alert(JSON.stringify(data));
-                                    this.presentAlertConfirm();
+                                    this.presentAlertConfirm('android');
+                                }
+                            }
+                            else if (data['platform'] == 'ios') {
+                                if (data['updated'] == 'no') {
+                                    // alert(JSON.stringify(data));
+                                    this.presentAlertConfirm('ios');
                                 }
                             }
                         });
@@ -718,7 +724,7 @@ let AppComponent = class AppComponent {
             });
         });
     }
-    presentAlertConfirm() {
+    presentAlertConfirm(plt) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             const alert = yield this.alertController.create({
                 header: 'The app needs to be updated before you use Azure-Connect app.',
@@ -729,8 +735,14 @@ let AppComponent = class AppComponent {
                         text: 'Update',
                         handler: () => {
                             // window.location.href = "https://play.app.goo.gl/?link=https://https://play.google.com/store/apps/details?id=com.agsi.AzureConnect";
-                            window.open("https://play.google.com/store/apps/details?id=com.agsi.AzureConnect", "_system");
-                            navigator['app'].exitApp();
+                            if (plt == 'android') {
+                                window.open("https://play.google.com/store/apps/details?id=com.agsi.AzureConnect", "_system");
+                                navigator['app'].exitApp();
+                            }
+                            else {
+                                window.open("https://apps.apple.com/ph/app/azure-connect/id1490206148", "_system");
+                                navigator['app'].exitApp();
+                            }
                             // console.log('Confirm Okay');
                             // document.location.href = 'index.html';
                         }

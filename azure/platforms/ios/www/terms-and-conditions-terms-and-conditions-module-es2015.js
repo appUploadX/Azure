@@ -126,7 +126,9 @@ let TermsAndConditionsPage = class TermsAndConditionsPage {
                 if (data['status'] == "Success") {
                     if (option !== 'checkLogin') {
                         localStorage.setItem("TERMS", data['Terms']);
-                        this.router.navigateByUrl('/tabs/tab1');
+                        alert("We advise you to change your password to ensure the safety of your account.");
+                        // this.router.navigateByUrl('/tabs/tab1');
+                        this.router.navigateByUrl('/change-password', { state: { 'from': 'TERMS' } });
                     }
                     this.vtTermsConditionX = data['TermsCondition'];
                 }

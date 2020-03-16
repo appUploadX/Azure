@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-buttons size=\"small\" slot=\"start\">\r\n      <ion-back-button></ion-back-button>\r\n    </ion-buttons>\r\n    <ion-title class=\"header_title\">Change Password</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content class=\"card-background-page\">\r\n  <ion-grid>\r\n    <ion-row>\r\n      <ion-col size=\"12\" [hidden]=\"Hidden\">\r\n        <ion-item class=\"posirelative\">\r\n          <ion-label position=\"stacked\">Current Password</ion-label>\r\n          <ion-input type=\"password\" class=\"XcurrentPass\" [(ngModel)]=\"currentPass\"></ion-input>\r\n          <ion-icon class=\"iconeyepw eyecur\" name=\"eye-off\" item-right (click)=\"showCurrent()\"></ion-icon>\r\n        </ion-item>\r\n      </ion-col>\r\n      <ion-col size=\"12\" [hidden]=\"isHidden\">\r\n        <ion-item class=\"posirelative\">\r\n          <ion-label position=\"stacked\">New Password</ion-label>\r\n          <ion-input type=\"password\" class=\"Xpass1\" [(ngModel)]=\"pass1\"></ion-input>\r\n          <ion-icon class=\"iconeyepw eyeOne\" name=\"eye-off\" item-right (click)=\"showOne()\"></ion-icon>\r\n        </ion-item>\r\n      </ion-col>\r\n      <ion-col size=\"12\">\r\n        <ion-item class=\"posirelative\" [hidden]=\"isHidden\">\r\n          <ion-label position=\"stacked\">Confirm Password</ion-label>\r\n          <ion-input type=\"password\" class=\"Xpass2\" [(ngModel)]=\"pass2\"></ion-input>\r\n          <ion-icon class=\"iconeyepw eyeTwo\" name=\"eye-off\" item-right (click)=\"showTwo()\"></ion-icon>\r\n        </ion-item>\r\n      </ion-col>\r\n      <ion-col size=\"6\" class=\"marg0auto\" [hidden]=\"Hidden\">\r\n        <ion-button expand=\"block\" (click)=\"checkPass()\">Check</ion-button>\r\n      </ion-col>\r\n      <ion-col size=\"6\" class=\"marg0auto\" [hidden]=\"isHidden\">\r\n        <ion-button expand=\"block\" (click)=\"submit()\">Submit</ion-button>\r\n      </ion-col>\r\n    </ion-row>\r\n  </ion-grid>\r\n</ion-content>"
+module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-buttons size=\"small\" slot=\"start\">\r\n      <ion-back-button *ngIf=\"from == undefined\"></ion-back-button>\r\n    </ion-buttons>\r\n    <ion-title class=\"header_title\">Change Password</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content class=\"card-background-page\">\r\n  <ion-grid>\r\n    <ion-row>\r\n      <ion-col size=\"12\" [hidden]=\"Hidden\">\r\n        <ion-item class=\"posirelative\">\r\n          <ion-label position=\"stacked\">Current Password</ion-label>\r\n          <ion-input type=\"password\" class=\"XcurrentPass\" [(ngModel)]=\"currentPass\"></ion-input>\r\n          <ion-icon class=\"iconeyepw eyecur\" name=\"eye-off\" item-right (click)=\"showCurrent()\"></ion-icon>\r\n        </ion-item>\r\n      </ion-col>\r\n      <ion-col size=\"12\" [hidden]=\"isHidden\">\r\n        <ion-item class=\"posirelative\">\r\n          <ion-label position=\"stacked\">New Password</ion-label>\r\n          <ion-input type=\"password\" class=\"Xpass1\" [(ngModel)]=\"pass1\"></ion-input>\r\n          <ion-icon class=\"iconeyepw eyeOne\" name=\"eye-off\" item-right (click)=\"showOne()\"></ion-icon>\r\n        </ion-item>\r\n      </ion-col>\r\n      <ion-col size=\"12\">\r\n        <ion-item class=\"posirelative\" [hidden]=\"isHidden\">\r\n          <ion-label position=\"stacked\">Confirm Password</ion-label>\r\n          <ion-input type=\"password\" class=\"Xpass2\" [(ngModel)]=\"pass2\"></ion-input>\r\n          <ion-icon class=\"iconeyepw eyeTwo\" name=\"eye-off\" item-right (click)=\"showTwo()\"></ion-icon>\r\n        </ion-item>\r\n      </ion-col>\r\n      <ion-col size=\"6\" class=\"marg0auto\" [hidden]=\"Hidden\">\r\n        <ion-button expand=\"block\" (click)=\"checkPass()\">Check</ion-button>\r\n      </ion-col>\r\n      <ion-col size=\"6\" class=\"marg0auto\" [hidden]=\"isHidden\">\r\n        <ion-button expand=\"block\" (click)=\"submit()\">Submit</ion-button>\r\n      </ion-col>\r\n    </ion-row>\r\n  </ion-grid>\r\n</ion-content>"
 
 /***/ }),
 
@@ -102,6 +102,8 @@ var ChangePasswordPage = /** @class */ (function () {
         this.router = router;
         this.postPvd = postPvd;
         this.toastController = toastController;
+        this.from = '';
+        // alert(this.router.getP);
     }
     ChangePasswordPage.prototype.ngOnInit = function () {
         this.isHidden = true;
@@ -110,6 +112,8 @@ var ChangePasswordPage = /** @class */ (function () {
         this.unit_code = localStorage.getItem("UNIT_CODE");
         this.u_type = localStorage.getItem("TYPE_DATA");
         console.log(localStorage);
+        this.from = history.state.from;
+        console.log(history.state.from);
     };
     ChangePasswordPage.prototype.openToast = function (msg) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
@@ -214,7 +218,7 @@ var ChangePasswordPage = /** @class */ (function () {
                             _this.isHidden = true;
                             _this.Hidden = false;
                             _this.openToast("<center>Password successfully changed!</center>");
-                            _this.router.navigateByUrl('/tabs/tab1');
+                            _this.router.navigateByUrl('/tabs/tab1', { state: { 'from': 'CP' } });
                         }
                         else {
                             _this.openToast("<center>Password is incorrect!</center>");

@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-title class=\"title_header\">Menu</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <ion-grid class=\"nopad\">\r\n    <ion-row>\r\n      <ion-col size=\"12\" class=\"nopad\">\r\n        \r\n      </ion-col>\r\n    </ion-row>\r\n    <ion-row>\r\n      <ion-col size=\"12\" class=\"nopad\">\r\n        <ion-list class=\"pr-20\">\r\n          <ion-list-header>\r\n            Current Unit\r\n          </ion-list-header>\r\n          <ion-item>\r\n            <ion-avatar slot=\"start\">\r\n              <img src=\"/assets/sunit.png\">\r\n            </ion-avatar>\r\n            <ion-label class=\"current\">\r\n              <h2>Unit {{RoomNo}}</h2>\r\n              <div class=\"circle_active\"></div>\r\n              <p>Active</p>\r\n            </ion-label>\r\n          </ion-item>\r\n        </ion-list>\r\n        <ion-list class=\"pr-20 list_switch\">\r\n          <ion-list-header>\r\n            Switch Unit\r\n          </ion-list-header>\r\n          <ion-item *ngFor=\"let res of Data; let i = index\" (click)=\"presentAlertConfirm(res[i].pUnitRoom)\">\r\n            <ion-avatar slot=\"start\">\r\n              <img src=\"/assets/sunit.png\">\r\n            </ion-avatar>\r\n            <ion-label class=\"lessmargin\">\r\n              <h2>Unit {{res[i].pUnitRoom}}</h2>\r\n              <div class=\"circle\"></div>\r\n              <!-- <p>8 new</p> -->\r\n              <p>Offline</p>\r\n            </ion-label>\r\n          </ion-item>\r\n        </ion-list>\r\n      </ion-col>\r\n    </ion-row>\r\n    <ion-row>\r\n      <ion-col size=\"12\" class=\"nopad\">\r\n        <ion-list class=\"list_logout nopad pr-20\">\r\n          <ion-item (click)=\"openChangePassword()\">\r\n              <img class=\"imglogout\" src=\"/assets/locked.png\">\r\n            <ion-label>\r\n              <h2>Change Password</h2>\r\n            </ion-label>\r\n          </ion-item>\r\n          <ion-item (click)=\"logout()\">\r\n            <img class=\"imglogout\" src=\"/assets/logout.png\">\r\n            <ion-label>\r\n              <h2>Log Out</h2>\r\n            </ion-label>\r\n          </ion-item>\r\n        </ion-list>\r\n      </ion-col>\r\n    </ion-row>\r\n  </ion-grid>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n\t<ion-toolbar color=\"primary\">\r\n\t\t<ion-title class=\"title_header\">Menu</ion-title>\r\n\t</ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n\t<ion-grid class=\"nopad\">\r\n\t\t<ion-row>\r\n\t\t\t<ion-col size=\"12\" class=\"nopad\">\r\n\r\n\t\t\t</ion-col>\r\n\t\t</ion-row>\r\n\t\t<ion-row>\r\n\t\t\t<ion-col size=\"12\" class=\"nopad\">\r\n\t\t\t\t<ion-list class=\"pr-20\">\r\n\t\t\t\t\t<ion-list-header>\r\n\t\t\t\t\t\tCurrent Unit\r\n\t\t\t\t\t</ion-list-header>\r\n\t\t\t\t\t<ion-item>\r\n\t\t\t\t\t\t<ion-avatar slot=\"start\">\r\n\t\t\t\t\t\t\t<img src=\"/assets/sunit.png\">\r\n\t\t\t\t\t\t</ion-avatar>\r\n\t\t\t\t\t\t<ion-label class=\"current\">\r\n\t\t\t\t\t\t\t<h2>Unit {{RoomNo}}</h2>\r\n\t\t\t\t\t\t\t<div class=\"circle_active\"></div>\r\n\t\t\t\t\t\t\t<p>Active</p>\r\n\t\t\t\t\t\t</ion-label>\r\n\t\t\t\t\t</ion-item>\r\n\t\t\t\t</ion-list>\r\n\t\t\t\t<ion-list class=\"pr-20 list_switch\">\r\n\t\t\t\t\t<ion-list-header>\r\n\t\t\t\t\t\tSwitch Unit\r\n\t\t\t\t\t</ion-list-header>\r\n\t\t\t\t\t<ion-item *ngFor=\"let res of Data; let i = index\"\r\n\t\t\t\t\t\t(click)=\"presentAlertConfirm(res[i].pUnitRoom, res[i].unit_code, res[i].type, res[i].ID)\">\r\n\t\t\t\t\t\t<ion-avatar slot=\"start\">\r\n\t\t\t\t\t\t\t<img src=\"/assets/sunit.png\">\r\n\t\t\t\t\t\t</ion-avatar>\r\n\t\t\t\t\t\t<ion-label class=\"lessmargin\">\r\n\t\t\t\t\t\t\t<h2>Unit {{res[i].pUnitRoom}}</h2>\r\n\t\t\t\t\t\t\t<div class=\"circle\"></div>\r\n\t\t\t\t\t\t\t<!-- <p>8 new</p> -->\r\n\t\t\t\t\t\t\t<p>Offline</p>\r\n\t\t\t\t\t\t</ion-label>\r\n\t\t\t\t\t</ion-item>\r\n\t\t\t\t</ion-list>\r\n\t\t\t</ion-col>\r\n\t\t</ion-row>\r\n\t\t<ion-row>\r\n\t\t\t<ion-col size=\"12\" class=\"nopad\">\r\n\t\t\t\t<ion-list class=\"list_logout nopad pr-20\">\r\n\t\t\t\t\t<ion-item (click)=\"openChangePassword()\">\r\n\t\t\t\t\t\t<img class=\"imglogout\" src=\"/assets/locked.png\">\r\n\t\t\t\t\t\t<ion-label>\r\n\t\t\t\t\t\t\t<h2>Change Password</h2>\r\n\t\t\t\t\t\t</ion-label>\r\n\t\t\t\t\t</ion-item>\r\n\t\t\t\t\t<ion-item (click)=\"logout()\">\r\n\t\t\t\t\t\t<img class=\"imglogout\" src=\"/assets/logout.png\">\r\n\t\t\t\t\t\t<ion-label>\r\n\t\t\t\t\t\t\t<h2>Log Out</h2>\r\n\t\t\t\t\t\t</ion-label>\r\n\t\t\t\t\t</ion-item>\r\n\t\t\t\t</ion-list>\r\n\t\t\t</ion-col>\r\n\t\t</ion-row>\r\n\t</ion-grid>\r\n</ion-content>"
 
 /***/ }),
 
@@ -114,7 +114,7 @@ var Tab4Page = /** @class */ (function () {
         this.Type = localStorage.getItem("TYPE_DATA");
         this.loadData(this.Email, this.Type);
     };
-    Tab4Page.prototype.presentAlertConfirm = function (no) {
+    Tab4Page.prototype.presentAlertConfirm = function (no, uniCode, type, ID) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var alert;
             var _this = this;
@@ -135,7 +135,7 @@ var Tab4Page = /** @class */ (function () {
                                     text: 'Agree',
                                     handler: function () {
                                         console.log('Confirm Okay');
-                                        _this.confirmChange(no);
+                                        _this.confirmChange(no, uniCode, type, ID);
                                     }
                                 }
                             ]
@@ -154,7 +154,6 @@ var Tab4Page = /** @class */ (function () {
         this.router.navigateByUrl('/tabs/tab4/change-password');
     };
     Tab4Page.prototype.logout = function () {
-        console.log("x");
         localStorage.clear();
         this.router.navigateByUrl('');
     };
@@ -177,20 +176,19 @@ var Tab4Page = /** @class */ (function () {
             });
         });
     };
-    Tab4Page.prototype.confirmChange = function (no) {
+    Tab4Page.prototype.confirmChange = function (no, uniCode, type, ID) {
         var _this = this;
         this.Data = [];
+        localStorage.setItem("USER_ID", ID);
         return new Promise(function (resolve) {
             var body = {
                 action: 'changeUnit',
-                Type: _this.Type,
+                Type: type,
                 Email: _this.Email,
                 RoomNo: no,
+                uniCode: uniCode,
             };
             _this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(function (data) {
-                // for(var i = 0; i < data['result'].length;i++){
-                //   this.DataConfirm.push(data['result']);
-                // }
                 if (data['uType'] == "Owner") {
                     localStorage.setItem("UNIT_CODE", data['dataX']['unit_code']);
                     localStorage.setItem("TYPE_DATA", data['uType']);
@@ -199,6 +197,7 @@ var Tab4Page = /** @class */ (function () {
                     localStorage.setItem("FULLNAME", data['dataX']['fullname']);
                     localStorage.setItem("TUN", data['TUN']);
                     localStorage.setItem("ROOM_NO", data['ROOM_NO']);
+                    localStorage.setItem("SHORT_NAME", data['SHORT_NAME']);
                     localStorage.setItem("EMAIL", data['dataX']['EmailAddress']);
                     localStorage.setItem("BEDROOM", data['unit_details']['bedroom']);
                     localStorage.setItem("UNITSIZE", data['unit_details']['unitsize']);
@@ -214,6 +213,7 @@ var Tab4Page = /** @class */ (function () {
                     localStorage.setItem("FULLNAME", data['dataX']['fullname']);
                     localStorage.setItem("TUN", data['TUN']);
                     localStorage.setItem("ROOM_NO", data['ROOM_NO']);
+                    localStorage.setItem("SHORT_NAME", data['SHORT_NAME']);
                     localStorage.setItem("EMAIL", data['dataX']['tEmailAddress']);
                     localStorage.setItem("BEDROOM", data['unit_details']['bedroom']);
                     localStorage.setItem("UNITSIZE", data['unit_details']['unitsize']);

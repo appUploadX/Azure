@@ -717,7 +717,13 @@ var AppComponent = /** @class */ (function () {
                             if (data['platform'] == 'android') {
                                 if (data['updated'] == 'no') {
                                     // alert(JSON.stringify(data));
-                                    _this.presentAlertConfirm();
+                                    _this.presentAlertConfirm('android');
+                                }
+                            }
+                            else if (data['platform'] == 'ios') {
+                                if (data['updated'] == 'no') {
+                                    // alert(JSON.stringify(data));
+                                    _this.presentAlertConfirm('ios');
                                 }
                             }
                         });
@@ -728,7 +734,7 @@ var AppComponent = /** @class */ (function () {
             });
         });
     };
-    AppComponent.prototype.presentAlertConfirm = function () {
+    AppComponent.prototype.presentAlertConfirm = function (plt) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var alert;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
@@ -742,8 +748,14 @@ var AppComponent = /** @class */ (function () {
                                     text: 'Update',
                                     handler: function () {
                                         // window.location.href = "https://play.app.goo.gl/?link=https://https://play.google.com/store/apps/details?id=com.agsi.AzureConnect";
-                                        window.open("https://play.google.com/store/apps/details?id=com.agsi.AzureConnect", "_system");
-                                        navigator['app'].exitApp();
+                                        if (plt == 'android') {
+                                            window.open("https://play.google.com/store/apps/details?id=com.agsi.AzureConnect", "_system");
+                                            navigator['app'].exitApp();
+                                        }
+                                        else {
+                                            window.open("https://apps.apple.com/ph/app/azure-connect/id1490206148", "_system");
+                                            navigator['app'].exitApp();
+                                        }
                                         // console.log('Confirm Okay');
                                         // document.location.href = 'index.html';
                                     }

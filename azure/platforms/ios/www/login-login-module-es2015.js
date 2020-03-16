@@ -127,11 +127,11 @@ let LoginPage = class LoginPage {
                             localStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
                             localStorage.setItem("TERMS", data['dataX'][0]['pTermsAndCondition']);
                             localStorage.setItem("SIGLO", data['dataX'][0]['sigloType']);
-                            if (data['dataX'][0]['pTermsAndCondition'] !== null || data['dataX'][0]['pTermsAndCondition'] !== '') {
-                                this.router.navigateByUrl('/tabs/tab1');
+                            if (data['dataX'][0]['pTermsAndCondition'] == null || data['dataX'][0]['pTermsAndCondition'] == '') {
+                                this.router.navigateByUrl('terms-and-conditions');
                             }
                             else {
-                                this.router.navigateByUrl('terms-and-conditions');
+                                this.router.navigateByUrl('/tabs/tab1', { state: { 'from': 'Login' } });
                             }
                         }
                         else if (data['uType'] == "Tenant") {
@@ -139,11 +139,11 @@ let LoginPage = class LoginPage {
                             localStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
                             localStorage.setItem("TERMS", data['dataX'][0]['tTermsAndCondition']);
                             localStorage.setItem("SIGLO", data['dataX'][0]['sigloType']);
-                            if (data['dataX'][0]['tTermsAndCondition'] !== null || data['dataX'][0]['tTermsAndCondition'] !== '') {
-                                this.router.navigateByUrl('/tabs/tab1');
+                            if (data['dataX'][0]['tTermsAndCondition'] == null || data['dataX'][0]['tTermsAndCondition'] == '') {
+                                this.router.navigateByUrl('terms-and-conditions');
                             }
                             else {
-                                this.router.navigateByUrl('terms-and-conditions');
+                                this.router.navigateByUrl('/tabs/tab1', { state: { 'from': 'Login' } });
                             }
                         }
                     }
@@ -152,12 +152,6 @@ let LoginPage = class LoginPage {
                     }
                 });
             });
-            if (localStorage.getItem("TERMS") !== 'null') {
-                this.router.navigateByUrl('/tabs/tab1');
-            }
-            else {
-                this.router.navigateByUrl('terms-and-conditions');
-            }
         }
     }
     openToast(msg) {
@@ -209,6 +203,7 @@ let LoginPage = class LoginPage {
                                 localStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
                                 localStorage.setItem("TUN", data['TUN']);
                                 localStorage.setItem("ROOM_NO", data['ROOM_NO']);
+                                localStorage.setItem("SHORT_NAME", data['SHORT_NAME']);
                                 localStorage.setItem("EMAIL", data['dataX'][0]['EmailAddress']);
                                 localStorage.setItem("PROPERTY_CODE", data['dataX'][0]['property_code']);
                                 localStorage.setItem("USER_ID", data['dataX'][0]['id']);
@@ -216,11 +211,11 @@ let LoginPage = class LoginPage {
                                 localStorage.setItem("BEDROOM", data['unit_details']['bedroom']);
                                 localStorage.setItem("UNITSIZE", data['unit_details']['unitsize']);
                                 localStorage.setItem("SIGLO", data['dataX'][0]['sigloType']);
-                                if (data['dataX'][0]['pTermsAndCondition'] !== null) {
-                                    this.router.navigateByUrl('/tabs/tab1');
+                                if (data['dataX'][0]['pTermsAndCondition'] == null || data['dataX'][0]['pTermsAndCondition'] == '') {
+                                    this.router.navigateByUrl('terms-and-conditions');
                                 }
                                 else {
-                                    this.router.navigateByUrl('terms-and-conditions');
+                                    this.router.navigateByUrl('/tabs/tab1', { state: { 'from': 'Login' } });
                                 }
                             }
                             else if (data['uType'] == "Tenant") {
@@ -231,6 +226,7 @@ let LoginPage = class LoginPage {
                                 localStorage.setItem("FULLNAME", data['dataX'][0]['fullname']);
                                 localStorage.setItem("TUN", data['TUN']);
                                 localStorage.setItem("ROOM_NO", data['ROOM_NO']);
+                                localStorage.setItem("SHORT_NAME", data['SHORT_NAME']);
                                 localStorage.setItem("EMAIL", data['dataX'][0]['tEmailAddress']);
                                 localStorage.setItem("PROPERTY_CODE", data['propC']['property_code']);
                                 localStorage.setItem("USER_ID", data['dataX'][0]['id']);
@@ -238,11 +234,11 @@ let LoginPage = class LoginPage {
                                 localStorage.setItem("BEDROOM", data['unit_details']['bedroom']);
                                 localStorage.setItem("UNITSIZE", data['unit_details']['unitsize']);
                                 localStorage.setItem("SIGLO", data['dataX'][0]['sigloType']);
-                                if (data['dataX'][0]['tTermsAndCondition'] !== null) {
-                                    this.router.navigateByUrl('/tabs/tab1');
+                                if (data['dataX'][0]['tTermsAndCondition'] == null || data['dataX'][0]['tTermsAndCondition'] == '') {
+                                    this.router.navigateByUrl('terms-and-conditions');
                                 }
                                 else {
-                                    this.router.navigateByUrl('terms-and-conditions');
+                                    this.router.navigateByUrl('/tabs/tab1', { state: { 'from': 'Login' } });
                                 }
                             }
                         }

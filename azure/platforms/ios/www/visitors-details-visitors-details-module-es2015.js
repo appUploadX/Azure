@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-buttons size=\"small\" slot=\"start\">\r\n      <ion-back-button></ion-back-button>\r\n    </ion-buttons>\r\n    <ion-title class=\"header_title\">Visitors Requests</ion-title>\r\n  </ion-toolbar>\r\n  <!-- <ion-toolbar class=\"toolbar2\">\r\n    <ion-grid>\r\n      <ion-row>\r\n        <ion-col size=\"6\">\r\n          <ion-item class=\"selectitemtoolbar\">\r\n            <ion-select class=\"selecttoolbar\" placeholder=\"View\">\r\n              <ion-select-option value=\"f\">Today</ion-select-option>\r\n              <ion-select-option value=\"m\">By Month</ion-select-option>\r\n            </ion-select>\r\n          </ion-item>\r\n        </ion-col>\r\n\r\n        <ion-col size=\"6\">\r\n          <ion-item class=\"selectitemtoolbar\">\r\n            <ion-select class=\"selecttoolbar\" placeholder=\"Month\">\r\n              <ion-select-option value=\"01\">January</ion-select-option>\r\n              <ion-select-option value=\"02\">February</ion-select-option>\r\n              <ion-select-option value=\"03\">March</ion-select-option>\r\n              <ion-select-option value=\"04\">April</ion-select-option>\r\n              <ion-select-option value=\"05\">May</ion-select-option>\r\n              <ion-select-option value=\"06\">June</ion-select-option>\r\n              <ion-select-option value=\"07\">July</ion-select-option>\r\n              <ion-select-option value=\"08\">August</ion-select-option>\r\n              <ion-select-option value=\"09\">September</ion-select-option>\r\n              <ion-select-option value=\"10\">October</ion-select-option>\r\n              <ion-select-option value=\"11\">November</ion-select-option>\r\n              <ion-select-option value=\"12\">December</ion-select-option>\r\n            </ion-select>\r\n          </ion-item>\r\n        </ion-col>\r\n      </ion-row>\r\n    </ion-grid>\r\n  </ion-toolbar> -->\r\n</ion-header>\r\n\r\n<ion-content class=\"card-background-page\">\r\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event,unit_code,newCode)\">\r\n    <ion-refresher-content pullingIcon=\"arrow-dropdown\" refreshingSpinner=\"circles\" refreshingText=\"Refreshing...\">\r\n    </ion-refresher-content>\r\n  </ion-refresher>\r\n\r\n  <p class=\"identify_unit\">UNIT {{unit_no}}</p>\r\n  <!-- PLUS BUTTON TO ADD VISITOR REQUEST -->\r\n  <ion-fab horizontal=\"end\" vertical=\"bottom\" slot=\"fixed\">\r\n    <ion-fab-button color=\"primary\" (click)=\"openAddVisitorRequest()\">\r\n      <ion-icon name=\"add\"></ion-icon>\r\n    </ion-fab-button>\r\n  </ion-fab>\r\n\r\n  <ion-list>\r\n    <!-- <ion-list-header>August</ion-list-header> -->\r\n    <ion-item *ngFor=\"let vData of visitData; let i = index\" (click)=\"OpenVisitorListDetails(vData[i].id)\">\r\n      <ion-label>\r\n        <ion-grid>\r\n          <ion-row>\r\n            <ion-col class=\"nopad\" size=\"6\">\r\n              <h2 class=\"v_name\">{{vData[i].vuNamePrimaryVisitor}}</h2>\r\n            </ion-col>\r\n            <ion-col class=\"nopad\" size=\"6\">\r\n              <p class=\"v-date\">{{vData[i].vuArrivalDate}}</p>\r\n              <img class=\"img_arrow\" src=\"assets/arrow_right_blue.png\">\r\n            </ion-col>\r\n            <ion-col class=\"nopad\" size=\"12\" *ngIf=\"vData[i].vuRequestStatus != 'Cancelled'\">\r\n              <h3 *ngIf=\"vData[i].vuApprovalStatus == 'Approved'\" class=\"v-status approved\">\r\n                {{vData[i].vuApprovalStatus}}</h3>\r\n              <h3 *ngIf=\"vData[i].vuApprovalStatus == 'Declined' || vData[i].vuApprovalStatus == 'Cancelled'\"\r\n                class=\"v-status v_cancelled\">{{vData[i].vuApprovalStatus}}</h3>\r\n              <h3 *ngIf=\"vData[i].vuApprovalStatus == 'Pending'\" class=\"v-status v_pending\">\r\n                {{vData[i].vuApprovalStatus}}</h3>\r\n            </ion-col>\r\n            <ion-col class=\"nopad\" size=\"12\" *ngIf=\"vData[i].vuRequestStatus == 'Cancelled'\">\r\n                <h3 class=\"v-status v_cancelled\"> Cancelled</h3>\r\n            </ion-col>\r\n          </ion-row>\r\n        </ion-grid>\r\n      </ion-label>\r\n    </ion-item>\r\n  </ion-list>\r\n\r\n\r\n</ion-content>"
+module.exports = "<ion-header>\r\n\t<ion-toolbar color=\"primary\">\r\n\t\t<ion-buttons size=\"small\" slot=\"start\">\r\n\t\t\t<ion-back-button></ion-back-button>\r\n\t\t</ion-buttons>\r\n\t\t<ion-title class=\"header_title\">Visitors Requests</ion-title>\r\n\t</ion-toolbar>\r\n\t<ion-toolbar class=\"toolbar2\">\r\n\t\t<ion-grid>\r\n\t\t\t<ion-row>\r\n\t\t\t\t<ion-col size=\"6\">\r\n\t\t\t\t\t<ion-item class=\"selectitemtoolbar\">\r\n\t\t\t\t\t\t<ion-select class=\"selecttoolbar\" placeholder=\"Type\" (ionChange)=\"typeChanged(Type)\" id=\"Type\"\r\n\t\t\t\t\t\t\t[(ngModel)]=\"Types\">\r\n\t\t\t\t\t\t\t<ion-select-option value=\"arrival\">Arrival Date</ion-select-option>\r\n\t\t\t\t\t\t\t<ion-select-option value=\"departure\">Departure Date</ion-select-option>\r\n\t\t\t\t\t\t</ion-select>\r\n\t\t\t\t\t</ion-item>\r\n\t\t\t\t</ion-col>\r\n\r\n\t\t\t\t<ion-col size=\"6\">\r\n\t\t\t\t\t<ion-item class=\"selectitemtoolbar\">\r\n\t\t\t\t\t\t<ion-datetime class=\"selecttoolbar\" [disabled]=\"DateSelect\" id=\"searchDate\"\r\n\t\t\t\t\t\t\tdisplayFormat=\"YYYY-MM-DD\" [(ngModel)]=\"searchDate\" (ionChange)=\"dateChanged(searchDate)\">\r\n\t\t\t\t\t\t</ion-datetime>\r\n\t\t\t\t\t</ion-item>\r\n\t\t\t\t</ion-col>\r\n\t\t\t</ion-row>\r\n\t\t</ion-grid>\r\n\t</ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content class=\"card-background-page\">\r\n\t<ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event,unit_code,newCode)\">\r\n\t\t<ion-refresher-content pullingIcon=\"arrow-dropdown\" refreshingSpinner=\"circles\" refreshingText=\"Refreshing...\">\r\n\t\t</ion-refresher-content>\r\n\t</ion-refresher>\r\n\r\n\t<p class=\"identify_unit\">UNIT {{unit_no}}</p>\r\n\t<!-- PLUS BUTTON TO ADD VISITOR REQUEST -->\r\n\t<ion-fab horizontal=\"end\" vertical=\"bottom\" slot=\"fixed\">\r\n\t\t<ion-fab-button color=\"primary\" (click)=\"openAddVisitorRequest()\">\r\n\t\t\t<ion-icon name=\"add\"></ion-icon>\r\n\t\t</ion-fab-button>\r\n\t</ion-fab>\r\n\r\n\t<ion-list>\r\n\t\t<!-- <ion-list-header>August</ion-list-header> -->\r\n\t\t<ion-item *ngFor=\"let vData of visitData; let i = index\" (click)=\"OpenVisitorListDetails(vData[i].id)\">\r\n\t\t\t<ion-label>\r\n\t\t\t\t<ion-grid>\r\n\t\t\t\t\t<ion-row>\r\n\t\t\t\t\t\t<ion-col class=\"nopad\" size=\"6\">\r\n\t\t\t\t\t\t\t<h2 class=\"v_name\">{{vData[i].vuNamePrimaryVisitor}}</h2>\r\n\t\t\t\t\t\t</ion-col>\r\n\t\t\t\t\t\t<ion-col class=\"nopad\" size=\"6\">\r\n\t\t\t\t\t\t\t<p class=\"v-date\">{{vData[i].vuArrivalDate}}</p>\r\n\t\t\t\t\t\t\t<p class=\"v-date\">{{vData[i].vuDepartureDate}}</p>\r\n\t\t\t\t\t\t\t<img class=\"img_arrow\" src=\"assets/arrow_right_blue.png\">\r\n\t\t\t\t\t\t</ion-col>\r\n\t\t\t\t\t\t<ion-col class=\"nopad\" size=\"12\">\r\n\t\t\t\t\t\t\t<h3 *ngIf=\"vData[i].vuApprovalStatus == 'Approved'\" class=\"v-status approved\">\r\n\t\t\t\t\t\t\t\t{{vData[i].vuApprovalStatus}}\r\n\t\t\t\t\t\t\t\t<span class=\"v-status v_cancelled\" *ngIf=\"vData[i].vuRequestStatus == 'Cancelled'\"> /\r\n\t\t\t\t\t\t\t\t\tCancelled</span>\r\n\t\t\t\t\t\t\t\t<span class=\"v-status v_cancelled\" *ngIf=\"ThisDateTime > vData[i].vuDepartureTime\"> /\r\n\t\t\t\t\t\t\t\t\tExpired</span></h3>\r\n\t\t\t\t\t\t\t<h3 *ngIf=\"vData[i].vuApprovalStatus == 'Declined' || vData[i].vuApprovalStatus == 'Cancelled'\"\r\n\t\t\t\t\t\t\t\tclass=\"v-status v_cancelled\">{{vData[i].vuApprovalStatus}}\r\n\t\t\t\t\t\t\t\t<span class=\"v-status v_cancelled\" *ngIf=\"vData[i].vuRequestStatus == 'Cancelled'\"> /\r\n\t\t\t\t\t\t\t\t\tCancelled</span>\r\n\t\t\t\t\t\t\t\t<span class=\"v-status v_cancelled\" *ngIf=\"ThisDateTime > vData[i].vuDepartureTime\"> /\r\n\t\t\t\t\t\t\t\t\tExpired</span></h3>\r\n\t\t\t\t\t\t\t<h3 *ngIf=\"vData[i].vuApprovalStatus == 'Pending'\" class=\"v-status v_pending\">\r\n\t\t\t\t\t\t\t\t{{vData[i].vuApprovalStatus}}\r\n\t\t\t\t\t\t\t\t<span class=\"v-status v_cancelled\" *ngIf=\"vData[i].vuRequestStatus == 'Cancelled'\"> /\r\n\t\t\t\t\t\t\t\t\tCancelled</span>\r\n\t\t\t\t\t\t\t\t<span class=\"v-status v_cancelled\" *ngIf=\"ThisDateTime > vData[i].vuDepartureTime\"> /\r\n\t\t\t\t\t\t\t\t\tExpired</span></h3>\r\n\t\t\t\t\t\t</ion-col>\r\n\t\t\t\t\t</ion-row>\r\n\t\t\t\t</ion-grid>\r\n\t\t\t</ion-label>\r\n\t\t</ion-item>\r\n\t</ion-list>\r\n\r\n\r\n</ion-content>"
 
 /***/ }),
 
@@ -85,6 +85,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var src_providers_post_providers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/providers/post-providers */ "./src/providers/post-providers.ts");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -98,6 +101,7 @@ let VisitorsDetailsPage = class VisitorsDetailsPage {
         this.toastController = toastController;
         this.visitData = [];
         this.visitType = [];
+        this.DateSelect = true;
     }
     ngOnInit() {
         this.unit_code = localStorage.getItem("UNIT_CODE");
@@ -107,10 +111,17 @@ let VisitorsDetailsPage = class VisitorsDetailsPage {
         this.unit_no = localStorage.getItem("ROOM_NO");
         this.Siglo = localStorage.getItem("SIGLO");
         console.log(localStorage);
+        var time = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: false }).split(" ");
+        var date = new Date().toLocaleString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '-').split('-');
+        var finalDate = date[2] + '-' + date[0] + '-' + date[1];
+        this.ThisDateTime = finalDate + 'T' + time + ':00:000+8:00';
+        // console.log(new Date());
+        this.DateSelect = true;
     }
     ionViewWillEnter() {
         console.log("Enter details page");
         this.loadData(this.unit_code, this.newCode);
+        this.DateSelect = true;
     }
     OpenVisitorListDetails(id) {
         this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-list-details', { state: { id: id } });
@@ -125,14 +136,38 @@ let VisitorsDetailsPage = class VisitorsDetailsPage {
         });
     }
     openAddVisitorRequest() {
-        if (this.Siglo == "On") {
-            this.openToast("<center>Sorry you're not allowed to make a request!</center>");
-        }
-        else {
-            this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request');
-        }
+        // if (this.Siglo == "On") {
+        //     this.openToast("<center>Sorry you're not allowed to make a request!</center>");
+        // }
+        // else {
+        //     this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request')
+        // }
+        return new Promise(resolve => {
+            let body = {
+                action: 'check_hastenant',
+                uType: localStorage.getItem('TYPE_DATA'),
+                uCode: localStorage.getItem('UNIT_CODE'),
+                propCode: localStorage.getItem("PROPERTY_CODE"),
+            };
+            this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+                if (data['hasTenant'] == "ActiveTenant") {
+                    this.openToast("<center>You have active tenant.</center>");
+                }
+                else {
+                    if (data['siglo'] != "On") {
+                        this.router.navigateByUrl('/tabs/tab1/visitors-details/visitor-add-request');
+                    }
+                    else {
+                        this.openToast("<center>This unit is managed by Siglo.</center>");
+                    }
+                }
+                resolve(true);
+                console.log(data);
+            });
+        });
     }
     loadData(unit_code, newCode) {
+        this.DateSelect = true;
         this.visitData = [];
         return new Promise(resolve => {
             let body = {
@@ -155,13 +190,54 @@ let VisitorsDetailsPage = class VisitorsDetailsPage {
     doRefresh(event, unit_code, newCode) {
         console.log('Begin async operation');
         setTimeout(() => {
-            this.visitData = [];
-            this.visitType = [];
+            this.loadData(this.unit_code, this.newCode);
+            // this.visitData = [];
+            // this.visitType = [];
+            // return new Promise(resolve => {
+            //     let body = {
+            //         action: 'visitorDetails',
+            //         unit_code: unit_code,
+            //         newCode: newCode
+            //     };
+            //     this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
+            //         for (var i = 0; i < data['visitData'].length; i++) {
+            //             this.visitData.push(data['visitData']);
+            //         }
+            //         for (var x = 0; x < data['visitData'].length; x++) {
+            //             this.visitType.push(data['visitType']);
+            //         }
+            jquery__WEBPACK_IMPORTED_MODULE_5__("#Type").val('');
+            jquery__WEBPACK_IMPORTED_MODULE_5__("#searchDate").val('');
+            this.DateSelect = true;
+            event.target.complete();
+            //         resolve(true);
+            //         console.log(this.visitData);
+            //     });
+            // });
+        }, 2000);
+    }
+    typeChanged(value) {
+        // console.log(value);
+        this.Type = value;
+        this.DateSelect = false;
+        // console.log($("#searchDate").val());
+        if (jquery__WEBPACK_IMPORTED_MODULE_5__("#searchDate").val() != '') {
+            this.dateChanged(jquery__WEBPACK_IMPORTED_MODULE_5__("#searchDate").val());
+        }
+    }
+    //trigger ng search
+    dateChanged(value) {
+        console.log(value.split('T'), jquery__WEBPACK_IMPORTED_MODULE_5__("#Type").val());
+        var val = value.split('T');
+        this.visitData = [];
+        if (jquery__WEBPACK_IMPORTED_MODULE_5__("#Type").val() != '') {
             return new Promise(resolve => {
                 let body = {
-                    action: 'visitorDetails',
-                    unit_code: unit_code,
-                    newCode: newCode
+                    action: 'visitorDetailsSearch',
+                    unit_code: this.unit_code,
+                    newCode: this.newCode,
+                    type: jquery__WEBPACK_IMPORTED_MODULE_5__("#Type").val(),
+                    date: val[0],
                 };
                 this.postPvd.postData(body, 'https://www.asi-ph.com/sandboxes/testAndroid/CondoProcess/').subscribe(data => {
                     for (var i = 0; i < data['visitData'].length; i++) {
@@ -170,12 +246,14 @@ let VisitorsDetailsPage = class VisitorsDetailsPage {
                     for (var x = 0; x < data['visitData'].length; x++) {
                         this.visitType.push(data['visitType']);
                     }
-                    event.target.complete();
+                    if (data['count'] == '0') {
+                        this.openToast("No records found!");
+                    }
                     resolve(true);
                     console.log(data['visitData']);
                 });
             });
-        }, 2000);
+        }
     }
 };
 VisitorsDetailsPage.ctorParameters = () => [
